@@ -15,18 +15,17 @@ def annotaion():
     main_path = 'annotation'
     files = os.listdir(main_path)
     for f in files:
-        annotaion_dict[f.rstrip('.txt')] = normlize_annotaion(f"{main_path}/{f}")
+        annotaion_dict[f.replace('.txt', '')] = normlize_annotaion(f"{main_path}/{f}")
 
     return annotaion_dict
 
 
 def pattern_replace(pattern_str):
-    replace_dict = {"num": "{numbers}", "Num": "{numbers}", "DP": "{dayPart}", "Day": "{days}", "RD": "{relativeDays}", "Next": "{next}", "Prev": "{past}"}
+    replace_dict = {"num": annotaion_dict['numbers'], "Num": annotaion_dict['numbers'], "DP": annotaion_dict['dayPart'], "Day": annotaion_dict['days'], "RD": annotaion_dict['relativeDays'], "Next": annotaion_dict['next'], "Prev": annotaion_dict['past']}
 
     for key, value in replace_dict.items():
-        pattern_str = pattern_str.replace(key, value)
-
-    pattern_str = "fr'\b(?:" + pattern_str + "?)"
+        pattern_str = pattern_str.replace(key, "(?:" + value + ")")
+    pattern_str = pattern_str.replace(" ", '+\\s')
     return pattern_str
 
 
@@ -50,8 +49,20 @@ def pattern():
     return pattern_list
 
 annotaion_dict = annotaion()
-s= re.findall(fr'\b(?:{annotaion_dict["daynumbers"]}?)\s', "glass watre 29 یک  دو سه بیست‌وسه لیوان ")
-print(s)
+# print(annotaion_dict.keys())
+# s= re.findall(fr'\b(?:{annotaion_dict["daynumbers"]}?)\s', "glass watre 29 یک  دو سه بیست‌وسه لیوان ")
+# print(s)
 
 pattern_list = pattern()
-print(pattern_list)
+# print(pattern_list[0])
+#
+# q= re.findall(fr'\b(?:ساعت+\s(?:{annotaion_dict["numbers"]})+\sو+\s(?:{annotaion_dict["numbers"]})+\sدقیقه+\sو+\s(?:{annotaion_dict["numbers"]}+\sثانیه?))', " ساعت یک و دو دقیقه و پنج ثانیه")
+# print(q)
+#
+# q= re.findall(fr'\b(?:ساعت+\s(?:{annotaion_dict["numbers"]})+\sو+\s(?:{annotaion_dict["numbers"]})+\sدقیقه+\sو+\s(?:{annotaion_dict["numbers"]}+\sثانیه?))', " ساعت یک و دو دقیقه و پنج ثانیه")
+# print(q)
+
+
+for i in range(len(pattern_list)):
+    u= re.findall(fr'\b(?:{pattern_list[i]})', "من با احمد ساعت یک و دو دقیقه و پنج ثانیه غروب به مکتب رفتم و در آنجا ساعت 15:13 شام خوردیم و به ساعت ماه نگاه کردیم")
+    print(i, u)
