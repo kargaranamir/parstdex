@@ -1,5 +1,5 @@
 import re
-from pattern_to_regex import pattern_list
+from pattern_to_regex import res_pattern_list as pattern_list
 
 
 def time_marker_extractor(input_sentence):
