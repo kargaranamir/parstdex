@@ -1,0 +1,76 @@
+﻿
+
+ساعت Num و Num دقیقه و Num ثانیه
+ساعت Num و Num دقیقه و Num ثانیه DP
+NUM DP RD
+ساعت Num
+ساعت Num DP
+ساعت Num RD
+ساعت Num DP RD
+ساعت Num Day
+ساعت Num DP Day
+ساعت Num Day Next
+ساعت Num DP Day Next
+ساعت Num Day Prev
+ساعت Num DP Day Prev
+ساعت Num:Num
+ساعت Num:Num:NUM
+ساعت Num:Num DP
+ساعت Num:Num RD
+ساعت Num:Num DP RD
+ساعت Num:Num Day
+ساعت Num:Num DP Day
+ساعت Num:Num Day Prev
+ساعت Num:Num DP Day Prev
+ساعت Num:Num Day Next
+ساعت Num:Num DP Day Next
+Num دقیقه مانده به Num
+Num دقیقه مانده به Num DP
+Num دقیقه مانده به Num RD
+Num دقیقه مانده به Num DP RD
+Num دقیقه مانده به Num Day
+Num دقیقه مانده به Num DP Day
+Num دقیقه مانده به Num Day Next
+Num دقیقه مانده به Num Day Prev
+Num دقیقه مانده به Num DP Day Next
+Num دقیقه مانده به Num DP Day Prev
+Num دقیقه به Num
+Num دقیقه به Num DP
+Num دقیقه به Num RD
+Num دقیقه به Num DP RD
+Num دقیقه به Num Day
+Num دقیقه به Num DP Day
+Num دقیقه به Num Day Next
+Num دقیقه به Num Day Prev
+Num دقیقه به Num DP Day Next
+Num دقیقه به Num DP Day Prev
+ساعت Num  و ربع
+ساعت Num  و ربع RD
+ساعت Num  و ربع Day
+ساعت Num  و ربع Day Next
+ساعت Num  و ربع Day Past
+ساعت Num  و ربع DP
+ساعت Num  و ربع DP RD
+ساعت Num  و ربع DP Day
+ساعت Num  و ربع DP Day Next
+ساعت Num  و ربع DP Day Past
+ساعت Num  و نیم 
+ساعت Num  و نیم RD
+ساعت Num  و نیم Day
+ساعت Num  و نیم Day Next
+ساعت Num  و نیم Day Past
+ساعت Num  و نیم DP
+ساعت Num  و نیم DP RD
+ساعت Num  و نیم DP Day
+ساعت Num  و نیم DP Day Next
+ساعت Num  و نیم DP Day Past
+ساعت یک ربع به Num
+ساعت یک ربع به Num RD
+ساعت یک ربع به Num Day
+ساعت یک ربع به Num Day Next
+ساعت یک ربع به Num Day Prev
+ساعت یک ربع به Num DP
+ساعت یک ربع به Num DP RD
+ساعت یک ربع به Num DP Day
+ساعت یک ربع به Num DP Day Next
+ساعت یک ربع به Num DP Day Prev

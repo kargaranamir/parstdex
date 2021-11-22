@@ -1,0 +1,75 @@
+﻿
+روز Past
+روز Next
+چند روز Past
+چند روز Next
+Num روز Past
+Num روز Next
+شب Past
+شب Next
+چند شب Past
+چند شب Next
+Num شب Past
+Num شب Next
+هفته Past
+هفته Next
+چند هفته Past
+چند هفته Next
+Num هفته Past
+Num هفته Next
+ماه Past
+ماه Next
+چند ماه Past
+چند ماه Next
+Num ماه Past
+Num ماه Next
+سال Past
+سال Next
+چند سال Past
+چند سال Next
+Num سال Past
+Num سال Next
+فصل Past
+فصل Next
+دهه Past
+دهه Next
+چند دهه Past
+چند دهه Next
+Num دهه Past
+Num دهه Next
+قرن Past
+قرن Next
+چند قرن Past
+چند قرن Next
+Num قرن Past
+Num قرن Next
+Num Month سال Past
+Num Month سال Next
+Num Month Num سال Past
+Num Month Num سال Next
+Month سال Past
+Month سال Next
+Month Num سال Past
+Month Num سال Next
+Month ماه Num سال Past
+Month ماه Num سال Next
+RT هفته Past
+RT هفته Next
+RT Num هفته Next
+RT Num هفته Past
+RT ماه Past
+RT ماه Next
+RT سال Past
+RT سال Next
+RT دهه Past
+RT دهه Next
+RT قرن Past
+RT قرن Next
+Day Next
+Day Past
+Day هفته Next
+Day هفته Past
+Day Num هفته Next
+Day Num هفته Past
+Num ماهه Num سال Next
+Num ماهه Num سال Past
