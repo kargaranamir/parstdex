@@ -43,7 +43,7 @@ Num دقیقه به Num Day Next
 Num دقیقه به Num Day Prev
 Num دقیقه به Num DP Day Next
 Num دقیقه به Num DP Day Prev
-ساعت Num  و ربع
+ساعت Num و ربع
 ساعت Num  و ربع RD
 ساعت Num  و ربع Day
 ساعت Num  و ربع Day Next
