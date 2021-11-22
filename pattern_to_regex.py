@@ -17,6 +17,9 @@ def annotaion():
     for f in files:
         annotaion_dict[f.replace('.txt', '')] = normlize_annotaion(f"{main_path}/{f}")
 
+    #fix numbers: add more numbers 1 or 2 digits coverage
+    annotaion_dict['numbers'] = annotaion_dict['numbers'] + '|\d{1,2}'
+
     return annotaion_dict
 
 
@@ -41,7 +44,7 @@ def normlize_pattern(path):
 
 def pattern():
     pattern_list = []
-    main_path = 'pattern_test_time'
+    main_path = 'pattern'
     files = os.listdir(main_path)
     for f in files:
         pattern_list = pattern_list + normlize_pattern(f"{main_path}/{f}")
@@ -49,20 +52,10 @@ def pattern():
     return pattern_list
 
 annotaion_dict = annotaion()
-# print(annotaion_dict.keys())
-# s= re.findall(fr'\b(?:{annotaion_dict["daynumbers"]}?)\s', "glass watre 29 یک  دو سه بیست‌وسه لیوان ")
-# print(s)
-
 pattern_list = pattern()
-# print(pattern_list[0])
-#
-# q= re.findall(fr'\b(?:ساعت+\s(?:{annotaion_dict["numbers"]})+\sو+\s(?:{annotaion_dict["numbers"]})+\sدقیقه+\sو+\s(?:{annotaion_dict["numbers"]}+\sثانیه?))', " ساعت یک و دو دقیقه و پنج ثانیه")
-# print(q)
-#
-# q= re.findall(fr'\b(?:ساعت+\s(?:{annotaion_dict["numbers"]})+\sو+\s(?:{annotaion_dict["numbers"]})+\sدقیقه+\sو+\s(?:{annotaion_dict["numbers"]}+\sثانیه?))', " ساعت یک و دو دقیقه و پنج ثانیه")
-# print(q)
 
+sentence = "من با احمد ساعت یک و دو دقیقه و پنج ثانیه غروب به مکتب رفتم و در آنجا ساعت 51:51 شام خوردیم و به ساعت ماه نگاه کردیم همچنین علی ساعت 5 و ربع به ما ملحق شد و دقیقه‌ ای را نیز با او بودیم."
 
 for i in range(len(pattern_list)):
-    u= re.findall(fr'\b(?:{pattern_list[i]})', "من با احمد ساعت یک و دو دقیقه و پنج ثانیه غروب به مکتب رفتم و در آنجا ساعت 15:13 شام خوردیم و به ساعت ماه نگاه کردیم همچنین علی ساعت 5 و ربع به ما ملحق شد و دقیقه‌ ای را نیز با او بودیم.")
-    print(i, u)
+    u= re.findall(fr'\b(?:{pattern_list[i]})', sentence)
+    print(i, ":", u)
