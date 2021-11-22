@@ -12,7 +12,7 @@ def normlize_annotaion(path):
 
 def annotaion():
     annotaion_dict = {}
-    main_path = 'annotation'
+    main_path = 'utilities/annotation'
     files = os.listdir(main_path)
     for f in files:
         annotaion_dict[f.replace('.txt', '')] = normlize_annotaion(f"{main_path}/{f}")
@@ -44,7 +44,7 @@ def normlize_pattern(path):
 
 def pattern():
     pattern_list = []
-    main_path = 'pattern'
+    main_path = 'utilities/pattern'
     files = os.listdir(main_path)
     for f in files:
         pattern_list = pattern_list + normlize_pattern(f"{main_path}/{f}")
@@ -54,6 +54,7 @@ def pattern():
 annotaion_dict = annotaion()
 pattern_list = pattern()
 
+# sample
 sentence = "من با احمد ساعت یک و دو دقیقه و پنج ثانیه غروب به مکتب رفتم و در آنجا ساعت 51:51 شام خوردیم و به ساعت ماه نگاه کردیم همچنین علی ساعت 5 و ربع به ما ملحق شد و دقیقه‌ ای را نیز با او بودیم."
 
 for i in range(len(pattern_list)):
