@@ -39,6 +39,7 @@ def pattern_replace(pattern_str):
     for key, value in replace_dict.items():
         pattern_str = pattern_str.replace(key, "(?:" + value + ")")
     pattern_str = pattern_str.replace(" ", '+\\s')
+    pattern_str = pattern_str + '+\\s'
     return pattern_str
 
 
