@@ -72,68 +72,57 @@ TYPO_LIST = {
     'نه صد': 'نهصد',
 }
 
-
+ALPHABET_DICT = {
+    '١': '1',
+    '٢': '2',
+    '٣': '3',
+    '٤': '4',
+    '٥': '5',
+    '٦': '6',
+    '٧': '7',
+    '٨': '8',
+    '٩': '9',
+    '٠': '0',
+    '۱': '1',
+    '۲': '2',
+    '۳': '3',
+    '۴': '4',
+    '۵': '5',
+    '۶': '6',
+    '۷': '7',
+    '۸': '8',
+    '۹': '9',
+    '۰': '0',
+    'ك': 'ک',
+    'دِ': 'د',
+    'بِ': 'ب',
+    'زِ': 'ز',
+    'ذِ': 'ذ',
+    'شِ': 'ش',
+    'سِ': 'س',
+    'ى': 'ی',
+    'ي': 'ی',
+    '/ ': '/',
+    '- ': '-',
+    ' -': '-',
+    ' :': ':',
+    ': ': ':'
+}
 
 JOINER = 'و'
 
-
-def multiple_replace(dic, text):
-    # to replace from a dict on the input text
-    pattern = "|".join(map(re.escape, dic.keys()))
-    return re.sub(pattern, lambda m: dic[m.group()], str(text))
+Units = "|".join(list(ONES_TEXT.keys()) + list(TENS_TEXT.keys()) + list(TEN_PLUS_TEXT.keys()) + list(HUNDREDS_TEXT.keys()) + list(MAGNITUDE.keys()) + list(TYPO_LIST.keys()))
 
 
-def conversion(text):
-    dic = {
-        '١': '1',
-        '٢': '2',
-        '٣': '3',
-        '٤': '4',
-        '٥': '5',
-        '٦': '6',
-        '٧': '7',
-        '٨': '8',
-        '٩': '9',
-        '٠': '0',
-        '۱': '1',
-        '۲': '2',
-        '۳': '3',
-        '۴': '4',
-        '۵': '5',
-        '۶': '6',
-        '۷': '7',
-        '۸': '8',
-        '۹': '9',
-        '۰': '0',
-        'ك': 'ک',
-        'دِ': 'د',
-        'بِ': 'ب',
-        'زِ': 'ز',
-        'ذِ': 'ذ',
-        'شِ': 'ش',
-        'سِ': 'س',
-        'ى': 'ی',
-        'ي': 'ی',
-        '/ ': '/',
-        '- ': '-',
-        ' -': '-',
-        ' :': ':',
-        ': ': ':'
-    }
-    return multiple_replace(dic, text)
+def normlize_alphabet(text):
+    pattern = "|".join(map(re.escape, ALPHABET_DICT.keys()))
+    return re.sub(pattern, lambda m: ALPHABET_DICT[m.group()], str(text))
 
 
 def normalize_hazm(sentence):
     normalizer = Normalizer()
     normalizer.normalize(sentence)
     return sentence
-
-
-def normalize_cumulative(sentence):
-    sentence = conversion(sentence)
-    sentence = normalize_hazm(sentence)
-    return sentence
-
 
 
 def convert_word_to_digits(text):
@@ -185,12 +174,12 @@ def convert_word_to_digits(text):
     return computed
 
 
-# example
-sentence = 'صد هزار و شیش صد و 19 '
-q = convert_word_to_digits(sentence)
-print(q)
+def normalize_digits(sentence):
+    normlized_output = re.sub(fr'(?:{Units}|{JOINER}|\s|\d)+', lambda m: str(convert_word_to_digits(m.group())), sentence)
+    return normlized_output
 
-sentence = 'صد هزار و امیر شیش صد و 19 امیر'
-Units = "|".join(list(ONES_TEXT.keys()) + list(TENS_TEXT.keys()) + list(TEN_PLUS_TEXT.keys()) + list(HUNDREDS_TEXT.keys()) + list(MAGNITUDE.keys()) + list(TYPO_LIST.keys()))
-p = re.sub(fr'(?:{Units}|{JOINER}|\s|\d)+', lambda m: str(convert_word_to_digits(m.group())), sentence)
-print(p)
+def normalize_cumulative(sentence):
+    sentence = normlize_alphabet(sentence)
+    sentence = normalize_hazm(sentence)
+    sentence = normalize_digits(sentence)
+    return sentence
