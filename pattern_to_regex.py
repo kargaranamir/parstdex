@@ -64,10 +64,3 @@ def pattern():
 
 
 res_pattern_list = pattern()
-
-# sample
-sentence = "من با احمد ساعت یک و دو دقیقه و پنج ثانیه غروب به مکتب رفتم و در آنجا ساعت 51:51 شام خوردیم و به ساعت ماه نگاه کردیم همچنین علی ساعت 5 و ربع به ما ملحق شد و دقیقه‌ ای را نیز با او بودیم."
-
-for i in range(len(res_pattern_list)):
-    u = re.findall(fr'\b(?:{res_pattern_list[i]})', sentence)
-    print(i, ":", u)
