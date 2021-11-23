@@ -28,7 +28,7 @@ def pattern_replace(pattern_str):
 
     for key, value in replace_dict.items():
         pattern_str = pattern_str.replace(key, "(?:" + value + ")")
-    pattern_str = pattern_str.replace(" ", '+\\s')
+    pattern_str = pattern_str.replace(" ", '+\\s+')
     return pattern_str
 
 
@@ -56,7 +56,7 @@ pattern_list = pattern()
 
 # sample
 sentence = "من با احمد ساعت یک و دو دقیقه و پنج ثانیه غروب به مکتب رفتم و در آنجا ساعت 51:51 شام خوردیم و به ساعت ماه نگاه کردیم همچنین علی ساعت 5 و ربع به ما ملحق شد و دقیقه‌ ای را نیز با او بودیم."
-
+sentence = " ساعت 13  و بیست‌ودو دقیقه شده بود و صدای اذان به گوش می‌رسید"
 for i in range(len(pattern_list)):
     u= re.findall(fr'\b(?:{pattern_list[i]})', sentence)
     print(i, ":", u)
