@@ -65,16 +65,16 @@ MAGNITUDE = {
 }
 
 TYPO_LIST = {
-    "شیش صد": "ششصد",
-    "شش صد": "ششصد",
-    "هفت صد": "هفتصد",
-    "هشت صد": "هشتصد",
-    "نه صد": "نهصد",
+    'شیش صد': 'ششصد',
+    'شش صد': 'ششصد',
+    'هفت صد': 'هفتصد',
+    'هشت صد': 'هشتصد',
+    'نه صد': 'نهصد',
 }
 
 
 
-JOINERS = ["و", " و "]
+JOINER = 'و'
 
 
 def multiple_replace(dic, text):
@@ -136,13 +136,13 @@ def normalize_cumulative(sentence):
 
 
 
-def convert_from_word(text):
+def convert_word_to_digits(text):
     def tokenize(_text):
         for typo in TYPO_LIST.keys():
             if typo in _text:
                 _text = _text.replace(typo, TYPO_LIST[typo])
         slitted_text = _text.split(' ')
-        slitted_text = [txt for txt in slitted_text if txt != JOINERS[0]]
+        slitted_text = [txt for txt in slitted_text if txt != JOINER]
 
         return slitted_text
 
@@ -186,10 +186,11 @@ def convert_from_word(text):
 
 
 # example
-sentence = 'صد هزار شیش صد و 19'
-q = convert_from_word(sentence)
+sentence = 'صد هزار و شیش صد و 19 '
+q = convert_word_to_digits(sentence)
 print(q)
 
-
-
-
+sentence = 'صد هزار و امیر شیش صد و 19 امیر'
+Units = "|".join(list(ONES_TEXT.keys()) + list(TENS_TEXT.keys()) + list(TEN_PLUS_TEXT.keys()) + list(HUNDREDS_TEXT.keys()) + list(MAGNITUDE.keys()) + list(TYPO_LIST.keys()))
+p = re.sub(fr'(?:{Units}|{JOINER}|\s|\d)+', lambda m: str(convert_word_to_digits(m.group())), sentence)
+print(p)
