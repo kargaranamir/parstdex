@@ -1,6 +1,7 @@
 ﻿
 ساعت Num و Num دقیقه و Num ثانیه
 ساعت Num و Num دقیقه و Num ثانیه DP
+ساعت Num و Num دقیقه
 NUM DP RD
 ساعت Num
 ساعت Num DP

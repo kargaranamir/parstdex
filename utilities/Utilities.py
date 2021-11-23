@@ -2,61 +2,34 @@ from hazm import *
 import re
 
 
-def custom_normalize(sentence_input):
-    sentence = arabic_to_persian_number(sentence_input)
-    sentence = arabic_to_persian_character(sentence)
-    normalized_date = DateNormalize(sentence)
-    normalized_day = day_normalize(normalized_date)
-    return normalized_day
+def multiple_replace(dic, text):
+    # to replace from a dict on the input text
+    pattern = "|".join(map(re.escape, dic.keys()))
+    return re.sub(pattern, lambda m: dic[m.group()], str(text))
 
 
-def DateNormalize(sentence):
-    # match = re.search(r'(\d+\s+/\s+\d+\s+/\s+\d+)','The date is 11/ 12/98')
+def convert_to_en_or_at_least_fa(text):
     dic = {
-        "/ ": "/",
-        " /": "/",
-        "- ": "-",
-        " -": "-",
-        ": ": ":",
-        " :": ":"
-    }
-    return replacement(dic, sentence)
-
-
-def CustomTokenize():
-    pass
-
-
-def day_normalize(sentence):
-    temp = sentence.split()
-    lst = ['1', '2', '3', '4', '5',
-           '۱', '۲', '۳', '۴', '۵',
-           'یک', 'دو', 'سه', 'چهار', 'چار', 'پنج']
-    if "شنبه" in temp:
-        for x in range(len(temp)):
-            if temp[x] == "شنبه" and temp[x - 1] in lst:
-                temp[x], temp[x - 1] = temp[x - 1] + temp[x], ""
-    return temp
-
-
-def arabic_to_persian_number(number):
-    dic = {
-        '١': '۱',
-        '٢': '۲',
-        '٣': '۳',
-        '٤': '۴',
-        '٥': '۵',
-        '٦': '۶',
-        '٧': '۷',
-        '٨': '۸',
-        '٩': '۹',
-        '٠': '۰',
-    }
-    return replacement(dic, number)
-
-
-def arabic_to_persian_character(userInput):
-    dic = {
+        '١': '1',
+        '٢': '2',
+        '٣': '3',
+        '٤': '4',
+        '٥': '5',
+        '٦': '6',
+        '٧': '7',
+        '٨': '8',
+        '٩': '9',
+        '٠': '0',
+        '۱': '1',
+        '۲': '2',
+        '۳': '3',
+        '۴': '4',
+        '۵': '5',
+        '۶': '6',
+        '۷': '7',
+        '۸': '8',
+        '۹': '9',
+        '۰': '0',
         'ك': 'ک',
         'دِ': 'د',
         'بِ': 'ب',
@@ -65,11 +38,27 @@ def arabic_to_persian_character(userInput):
         'شِ': 'ش',
         'سِ': 'س',
         'ى': 'ی',
-        'ي': 'ی'
+        'ي': 'ی',
+        '/ ': '/',
+        '- ': '-',
+        ' -': '-',
+        ' :': ':',
+        ': ': ':'
     }
-    return replacement(dic, userInput)
+    return multiple_replace(dic, text)
 
 
-def replacement(dic, text):
-    pattern = "|".join(map(re.escape, dic.keys()))
-    return re.sub(pattern, lambda m: dic[m.group()], str(text))
+def normalize_hazm(sentence):
+    normalizer = Normalizer()
+    normalizer.normalize(sentence)
+    return sentence
+
+
+sentence = " سلام 12157124 دو شنبه چهار شنبه 12 / بیست و دومین "
+sentence = convert_to_en_or_at_least_fa(sentence)
+sentence = normalize_hazm(sentence)
+print(sentence)
+
+def CustomTokenize():
+
+    pass
