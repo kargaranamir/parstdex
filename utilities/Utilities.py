@@ -64,6 +64,15 @@ MAGNITUDE = {
     'تریلیون': 1000000000000,
 }
 
+TYPO_LIST = {
+    "شیش صد": "ششصد",
+    "شش صد": "ششصد",
+    "هفت صد": "هفتصد",
+    "هشت صد": "هشتصد",
+    "نه صد": "نهصد",
+}
+
+
 
 JOINERS = ["و", " و "]
 
@@ -129,6 +138,9 @@ def normalize_cumulative(sentence):
 
 def convert_from_word(text):
     def tokenize(_text):
+        for typo in TYPO_LIST.keys():
+            if typo in _text:
+                _text = _text.replace(typo, TYPO_LIST[typo])
         slitted_text = _text.split(' ')
         slitted_text = [txt for txt in slitted_text if txt != JOINERS[0]]
 
@@ -174,7 +186,7 @@ def convert_from_word(text):
 
 
 # example
-sentence = 'صد هزار و یک'
+sentence = 'صد هزار شیش صد و 19'
 q = convert_from_word(sentence)
 print(q)
 
