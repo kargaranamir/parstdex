@@ -181,5 +181,10 @@ def normalize_digits(sentence):
 def normalize_cumulative(sentence):
     sentence = normlize_alphabet(sentence)
     sentence = normalize_hazm(sentence)
-    sentence = normalize_digits(sentence)
+    # sentence = normalize_digits(sentence)
     return sentence
+
+#sample
+sentence = 'صد و شش امیر و یک هزار و هفت'
+q = normalize_digits(sentence)
+print(q)

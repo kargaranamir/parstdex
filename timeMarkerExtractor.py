@@ -9,6 +9,7 @@ def time_marker_extractor(input_sentence):
     :return:
     """
     input_sentence = normalize(input_sentence)
+    print("normlized: ", input_sentence)
     output = []
     for i in range(len(pattern_list)):
         out = re.findall(fr'\b(?:{pattern_list[i]})', input_sentence)
