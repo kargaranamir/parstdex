@@ -53,12 +53,7 @@ def normalize_hazm(sentence):
     normalizer.normalize(sentence)
     return sentence
 
-
-sentence = " سلام 12157124 دو شنبه چهار شنبه 12 / بیست و دومین "
-sentence = convert_to_en_or_at_least_fa(sentence)
-sentence = normalize_hazm(sentence)
-print(sentence)
-
-def CustomTokenize():
-
-    pass
+def normalize_cumulative(sentence):
+    sentence = convert_to_en_or_at_least_fa(sentence)
+    sentence = normalize_hazm(sentence)
+    return sentence
