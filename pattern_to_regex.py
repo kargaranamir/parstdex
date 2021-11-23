@@ -26,6 +26,7 @@ def annotation():
 
 
 def pattern_replace(pattern_str):
+    res_annotation_dict = annotation()
     replace_dict = {"num": res_annotation_dict['numbers'],
                     "Num": res_annotation_dict['numbers'],
                     "DP": res_annotation_dict['dayPart'],
@@ -61,7 +62,6 @@ def pattern():
     return pattern_list
 
 
-res_annotation_dict = annotation()
 res_pattern_list = pattern()
 
 # sample
