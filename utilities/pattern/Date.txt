@@ -43,21 +43,17 @@ RT Month سال Num
 روزهای RT سال Num شمسی
 روزهای RT سال Num قمری
 روزهای RT سال Num میلادی
-سه ماهه نخست سال Num
-سه ماهه اول سال Num
-سه ماهه پایانی سال Num
-سه ماهه دوم سال Num
-سه ماهه سوم سال Num
-سه ماهه ابتدایی سال Num
-سه ماهه انتهایی سال Num
-نیمه  اول سال Num
-نیمه دوم سال Num
+سه TU نخست سال Num
+سه TU اول TU Num
+سه TU پایانی TU Num
+سه TU دوم TU Num
+سه TU سوم TU Num
+سه TU ابتدایی TU Num
+سه TU انتهایی TU Num
+نیمه  اول TU Num
+نیمه دوم TU Num
 RT Season سال Num
-RT دهه Num
-RT دهه Num شمسی
-RT دهه Num قمری
-RT دهه Num میلادی
-RT قرن Num
-RT قرن Num شمسی
-RT قرن Num میلادی
-RT قرن Num قمری
+RT TU Num
+RT TU Num شمسی
+RT TU Num قمری
+RT TU Num میلادی

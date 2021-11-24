@@ -20,25 +20,39 @@ def annotation():
         annotation_dict[f.replace('.txt', '')] = normalize_annotation(f"{main_path}/{f}")
 
     # fix numbers: add more numbers 1 or 2 digits coverage
-    annotation_dict['numbers'] = annotation_dict['numbers'] + r'|\d{1,2}'
+    annotation_dict['numbers'] = r'\d{1,4}'
 
     return annotation_dict
 
 
 def pattern_replace(pattern_str):
     res_annotation_dict = annotation()
-    replace_dict = {"num": res_annotation_dict['numbers'],
-                    "Num": res_annotation_dict['numbers'],
-                    "DP": res_annotation_dict['dayPart'],
+    replace_dict = {"RD": res_annotation_dict['relativeDays'],
                     "Day": res_annotation_dict['days'],
-                    "RD": res_annotation_dict['relativeDays'],
+                    # "Num": res_annotation_dict['numbers'],
+                    "Month": res_annotation_dict['months'],
+                    "Season": res_annotation_dict['seasons'],
+                    "RT": res_annotation_dict['relativeDays'],
+                    "TU": res_annotation_dict['timeUnits'],
+                    "Prev": res_annotation_dict['past'],
+                    "DP": res_annotation_dict['dayPart'],
                     "Next": res_annotation_dict['next'],
-                    "Prev": res_annotation_dict['past']
+                    "SixtyNum": res_annotation_dict['sixtyNum'],
+                    "HourNum": res_annotation_dict['hoursNum'],
+                    "DN": res_annotation_dict['daynumbers'],
+                    "Hour": res_annotation_dict['hours'],
+                    "Min": res_annotation_dict['minute'],
+                    "RY": res_annotation_dict['relativeYears']
                     }
 
+    # replace_dict = {
+    #                 "Hour": res_annotation_dict['hours'],
+    #                 "Min": res_annotation_dict['minute']
+    #                 }
+    pattern_str = pattern_str.replace(" ", '+\\s')
     for key, value in replace_dict.items():
         pattern_str = pattern_str.replace(key, "(?:" + value + ")")
-    pattern_str = pattern_str.replace(" ", '+\\s')
+
     pattern_str = pattern_str + '+\\s'
     return pattern_str
 

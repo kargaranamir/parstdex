@@ -11,10 +11,12 @@ def time_marker_extractor(input_sentence):
     input_sentence = normalize(input_sentence)
     print("normlized: ", input_sentence)
     output = []
+    with open('patterns.txt', 'w', encoding="utf-8") as f:
+        f.writelines(pattern_list)
     for i in range(len(pattern_list)):
         out = re.findall(fr'\b(?:{pattern_list[i]})', input_sentence)
         output.append(out)
 
-    res = max(output, key=len)
+    res = [x for x in output if len(x)>0]
 
     return [res]

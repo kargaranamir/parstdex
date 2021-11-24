@@ -1,27 +1,11 @@
 ﻿
-سال Numتا Num
-سال Num تا Num
+TU Numتا Num
+TU Num تا Num
 سالNum تا Num
-طی چند روز Past
-طی چند روز Next
-طی چند شب Past
-طی چند شب Next
-طی چند هفته Past
-طی چند هفته Next
-طی چند ماه Past
-طی چند ماه Next
-طی چند سال Past
-طی چند سال Next
-طی Num روز Past
-طی Num روز Next
-طی Num شب Past
-طی Num شب Next
-طی Num هفته Past
-طی Num هفته Next
-طی Num ماه Past
-طی Num ماه Next
-طی Num سال Past
-طی Num سال Next
+طی چند TU Past
+طی چند TU Next
+طی Num TU Past
+طی Num TU Next
 Day Num Month لغایت Day Num Month
 Day Num Month تا Day Num Month
 Day Num Month الی Day Num Month
