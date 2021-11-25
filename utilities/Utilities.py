@@ -25,7 +25,9 @@ class Normalizer:
 
     def normalize_space(self, text):
         res = re.sub(fr'((?:{self.C_NUMBERS})+(\.(?:{self.C_NUMBERS})+)?)', r' \1 ', text)
+        # res = res.replace('\u200c', '')
         res = ' '.join(res.split())
+        res = res + ' .' if res[-1] != '.' else res
         return res
 
     @staticmethod

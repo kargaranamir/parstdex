@@ -15,7 +15,7 @@ class Annotation:
             "WD": annotations['weekDays'],
             "Month": annotations['months'],
             "Season": annotations['seasons'],
-            "RT": annotations['relativeDays'],
+            "RT": annotations['relativeTime'],
             "TU": annotations['timeUnits'],
             "Prev": annotations['past'],
             "DP": annotations['dayPart'],
@@ -60,8 +60,7 @@ class Patterns:
         for key, value in self.annotations.annotations_dict.items():
             pattern = re.sub(f'{key}', "(?:" + value + ")", pattern)
 
-        # pattern = pattern + '+\\s'
-        pattern = pattern + '+'
+        pattern = pattern + '+\\s'
         return pattern
 
     def create_regexes_from_patterns(self, path):

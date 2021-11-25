@@ -1,8 +1,11 @@
 ﻿
+Hour ساعت و Min دقیقه و Min ثانیه
 ساعت Hour و Min دقیقه و Min ثانیه
 ساعت Hour و Min دقیقه و Min ثانیه DP
 ساعت Hour و Min دقیقه
 Hour DP RD
+RD Hour DP
+Num TU
 ساعت Hour
 ساعت Hour DP
 ساعت Hour RD
@@ -45,6 +48,7 @@ Min دقیقه به Hour WD Next
 Min دقیقه به Hour WD Prev
 Min دقیقه به Hour DP WD Next
 Min دقیقه به Hour DP WD Prev
+DN TU مانده به RT TU
 ساعت Hour و ربع
 ساعت Hour و ربع RD
 ساعت Hour و ربع WD
@@ -75,5 +79,3 @@ Min دقیقه به Hour DP WD Prev
 ساعت یک ربع به Hour DP WD
 ساعت یک ربع به Hour DP WD Next
 ساعت یک ربع به Hour DP WD Prev
-WD DP
-RD DP
