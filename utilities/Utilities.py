@@ -45,3 +45,12 @@ class Normalizer:
         res = self.normalize_alphabet(text)
         res = self.normalize_space(res)
         return res
+
+
+def deleteSubMatches(matches):
+    def is_sub_match(word, match_list):
+        for match in match_list:
+            if word in match and word != match:
+                return True
+        return False
+    return [match for match in matches if not is_sub_match(match, matches)]

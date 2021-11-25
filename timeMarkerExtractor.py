@@ -1,6 +1,6 @@
 import re
 from pattern_to_regex import Patterns
-from utilities.Utilities import Normalizer
+from utilities.Utilities import Normalizer, deleteSubMatches
 
 
 def time_marker_extractor(input_sentence):
@@ -23,7 +23,11 @@ def time_marker_extractor(input_sentence):
         out = re.findall(fr'\b(?:{patterns.regexes[i]})', input_sentence)
         output.append(out)
 
+    # process result
     res = [x for x in output if len(x) > 0]
+    res = [item for sublist in res for item in sublist]
+    res = list(set(res))
+    res = deleteSubMatches(res)
 
     print("Extracted Markers:")
     print(res)
