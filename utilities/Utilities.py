@@ -28,6 +28,19 @@ class Normalizer:
         res = ' '.join(res.split())
         return res
 
+    @staticmethod
+    def preprocess_file(path):
+        with open(path, 'r', encoding="utf8") as file:
+            text = file.readlines()
+            text = text[1:]  # first line is empty
+            text = [x.rstrip() for x in text]  # remove \n
+            return text
+
+    def normalize_annotation(self, path):
+        text = self.preprocess_file(path)
+        annotation_mark = "|".join(text)
+        return annotation_mark
+
     def normalize_cumulative(self, text):
         res = self.normalize_alphabet(text)
         res = self.normalize_space(res)

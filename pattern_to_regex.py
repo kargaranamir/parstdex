@@ -1,84 +1,69 @@
 import re
 import os
+from utilities.Utilities import Normalizer
 
 
-def normalize_annotation(path):
-    with open(path, 'r', encoding="utf8") as file:
-        annotation_mark = file.readlines()
-        annotation_mark = annotation_mark[1:]  # first line is empty
-        annotation_mark = [x.rstrip() for x in annotation_mark]  # remove \n
-        annotation_mark = "|".join(annotation_mark)
+class Annotation:
+    annotation_path = 'utilities/annotation'
+    normalizer = Normalizer()
+    annotations_dict = {}
 
-    return annotation_mark
+    def __init__(self):
+        annotations = self.create_annotation_dict()
+        self.annotations_dict = {
+            "RD": annotations['relativeDays'],
+            "Day": annotations['days'],
+            "Month": annotations['months'],
+            "Season": annotations['seasons'],
+            "RT": annotations['relativeDays'],
+            "TU": annotations['timeUnits'],
+            "Prev": annotations['past'],
+            "DP": annotations['dayPart'],
+            "Next": annotations['next'],
+            "SixtyNum": annotations['sixtyNum'],
+            "HourNum": annotations['hoursNum'],
+            "DN": annotations['dayNumbers'],
+            "Hour": annotations['hours'],
+            "Min": annotations['minute'],
+            "Twelve": annotations['twelve'],
+            "ThirtyOne": annotations['thirtyOne'],
+            "RY": annotations['relativeYears'],
+            "Num": annotations['numbers']
+            }
 
+    def create_annotation_dict(self):
+        annotation_dict = {}
+        files = os.listdir(self.annotation_path)
+        for f in files:
+            key = f.replace('.txt', '')
+            annotation_dict[key] = self.normalizer.normalize_annotation(f"{self.annotation_path}/{f}")
 
-def annotation():
-    annotation_dict = {}
-    main_path = 'utilities/annotation'
-    files = os.listdir(main_path)
-    for f in files:
-        annotation_dict[f.replace('.txt', '')] = normalize_annotation(f"{main_path}/{f}")
-
-    # fix numbers: add more numbers 1 or 2 digits coverage
-    annotation_dict['numbers'] = r'\\d{1,4}'
-
-    return annotation_dict
-
-
-def pattern_replace(pattern_str):
-    res_annotation_dict = annotation()
-    replace_dict = {"RD": res_annotation_dict['relativeDays'],
-                    "Day": res_annotation_dict['days'],
-                    "Month": res_annotation_dict['months'],
-                    "Season": res_annotation_dict['seasons'],
-                    "RT": res_annotation_dict['relativeDays'],
-                    "TU": res_annotation_dict['timeUnits'],
-                    "Prev": res_annotation_dict['past'],
-                    "DP": res_annotation_dict['dayPart'],
-                    "Next": res_annotation_dict['next'],
-                    "SixtyNum": res_annotation_dict['sixtyNum'],
-                    "HourNum": res_annotation_dict['hoursNum'],
-                    "DN": res_annotation_dict['dayNumbers'],
-                    "Hour": res_annotation_dict['hours'],
-                    "Min": res_annotation_dict['minute'],
-                    "Twelve": res_annotation_dict['twelve'],
-                    "ThirtyOne": res_annotation_dict['thirtyOne'],
-                    "RY": res_annotation_dict['relativeYears'],
-                    "Num": res_annotation_dict['numbers']
-                    }
-
-    # replace_dict = {
-    #     "Twelve": res_annotation_dict['twelve'],
-    #     "ThirtyOne": res_annotation_dict['thirtyOne'],
-    #     "Num": res_annotation_dict['numbers']
-    # }
-
-    pattern_str = pattern_str.replace(" ", '+\\s')
-    for key, value in replace_dict.items():
-        pattern_str = re.sub(f'{key}', "(?:" + value + ")", pattern_str)
-
-    pattern_str = pattern_str + '+\\s'
-    return pattern_str
+        annotation_dict['numbers'] = r'\\d{1,4}'
+        return annotation_dict
 
 
-def normalize_pattern(path):
-    with open(path, 'r', encoding="utf8") as file:
-        pattern_marks = file.readlines()
-        pattern_marks = pattern_marks[1:]  # first line is empty
-        pattern_marks = [x.rstrip() for x in pattern_marks]  # remove \n
-        pattern_marks = [pattern_replace(x) for x in pattern_marks]
+class Patterns:
+    annotations = {}
+    normalizer = Normalizer()
+    patterns_path = 'utilities/pattern'
+    regexes = []
 
-    return pattern_marks
+    def __init__(self):
+        self.annotations = Annotation()
+        files = os.listdir(self.patterns_path)
+        for f in files:
+            self.regexes = self.regexes + self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
 
+    def pattern_to_regex(self, pattern):
+        pattern = pattern.replace(" ", '+\\s')
 
-def pattern():
-    pattern_list = []
-    main_path = 'utilities/pattern'
-    files = os.listdir(main_path)
-    for f in files:
-        pattern_list = pattern_list + normalize_pattern(f"{main_path}/{f}")
+        for key, value in self.annotations.annotations_dict.items():
+            pattern = re.sub(f'{key}', "(?:" + value + ")", pattern)
 
-    return pattern_list
+        pattern = pattern + '+\\s'
+        return pattern
 
-
-res_pattern_list = pattern()
+    def create_regexes_from_patterns(self, path):
+        patterns = self.normalizer.preprocess_file(path)
+        regexes = [self.pattern_to_regex(pattern) for pattern in patterns]
+        return regexes
