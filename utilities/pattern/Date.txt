@@ -67,3 +67,11 @@ Num-Twelve-ThirtyOne شمسی
 Num-Twelve-ThirtyOne میلادی
 Num-Twelve-ThirtyOne قمری
 TU Num
+WD DN TU Next
+WD DN TU Prev
+Next WD DN TU
+Prev WD DN TU
+Next DP WD TU
+Prev DP WD TU
+Next DP WD DN TU
+Prev DP WD DN TU

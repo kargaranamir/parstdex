@@ -60,7 +60,8 @@ class Patterns:
         for key, value in self.annotations.annotations_dict.items():
             pattern = re.sub(f'{key}', "(?:" + value + ")", pattern)
 
-        pattern = pattern + '+\\s'
+        # pattern = pattern + '+\\s'
+        pattern = pattern + '+'
         return pattern
 
     def create_regexes_from_patterns(self, path):
