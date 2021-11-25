@@ -1,2 +1,2 @@
 ﻿
-ساعت Hour و Min دقیقه
+Num/Twelve/ThirtyOne

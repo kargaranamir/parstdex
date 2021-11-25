@@ -1,32 +1,33 @@
 ﻿
 RD
 RD Day
-RD Day Num Month
-RD Day Num Month Num
-RD Day Num Month سال Num
-RD Day Num Month ماه
-RD Day Num Month ماه Num
-RD Day Num Month ماه سال Num
-RD Day Num Month ماه سال Num شمسی
-RD Day Num Month ماه سال Num قمری
-RD Day Num Month ماه سال Num میلادی
-RD Day Num Month ماه سال Num هجری شمسی
+RD Day DN Month
+RD Day DN Month Num
+RD Day DN Month سال Num
+RD Day DN Month ماه
+RD Day DN Month ماه Num
+RD Day DN Month ماه سال Num
+RD Day DN Month ماه سال Num شمسی
+RD Day DN Month ماه سال Num قمری
+RD Day DN Month ماه سال Num میلادی
+RD Day DN Month ماه سال Num هجری شمسی
 RD Day Num از Season
 RD Num روز از Season
 RD Day Num از Season سال Num
 RD Day Num از Season Num
-Num Month Num
-Num Month Num شمسی
-Num Month Num قمری
-Num Month Num هجری شمسی
-Num Month Num میلادی
-Num Month ماه
-Num Month
-Num Month ماه سال Num
-Num Month ماه سال Num شمسی
-Num Month ماه سال Num هجری شمسی
-Num Month ماه سال Num قمری
-Num Month ماه سال Num میلادی
+DN Month Num
+DN Month Num شمسی
+DN Month Num قمری
+DN Month Num هجری شمسی
+DN Month Num میلادی
+DN Month ماه
+DN Month
+DN Month سال Num
+DN Month ماه سال Num
+DN Month ماه سال Num شمسی
+DN Month ماه سال Num هجری شمسی
+DN Month ماه سال Num قمری
+DN Month ماه سال Num میلادی
 سال Num
 سال Num میلادی
 سال Num شمسی
@@ -57,3 +58,12 @@ RT TU Num
 RT TU Num شمسی
 RT TU Num قمری
 RT TU Num میلادی
+Num/Twelve/ThirtyOne
+Num/Twelve/ThirtyOne شمسی
+Num/Twelve/ThirtyOne میلادی
+Num/Twelve/ThirtyOne قمری
+Num-Twelve-ThirtyOne
+Num-Twelve-ThirtyOne شمسی
+Num-Twelve-ThirtyOne میلادی
+Num-Twelve-ThirtyOne قمری
+TU Num

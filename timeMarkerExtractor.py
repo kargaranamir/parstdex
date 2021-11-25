@@ -1,6 +1,6 @@
 import re
 from pattern_to_regex import res_pattern_list as pattern_list
-from utilities.Utilities import normalize_cumulative as normalize
+from utilities.Utilities import Normalizer
 
 def time_marker_extractor(input_sentence):
     """
@@ -8,7 +8,8 @@ def time_marker_extractor(input_sentence):
     :param input_sentence:
     :return:
     """
-    input_sentence = normalize(input_sentence)
+    normalizer = Normalizer()
+    input_sentence = normalizer.normalize_cumulative(input_sentence)
     print("normlized: ", input_sentence)
     output = []
     with open('patterns.txt', 'w', encoding="utf-8") as f:

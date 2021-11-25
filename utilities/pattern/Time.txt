@@ -13,6 +13,7 @@ Hour DP RD
 ساعت Hour DP Day Next
 ساعت Hour Day Prev
 ساعت Hour DP Day Prev
+HourNum:SixtyNum
 ساعت HourNum:SixtyNum
 ساعت HourNum:SixtyNum:SixtyNum
 ساعت HourNum:SixtyNum DP
