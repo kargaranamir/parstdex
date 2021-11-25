@@ -1,20 +1,20 @@
 ﻿
 RD
-RD Day
-RD Day DN Month
-RD Day DN Month Num
-RD Day DN Month سال Num
-RD Day DN Month ماه
-RD Day DN Month ماه Num
-RD Day DN Month ماه سال Num
-RD Day DN Month ماه سال Num شمسی
-RD Day DN Month ماه سال Num قمری
-RD Day DN Month ماه سال Num میلادی
-RD Day DN Month ماه سال Num هجری شمسی
-RD Day Num از Season
+RD WD
+RD WD DN Month
+RD WD DN Month Num
+RD WD DN Month سال Num
+RD WD DN Month ماه
+RD WD DN Month ماه Num
+RD WD DN Month ماه سال Num
+RD WD DN Month ماه سال Num شمسی
+RD WD DN Month ماه سال Num قمری
+RD WD DN Month ماه سال Num میلادی
+RD WD DN Month ماه سال Num هجری شمسی
+RD WD Num از Season
 RD Num روز از Season
-RD Day Num از Season سال Num
-RD Day Num از Season Num
+RD WD Num از Season سال Num
+RD WD Num از Season Num
 DN Month Num
 DN Month Num شمسی
 DN Month Num قمری

@@ -7,71 +7,72 @@ Hour DP RD
 ساعت Hour DP
 ساعت Hour RD
 ساعت Hour DP RD
-ساعت Hour Day
-ساعت Hour DP Day
-ساعت Hour Day Next
-ساعت Hour DP Day Next
-ساعت Hour Day Prev
-ساعت Hour DP Day Prev
-HourNum:SixtyNum
-ساعت HourNum:SixtyNum
-ساعت HourNum:SixtyNum:SixtyNum
-ساعت HourNum:SixtyNum DP
-ساعت HourNum:SixtyNum RD
-ساعت HourNum:SixtyNum DP RD
-ساعت HourNum:SixtyNum Day
-ساعت HourNum:SixtyNum DP Day
-ساعت HourNum:SixtyNum Day Prev
-ساعت HourNum:SixtyNum DP Day Prev
-ساعت HourNum:SixtyNum Day Next
-ساعت HourNum:SixtyNum DP Day Next
+ساعت Hour WD
+ساعت Hour DP WD
+ساعت Hour WD Next
+ساعت Hour DP WD Next
+ساعت Hour WD Prev
+ساعت Hour DP WD Prev
+HN:SN
+ساعت HN:SN
+ساعت HN:SN:SN
+ساعت HN:SN DP
+ساعت HN:SN RD
+ساعت HN:SN DP RD
+ساعت HN:SN WD
+ساعت HN:SN DP WD
+ساعت HN:SN WD Prev
+ساعت HN:SN DP WD Prev
+ساعت HN:SN WD Next
+ساعت HN:SN DP WD Next
 Min دقیقه مانده به Hour
 Min دقیقه مانده به Hour DP
 Min دقیقه مانده به Hour RD
 Min دقیقه مانده به Hour DP RD
-Min دقیقه مانده به Hour Day
-Min دقیقه مانده به Hour DP Day
-Min دقیقه مانده به Hour Day Next
-Min دقیقه مانده به Hour Day Prev
-Min دقیقه مانده به Hour DP Day Next
-Min دقیقه مانده به Hour DP Day Prev
+Min دقیقه مانده به Hour WD
+Min دقیقه مانده به Hour DP WD
+Min دقیقه مانده به Hour WD Next
+Min دقیقه مانده به Hour WD Prev
+Min دقیقه مانده به Hour DP WD Next
+Min دقیقه مانده به Hour DP WD Prev
 Min دقیقه به Hour
 Min دقیقه به Hour DP
 Min دقیقه به Hour RD
 Min دقیقه به Hour DP RD
-Min دقیقه به Hour Day
-Min دقیقه به Hour DP Day
-Min دقیقه به Hour Day Next
-Min دقیقه به Hour Day Prev
-Min دقیقه به Hour DP Day Next
-Min دقیقه به Hour DP Day Prev
+Min دقیقه به Hour WD
+Min دقیقه به Hour DP WD
+Min دقیقه به Hour WD Next
+Min دقیقه به Hour WD Prev
+Min دقیقه به Hour DP WD Next
+Min دقیقه به Hour DP WD Prev
 ساعت Hour و ربع
 ساعت Hour و ربع RD
-ساعت Hour و ربع Day
-ساعت Hour و ربع Day Next
-ساعت Hour و ربع Day Past
+ساعت Hour و ربع WD
+ساعت Hour و ربع WD Next
+ساعت Hour و ربع WD Past
 ساعت Hour و ربع DP
 ساعت Hour و ربع DP RD
-ساعت Hour و ربع DP Day
-ساعت Hour و ربع DP Day Next
-ساعت Hour و ربع DP Day Past
+ساعت Hour و ربع DP WD
+ساعت Hour و ربع DP WD Next
+ساعت Hour و ربع DP WD Past
 ساعت Hour و نیم
 ساعت Hour و نیم RD
-ساعت Hour و نیم Day
-ساعت Hour و نیم Day Next
-ساعت Hour و نیم Day Past
+ساعت Hour و نیم WD
+ساعت Hour و نیم WD Next
+ساعت Hour و نیم WD Past
 ساعت Hour و نیم DP
 ساعت Hour و نیم DP RD
-ساعت Hour و نیم DP Day
-ساعت Hour و نیم DP Day Next
-ساعت Hour و نیم DP Day Past
+ساعت Hour و نیم DP WD
+ساعت Hour و نیم DP WD Next
+ساعت Hour و نیم DP WD Past
 ساعت یک ربع به Hour
 ساعت یک ربع به Hour RD
-ساعت یک ربع به Hour Day
-ساعت یک ربع به Hour Day Next
-ساعت یک ربع به Hour Day Prev
+ساعت یک ربع به Hour WD
+ساعت یک ربع به Hour WD Next
+ساعت یک ربع به Hour WD Prev
 ساعت یک ربع به Hour DP
 ساعت یک ربع به Hour DP RD
-ساعت یک ربع به Hour DP Day
-ساعت یک ربع به Hour DP Day Next
-ساعت یک ربع به Hour DP Day Prev
+ساعت یک ربع به Hour DP WD
+ساعت یک ربع به Hour DP WD Next
+ساعت یک ربع به Hour DP WD Prev
+WD DP

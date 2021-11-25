@@ -19,11 +19,11 @@ RT Num TU Next
 RT Num TU Past
 RT TU Past
 RT TU Next
-Day Next
-Day Past
-Day TU Next
-Day TU Past
-Day Num TU Next
-Day Num TU Past
+WD Next
+WD Past
+WD TU Next
+WD TU Past
+WD Num TU Next
+WD Num TU Past
 Num TU Num TU Next
 Num TU Num TU Past

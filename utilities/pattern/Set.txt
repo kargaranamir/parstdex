@@ -1,12 +1,12 @@
 ﻿
-هر Day
+هر WD
 هر شب
 هر روز
 هر سال
 Month هر سال
 Month ماه هر سال
-Day هر هفته
-هر هفته Day
+WD هر هفته
+هر هفته WD
 Season هر سال
 RT Month هر سال
 RT Season هر سال

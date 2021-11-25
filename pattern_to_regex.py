@@ -12,7 +12,7 @@ class Annotation:
         annotations = self.create_annotation_dict()
         self.annotations_dict = {
             "RD": annotations['relativeDays'],
-            "Day": annotations['days'],
+            "WD": annotations['weekDays'],
             "Month": annotations['months'],
             "Season": annotations['seasons'],
             "RT": annotations['relativeDays'],
@@ -20,8 +20,8 @@ class Annotation:
             "Prev": annotations['past'],
             "DP": annotations['dayPart'],
             "Next": annotations['next'],
-            "SixtyNum": annotations['sixtyNum'],
-            "HourNum": annotations['hoursNum'],
+            "SN": annotations['sixtyNum'],
+            "HN": annotations['hoursNum'],
             "DN": annotations['dayNumbers'],
             "Hour": annotations['hours'],
             "Min": annotations['minute'],
