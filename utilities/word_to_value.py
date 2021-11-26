@@ -189,10 +189,21 @@ class ValueExtractor:
         '۹': '9'
     }
 
+    SHAMSI_LIST = '|'.join(list(SHAMSHI_MONTHS.keys()))
+    GHAMARI_LIST = '|'.join(list(GHAMARI_MONTHS.keys()))
+    MILADI_LIST = '|'.join(list(MILADI_MONTHS.keys()))
+    ALL_MONTHS = SHAMSI_LIST + '|' + GHAMARI_LIST + '|' + MILADI_LIST
+
     FA_NUMBERS = "۰|۱|۲|۳|۴|۵|۶|۷|۸|۹"
     EN_NUMBERS = "0|1|2|3|4|5|6|7|8|9"
     Symbols = ":|/|-"
     C_NUMBERS = FA_NUMBERS + "|" + EN_NUMBERS + "|" + Symbols
+    MONTH_LIT = 'ماه'
+    YEAR_LIT = 'سال'
+    HOUR_LIT = 'ساعت'
+    MIN_LIT = 'دقیقه'
+    SEC_LIT = 'ثانیه'
+    DATE_JOINER = '-|/'
 
     JOINER = 'و'
 
@@ -264,9 +275,74 @@ class ValueExtractor:
 
     def compute_date_value(self, text):
         text = self.normalize_numbers(text)
-        res = re.sub(fr'\b(?:{self.Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b', lambda m: str(self.convert_word_to_digits(m.group())), text)
+        res = re.sub(fr'\b(?:{self.Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b',
+                     lambda m: str(self.convert_word_to_digits(m.group())), text)
+        res = self.normalize_space(res)
+        res = self.date_reformat(res) if self.date_reformat(res) is not None else res
         res = self.normalize_space(res)
         return res
+
+    def date_reformat(self, text):
+        try:
+            # format number 1
+            date_format_num1 = fr'(\d+)\s*[(?:\b{self.MONTH_LIT})]*\s*(\b{self.ALL_MONTHS})\s*[(?:\b{self.MONTH_LIT})]*\s*[(?:\b{self.YEAR_LIT})]* (\d+)'
+            day_month_year = re.search(date_format_num1, text).groups()
+
+            day = int(day_month_year[0])
+            month = day_month_year[1]
+            year = int(day_month_year[2])
+
+            if month in self.MILADI_MONTHS.keys():
+                month_index = self.MILADI_MONTHS[month]
+                return f'{day:02}/{month_index:02}/{year}'
+            elif month in self.GHAMARI_MONTHS.keys():
+                # TODO : Improve offset 1400:
+                # if the shamsi year is lower than 100 then assume it has 13 before it
+                if day < 100 and year < 100:
+                    year += 1400
+                month_index = self.GHAMARI_MONTHS[month]
+                return f'{year}/{month_index:02}/{day:02}ه.ق  '
+            elif month in self.SHAMSHI_MONTHS.keys():
+                # TODO : Improve offset 1300:
+                # if the shamsi year is lower than 100 then assume it has 13 before it
+                if day < 100 and year < 100:
+                    year += 1300
+
+                month_index = self.SHAMSHI_MONTHS[month]
+                return f'{year}/{month_index:02}/{day:02}'
+            else:
+                return f'{year}/{month}/{day:02}'
+        except:
+            pass
+
+        try:
+            # format number 2
+            date_format_num2 = fr'(\d+)\s*[(?:\b{self.DATE_JOINER})]\s*(\d+)\s*[(?:\b{self.DATE_JOINER})]\s*(\d+)'
+            detected_date = re.search(date_format_num2, text).groups()
+
+            year = int(detected_date[0])
+            month = int(detected_date[1])
+            day = int(detected_date[2])
+
+            # TODO : Improve these constraints for different days:
+            # if year is lower than 100 then assume it has 13 before it
+            if day < 100 and year < 100:
+                year += 1300
+            # assume the greater value as year
+            if day > year or 'میلادی' in text:
+                year, day = day, year
+
+            # ghamari
+            if 'قمری' in text:
+                return f'{year}/{month:02}/{day:02}ه.ق  '
+            # miladi date:
+            if year > 1800 or 'میلادی' in text:
+                return f'{day:02}/{month:02}/{year:02}'
+            # shamsi date
+            else:
+                return f'{year:02}/{month:02}/{day:02}'
+        except:
+            return None
 
     def compute_time_value(self, text):
         pass
@@ -283,33 +359,16 @@ t_sentence = "ساعت بیست و یک و سی و چهار دقیقه و چهل
 q = extractor.compute_time_value(d_sentence)
 print(q)
 
-TYPE_DATA = 0 # 0 for SHAMSI, 1 for GHAMARI, 2 for MILDAI
-
 date_sentence = " 19 بهمن 1299"
-MONTH_LIT = 'ماه'
-YEAR_LIT = 'سال'
 
-
-SHAMSI_LIST = '|'.join(list(extractor.SHAMSHI_MONTHS.keys()))
-GHAMARI_LIST = '|'.join(list(extractor.GHAMARI_MONTHS.keys()))
-MILADI_LIST = '|'.join(list(extractor.MILADI_MONTHS.keys()))
-
-date_reg = fr'(\d+) ({SHAMSI_LIST})\s*[(?:{MONTH_LIT})]*\s*[(?:{YEAR_LIT})]* (\d+)'
+date_reg = fr'(\d+) ({extractor.SHAMSI_LIST})\s*[(?:{extractor.MONTH_LIT})]*\s*[(?:{extractor.YEAR_LIT})]* (\d+)'
 print(date_reg)
 date_result = re.search(date_reg, date_sentence).groups()
 print(date_result)
 
-HOUR_LIT = 'ساعت'
-MIN_LIT = 'دقیقه'
-SEC_LIT = 'ثانیه'
+
 time_sentence = 'ساعت بیست و دو و سی و پنج دقیقه و چهل و یک ثانیه'
-time_reg = fr'{HOUR_LIT}\s*(\d+)\s*[(?:{MIN_LIT})]\s*(\d)*\s*[(?:{SEC_LIT})]\s*(\d)*'
+time_reg = fr'{extractor.HOUR_LIT}\s*(\d+)\s*[(?:{extractor.MIN_LIT})]\s*(\d)*\s*[(?:{extractor.SEC_LIT})]\s*(\d)*'
 print(time_reg)
 time_result = re.search(time_reg, time_sentence).groups()
 print(time_result)
-
-
-
-
-
-
