@@ -1,7 +1,8 @@
 import re
 from pattern_to_regex import Patterns
 from utilities.Utilities import Normalizer, deleteSubMatches
-from utilities.word_to_value import date_value_extractor
+from utilities.word_to_value import ValueExtractor
+
 
 def time_marker_extractor(input_sentence):
     """
@@ -11,6 +12,8 @@ def time_marker_extractor(input_sentence):
     """
     normalizer = Normalizer()
     patterns = Patterns()
+    extractor = ValueExtractor()
+
     input_sentence = normalizer.normalize_cumulative(input_sentence)
     print("Normalized Sentence:\n", input_sentence)
     output = []
@@ -27,7 +30,7 @@ def time_marker_extractor(input_sentence):
 
             if key == 'Date' and len(out) > 0:
                 for out_dates in out:
-                    date_list.append(date_value_extractor(out_dates))
+                    date_list.append(extractor.compute_date_value(out_dates))
 
     # process result
     res = [x for x in output if len(x) > 0]

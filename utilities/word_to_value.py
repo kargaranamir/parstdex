@@ -273,15 +273,6 @@ class ValueExtractor:
         computed = self.compute_date(self.tokenize(text_date))
         return computed
 
-    def compute_date_value(self, text):
-        text = self.normalize_numbers(text)
-        res = re.sub(fr'\b(?:{self.Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b',
-                     lambda m: str(self.convert_word_to_digits(m.group())), text)
-        res = self.normalize_space(res)
-        res = self.date_reformat(res) if self.date_reformat(res) is not None else res
-        res = self.normalize_space(res)
-        return res
-
     def date_reformat(self, text):
         try:
             # format number 1
@@ -344,6 +335,15 @@ class ValueExtractor:
         except:
             return None
 
+    def compute_date_value(self, text):
+        text = self.normalize_numbers(text)
+        res = re.sub(fr'\b(?:{self.Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b',
+                     lambda m: str(self.convert_word_to_digits(m.group())), text)
+        res = self.normalize_space(res)
+        res = self.date_reformat(res) if self.date_reformat(res) is not None else res
+        res = self.normalize_space(res)
+        return res
+
     def compute_time_value(self, text):
         pass
 
@@ -354,21 +354,15 @@ d_sentence = "یک هزار و سیصد و هفت مهرماه سوم آبان �
 q = extractor.compute_date_value(d_sentence)
 print("Compute Date value")
 print(q)
-
-t_sentence = "ساعت بیست و یک و سی و چهار دقیقه و چهل و یک ثانیه می‌بینمت"
-q = extractor.compute_time_value(d_sentence)
-print("Computer Time value")
-print(q)
-
-date_sentence = " 19 بهمن 1299"
-date_reg = fr'(\d+) ({extractor.SHAMSI_LIST})\s*[(?:{extractor.MONTH_LIT})]*\s*[(?:{extractor.YEAR_LIT})]* (\d+)'
-print(date_reg)
-date_result = re.search(date_reg, date_sentence).groups()
-print(date_result)
-
-
-time_sentence = 'ساعت بیست و دو و سی و پنج دقیقه و چهل و یک ثانیه'
-time_reg = fr'{extractor.HOUR_LIT}\s*(\d+)\s*[(?:{extractor.MIN_LIT})]\s*(\d)*\s*[(?:{extractor.SEC_LIT})]\s*(\d)*'
-print(time_reg)
-time_result = re.search(time_reg, time_sentence).groups()
-print(time_result)
+#
+# t_sentence = "ساعت بیست و یک و سی و چهار دقیقه و چهل و یک ثانیه می‌بینمت"
+# q = extractor.compute_time_value(d_sentence)
+# print("Computer Time value")
+# print(q)
+#
+#
+# time_sentence = 'ساعت بیست و دو و سی و پنج دقیقه و چهل و یک ثانیه'
+# time_reg = fr'{extractor.HOUR_LIT}\s*(\d+)\s*[(?:{extractor.MIN_LIT})]\s*(\d)*\s*[(?:{extractor.SEC_LIT})]\s*(\d)*'
+# print(time_reg)
+# time_result = re.search(time_reg, time_sentence).groups()
+# print(time_result)
