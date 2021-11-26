@@ -125,9 +125,13 @@ Units = "|".join(
 def date_value_extractor(text):
     def normalize_numbers(text):
         pattern = "|".join(map(re.escape, FA_TO_EN.keys()))
+        return re.sub(pattern, lambda m: FA_TO_EN[m.group()], str(text))
 
+    def normalize_space(text):
+        res = re.sub(fr'((?:{C_NUMBERS})+(\.(?:{C_NUMBERS})+)?)', r' \1 ', text)
+        res = ' '.join(res.split())
+        return res
 
-def convert_word_to_digits(text):
     def tokenize(_text):
         for typo in TYPO_LIST.keys():
             if typo in _text:
