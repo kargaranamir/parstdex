@@ -281,9 +281,18 @@ def date_value_extractor(text):
                 month_index = MILADI_MONTHS[month]
                 return f'{day:02}/{month_index:02}/{year}'
             elif month in GHAMARI_MONTHS.keys():
+                # TODO : Improve offset 1400:
+                # if the shamsi year is lower than 100 then assume it has 13 before it
+                if day < 100 and year < 100:
+                    year += 1400
                 month_index = GHAMARI_MONTHS[month]
                 return f'{year}/{month_index:02}/{day:02}ه.ق  '
             elif month in SHAMSHI_MONTHS.keys():
+                # TODO : Improve offset 1300:
+                # if the shamsi year is lower than 100 then assume it has 13 before it
+                if day < 100 and year < 100:
+                    year += 1300
+
                 month_index = SHAMSHI_MONTHS[month]
                 return f'{year}/{month_index:02}/{day:02}'
             else:
@@ -326,9 +335,3 @@ def date_value_extractor(text):
     res = date_reformat(res) if date_reformat(res) is not None else res
     res = normalize_space(res)
     return res
-
-
-
-sentence = "1992-5-2"
-q = date_value_extractor(sentence)
-print(q)
