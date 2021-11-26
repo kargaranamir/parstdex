@@ -207,10 +207,18 @@ class ValueExtractor:
 
     JOINER = 'و'
 
-    Units = "|".join(
+    Date_Units = "|".join(
         list(TEN_PLUS_TEXT.keys()) + list(HUNDREDS_TEXT.keys()) + list(MAGNITUDE.keys()) + list(
             TENS_TEXT.keys()) + list(
             ONES_TEXT.keys()) + list(TYPO_LIST.keys()))
+
+    Time_Units = "|".join(
+        list(ONES_TEXT.keys()) + list(TEN_PLUS_TEXT.keys()) + TENS_TEXT.keys()
+    )
+
+    TENS_TEXT_LIST = "|".join(
+        list(TENS_TEXT.keys())
+    )
 
     def normalize_numbers(self, text):
         pattern = "|".join(map(re.escape, self.FA_TO_EN.keys()))
@@ -337,15 +345,23 @@ class ValueExtractor:
 
     def compute_date_value(self, text):
         text = self.normalize_numbers(text)
-        res = re.sub(fr'\b(?:{self.Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b',
+        res = re.sub(fr'\b(?:{self.Date_Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b',
                      lambda m: str(self.convert_word_to_digits(m.group())), text)
+        # 23هزار -> 23 هزار
         res = self.normalize_space(res)
         res = self.date_reformat(res) if self.date_reformat(res) is not None else res
         res = self.normalize_space(res)
         return res
 
     def compute_time_value(self, text):
-        pass
+        text = self.normalize_numbers(text)
+        # ساعت بیست و سه و سی چهار دقیقه و چهل و دو ثانیه
+        # ساعت بیست و سه - سی و چهار دقیقه - چهل و دو ثانیه
+        # یه ربع به یازده
+        # بیست و دو دقیقه به ساعت یازده
+        # بیست و سه دقیقه و چهل و سه ثانیه مانده به ساعت یازده و چهل و چهار دقیقه و سی و سه ثانیه
+        res = re.sub(fr'',
+                     lambda m: str(self.convert_word_to_digits(m.group())), text)
 
 
 extractor = ValueExtractor()
