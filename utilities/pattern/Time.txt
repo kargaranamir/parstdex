@@ -74,22 +74,22 @@ DN TU مانده به RT TU
 ساعت Hour و ربع RD
 ساعت Hour و ربع WD
 ساعت Hour و ربع WD Next
-ساعت Hour و ربع WD Past
+ساعت Hour و ربع WD Prev
 ساعت Hour و ربع DP
 ساعت Hour و ربع DP RD
 ساعت Hour و ربع DP WD
 ساعت Hour و ربع DP WD Next
-ساعت Hour و ربع DP WD Past
+ساعت Hour و ربع DP WD Prev
 ساعت Hour و نیم
 ساعت Hour و نیم RD
 ساعت Hour و نیم WD
 ساعت Hour و نیم WD Next
-ساعت Hour و نیم WD Past
+ساعت Hour و نیم WD Prev
 ساعت Hour و نیم DP
 ساعت Hour و نیم DP RD
 ساعت Hour و نیم DP WD
 ساعت Hour و نیم DP WD Next
-ساعت Hour و نیم DP WD Past
+ساعت Hour و نیم DP WD Prev
 ساعت یک ربع به Hour
 ساعت یک ربع به Hour RD
 ساعت یک ربع به Hour WD

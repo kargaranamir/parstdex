@@ -32,9 +32,16 @@ Month ی سال Num
 DN Month
 DN Month سال Num
 DN Month ماه سال Num
+DN Month ماه Num
+DN Month ماه Num شمسی
+DN Month ماه Num هجری شمسی
+DN Month ماه Num قمری
+DN Month ماه Num هجری قمری
+DN Month ماه Num میلادی
 DN Month ماه سال Num شمسی
 DN Month ماه سال Num هجری شمسی
 DN Month ماه سال Num قمری
+DN Month ماه سال Num هجری قمری
 DN Month ماه سال Num میلادی
 سال Num
 سال Num میلادی
@@ -81,20 +88,6 @@ Num-Twelve-ThirtyOne شمسی
 Num-Twelve-ThirtyOne میلادی
 Num-Twelve-ThirtyOne قمری
 TU Num
-DN TU Prev
-DN TU Next
-TU Prev
-TU Next
-Next TU
-Prev TU
-WD DN TU Next
-WD DN TU Prev
-Next WD DN TU
-Prev WD DN TU
-Next DP WD TU
-Prev DP WD TU
-Next DP WD DN TU
-Prev DP WD DN TU
 WD DP
 DP WD
 RD DP

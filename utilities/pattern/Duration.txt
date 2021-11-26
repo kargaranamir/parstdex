@@ -2,9 +2,9 @@
 TU Numتا Num
 TU Num تا Num
 سالNum تا Num
-طی چند TU Past
+طی چند TU Prev
 طی چند TU Next
-طی Num TU Past
+طی Num TU Prev
 طی Num TU Next
 WD Num Month لغایت WD Num Month
 WD Num Month تا WD Num Month

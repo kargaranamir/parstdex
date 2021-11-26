@@ -17,7 +17,7 @@ class Annotation:
             "Season": annotations['seasons'],
             "RT": annotations['relativeTime'],
             "TU": annotations['timeUnits'],
-            "Prev": annotations['past'],
+            "Prev": annotations['prev'],
             "DP": annotations['dayPart'],
             "Next": annotations['next'],
             "SN": annotations['sixtyNum'],
@@ -46,13 +46,13 @@ class Patterns:
     annotations = {}
     normalizer = Normalizer()
     patterns_path = 'utilities/pattern'
-    regexes = []
+    regexes = {}
 
     def __init__(self):
         self.annotations = Annotation()
         files = os.listdir(self.patterns_path)
         for f in files:
-            self.regexes = self.regexes + self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
+            self.regexes[f.replace('.txt', '')] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
 
     def pattern_to_regex(self, pattern):
         pattern = pattern.replace(" ", '+\\s')
@@ -67,3 +67,4 @@ class Patterns:
         patterns = self.normalizer.preprocess_file(path)
         regexes = [self.pattern_to_regex(pattern) for pattern in patterns]
         return regexes
+
