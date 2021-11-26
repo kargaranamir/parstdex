@@ -351,16 +351,16 @@ class ValueExtractor:
 extractor = ValueExtractor()
 
 d_sentence = "یک هزار و سیصد و هفت مهرماه سوم آبان ۱۲۵۰ معادل پنجاه قمری و هزار شمسی و سیمرغ نگاه بیست و یک و سوم آبان"
-
 q = extractor.compute_date_value(d_sentence)
+print("Compute Date value")
 print(q)
 
 t_sentence = "ساعت بیست و یک و سی و چهار دقیقه و چهل و یک ثانیه می‌بینمت"
 q = extractor.compute_time_value(d_sentence)
+print("Computer Time value")
 print(q)
 
 date_sentence = " 19 بهمن 1299"
-
 date_reg = fr'(\d+) ({extractor.SHAMSI_LIST})\s*[(?:{extractor.MONTH_LIT})]*\s*[(?:{extractor.YEAR_LIT})]* (\d+)'
 print(date_reg)
 date_result = re.search(date_reg, date_sentence).groups()
