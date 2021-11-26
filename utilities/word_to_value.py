@@ -276,7 +276,7 @@ def date_value_extractor(text):
 
 TYPE_DATA = 0 # 0 for SHAMSI, 1 for GHAMARI, 2 for MILDAI
 
-sentence = " 9 دی ماه سال 1299"
+sentence = " 19 بهمن 1299"
 MONTH_LIT = 'ماه'
 YEAR_LIT = 'سال'
 
@@ -285,8 +285,9 @@ SHAMSI_LIST = '|'.join(list(SHAMSHI_MONTHS.keys()))
 GHAMARI_LIST = '|'.join(list(GHAMARI_MONTHS.keys()))
 MILADI_LIST = '|'.join(list(MILADI_MONTHS.keys()))
 
-
-coord_re = re.sub(fr'(\d) ((?:\b{SHAMSI_LIST})) {MONTH_LIT}* {YEAR_LIT}* (\d)', r"\1 \2 \3", sentence)
+reg = fr'(\d+) ({SHAMSI_LIST})\s*[(?:{MONTH_LIT})]*\s*[(?:{YEAR_LIT})]* (\d+)'
+print(reg)
+coord_re = re.search(reg, sentence).groups()
 print(coord_re)
 
 
