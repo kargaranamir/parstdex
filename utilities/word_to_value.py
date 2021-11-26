@@ -204,7 +204,7 @@ C_NUMBERS = FA_NUMBERS + "|" + EN_NUMBERS + "|" + Symbols
 JOINER = 'و'
 MONTH_LIT = 'ماه'
 YEAR_LIT = 'سال'
-
+DATE_JOINER = '-|/'
 
 def date_value_extractor(text):
     def normalize_numbers(_text):
@@ -270,7 +270,7 @@ def date_value_extractor(text):
     def date_reformat(_text):
         try:
             # format number 1
-            date_format_num1 = fr'(\d+)\s*[(?:{MONTH_LIT})]*\s*(\b{ALL_MONTHS})\s*[(?:{MONTH_LIT})]*\s*[(?:{YEAR_LIT})]* (\d+)'
+            date_format_num1 = fr'(\d+)\s*[(?:\b{MONTH_LIT})]*\s*(\b{ALL_MONTHS})\s*[(?:\b{MONTH_LIT})]*\s*[(?:\b{YEAR_LIT})]* (\d+)'
             day_month_year = re.search(date_format_num1, _text).groups()
 
             day = int(day_month_year[0])
@@ -289,6 +289,35 @@ def date_value_extractor(text):
             else:
                 return f'{year}/{month}/{day:02}'
         except:
+            pass
+
+        try:
+            # format number 2
+            date_format_num2 = fr'(\d+)\s*[(?:\b{DATE_JOINER})]\s*(\d+)\s*[(?:\b{DATE_JOINER})]\s*(\d+)'
+            detected_date = re.search(date_format_num2, _text).groups()
+
+            year = int(detected_date[0])
+            month = int(detected_date[1])
+            day = int(detected_date[2])
+
+            # TODO : Improve these constraints for different days:
+            # if year is lower than 100 then assume it has 13 before it
+            if day < 100 and year < 100:
+                year += 1300
+            # assume the greater value as year
+            if day > year or 'میلادی' in _text:
+                year, day = day, year
+
+            # ghamari
+            if 'قمری' in _text:
+                return f'{year}/{month:02}/{day:02}ه.ق  '
+            # miladi date:
+            if year > 1800 or 'میلادی' in _text:
+                return f'{day:02}/{month:02}/{year:02}'
+            # shamsi date
+            else:
+                return f'{year:02}/{month:02}/{day:02}'
+        except:
             return None
 
     text = normalize_numbers(text)
@@ -300,6 +329,6 @@ def date_value_extractor(text):
 
 
 
-sentence = ""
+sentence = "1992-5-2"
 q = date_value_extractor(sentence)
 print(q)
