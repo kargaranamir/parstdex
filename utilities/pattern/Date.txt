@@ -81,13 +81,25 @@ RT DU Num قمری
 RT DU Num میلادی
 Num/Twelve/ThirtyOne
 Num/Twelve/ThirtyOne شمسی
+Num/Twelve/ThirtyOne هجری شمسی
+Num/Twelve/ThirtyOne ه.ش
 Num/Twelve/ThirtyOne میلادی
 Num/Twelve/ThirtyOne قمری
+Num/Twelve/ThirtyOne هجری قمری
+Num/Twelve/ThirtyOne ه.ق
 Num-Twelve-ThirtyOne
 Num-Twelve-ThirtyOne شمسی
+Num-Twelve-ThirtyOne هجری شمسی
+Num-Twelve-ThirtyOne ه.ش
 Num-Twelve-ThirtyOne میلادی
 Num-Twelve-ThirtyOne قمری
 DU Num
+Num-Twelve-ThirtyOne هجری قمری
+Num-Twelve-ThirtyOne ه.ق
+ThirtyOne/Twelve/Num
+ThirtyOne/Twelve/Num میلادی
+ThirtyOne-Twelve-Num
+ThirtyOne-Twelve-Num میلادی
 WD DP
 DP WD
 RD DP
