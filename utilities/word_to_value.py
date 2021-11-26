@@ -1,6 +1,5 @@
 import re
 
-
 SHAMSHI_MONTHS = {
     "فروردین": 1,
     "اردیبهشت": 2,
@@ -18,7 +17,6 @@ SHAMSHI_MONTHS = {
     "اسفند": 12
 }
 GHAMARI_MONTHS = {
-
     "محرم": 1,
     "صفر": 2,
     "ربیع‌الاول": 3,
@@ -47,9 +45,8 @@ GHAMARI_MONTHS = {
     "ذو‌الحجه": 12,
     "ذی الحجه": 12,
     "ذی حجه": 12,
-    "ذی‌الحجه ": 12
+    "ذی‌الحجه": 12
 }
-
 
 MILADI_MONTHS = {
     "ژانویه": 1,
@@ -189,16 +186,24 @@ FA_TO_EN = {
     '۹': '9'
 }
 
+
+SHAMSI_LIST = '|'.join(list(SHAMSHI_MONTHS.keys()))
+GHAMARI_LIST = '|'.join(list(GHAMARI_MONTHS.keys()))
+MILADI_LIST = '|'.join(list(MILADI_MONTHS.keys()))
+ALL_MONTHS = SHAMSI_LIST + '|' + GHAMARI_LIST + '|' + MILADI_LIST
+
+Units = "|".join(
+    list(TEN_PLUS_TEXT.keys()) + list(HUNDREDS_TEXT.keys()) + list(MAGNITUDE.keys()) + list(TENS_TEXT.keys()) + list(
+        ONES_TEXT.keys()) + list(TYPO_LIST.keys()))
+
 FA_NUMBERS = "۰|۱|۲|۳|۴|۵|۶|۷|۸|۹"
 EN_NUMBERS = "0|1|2|3|4|5|6|7|8|9"
 Symbols = ":|/|-"
 C_NUMBERS = FA_NUMBERS + "|" + EN_NUMBERS + "|" + Symbols
 
 JOINER = 'و'
-
-Units = "|".join(
-    list(TEN_PLUS_TEXT.keys()) + list(HUNDREDS_TEXT.keys()) + list(MAGNITUDE.keys()) + list(TENS_TEXT.keys()) + list(
-        ONES_TEXT.keys()) + list(TYPO_LIST.keys()))
+MONTH_LIT = 'ماه'
+YEAR_LIT = 'سال'
 
 
 def date_value_extractor(text):
@@ -262,36 +267,39 @@ def date_value_extractor(text):
         computed = compute(tokenize(text_date))
         return computed
 
+    def date_reformat(_text):
+        try:
+            # format number 1
+            date_format_num1 = fr'(\d+)\s*[(?:{MONTH_LIT})]*\s*(\b{ALL_MONTHS})\s*[(?:{MONTH_LIT})]*\s*[(?:{YEAR_LIT})]* (\d+)'
+            day_month_year = re.search(date_format_num1, _text).groups()
+
+            day = int(day_month_year[0])
+            month = day_month_year[1]
+            year = int(day_month_year[2])
+
+            if month in MILADI_MONTHS.keys():
+                month_index = MILADI_MONTHS[month]
+                return f'{day:02}/{month_index:02}/{year}'
+            elif month in GHAMARI_MONTHS.keys():
+                month_index = GHAMARI_MONTHS[month]
+                return f'{year}/{month_index:02}/{day:02}ه.ق  '
+            elif month in SHAMSHI_MONTHS.keys():
+                month_index = SHAMSHI_MONTHS[month]
+                return f'{year}/{month_index:02}/{day:02}'
+            else:
+                return f'{year}/{month}/{day:02}'
+        except:
+            return None
+
     text = normalize_numbers(text)
     res = re.sub(fr'\b(?:{Units}|\s{JOINER}\s|\s|\d{1, 4})+\b', lambda m: str(convert_word_to_digits(m.group())), text)
+    res = normalize_space(res)
+    res = date_reformat(res) if date_reformat(res) is not None else res
     res = normalize_space(res)
     return res
 
 
-# sentence = "یک هزار و سیصد و هفت مهرماه سوم آبان ۱۲۵۰ معادل پنجاه قمری و هزار شمسی و سیمرغ نگاه بیست و یک و سوم آبان"
-#
-# q = date_value_extractor(sentence)
-# print(q)
 
-
-TYPE_DATA = 0 # 0 for SHAMSI, 1 for GHAMARI, 2 for MILDAI
-
-sentence = " 19 بهمن 1299"
-MONTH_LIT = 'ماه'
-YEAR_LIT = 'سال'
-
-
-SHAMSI_LIST = '|'.join(list(SHAMSHI_MONTHS.keys()))
-GHAMARI_LIST = '|'.join(list(GHAMARI_MONTHS.keys()))
-MILADI_LIST = '|'.join(list(MILADI_MONTHS.keys()))
-
-reg = fr'(\d+) ({SHAMSI_LIST})\s*[(?:{MONTH_LIT})]*\s*[(?:{YEAR_LIT})]* (\d+)'
-print(reg)
-coord_re = re.search(reg, sentence).groups()
-print(coord_re)
-
-
-
-
-
-
+sentence = ""
+q = date_value_extractor(sentence)
+print(q)
