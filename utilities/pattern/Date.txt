@@ -65,20 +65,20 @@ RT Month سال Num
 روزهای RT سال Num شمسی
 روزهای RT سال Num قمری
 روزهای RT سال Num میلادی
-سه TU نخست سال Num
-سه TU اول TU Num
-سه TU پایانی TU Num
-سه TU دوم TU Num
-سه TU سوم TU Num
-سه TU ابتدایی TU Num
-سه TU انتهایی TU Num
-نیمه  اول TU Num
-نیمه دوم TU Num
+سه DU نخست سال Num
+سه DU اول DU Num
+سه DU پایانی DU Num
+سه DU دوم DU Num
+سه DU سوم DU Num
+سه DU ابتدایی DU Num
+سه DU انتهایی DU Num
+نیمه  اول DU Num
+نیمه دوم DU Num
 RT Season سال Num
-RT TU Num
-RT TU Num شمسی
-RT TU Num قمری
-RT TU Num میلادی
+RT DU Num
+RT DU Num شمسی
+RT DU Num قمری
+RT DU Num میلادی
 Num/Twelve/ThirtyOne
 Num/Twelve/ThirtyOne شمسی
 Num/Twelve/ThirtyOne میلادی
@@ -87,7 +87,7 @@ Num-Twelve-ThirtyOne
 Num-Twelve-ThirtyOne شمسی
 Num-Twelve-ThirtyOne میلادی
 Num-Twelve-ThirtyOne قمری
-TU Num
+DU Num
 WD DP
 DP WD
 RD DP

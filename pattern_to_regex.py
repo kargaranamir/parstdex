@@ -17,6 +17,7 @@ class Annotation:
             "Season": annotations['seasons'],
             "RT": annotations['relativeTime'],
             "TU": annotations['timeUnits'],
+            "DU": annotations['dateUnits'],
             "Prev": annotations['prev'],
             "DP": annotations['dayPart'],
             "Next": annotations['next'],
