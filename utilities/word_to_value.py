@@ -123,14 +123,14 @@ Units = "|".join(
 
 
 def date_value_extractor(text):
-    def normalize_numbers(text):
+    def normalize_numbers(_text):
         pattern = "|".join(map(re.escape, FA_TO_EN.keys()))
-        return re.sub(pattern, lambda m: FA_TO_EN[m.group()], str(text))
+        return re.sub(pattern, lambda m: FA_TO_EN[m.group()], str(_text))
 
-    def normalize_space(text):
-        res = re.sub(fr'((?:{C_NUMBERS})+(\.(?:{C_NUMBERS})+)?)', r' \1 ', text)
-        res = ' '.join(res.split())
-        return res
+    def normalize_space(_text):
+        res_space = re.sub(fr'((?:{C_NUMBERS})+(\.(?:{C_NUMBERS})+)?)', r' \1 ', _text)
+        res_space = ' '.join(res_space.split())
+        return res_space
 
     def tokenize(_text):
         for typo in TYPO_LIST.keys():
@@ -141,8 +141,8 @@ def date_value_extractor(text):
 
         return slitted_text
 
-    def remove_ordinal_suffix(word: str) -> str:
-        word = word.replace('مین', '')
+    def remove_ordinal_suffix(_text):
+        word = _text.replace('مین', '')
         word = word.replace(' ام', '')
         word = word.replace(' اُم', '')
 
@@ -171,16 +171,16 @@ def date_value_extractor(text):
 
         return result
 
-    def convert_word_to_digits(text):
+    def convert_word_to_digits(_text):
 
-        if text == '' or text is None or text == ' ':
+        if _text == '' or _text is None or _text == ' ':
             return ' '
 
-        if normalize_space(text) == 'و':
-            return ' و '
+        if normalize_space(_text) == JOINER:
+            return ' ' + JOINER + ' '
 
-        text = remove_ordinal_suffix(text)
-        computed = compute(tokenize(text))
+        text_date = remove_ordinal_suffix(_text)
+        computed = compute(tokenize(text_date))
         return computed
 
     text = normalize_numbers(text)
@@ -191,5 +191,5 @@ def date_value_extractor(text):
 
 # sentence = "یک هزار و سیصد و هفت مهرماه سوم آبان ۱۲۵۰ معادل پنجاه قمری و هزار شمسی و سیمرغ نگاه بیست و یک و سوم آبان"
 #
-# q = normalize_digits(sentence)
+# q = date_value_extractor(sentence)
 # print(q)
