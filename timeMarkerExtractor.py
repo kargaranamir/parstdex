@@ -37,6 +37,7 @@ def time_marker_extractor(input_sentence):
                 output_raw[key] = output_raw[key] + out
             #
             # if key == 'Date' and len(out) > 0:
+            #     for out_dates in out:
             #         date_list.append(extractor.compute_date_value(out_dates))
 
     # process result
