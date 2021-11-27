@@ -201,7 +201,7 @@ class ValueExtractor:
         "هفت": 7,
         "هشت": 8,
         "نه": 9,
-        "\bده\b": 10,
+        "ده": 10,
         "یازده": 11,
         "دوازده": 12,
         "سیزده": 13,
@@ -548,7 +548,7 @@ class ValueExtractor:
         # یه ربع به یازده
         # بیست و دو دقیقه به ساعت یازده
         # بیست و سه دقیقه و چهل و سه ثانیه مانده به ساعت یازده و چهل و چهار دقیقه و سی و سه ثانیه
-        res = re.sub(fr'\b(?:{self.MINUTES_LIST})', lambda m: str(self.MINUTES[m.group()]), str(text))
+        res = re.sub(fr'(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
         res = self.normalize_space(res)
         res = self.time_reformat(res) if self.time_reformat(res) is not None else res
         return res
@@ -561,7 +561,7 @@ extractor = ValueExtractor()
 # print("Compute Date value")
 # print(q)
 
-t_sentence = "۶۰ دهه "
+t_sentence = "بیست و یک"
 q = extractor.compute_time_value(t_sentence)
 print("Compute Time value")
 print(q)
