@@ -24,7 +24,8 @@ class Normalizer:
         return re.sub(pattern, lambda m: self.ALPHABET_DICT[m.group()], str(text))
 
     def normalize_space(self, text):
-        res = re.sub(fr'((?:{self.C_NUMBERS})+(\.(?:{self.C_NUMBERS})+)?)', r' \1 ', text)
+        res = text.replace('،', '')
+        res = re.sub(fr'((?:{self.C_NUMBERS})+(\.(?:{self.C_NUMBERS})+)?)', r' \1 ', res)
         # res = res.replace('\u200c', '')
         res = ' '.join(res.split())
         res = res + ' .' if res[-1] != '.' else res
@@ -49,10 +50,43 @@ class Normalizer:
         return res
 
 
-def deleteSubMatches(matches):
+def deleteSubMatches(matches, matches_keys, input_sentence):
+
     def is_sub_match(word, match_list):
         for match in match_list:
             if word in match and word != match:
                 return True
         return False
-    return [match for match in matches if not is_sub_match(match, matches)]
+
+    unique_matches = []
+    unique_matches_keys = []
+    other_matches = []
+    other_matches_keys = []
+
+    for match_key, match in zip(matches_keys, matches):
+        if not is_sub_match(match, matches):
+            unique_matches.append(match)
+            unique_matches_keys.append(match_key)
+
+    for match_key, match in zip(matches_keys, matches):
+        if match in matches and match not in unique_matches:
+            other_matches.append(match)
+            other_matches_keys.append(match_key)
+
+    for u_match in unique_matches:
+        input_sentence = input_sentence.replace(u_match, ' $ ')
+
+    for p_match_key, p_match in zip(other_matches_keys, other_matches):
+        if p_match in input_sentence:
+            unique_matches.append(p_match)
+            unique_matches_keys.append(p_match_key)
+
+    keys = list(set(matches_keys))
+    matches_dict = {}
+    for k in keys:
+        matches_dict [k] : list = []
+
+    for key, value in zip(unique_matches_keys, unique_matches):
+        matches_dict [key].append(value)
+
+    return matches_dict
