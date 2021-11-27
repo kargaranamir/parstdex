@@ -520,6 +520,7 @@ class ValueExtractor:
         except:
             pass
 
+        # TODO: complete this ۶۰ ثانیه
         try:
             reg = fr'(\d*)\s*[({self.HOUR_LIT})|({self.MIN_LIT})|({self.SEC_LIT})]'
             detected_time = re.search(reg, text).groups()
