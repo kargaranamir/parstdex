@@ -328,6 +328,10 @@ class ValueExtractor:
         "نیم": 30
     }
 
+    HOUR_PART_JOIN = "|".join(
+        HOUR_PART.keys()
+    )
+
     NEG_DURATION_JOIN = "|".join(
         ["به", "مانده به", "قبل", "قبل از", "پیش از"]
     )
@@ -499,6 +503,56 @@ class ValueExtractor:
         for part_night in self.PM_PART_LIST:
             if part_night in text:
                 PM = True
+
+        # بیست دقیقه قبل از هفت
+        try:
+            reg = fr'(\d+)\s*(?:{self.MIN_LIT})\s*(?:{self.NEG_DURATION_JOIN})\s*(?:{self.HOUR_LIT})?\s*(\d+)\s*(?:{self.DAY_PART_JOIN})?'
+            detected_time = re.search(reg, text).groups()
+            hour = int(detected_time[1]) - 1
+            minute = int(detected_time[0])
+            if hour < 13 and PM:
+                hour = hour + 12
+            return f'{hour:02}:{(60 - minute):02}'
+        except:
+            pass
+
+        # بیست دقیقه بعد از هفت
+        try:
+            reg = fr'(\d+)\s*(?:{self.MIN_LIT})\s*(?:{self.POS_DURATION_JOIN})\s*(?:{self.HOUR_LIT})?\s*(\d+)\s*(?:{self.DAY_PART_JOIN})?'
+            detected_time = re.search(reg, text).groups()
+            hour = int(detected_time[1])
+            minute = int(detected_time[0])
+            if hour < 13 and PM:
+                hour = hour + 12
+            return f'{hour:02}:{minute:02}'
+        except:
+            pass
+
+        # یه ربع به شش
+        try:
+            reg = fr'({self.HOUR_PART_JOIN})\s*(?:{self.HOUR_LIT})?\s*(?:{self.NEG_DURATION_JOIN})\s*(?:{self.HOUR_LIT})?\s*(\d+)\s*(?:{self.DAY_PART_JOIN})?'
+            detected_time = re.search(reg, text).groups()
+            hour = int(detected_time[1]) - 1
+            minute = self.HOUR_PART[detected_time[0]]
+            if hour < 13 and PM:
+                hour = hour + 12
+            return f'{hour:02}:{(60 - minute):02}'
+        except:
+            pass
+
+        # یه ربع بعد شش
+        try:
+            reg = fr'({self.HOUR_PART_JOIN})\s*(?:{self.HOUR_LIT})?\s*(?:{self.POS_DURATION_JOIN})\s*(?:{self.HOUR_LIT})?\s*(\d+)\s*(?:{self.DAY_PART_JOIN})?'
+            detected_time = re.search(reg, text).groups()
+            hour = int(detected_time[1])
+            minute = self.HOUR_PART[detected_time[0]]
+            if hour < 13 and PM:
+                hour = hour + 12
+            return f'{hour:02}:{minute:02}'
+        except:
+            pass
+
+
         try:
             # TODO: ساعت 9:54 ساعت ۰۹:۲۳
             reg = fr'(?:{self.HOUR_LIT})?\s*(\d+)(?:[{self.TIME_JOINER}])(\d*)\s*(?:[{self.TIME_JOINER}])?(\d*)?'
@@ -559,7 +613,7 @@ class ValueExtractor:
             hour = 0
             minute = int(detected_time[0])
             second = int(detected_time[1])
-            if hour < 13 and PM == True:
+            if hour < 13 and PM:
                 hour = hour + 12
             return f'{hour:02}:{minute:02}:{second:02}'
         except:
@@ -595,7 +649,7 @@ extractor = ValueExtractor()
 # print("Compute Date value")
 # print(q)
 
-t_sentence = "۶۰ دهه "
+t_sentence = "بیست و چهار دقیقه پس از ساعت هفت"
 q = extractor.compute_time_value(t_sentence)
 print("Compute Time value")
 print(q)
