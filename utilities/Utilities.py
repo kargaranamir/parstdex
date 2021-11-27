@@ -25,6 +25,10 @@ class Normalizer:
 
     def normalize_space(self, text):
         res = text.replace('،', '')
+        res = ':'.join([i.lstrip().rstrip() for i in res.split(':')])
+        res = '-'.join([i.lstrip().rstrip() for i in res.split('-')])
+        res = '/'.join([i.lstrip().rstrip() for i in res.split('/')])
+        res = '/'.join([i.lstrip().rstrip() for i in res.split('\\')])
         res = re.sub(fr'((?:{self.C_NUMBERS})+(\.(?:{self.C_NUMBERS})+)?)', r' \1 ', res)
         # res = res.replace('\u200c', '')
         res = ' '.join(res.split())
