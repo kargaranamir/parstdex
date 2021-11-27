@@ -520,17 +520,6 @@ class ValueExtractor:
         except:
             pass
 
-        # TODO: complete this ۶۰ ثانیه
-        try:
-            reg = fr'(\d*)\s*[({self.HOUR_LIT})|({self.MIN_LIT})|({self.SEC_LIT})]'
-            detected_time = re.search(reg, text).groups()
-            hour = 0
-            minute = int(detected_time[0])
-            second = int(detected_time[1])
-            return f'{hour:02}:{minute:02}:{second:02}'
-        except:
-            pass
-
     def compute_date_value(self, text):
         text = self.normalize_numbers(text)
         res = re.sub(fr'\b(?:{self.Date_Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b',
@@ -548,7 +537,7 @@ class ValueExtractor:
         # یه ربع به یازده
         # بیست و دو دقیقه به ساعت یازده
         # بیست و سه دقیقه و چهل و سه ثانیه مانده به ساعت یازده و چهل و چهار دقیقه و سی و سه ثانیه
-        res = re.sub(fr'(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
+        res = re.sub(fr'\b(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
         res = self.normalize_space(res)
         res = self.time_reformat(res) if self.time_reformat(res) is not None else res
         return res
@@ -561,7 +550,7 @@ extractor = ValueExtractor()
 # print("Compute Date value")
 # print(q)
 
-t_sentence = "بیست و یک"
+t_sentence = "۶۰ دهه "
 q = extractor.compute_time_value(t_sentence)
 print("Compute Time value")
 print(q)
