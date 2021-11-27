@@ -201,7 +201,7 @@ class ValueExtractor:
         "هفت": 7,
         "هشت": 8,
         "نه": 9,
-        "ده": 10,
+        "\bده\b": 10,
         "یازده": 11,
         "دوازده": 12,
         "سیزده": 13,
@@ -487,8 +487,8 @@ class ValueExtractor:
     def time_reformat(self, text):
         # ساعت 00:13:42
         try:
-            # TODO: ساعت 9:54
-            reg = fr'(?:{self.HOUR_LIT})?\s*(\d{1,2})(?:[{self.TIME_JOINER}])(\d{1,2})\s*(?:[{self.TIME_JOINER}])?(\d{1,2})?'
+            # TODO: ساعت 9:54 ساعت ۰۹:۲۳
+            reg = fr'(?:{self.HOUR_LIT})?\s*(\d+)(?:[{self.TIME_JOINER}])(\d*)\s*(?:[{self.TIME_JOINER}])?(\d*)?'
 
             detected_time = re.search(reg, text).groups()
             hour = int(detected_time[0])
@@ -512,6 +512,16 @@ class ValueExtractor:
         # ساعت 23 دقیقه و 40 ثانیه
         try:
             reg = fr'(?:{self.HOUR_LIT})\s+(\d+)\s*(?:{self.MIN_LIT})\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.SEC_LIT})?'
+            detected_time = re.search(reg, text).groups()
+            hour = 0
+            minute = int(detected_time[0])
+            second = int(detected_time[1])
+            return f'{hour:02}:{minute:02}:{second:02}'
+        except:
+            pass
+
+        try:
+            reg = fr'(\d*)\s*[({self.HOUR_LIT})|({self.MIN_LIT})|({self.SEC_LIT})]'
             detected_time = re.search(reg, text).groups()
             hour = 0
             minute = int(detected_time[0])
@@ -550,7 +560,7 @@ extractor = ValueExtractor()
 # print("Compute Date value")
 # print(q)
 
-t_sentence = "ساعت ۰۹:۲۳"
+t_sentence = "۶۰ دهه "
 q = extractor.compute_time_value(t_sentence)
 print("Compute Time value")
 print(q)
