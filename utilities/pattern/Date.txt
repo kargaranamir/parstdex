@@ -114,6 +114,5 @@ ThirtyOne-Twelve-Num
 ThirtyOne-Twelve-Num میلادی
 WD DP
 DP WD
-RD DP
-DP RD
 DP DN Month Num
+WD
