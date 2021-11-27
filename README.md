@@ -1,6 +1,4 @@
-# NLP
-NLP Course
-
+# Persian Time Date Extractor
 
 ## Citing
 If you use any part of this library in your research, please cite it using the following BibTex entry.
