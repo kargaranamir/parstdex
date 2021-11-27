@@ -16,16 +16,21 @@ def time_marker_extractor(input_sentence):
 
     input_sentence = normalizer.normalize_cumulative(input_sentence)
     print("Normalized Sentence:\n", input_sentence)
-    output_raw = {}
+    output_raw = {"Date": [], "Time": []}
     output_extracted = {}
     output_flatten: list = []
     output_flatten_keys = []
+    post_output_faltten = []
+    post_output_flatten_keys = []
     res = []
     res_date = []
     res_time = []
     # Write Regexes into pattern.txt file
     with open('patterns.txt', 'w', encoding="utf-8") as f:
-        f.writelines(patterns.regexes)
+        for key in patterns.regexes.keys():
+            for regex_value in patterns.regexes[key]:
+                f.write(regex_value)
+                f.write('\n')
 
     for key in patterns.regexes.keys():
         output_raw[key]: list = []
@@ -42,6 +47,15 @@ def time_marker_extractor(input_sentence):
         output_raw[key] = list(set(output_raw[key]))
         output_flatten = output_flatten + output_raw[key]
         output_flatten_keys = output_flatten_keys + [key] * len(output_raw[key])
+
+    # make unique result while they have different keys
+    for key, value in zip(output_flatten_keys, output_flatten):
+        if not value in post_output_faltten:
+            post_output_faltten.append(value)
+            post_output_flatten_keys.append(key)
+
+    output_flatten = post_output_faltten
+    output_flatten_keys = post_output_flatten_keys
 
     output_extracted = deleteSubMatches(output_flatten, output_flatten_keys, input_sentence)
     if output_extracted.get('Date'):
