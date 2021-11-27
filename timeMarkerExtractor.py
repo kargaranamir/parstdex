@@ -20,7 +20,7 @@ def time_marker_extractor(input_sentence):
     output_extracted = {}
     output_flatten: list = []
     output_flatten_keys = []
-    post_output_faltten = []
+    post_output_flatten = []
     post_output_flatten_keys = []
     res = []
     res_date = []
@@ -50,11 +50,11 @@ def time_marker_extractor(input_sentence):
 
     # make unique result while they have different keys
     for key, value in zip(output_flatten_keys, output_flatten):
-        if not value in post_output_faltten:
-            post_output_faltten.append(value)
+        if not value in post_output_flatten:
+            post_output_flatten.append(value)
             post_output_flatten_keys.append(key)
 
-    output_flatten = post_output_faltten
+    output_flatten = post_output_flatten
     output_flatten_keys = post_output_flatten_keys
 
     output_extracted = deleteSubMatches(output_flatten, output_flatten_keys, input_sentence)
@@ -65,10 +65,10 @@ def time_marker_extractor(input_sentence):
     for p_output in output_extracted.values():
         res += p_output
 
-    print("Extracted Markers: ")
+    print("All Extracted Markers: ")
     print(res)
-    print("Date List: ")
+    print("Date Value List: ")
     print(res_date)
-    print("Time List: ")
+    print("Time Value List: ")
     print(res_time)
     return res

@@ -649,7 +649,7 @@ extractor = ValueExtractor()
 # print("Compute Date value")
 # print(q)
 
-t_sentence = "بیست و چهار دقیقه پس از ساعت هفت"
-q = extractor.compute_time_value(t_sentence)
-print("Compute Time value")
-print(q)
+# t_sentence = "بیست و چهار دقیقه پس از ساعت هفت"
+# q = extractor.compute_time_value(t_sentence)
+# print("Compute Time value")
+# print(q)
