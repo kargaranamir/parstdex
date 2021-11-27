@@ -105,3 +105,13 @@ DN TU مانده به RT TU
 ساعت یک ربع به Hour DP WD
 ساعت یک ربع به Hour DP WD Next
 ساعت یک ربع به Hour DP WD Prev
+یک ربع به Hour
+یک ربع به Hour RD
+یک ربع به Hour WD
+یک ربع به Hour WD Next
+یک ربع به Hour WD Prev
+یک ربع به Hour DP
+یک ربع به Hour DP RD
+یک ربع به Hour DP WD
+یک ربع به Hour DP WD Next
+یک ربع به Hour DP WD Prev
