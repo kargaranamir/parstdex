@@ -51,7 +51,6 @@ class Normalizer:
 
 
 def deleteSubMatches(matches, matches_keys, input_sentence):
-
     def is_sub_match(word, match_list):
         for match in match_list:
             if word in match and word != match:
@@ -84,9 +83,9 @@ def deleteSubMatches(matches, matches_keys, input_sentence):
     keys = list(set(matches_keys))
     matches_dict = {}
     for k in keys:
-        matches_dict [k] : list = []
+        matches_dict[k]: list = []
 
     for key, value in zip(unique_matches_keys, unique_matches):
-        matches_dict [key].append(value)
+        matches_dict[key].append(value)
 
     return matches_dict

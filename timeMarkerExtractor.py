@@ -18,17 +18,18 @@ def time_marker_extractor(input_sentence):
     print("Normalized Sentence:\n", input_sentence)
     output_raw = {}
     output_extracted = {}
-    output_flatten : list = []
+    output_flatten: list = []
     output_flatten_keys = []
     res = []
     res_date = []
+    res_time = []
     # Write Regexes into pattern.txt file
     with open('patterns.txt', 'w', encoding="utf-8") as f:
         f.writelines(patterns.regexes)
 
     for key in patterns.regexes.keys():
-        output_raw [key] : list = []
-        output_extracted [key] : list = []
+        output_raw[key]: list = []
+        output_extracted[key]: list = []
 
     for key in patterns.regexes.keys():
         for regex_value in patterns.regexes[key]:
@@ -39,18 +40,21 @@ def time_marker_extractor(input_sentence):
     # process result
     for key in output_raw.keys():
         output_raw[key] = list(set(output_raw[key]))
-        output_flatten = output_flatten + output_raw [key]
+        output_flatten = output_flatten + output_raw[key]
         output_flatten_keys = output_flatten_keys + [key] * len(output_raw[key])
-
 
     output_extracted = deleteSubMatches(output_flatten, output_flatten_keys, input_sentence)
     if output_extracted.get('Date'):
-        res_date = [extractor.compute_date_value(p_date) for p_date in output_extracted['Date'] ]
+        res_date = [extractor.compute_date_value(p_date) for p_date in output_extracted['Date']]
+    if output_extracted.get('Time'):
+        res_time = [extractor.compute_time_value(p_time) for p_time in output_extracted['Time']]
     for p_output in output_extracted.values():
-        res.append(p_output)
+        res += p_output
 
     print("Extracted Markers: ")
     print(res)
     print("Date List: ")
     print(res_date)
+    print("Time List: ")
+    print(res_time)
     return res
