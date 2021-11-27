@@ -5,7 +5,7 @@ NLP Course
 ## Citing
 If you use any part of this library in your research, please cite it using the following BibTex entry.
 ```
-@misc{visual_clutter,
+@misc{persian_time_date_extractor,
   author = {Amir Hossein Kargaran, Seyed Sajad Mirzababaei, Hamid Jahad},
   title = {Persian Time Date Extractor},
   year = {2021},
