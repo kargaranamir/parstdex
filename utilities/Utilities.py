@@ -86,7 +86,7 @@ def deleteSubMatches(matches, matches_keys, input_sentence):
     # extra delete
     for s_match in sub_words:
         for sub_match in s_match.split(' '):
-            input_sentence = input_sentence.replace(u_match, ' $ ')
+            input_sentence = input_sentence.replace(sub_match, ' $ ')
 
     for p_match_key, p_match in zip(other_matches_keys, other_matches):
         if p_match in input_sentence:
