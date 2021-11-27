@@ -2,7 +2,12 @@
 Hour ساعت و Min دقیقه و Min ثانیه
 ساعت Hour و Min دقیقه و Min ثانیه
 ساعت Hour و Min دقیقه و Min ثانیه DP
+Hour و Min دقیقه و Min ثانیه DP
 ساعت Hour و Min دقیقه
+ساعت Hour و Min دقیقه DP
+Hour و Min دقیقه DP
+ساعت Hour DP
+Hour DP
 Hour DP RD
 RD Hour DP
 Num TU

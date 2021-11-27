@@ -328,10 +328,19 @@ class ValueExtractor:
         "نیم": 30
     }
 
-    DURATION_JOIN = "|".join(
-        ["به", "مانده به"]
+    NEG_DURATION_JOIN = "|".join(
+        ["به", "مانده به", "قبل" , "قبل از", "پیش از"]
     )
 
+    POS_DURATION_JOIN = "|".join(
+        ["بعد", "پس از", "بعد از"]
+    )
+
+    DAY_PART_JOIN = '|'.join(
+        ["شب", "شامگاه", "غروب", "بعد از ظهر", "بعدازظهر", "بعداز ظهر", "عصر" , "صبح" , "بامداد", "ظهر"]
+    )
+    PM_PART_LIST = ["شب", "شامگاه", "غروب" , "بعد از ظهر" , "بعدازظهر", "بعداز ظهر", "عصر"]
+    
     SHAMSI_LIST = '|'.join(list(SHAMSHI_MONTHS.keys()))
     GHAMARI_LIST = '|'.join(list(GHAMARI_MONTHS.keys()))
     MILADI_LIST = '|'.join(list(MILADI_MONTHS.keys()))
@@ -486,6 +495,10 @@ class ValueExtractor:
 
     def time_reformat(self, text):
         # ساعت 00:13:42
+        PM = False
+        for part_night in self.PM_PART_LIST:
+            if part_night in text:
+                PM = True
         try:
             # TODO: ساعت 9:54 ساعت ۰۹:۲۳
             reg = fr'(?:{self.HOUR_LIT})?\s*(\d+)(?:[{self.TIME_JOINER}])(\d*)\s*(?:[{self.TIME_JOINER}])?(\d*)?'
@@ -494,6 +507,8 @@ class ValueExtractor:
             hour = int(detected_time[0])
             minute = int(detected_time[1])
             second = int(detected_time[2] if detected_time[2] != '' else "0")
+            if hour < 13 and PM == True:
+                hour = hour + 12
             return f'{hour:02}:{minute:02}:{second:02}'
         except:
             pass
@@ -505,6 +520,8 @@ class ValueExtractor:
             hour = int(detected_time[0])
             minute = int(detected_time[1] if detected_time[1] != '' else "0")
             second = int(detected_time[2] if detected_time[2] != '' else "0")
+            if hour < 13 and PM == True:
+                hour = hour + 12
             return f'{hour:02}:{minute:02}:{second:02}'
         except:
             pass
@@ -516,9 +533,37 @@ class ValueExtractor:
             hour = 0
             minute = int(detected_time[0])
             second = int(detected_time[1])
+            if hour < 13 and PM == True:
+                hour = hour + 12
             return f'{hour:02}:{minute:02}:{second:02}'
         except:
             pass
+
+            #  بیست و یک و چهل و دو دقیقه و سی و دو ثانیه صبح
+            try:
+                reg = fr'(\d+)\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.MIN_LIT})?\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.SEC_LIT})?\s+(?:{self.DAY_PART_JOIN})'
+                detected_time = re.search(reg, text).groups()
+                hour = int(detected_time[0])
+                minute = int(detected_time[1] if detected_time[1] != '' else "0")
+                second = int(detected_time[2] if detected_time[2] != '' else "0")
+                if hour < 13 and PM == True:
+                    hour = hour + 12
+                return f'{hour:02}:{minute:02}:{second:02}'
+            except:
+                pass
+
+            # 23 دقیقه و 40 ثانیه شب
+            try:
+                reg = fr'(\d+)\s*(?:{self.MIN_LIT})\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.SEC_LIT})?\s+(?:{self.DAY_PART_JOIN})'
+                detected_time = re.search(reg, text).groups()
+                hour = 0
+                minute = int(detected_time[0])
+                second = int(detected_time[1])
+                if hour < 13 and PM == True:
+                    hour = hour + 12
+                return f'{hour:02}:{minute:02}:{second:02}'
+            except:
+                pass
 
     def compute_date_value(self, text):
         text = self.normalize_numbers(text)
