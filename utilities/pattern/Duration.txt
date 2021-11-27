@@ -1,82 +1,82 @@
 ﻿
-TU Numتا Num
-TU Num تا Num
-سالNum تا Num
+TU DNتا DN
+TU DN تا DN
+سالDN تا DN
 طی چند TU Prev
 طی چند TU Next
-طی Num TU Prev
-طی Num TU Next
-WD Num Month لغایت WD Num Month
-WD Num Month تا WD Num Month
-WD Num Month الی WD Num Month
-WD Num Month - WD Num Month
-Num Month لغایت Num Month
-Num Month تا Num Month
-Num Month الی Num Month
-Num Month - Num Month
-Num Month لغایت Num Month
-Num Month تا Num Month
-Num Month الی Num Month
-Num Month - Num Month
-Num تا Num Month
-Num تا Num Month Num
-Num تا Num Month
-Num تا Num Month Num
+طی DN TU Prev
+طی DN TU Next
+WD DN Month لغایت WD DN Month
+WD DN Month تا WD DN Month
+WD DN Month الی WD DN Month
+WD DN Month - WD DN Month
+DN Month لغایت DN Month
+DN Month تا DN Month
+DN Month الی DN Month
+DN Month - DN Month
+DN Month لغایت DN Month
+DN Month تا DN Month
+DN Month الی DN Month
+DN Month - DN Month
+DN تا DN Month
+DN تا DN Month DN
+DN تا DN Month
+DN تا DN Month DN
 RD تا RT Month
 RD تا WD هفته Next
 RD تا RT ماه جاری
-RD تا Num روز Next
-RD تا Num Month
+RD تا DN روز Next
+RD تا DN Month
 RD تا RD
 DP RD تا RD DP
 DR DP تا RD DP
-ساعت Num DP RD تا RD
-ساعت Num DP RD تا WD
-ساعت Num DP RD تا WD Next
-ساعت Num RD Start و تا RD
-ساعت Num RD Start و تا روز WD
-ساعت Num RD Start و تا روز WD Next
-RD DP Start و تا RT هفته
-RD DP Start و تا RT این هفته
-RD DP Start و تا RT ماه
-RD DP Start و تا RT این ماه
-RD DP Start و تا RT Month
-RD DP Start و تا RT Month ماه
-DP RD Start و تا RT هفته
-DP RD Start و تا RT این هفته
-DP RD Start و تا RT این ماه
-DP RD Start و تا RT این ماه
-DP RD Start و تا RT Month
-DP RD Start و تا RT Month ماه
-WD DP Start و تا RT هفته
-WD DP Start و تا RT این هفته
-WD DP Start و تا RT ماه
-WD DP Start و تا RT این ماه
-WD DP Start و تا RT Month
-WD DP Start و تا RT Month ماه
-DP WD Start و تا RT هفته
-DP WD Start و تا RT این هفته
-DP WD Start و تا RT این ماه
-DP WD Start و تا RT این ماه
-DP WD Start و تا RT Month
-DP WD Start و تا RT Month ماه
+ساعت DN DP RD تا RD
+ساعت DN DP RD تا WD
+ساعت DN DP RD تا WD Next
+ساعت DN RD تا RD
+ساعت DN RD تا روز WD
+ساعت DN RD تا روز WD Next
+RD DP تا RT هفته
+RD DP تا RT این هفته
+RD DP تا RT ماه
+RD DP تا RT این ماه
+RD DP تا RT Month
+RD DP تا RT Month ماه
+DP RD تا RT هفته
+DP RD تا RT این هفته
+DP RD تا RT این ماه
+DP RD تا RT این ماه
+DP RD تا RT Month
+DP RD تا RT Month ماه
+WD DP تا RT هفته
+WD DP تا RT این هفته
+WD DP تا RT ماه
+WD DP تا RT این ماه
+WD DP تا RT Month
+WD DP تا RT Month ماه
+DP WD تا RT هفته
+DP WD تا RT این هفته
+DP WD تا RT این ماه
+DP WD تا RT این ماه
+DP WD تا RT Month
+DP WD تا RT Month ماه
 RD تا RT هفته
 RD تا RT ماه
 RD تا RT این ماه
 RD تا RT هفته جاری
-Num Month Start و تا RT Month
-Num Month Start و تا RT Month امسال
-Num Month Start و تا RT Month ماه
-Num Month Start و تا RT Month ماه امسال
-Num Month ماه Start و تا RT Month
-Num Month ماه Start و تا RT Month امسال
-Num Month ماه Start و تا RT Month ماه
-Num Month ماه Start و تا RT Month ماه امسال
-RD Start و تا RT Month
-RD Start و تا RT Month ماه
-RD Start و تا RT Month ماه امسال
-RD Start و تا RT Month امسال
-Num Month Start و تا Num Month
-Num Month Start و تا Num Month ماه
-Num Month Start و تا Num Month ماه امسال
-Num Month Start و تا Num Month Num
+DN Month تا RT Month
+DN Month تا RT Month امسال
+DN Month تا RT Month ماه
+DN Month تا RT Month ماه امسال
+DN Month ماه تا RT Month
+DN Month ماه تا RT Month امسال
+DN Month ماه تا RT Month ماه
+DN Month ماه تا RT Month ماه امسال
+RD تا RT Month
+RD تا RT Month ماه
+RD تا RT Month ماه امسال
+RD تا RT Month امسال
+DN Month تا DN Month
+DN Month تا DN Month ماه
+DN Month تا DN Month ماه امسال
+DN Month تا DN Month DN
