@@ -15,13 +15,15 @@ def main():
             print("Original Sentence:\n", input_sentence)
             normalized_sentence, res, res_date, res_time = time_marker_extractor(input_sentence)
             print("Normalized Sentence:\n", normalized_sentence)
-            print("=" * 50)
+
             print("All Extracted Markers: ")
             print(res)
             print("Date Value List: ")
             print(res_date)
             print("Time Value List: ")
             print(res_time)
+            print("=" * 50)
+
 
 if __name__ == '__main__':
     main()
