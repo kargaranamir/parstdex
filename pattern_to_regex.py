@@ -1,6 +1,7 @@
 import re
 import os
 from utilities.Utilities import Normalizer
+import utilities.const as const
 
 
 class Annotation:
@@ -29,7 +30,8 @@ class Annotation:
             "Twelve": annotations['twelve'],
             "ThirtyOne": annotations['thirtyOne'],
             "RY": annotations['relativeYears'],
-            "Num": annotations['numbers']
+            "Num": annotations['numbers'],
+            "PY": annotations["persianYear"]
             }
 
     def create_annotation_dict(self):
@@ -40,6 +42,12 @@ class Annotation:
             annotation_dict[key] = self.normalizer.normalize_annotation(f"{self.annotation_path}/{f}")
 
         annotation_dict['numbers'] = r'\\d{1,4}'
+
+        ONE_TO_NINE_JOIN = "|".join(const.ONE_TO_NINE.keys())
+        MAGNITUDE_JOIN = "|".join(const.MAGNITUDE.keys())
+        HUNDREDS_TEXT_JOIN = "|".join(const.HUNDREDS_TEXT.keys())
+        ONE_NINETY_NINE_JOIN = "|".join(list(const.ONE_NINETY_NINE.keys())[::-1])
+        annotation_dict["persianYear"] = rf'(?:(?:{ONE_TO_NINE_JOIN})?\\s*(?:{MAGNITUDE_JOIN})?\\s*(?:{const.JOINER})?\\s*(?:{HUNDREDS_TEXT_JOIN})?\\s*(?:{const.JOINER})?\\s*(?:{ONE_NINETY_NINE_JOIN}))'
         return annotation_dict
 
 

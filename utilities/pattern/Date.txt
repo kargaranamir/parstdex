@@ -16,21 +16,31 @@ RD Num روز از Season
 RD WD Num از Season سال Num
 RD WD Num از Season Num
 DN Month Num
+DN Month PY
 DN Month Num شمسی
+DN Month PY شمسی
 DN Month Num قمری
+DN Month PY قمری
 DN Month Num هجری شمسی
+DN Month PY هجری شمسی
 DN Month Num میلادی
+DN Month PY میلادی
 DN Month ماه
 Month ماه
 Month ماه Num
+Month ماه PY
 Month ماه سال Num
+Month ماه سال PY
 ماه Month
-ماه Month سال Num
 ماه Month Num
+ماه Month PY
 Month ی Num
+Month ی PY
 Month ی سال Num
+Month ی سال PY
 DN Month
 DN Month سال Num
+Month ی سال PY
 DN Month ماه سال Num
 DN Month ماه Num
 DN Month ماه Num شمسی
@@ -60,6 +70,35 @@ DN Monthماه سال Num میلادی
 سال Num شمسی
 سال Num هجری شمسی
 سال Num قمری
+DN Month ماه سال PY
+DN Month ماه PY
+DN Month ماه PY شمسی
+DN Month ماه PY هجری شمسی
+DN Month ماه PY قمری
+DN Month ماه PY هجری قمری
+DN Month ماه PY میلادی
+DN Month ماه سال PY شمسی
+DN Month ماه سال PY هجری شمسی
+DN Month ماه سال PY قمری
+DN Month ماه سال PY هجری قمری
+DN Month ماه سال PY میلادی
+DN Monthماه سال PY
+DN Monthماه PY
+DN Monthماه PY شمسی
+DN Monthماه PY هجری شمسی
+DN Monthماه PY قمری
+DN Monthماه PY هجری قمری
+DN Monthماه PY میلادی
+DN Monthماه سال PY شمسی
+DN Monthماه سال PY هجری شمسی
+DN Monthماه سال PY قمری
+DN Monthماه سال PY هجری قمری
+DN Monthماه سال PY میلادی
+سال PY
+سال PY میلادی
+سال PY شمسی
+سال PY هجری شمسی
+سال PY قمری
 Month RY
 Month ی RY
 ماه Month ی RY

@@ -39,3 +39,5 @@ Next DP WD TU
 Prev DP WD TU
 Next DP WD DN TU
 Prev DP WD DN TU
+Prev DP
+Next DP
