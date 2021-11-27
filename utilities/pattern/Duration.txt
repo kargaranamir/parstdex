@@ -80,4 +80,3 @@ DN Month تا DN Month
 DN Month تا DN Month ماه
 DN Month تا DN Month ماه امسال
 DN Month تا DN Month DN
-Min TU

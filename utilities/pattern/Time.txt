@@ -40,6 +40,8 @@ HN:SN
 ساعت HN:SN DP WD Prev
 ساعت HN:SN WD Next
 ساعت HN:SN DP WD Next
+HN:SN دقیقه
+ساعت HH:SN دقیقه
 Hour ساعت و Min دقیقه و Min ثانیه Next ساعت Hour و Min دقیقه و Min ثانیه
 Hour ساعت و Min دقیقه و Min ثانیه Prev ساعت Hour و Min دقیقه و Min ثانیه
 Hour ساعت و Min دقیقه Next ساعت Hour و Min دقیقه و Min ثانیه
@@ -122,3 +124,4 @@ DN TU مانده به RT TU
 یک ربع به Hour DP WD
 یک ربع به Hour DP WD Next
 یک ربع به Hour DP WD Prev
+Min TU
