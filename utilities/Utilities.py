@@ -2,6 +2,14 @@ import re
 
 
 class Normalizer:
+    """
+    Normalizer class is used to:
+    - preprocess input files(preprocess_file)
+    - normalized arabic alphabet into persian alphabet(normalize_alphabet)
+    - normalize space - digit to word concatenation - comma and other spacial symbols
+    - normalize_annotation method is used to normalize annotation files in utilities/annotation folder
+    - normalize_cumulative method execute normalize alphabet and space consequently
+    """
     ALPHABET_DICT = {
         'ك': 'ک',
         'دِ': 'د',
@@ -55,7 +63,20 @@ class Normalizer:
 
 
 def deleteSubMatches(matches, matches_keys, input_sentence):
+    """
+    deleteSubMatches method deletes matches which are considered to be subset of another match
+    :param matches: list
+    :param matches_keys: list
+    :param input_sentence: str
+    :return: list
+    """
     def is_sub_match(word, match_list):
+        """
+        is_sub_match checks if word is subset of any strings in match_list or not
+        :param word: str
+        :param match_list: list
+        :return: boolean
+        """
         for match in match_list:
             if word in match and word != match:
                 return True

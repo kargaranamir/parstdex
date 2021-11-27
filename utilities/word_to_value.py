@@ -67,10 +67,20 @@ class ValueExtractor:
     TENS_LIST = "|".join(list(TENS_TEXT.keys()))
 
     def normalize_numbers(self, text):
+        """
+        normalize_numbers converts persian digits into corresponding english digit
+        :param text: str
+        :return: str
+        """
         pattern = "|".join(map(re.escape, self.FA_TO_EN.keys()))
         return re.sub(pattern, lambda m: self.FA_TO_EN[m.group()], str(text))
 
     def normalize_space(self, text):
+        """
+        normalize spaces
+        :param text:
+        :return:
+        """
         res_space = re.sub(fr'((?:{self.C_NUMBERS})+(\.(?:{self.C_NUMBERS})+)?)', r' \1 ', text)
         res_space = ' '.join(res_space.split())
         return res_space
@@ -97,8 +107,12 @@ class ValueExtractor:
         return word
 
     def compute_date(self, tokens):
+        """
+        it takes persian year and converts it into corresponding value
+        :param tokens: str
+        :return: int
+        """
         result = 0
-
         for token in tokens:
             if self.ONES_TEXT.get(token):
                 result += self.ONES_TEXT[token]
@@ -116,7 +130,11 @@ class ValueExtractor:
         return result
 
     def convert_word_to_digits(self, text):
-
+        """
+        convert_word_to_digits will apply preprocess needed to convert text into tokens appropriate for compute_date method
+        :param text: str
+        :return: int
+        """
         if text == '' or text is None or text == ' ':
             return ' '
 
@@ -129,7 +147,9 @@ class ValueExtractor:
 
     def date_reformat(self, text):
         try:
-            # format number 1
+            # First regex covers following formats:
+            # ۲۳ آبان ماه سال ۱۳۵۴
+            # ۲۳ ماه آبان سال ۱۳۵۴
             date_format_num1 = fr'(\d+)\s*[(?:\b{self.MONTH_LIT})]*\s*(\b{self.ALL_MONTHS})\s*[(?:\b{self.MONTH_LIT})]*\s*[(?:\b{self.YEAR_LIT})]* (\d+)'
             day_month_year = re.search(date_format_num1, text).groups()
 
@@ -161,7 +181,8 @@ class ValueExtractor:
             pass
 
         try:
-            # format number 2
+            # Second regex covers following formats:
+            # 1375-02-04
             date_format_num2 = fr'(\d+)\s*[(?:\b{self.DATE_JOINER})]\s*(\d+)\s*[(?:\b{self.DATE_JOINER})]\s*(\d+)'
             detected_date = re.search(date_format_num2, text).groups()
 
@@ -190,13 +211,18 @@ class ValueExtractor:
             return None
 
     def time_reformat(self, text):
-        # ساعت 00:13:42
+        """
+        Reformat time markers as mentioned in the examples.
+        :param text: str
+        :return: str
+        """
+        # example: ساعت 00:13:42
         PM = False
         for part_night in self.PM_PART_LIST:
             if part_night in text:
                 PM = True
 
-        # بیست دقیقه قبل از هفت
+        # example: بیست دقیقه قبل از هفت
         try:
             reg = fr'(\d+)\s*(?:{self.MIN_LIT})\s*(?:{self.NEG_DURATION_JOIN})\s*(?:{self.HOUR_LIT})?\s*(\d+)\s*(?:{self.DAY_PART_JOIN})?'
             detected_time = re.search(reg, text).groups()
@@ -208,7 +234,7 @@ class ValueExtractor:
         except:
             pass
 
-        # بیست دقیقه بعد از هفت
+        # example: بیست دقیقه بعد از هفت
         try:
             reg = fr'(\d+)\s*(?:{self.MIN_LIT})\s*(?:{self.POS_DURATION_JOIN})\s*(?:{self.HOUR_LIT})?\s*(\d+)\s*(?:{self.DAY_PART_JOIN})?'
             detected_time = re.search(reg, text).groups()
@@ -220,7 +246,7 @@ class ValueExtractor:
         except:
             pass
 
-        # یه ربع به شش
+        # example: یه ربع به شش
         try:
             reg = fr'({self.HOUR_PART_JOIN})\s*(?:{self.HOUR_LIT})?\s*(?:{self.NEG_DURATION_JOIN})\s*(?:{self.HOUR_LIT})?\s*(\d+)\s*(?:{self.DAY_PART_JOIN})?'
             detected_time = re.search(reg, text).groups()
@@ -232,7 +258,7 @@ class ValueExtractor:
         except:
             pass
 
-        # یه ربع بعد شش
+        # example: یه ربع بعد شش
         try:
             reg = fr'({self.HOUR_PART_JOIN})\s*(?:{self.HOUR_LIT})?\s*(?:{self.POS_DURATION_JOIN})\s*(?:{self.HOUR_LIT})?\s*(\d+)\s*(?:{self.DAY_PART_JOIN})?'
             detected_time = re.search(reg, text).groups()
@@ -244,9 +270,8 @@ class ValueExtractor:
         except:
             pass
 
-
+        # example: ساعت ۰۹:۳۴
         try:
-            # TODO: ساعت 9:54 ساعت ۰۹:۲۳
             reg = fr'(?:{self.HOUR_LIT})?\s*(\d+)(?:[{self.TIME_JOINER}])(\d*)\s*(?:[{self.TIME_JOINER}])?(\d*)?'
 
             detected_time = re.search(reg, text).groups()
@@ -259,7 +284,7 @@ class ValueExtractor:
         except:
             pass
 
-        # ساعت بیست و یک و چهل و دو دقیقه و سی و دو ثانیه
+        # example: ساعت بیست و یک و چهل و دو دقیقه و سی و دو ثانیه
         try:
             reg = fr'(?:{self.HOUR_LIT})\s+(\d+)\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.MIN_LIT})?\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.SEC_LIT})?'
             detected_time = re.search(reg, text).groups()
@@ -272,7 +297,7 @@ class ValueExtractor:
         except:
             pass
 
-        # ساعت 23 دقیقه و 40 ثانیه
+        # example: ساعت 23 دقیقه و 40 ثانیه
         try:
             reg = fr'(?:{self.HOUR_LIT})\s+(\d+)\s*(?:{self.MIN_LIT})\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.SEC_LIT})?'
             detected_time = re.search(reg, text).groups()
@@ -285,7 +310,7 @@ class ValueExtractor:
         except:
             pass
 
-        #  بیست و یک و چهل و دو دقیقه و سی و دو ثانیه صبح
+        # example: بیست و یک و چهل و دو دقیقه و سی و دو ثانیه صبح
         try:
             reg = fr'(\d+)\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.MIN_LIT})?\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.SEC_LIT})?\s+(?:{self.DAY_PART_JOIN})'
             detected_time = re.search(reg, text).groups()
@@ -298,7 +323,7 @@ class ValueExtractor:
         except:
             pass
 
-        # 23 دقیقه و 40 ثانیه شب
+        # example: 23 دقیقه و 40 ثانیه شب
         try:
             reg = fr'(\d+)\s*(?:{self.MIN_LIT})\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.SEC_LIT})?\s+(?:{self.DAY_PART_JOIN})'
             detected_time = re.search(reg, text).groups()
@@ -312,6 +337,11 @@ class ValueExtractor:
             pass
 
     def compute_date_value(self, text):
+        """
+        takes time marker and converts it into '{hour:02}:{minute:02}:{second:02}'
+        :param text: str
+        :return: str
+        """
         text = self.normalize_numbers(text)
         res = re.sub(fr'\b(?:{self.Date_Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b',
                      lambda m: str(self.convert_word_to_digits(m.group())), text)
@@ -322,26 +352,13 @@ class ValueExtractor:
         return res
 
     def compute_time_value(self, text):
+        """
+        find time appropriate time markers and evaluate time marker as {hour:02}:{minute:02}:{second:02}
+        :param text: str
+        :return: str
+        """
         text = self.normalize_numbers(text)
-        # ساعت بیست و سه و سی چهار دقیقه و چهل و دو ثانیه
-        # ساعت بیست و سه - سی و چهار دقیقه - چهل و دو ثانیه
-        # یه ربع به یازده
-        # بیست و دو دقیقه به ساعت یازده
-        # بیست و سه دقیقه و چهل و سه ثانیه مانده به ساعت یازده و چهل و چهار دقیقه و سی و سه ثانیه
         res = re.sub(fr'\b(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
         res = self.normalize_space(res)
         res = self.time_reformat(res) if self.time_reformat(res) is not None else res
         return res
-
-
-extractor = ValueExtractor()
-
-# d_sentence = "یک هزار و سیصد و هفت مهرماه سوم آبان ۱۲۵۰ معادل پنجاه قمری و هزار شمسی و سیمرغ نگاه بیست و یک و سوم آبان"
-# q = extractor.compute_date_value(d_sentence)
-# print("Compute Date value")
-# print(q)
-
-# t_sentence = "بیست و چهار دقیقه پس از ساعت هفت"
-# q = extractor.compute_time_value(t_sentence)
-# print("Compute Time value")
-# print(q)
