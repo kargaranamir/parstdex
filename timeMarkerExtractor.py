@@ -1,5 +1,5 @@
 import re
-from pattern_to_regex import Patterns
+from utilities.pattern_to_regex import Patterns
 from utilities.Utilities import Normalizer, deleteSubMatches
 from utilities.word_to_value import ValueExtractor
 
