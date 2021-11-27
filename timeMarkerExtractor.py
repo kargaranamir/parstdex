@@ -35,10 +35,6 @@ def time_marker_extractor(input_sentence):
             out = re.findall(fr'\b(?:{regex_value})', input_sentence)
             if len(out) > 0:
                 output_raw[key] = output_raw[key] + out
-            #
-            # if key == 'Date' and len(out) > 0:
-            #     for out_dates in out:
-            #         date_list.append(extractor.compute_date_value(out_dates))
 
     # process result
     for key in output_raw.keys():
