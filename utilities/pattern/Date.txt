@@ -43,6 +43,18 @@ DN Month ماه سال Num هجری شمسی
 DN Month ماه سال Num قمری
 DN Month ماه سال Num هجری قمری
 DN Month ماه سال Num میلادی
+DN Monthماه سال Num
+DN Monthماه Num
+DN Monthماه Num شمسی
+DN Monthماه Num هجری شمسی
+DN Monthماه Num قمری
+DN Monthماه Num هجری قمری
+DN Monthماه Num میلادی
+DN Monthماه سال Num شمسی
+DN Monthماه سال Num هجری شمسی
+DN Monthماه سال Num قمری
+DN Monthماه سال Num هجری قمری
+DN Monthماه سال Num میلادی
 سال Num
 سال Num میلادی
 سال Num شمسی
