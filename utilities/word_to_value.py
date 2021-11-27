@@ -323,6 +323,15 @@ class ValueExtractor:
         "پنجاه نه": 59
     }
 
+    HOUR_PART = {
+        "ربع": 15,
+        "نیم": 30
+    }
+
+    DURATION_JOIN = "|".join(
+        ["به", "مانده به"]
+    )
+
     SHAMSI_LIST = '|'.join(list(SHAMSHI_MONTHS.keys()))
     GHAMARI_LIST = '|'.join(list(GHAMARI_MONTHS.keys()))
     MILADI_LIST = '|'.join(list(MILADI_MONTHS.keys()))
@@ -474,6 +483,17 @@ class ValueExtractor:
         except:
             return None
 
+    def time_reformat(self, text):
+        try:
+            reg = fr'f(?:{self.HOUR_LIT})\s*(\d+)\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.MIN_LIT})\s*[{self.JOINER}]?\s*(\d*)\s*(?:{self.SEC_LIT})'
+            detected_time = re.search(reg, text).groups()
+            hour = int(detected_time[0])
+            minute = int(detected_time[1])
+            second = int(detected_time[2])
+            return f'{hour:02}:{minute:02}:{second:02}'
+        except:
+            pass
+
     def compute_date_value(self, text):
         text = self.normalize_numbers(text)
         res = re.sub(fr'\b(?:{self.Date_Units}|\s{self.JOINER}\s|\s|\d{1, 4})+\b',
@@ -493,7 +513,9 @@ class ValueExtractor:
         # بیست و سه دقیقه و چهل و سه ثانیه مانده به ساعت یازده و چهل و چهار دقیقه و سی و سه ثانیه
         res = re.sub(fr'\b(?:{self.MINUTES_LIST})', lambda m: str(self.MINUTES[m.group()]), str(text))
         res = self.normalize_space(res)
+        res = self.time_reformat(res) if self.time_reformat(res) is not None else res
         return res
+
 
 extractor = ValueExtractor()
 
@@ -502,9 +524,9 @@ extractor = ValueExtractor()
 # print("Compute Date value")
 # print(q)
 
-t_sentence = "ساعت بیست و سه دقیقه می‌باشد"
+t_sentence = "ساعت بیست و سه و چهل و سه دقیقه و سی و شش ثانیه می‌باشد"
 q = extractor.compute_time_value(t_sentence)
-print("Computer Time value")
+print("Compute Time value")
 print(q)
 #
 #
@@ -513,5 +535,3 @@ print(q)
 # print(time_reg)
 # time_result = re.search(time_reg, time_sentence).groups()
 # print(time_result)
-
-from num2fawords import words
