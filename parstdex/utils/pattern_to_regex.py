@@ -1,6 +1,6 @@
 import re
 import os
-from parstdex.utils.utilities import Normalizer
+from parstdex.utils.normalizer import Normalizer
 from parstdex.utils import const
 
 

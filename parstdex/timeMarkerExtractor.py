@@ -1,6 +1,6 @@
 import re
 from parstdex.utils.pattern_to_regex import Patterns
-from parstdex.utils.utilities import Normalizer, deleteSubMatches
+from parstdex.utils.normalizer import Normalizer
 from parstdex.utils.word_to_value import ValueExtractor
 
 
@@ -37,16 +37,6 @@ class MarkerExtractor:
         # define data structures to compute and postprocess the extracted patterns
         output_raw = {"Date": [], "Time": []}
         output_extracted = {}
-        output_flatten: list = []
-        output_flatten_keys = []
-        post_output_flatten = []
-        post_output_flatten_keys = []
-
-        # data structures to store all extracted markers data-time values
-        res = []
-        res_date = []
-        res_time = []
-
 
         # add pattern keys to dictionaries and define a list structure for each key
         for key in patterns.regexes.keys():
@@ -60,35 +50,44 @@ class MarkerExtractor:
                 out = re.findall(fr'\b(?:{regex_value})', normalized_sentence)
                 # ignore empty markers
                 if len(out) > 0:
+                    matches = list(re.finditer(fr'\b(?:{regex_value})', normalized_sentence))
                     # store extracted markers in output_raw
-                    output_raw[key] = output_raw[key] + out
+                    output_raw[key] = output_raw[key] + matches
 
-        # process result: make flatten value-key lists from dictionary
-        for key in output_raw.keys():
-            output_raw[key] = list(set(output_raw[key]))
-            output_flatten = output_flatten + output_raw[key]
-            output_flatten_keys = output_flatten_keys + [key] * len(output_raw[key])
+        output_raw = output_raw
+        spans = []
+        for matches in output_raw.values():
+            for match in matches:
+                start = match.regs[0][0]
+                end = match.regs[0][1]
+                # match.group()
+                spans.append((start, end))
 
-        # make values unique while they have different keys
-        for key, value in zip(output_flatten_keys, output_flatten):
-            if not value in post_output_flatten:
-                post_output_flatten.append(value)
-                post_output_flatten_keys.append(key)
+        result = []
+        pos = {
+            'start': 0,
+            'end': 1
+        }
+        # sort by start
+        spans = sorted(spans, key=lambda x: (x[0], x[1]-x[0]))
+        spans.append((spans[-1][pos['end']], spans[-1][pos['end']]))
+        i = 0
+        while i < len(spans)-1:
+            # end(i) < start(i+1)
+            if spans[i][pos['end']] < spans[i+1][pos['start']]:
+                result.append(spans[i])
+            # end(i)>=start(i+1)
+            else:
+                j = i
+                max_end = spans[j][pos['end']]
+                while max_end >= spans[j + 1][pos['start']]:
+                    j += 1
+                    if spans[j][pos['end']] > max_end:
+                        max_end = spans[j][pos['end']]
+                    if j == len(spans)-1:
+                        break
+                result.append((spans[i][pos['start']], max_end))
+                i = j
+            i += 1
 
-        # store unique values in output_flatten and corresponding keys in output_flatten_keys
-        output_flatten = post_output_flatten
-        output_flatten_keys = post_output_flatten_keys
-
-        # delete extracted markers the cover each other and get the longest one
-        output_extracted = deleteSubMatches(output_flatten, output_flatten_keys, normalized_sentence)
-        # extract date values from all post process markers
-        if output_extracted.get('Date'):
-            res_date = [extractor.compute_date_value(p_date) for p_date in output_extracted['Date']]
-        # extract time values from all post process markers
-        if output_extracted.get('Time'):
-            res_time = [extractor.compute_time_value(p_time) for p_time in output_extracted['Time']]
-        # make all the extracted markers flatten into a one list
-        for p_output in output_extracted.values():
-            res += p_output
-
-        return normalized_sentence, res, res_date, res_time
+        return normalized_sentence, result
