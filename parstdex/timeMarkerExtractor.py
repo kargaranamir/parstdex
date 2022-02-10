@@ -54,7 +54,6 @@ class MarkerExtractor:
                     # store extracted markers in output_raw
                     output_raw[key] = output_raw[key] + matches
 
-        output_raw = output_raw
         spans = []
         for matches in output_raw.values():
             for match in matches:
@@ -62,6 +61,9 @@ class MarkerExtractor:
                 end = match.regs[0][1]
                 # match.group()
                 spans.append((start, end))
+
+        if len(spans) == 0:
+            return normalized_sentence, []
 
         result = []
         pos = {
