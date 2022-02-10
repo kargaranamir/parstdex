@@ -1,5 +1,5 @@
 import re
-import utilities.const as const
+from parstdex.utils import const
 
 
 class ValueExtractor:

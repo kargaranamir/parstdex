@@ -2,8 +2,7 @@ import glob
 import os
 import re
 
-from timeMarkerExtractor import MarkerExtractor
-
+from parstdex import MarkerExtractor
 
 def main():
     # read all test inputs in Test folder

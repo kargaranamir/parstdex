@@ -1,7 +1,7 @@
 import re
-from utilities.pattern_to_regex import Patterns
-from utilities.Utilities import Normalizer, deleteSubMatches
-from utilities.word_to_value import ValueExtractor
+from parstdex.utils.pattern_to_regex import Patterns
+from parstdex.utils.utilities import Normalizer, deleteSubMatches
+from parstdex.utils.word_to_value import ValueExtractor
 
 
 class MarkerExtractor:
@@ -47,12 +47,6 @@ class MarkerExtractor:
         res_date = []
         res_time = []
 
-        # write Regexes into pattern.txt file
-        with open('patterns.txt', 'w', encoding="utf-8") as f:
-            for key in patterns.regexes.keys():
-                for regex_value in patterns.regexes[key]:
-                    f.write(regex_value)
-                    f.write('\n')
 
         # add pattern keys to dictionaries and define a list structure for each key
         for key in patterns.regexes.keys():

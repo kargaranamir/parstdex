@@ -1,7 +1,7 @@
 import re
 import os
-from utilities.Utilities import Normalizer
-import utilities.const as const
+from parstdex.utils.utilities import Normalizer
+from parstdex.utils import const
 
 
 class Annotation:
@@ -9,7 +9,7 @@ class Annotation:
     Annotation class is used to create annotation dictionary which will be used for creating regex from patterns
     in following steps.
     """
-    annotation_path = 'utilities/annotation'
+    annotation_path = os.path.join(os.path.dirname(__file__), 'annotation')
     normalizer = Normalizer()
     annotations_dict = {}
 
@@ -71,7 +71,7 @@ class Patterns:
     """
     annotations = {}
     normalizer = Normalizer()
-    patterns_path = 'utilities/pattern'
+    patterns_path = os.path.join(os.path.dirname(__file__), 'pattern')
     regexes = {}
 
     def __init__(self):
