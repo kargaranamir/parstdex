@@ -70,6 +70,12 @@ DN Monthماه سال Num میلادی
 سال Num شمسی
 سال Num هجری شمسی
 سال Num قمری
+سال Num هجری
+سال Num هجری قمری
+سال Num ه.ق.
+سال Num ه.ق
+سال Num ه.ش.
+سال Num ه.ش
 DN Month ماه سال PY
 DN Month ماه PY
 DN Month ماه PY شمسی
