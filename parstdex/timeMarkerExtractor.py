@@ -13,7 +13,7 @@ class MarkerExtractor:
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = value_extractor if value_extractor else ValueExtractor()
 
-    def time_marker_extractor(self, input_sentence):
+    def time_marker_extractor(self, input_sentence, ud_patterns=None):
         """
         function should output list of spans, each item in list is a time marker span present in the input sentence.
         :param input_sentence: input sentence
@@ -25,7 +25,7 @@ class MarkerExtractor:
         # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
         normalizer = self.normalizer
         # Patterns: patterns to regex generator
-        patterns = self.patterns
+        patterns = ud_patterns if ud_patterns else self.patterns
 
         # apply normalizer on input sentence
         normalized_sentence = normalizer.normalize_cumulative(input_sentence)
