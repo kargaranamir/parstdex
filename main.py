@@ -1,6 +1,12 @@
 import glob
 import os
-import re
+# import re
+
+try:
+    import re2 as re
+except ImportError:
+    import re
+
 
 from parstdex import MarkerExtractor
 
