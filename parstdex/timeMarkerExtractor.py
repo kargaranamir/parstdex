@@ -5,13 +5,13 @@ from parstdex.utils.word_to_value import ValueExtractor
 
 
 class MarkerExtractor:
-    def __init__(self):
+    def __init__(self, normalizer=None, patterns=None, extractor=None):
         # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
-        self.normalizer = Normalizer()
+        self.normalizer = normalizer if normalizer else Normalizer()
         # Patterns: patterns to regex generator
-        self.patterns = Patterns()
+        self.patterns = patterns if patterns else Patterns()
         # ValueExtractor: value extractor from known time and date
-        self.extractor = ValueExtractor()
+        self.extractor = extractor if extractor else ValueExtractor()
 
     def time_marker_extractor(self, input_sentence):
         """
