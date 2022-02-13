@@ -17,8 +17,8 @@ pip install git+https://github.com/kargaranamir/parstdex
 pip install --upgrade git+https://github.com/kargaranamir/parstdex
 ```
 
-
-## How to use - (Beta: Both marker and value extractor are supported)
+## How to use
+### Beta: Both marker and value extractor are supported
 ```python
 from parstdex import MarkerExtractor
 
@@ -55,7 +55,7 @@ All Value Markers Extracted:
 ['شنبه عصر', '09:59:00', '13/05/1999', '1100/09/09 ه.ق']
 ```
 
-## How to use - (Marker extractor is supported)
+### Alpha: Marker extractor is supported (Faster than Beta Version)
 ```python
 from parstdex import MarkerExtractor
 
