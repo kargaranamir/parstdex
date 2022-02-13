@@ -9,7 +9,7 @@ with open("README.md") as fh:
 
 setuptools.setup(
     name='parstdex',
-    version="0.0.1",
+    version="0.1.1",
     description="Pars Time Date Extractor",
     long_description=long_description,
     long_description_content_type="text/markdown",
