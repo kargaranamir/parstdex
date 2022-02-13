@@ -1,10 +1,4 @@
-# import re
-
-try:
-    import re2 as re
-except ImportError:
-    import re
-
+import re
 from parstdex.utils.pattern_to_regex import Patterns
 from parstdex.utils.normalizer import Normalizer
 from parstdex.utils.word_to_value import ValueExtractor

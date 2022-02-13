@@ -1,8 +1,5 @@
-# import re
-try:
-    import re2 as re
-except ImportError:
-    import re
+import re
+
 
 class Normalizer:
     """
