@@ -15,13 +15,11 @@ class MarkerExtractor:
 
     def time_marker_extractor(self, input_sentence):
         """
-        function should output list of strings, each item in list is a time marker present in the input sentence.
+        function should output list of spans, each item in list is a time marker span present in the input sentence.
         :param input_sentence: input sentence
         :return:
         normalized_sentence: normalized sentence
-        res: all extracted markers
-        res_date: all extracted date values
-        res_time: all extracted time values
+        result: all extracted spans
         """
 
         # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
@@ -93,3 +91,19 @@ class MarkerExtractor:
             i += 1
 
         return normalized_sentence, result
+
+    def time_value_extractor(self, input_sentence):
+        """
+        function should output list of values, each item in list is a time marker value present in the input sentence.
+        :param input_sentence: input sentence
+        :return:
+        normalized_sentence: normalized sentence
+        result: all extracted spans
+        values: all extracted time-date values
+
+        """
+        normalized_sentence, result = self.time_marker_extractor(input_sentence)
+        output_extracted = [normalized_sentence[item[0]:item[1]] for item in result]
+        values = [self.extractor.compute_value(p) for p in output_extracted]
+
+        return normalized_sentence, result, values

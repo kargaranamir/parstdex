@@ -164,15 +164,16 @@ class ValueExtractor:
                 # TODO : Improve offset 1400:
                 # if the shamsi year is lower than 100 then assume it has 13 before it
                 if day < 100 and year < 100:
-                    year += 1400
+                    # year += 1400
+                    pass
                 month_index = self.GHAMARI_MONTHS[month]
                 return f'{year}/{month_index:02}/{day:02}ه.ق  '
             elif month in self.SHAMSHI_MONTHS.keys():
                 # TODO : Improve offset 1300:
                 # if the shamsi year is lower than 100 then assume it has 13 before it
                 if day < 100 and year < 100:
-                    year += 1300
-
+                    # year += 1300
+                    pass
                 month_index = self.SHAMSHI_MONTHS[month]
                 return f'{year}/{month_index:02}/{day:02}'
             else:
@@ -193,7 +194,8 @@ class ValueExtractor:
             # TODO : Improve these constraints for different days:
             # if year is lower than 100 then assume it has 13 before it
             if day < 100 and year < 100:
-                year += 1300
+                # year += 1300
+                pass
             # assume the greater value as year
             if day > year or 'میلادی' in text:
                 year, day = day, year
@@ -334,7 +336,7 @@ class ValueExtractor:
                 hour = hour + 12
             return f'{hour:02}:{minute:02}:{second:02}'
         except:
-            pass
+            return None
 
     def compute_date_value(self, text):
         """
@@ -361,4 +363,16 @@ class ValueExtractor:
         res = re.sub(fr'\b(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
         res = self.normalize_space(res)
         res = self.time_reformat(res) if self.time_reformat(res) is not None else res
+        return res
+
+
+    def compute_value(self, text):
+
+        #time part
+        text = self.normalize_numbers(text)
+        res = re.sub(fr'\b(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
+        res = self.normalize_space(res)
+        # if time doesnot work then try date: time reformat is more cautious the date reformat.
+        res = self.time_reformat(res) if self.time_reformat(res) is not None else self.compute_date_value(res)
+
         return res
