@@ -55,7 +55,7 @@ All Value Markers Extracted:
 ['شنبه عصر', '09:59:00', '13/05/1999', '1100/09/09 ه.ق']
 ```
 
-### Alpha: Marker extractor is supported (Faster than Beta Version)
+### Stable: Marker extractor is supported (Faster than Beta Version)
 ```python
 from parstdex import MarkerExtractor
 
