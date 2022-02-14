@@ -27,6 +27,8 @@ DN Month Num میلادی
 DN Month PY میلادی
 DN Month ماه
 Month Num
+تاریخ Month Num
+مورخ Month Num
 Month ماه
 Month ماه Num
 Month ماه PY
@@ -181,3 +183,9 @@ WD DP
 DP WD
 DP DN Month Num
 WD
+TU
+TU Num و Num
+سال کبیسه
+تاریخ
+مورخ
+TU DN
