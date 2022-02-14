@@ -80,3 +80,6 @@ DN Month تا DN Month
 DN Month تا DN Month ماه
 DN Month تا DN Month ماه امسال
 DN Month تا DN Month DN
+تا سال Num
+تا ماه Month
+تا ماه Month Num

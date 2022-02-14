@@ -26,6 +26,7 @@ DN Month PY هجری شمسی
 DN Month Num میلادی
 DN Month PY میلادی
 DN Month ماه
+Month Num
 Month ماه
 Month ماه Num
 Month ماه PY
@@ -76,6 +77,25 @@ DN Monthماه سال Num میلادی
 سال Num ه.ق
 سال Num ه.ش.
 سال Num ه.ش
+( میلادی )
+(میلادی)
+( شمسی )
+(شمسی)
+( هجری )
+(هجری)
+( ه.ق )
+(ه.ق)
+( ه.ش )
+(ه.ش)
+( ه.ق. )
+(ه.ق.)
+( ه.ش. )
+(ه.ش.)
+ه.ش.
+ه.ق.
+قمری/شمسی
+قمری/میلادی
+قمری/هجری قمری
 DN Month ماه سال PY
 DN Month ماه PY
 DN Month ماه PY شمسی
