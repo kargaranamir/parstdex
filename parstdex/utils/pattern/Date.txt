@@ -75,22 +75,14 @@ DN Monthماه سال Num میلادی
 سال Num قمری
 سال Num هجری
 سال Num هجری قمری
-سال Num ه.ق.
-سال Num ه.ق
-سال Num ه.ش.
-سال Num ه.ش
-\( میلادی \)
-\(میلادی\)
-\( شمسی \)
-\(شمسی\)
-\( هجری \)
-\(هجری\)
-\( ه.ق \)
-\(ه.ق\)
-\(ه.ش\)
-\( ه.ش \)
-ه.ش
-ه.ق
+سال Num ه\.ق\.
+سال Num ه\.ق
+سال Num ه\.ش\.
+سال Num ه\.ش
+ه\.ش
+ه\.ق
+ه\.ش\.
+ه\.ق\.
 میلادی
 شمسی
 قمری
@@ -158,20 +150,24 @@ RT DU Num میلادی
 Num/Twelve/ThirtyOne
 Num/Twelve/ThirtyOne شمسی
 Num/Twelve/ThirtyOne هجری شمسی
-Num/Twelve/ThirtyOne ه.ش
+Num/Twelve/ThirtyOne ه\.ش\.
+Num/Twelve/ThirtyOne ه\.ش
 Num/Twelve/ThirtyOne میلادی
 Num/Twelve/ThirtyOne قمری
 Num/Twelve/ThirtyOne هجری قمری
-Num/Twelve/ThirtyOne ه.ق
+Num/Twelve/ThirtyOne ه\.ق\.
+Num-Twelve-ThirtyOne ه\.ق
 Num-Twelve-ThirtyOne
 Num-Twelve-ThirtyOne شمسی
 Num-Twelve-ThirtyOne هجری شمسی
-Num-Twelve-ThirtyOne ه.ش
+Num-Twelve-ThirtyOne ه\.ش
+Num-Twelve-ThirtyOne ه\.ش\.
 Num-Twelve-ThirtyOne میلادی
 Num-Twelve-ThirtyOne قمری
 DU Num
 Num-Twelve-ThirtyOne هجری قمری
-Num-Twelve-ThirtyOne ه.ق
+Num-Twelve-ThirtyOne ه\.ق
+Num-Twelve-ThirtyOne ه\.ق\.
 ThirtyOne/Twelve/Num
 ThirtyOne/Twelve/Num میلادی
 ThirtyOne-Twelve-Num
