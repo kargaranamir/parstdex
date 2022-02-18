@@ -55,6 +55,7 @@ All Value Markers Extracted:
 ['شنبه عصر', '09:59:00', '13/05/1999', '1100/09/09 ه.ق']
 ```
 
+
 ### Stable: Marker extractor is supported (Faster than Beta Version)
 ```python
 from parstdex import MarkerExtractor
@@ -85,6 +86,28 @@ All Extracted Markers:
 شنبه عصر 
 ساعت نه و پنجاه نه دقیقه 
 13 می 1999 
+```
+
+## File Structure:
+Parstdex architecture is very flexible and scalable and therefore suggests an easy solution to adapt to new patterns which haven't been considered yet.
+```
+
+├── parstdex                 
+│   └── utils
+|   |   └── annotation
+|   |   |   └── ...
+|   |   └── pattern
+|   |   |   └── ...
+|   |   └── const.py
+|   |   └── normalizer.py
+|   |   └── pattern_to_regex.py
+|   |   └── word_to_value.py
+|   └── timeMarkerExtractor.py
+└── Test           
+│   └── in
+|       └── ...
+└── main.py
+└── requirement.txt
 ```
 
 ## Acknowledgement
