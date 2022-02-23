@@ -32,7 +32,7 @@ class Normalizer:
         return re.sub(pattern, lambda m: self.ALPHABET_DICT[m.group()], str(text))
 
     def normalize_space(self, text):
-        res = text.replace('،', '')
+        res = text.replace('،', ' ، ')
         res = ':'.join([i.lstrip().rstrip() for i in res.split(':')])
         res = '-'.join([i.lstrip().rstrip() for i in res.split('-')])
         res = '/'.join([i.lstrip().rstrip() for i in res.split('/')])
