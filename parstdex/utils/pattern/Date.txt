@@ -182,3 +182,8 @@ TU Num و Num
 تاریخ
 مورخ
 TU DN
+DU PY
+Num ساله
+Num سال
+PY سال
+PY ساله
