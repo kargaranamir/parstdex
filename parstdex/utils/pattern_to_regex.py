@@ -4,52 +4,77 @@ from parstdex.utils.normalizer import Normalizer
 from parstdex.utils import const
 
 
+def process_file(path):
+    with open(path, 'r', encoding="utf8") as file:
+        text = file.readlines()
+        text = [x.rstrip() for x in text if not x.startswith('#')]  # remove \n
+        return text
+
+
 class Annotation:
     """
     Annotation class is used to create annotation dictionary which will be used for creating regex from patterns
     in following steps.
     """
-    annotation_path = os.path.join(os.path.dirname(__file__), 'annotation')
-    normalizer = Normalizer()
+    time_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/time')
+    date_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/date')
+    aux_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/ax')
+
     annotations_dict = {}
 
     def __init__(self):
-        annotations = self.create_annotation_dict()
-        # annotation dictionary includes all annotation folders values
-        self.annotations_dict = {
-            "RD": annotations['relativeDays'],
-            "WD": annotations['weekDays'],
-            "Month": annotations['months'],
-            "Season": annotations['seasons'],
-            "RT": annotations['relativeTime'],
-            "TU": annotations['timeUnits'],
-            "DU": annotations['dateUnits'],
-            "Prev": annotations['prev'],
-            "DP": annotations['dayPart'],
-            "Next": annotations['next'],
-            "SN": annotations['sixtyNum'],
-            "HN": annotations['hoursNum'],
-            "DN": annotations['dayNumbers'],
-            "Hour": annotations['hours'],
-            "Min": annotations['minute'],
-            "Twelve": annotations['twelve'],
-            "ThirtyOne": annotations['thirtyOne'],
-            "RY": annotations['relativeYears'],
-            "Num": annotations['numbers'],
-            "PY": annotations["persianYear"]
+        time_annotations = self.create_annotation_dict(self.time_annotation_path)
+        date_annotations = self.create_annotation_dict(self.date_annotation_path)
+        aux_annotations = self.create_annotation_dict(self.aux_annotation_path)
+        # time annotation dictionary includes all annotations of time folder
+        time_annotations_dict = {
+            "TU": time_annotations['TU'],
+            "DP": time_annotations['DP'],
+            "MN": time_annotations['MN'],
+            "HN": time_annotations['HN'],
+            "HR": time_annotations['HR'],
+            "MNT": time_annotations['MNT']
+            }
+        # time annotation dictionary includes all annotations of time folder
+        date_annotations_dict = {
+            "RD": date_annotations['relativeDays'],
+            "WD": date_annotations['weekDays'],
+            "Month": date_annotations['months'],
+            "Season": date_annotations['seasons'],
+            "DU": date_annotations['dateUnits'],
+            "DN": date_annotations['dayNumbers'],
+            "ThirtyOne": date_annotations['thirtyOne'],
+            "RY": date_annotations['relativeYears'],
+            "Num": date_annotations['numbers'],
+            "PY": date_annotations["persianYear"],
+            "Twelve": time_annotations['twelve']
+            }
+        # auxiliary annotation dictionary includes all annotations of time folder
+        aux_annotations_dict = {
+            "BNP": aux_annotations['BNP'],
+            "NXT": aux_annotations['NXT'],
+            "PRV": aux_annotations['PRV']
             }
 
-    def create_annotation_dict(self):
+        self.annotations_dict = {**time_annotations_dict, **date_annotations_dict, **aux_annotations_dict}
+
+    @staticmethod
+    def create_annotation(path):
+        text = process_file(path)
+        annotation_mark = "|".join(text)
+        return annotation_mark
+
+    def create_annotation_dict(self, annotation_path):
         """
         create_annotation_dict will read all annotation text files in utilities/annotations folder and
         create corresponding regex for the annotation folder
         :return: dict
         """
         annotation_dict = {}
-        files = os.listdir(self.annotation_path)
+        files = os.listdir(annotation_path)
         for f in files:
             key = f.replace('.txt', '')
-            annotation_dict[key] = self.normalizer.normalize_annotation(f"{self.annotation_path}/{f}")
+            annotation_dict[key] = self.create_annotation(f"{annotation_path}/{f}")
 
         # all 1 to 4 digit numbers
         annotation_dict['numbers'] = r'\\d{1,4}'
@@ -101,7 +126,7 @@ class Patterns:
         :param path: str
         :return: list
         """
-        patterns = self.normalizer.preprocess_file(path)
+        patterns = process_file(path)
         regexes = [self.pattern_to_regex(pattern) for pattern in patterns]
         return regexes
 
