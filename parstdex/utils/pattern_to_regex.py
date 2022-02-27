@@ -11,13 +11,13 @@ def process_file(path):
         return text
 
 
-def get_exceptional_words():
-    lines = process_file(os.path.join(os.path.dirname(__file__), 'exceptional_words/words.txt'))
-    exceptional_words = {}
+def get_special_words():
+    lines = process_file(os.path.join(os.path.dirname(__file__), 'special_words/words.txt'))
+    special_words = {}
     for line in lines:
         word, equal = line.strip().split('\t')
-        exceptional_words[word] = equal
-    return exceptional_words
+        special_words[word] = equal
+    return special_words
 
 
 class Annotation:
@@ -108,11 +108,11 @@ class Patterns:
     normalizer = Normalizer()
     patterns_path = os.path.join(os.path.dirname(__file__), 'pattern')
     regexes = {}
-    exceptional_words = {}
+    special_words = {}
 
     def __init__(self):
         self.annotations = Annotation()
-        self.exceptional_words = get_exceptional_words()
+        self.special_words = get_special_words()
         files = os.listdir(self.patterns_path)
         for f in files:
             self.regexes[f.replace('.txt', '')] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
@@ -125,7 +125,7 @@ class Patterns:
         """
         pattern = pattern.replace(" ", '+\\s')
         for key, value in self.annotations.annotations_dict.items():
-            for word, equal in self.exceptional_words.items():
+            for word, equal in self.special_words.items():
                 pattern = pattern.replace(word, equal)
             pattern = re.sub(f'{key}', "(?:" + value + ")", pattern)
 
