@@ -11,6 +11,15 @@ def process_file(path):
         return text
 
 
+def get_exceptional_words():
+    lines = process_file(os.path.join(os.path.dirname(__file__), 'exceptional_words/words.txt'))
+    exceptional_words = {}
+    for line in lines:
+        word, equal = line.strip().split('\t')
+        exceptional_words[word] = equal
+    return exceptional_words
+
+
 class Annotation:
     """
     Annotation class is used to create annotation dictionary which will be used for creating regex from patterns
@@ -35,21 +44,22 @@ class Annotation:
             "HR": time_annotations['HR'],
             "MNT": time_annotations['MNT']
             }
-        # time annotation dictionary includes all annotations of time folder
+        # date annotation dictionary includes all annotations of date folder
         date_annotations_dict = {
-            "RD": date_annotations['relativeDays'],
-            "WD": date_annotations['weekDays'],
-            "Month": date_annotations['months'],
-            "Season": date_annotations['seasons'],
-            "DU": date_annotations['dateUnits'],
-            "DN": date_annotations['dayNumbers'],
-            "ThirtyOne": date_annotations['thirtyOne'],
-            "RY": date_annotations['relativeYears'],
-            "Num": date_annotations['numbers'],
-            "PY": date_annotations["persianYear"],
-            "Twelve": time_annotations['twelve']
+            "RD": date_annotations['RD'],
+            "WD": date_annotations['WD'],
+            "MNTH": date_annotations['MNTH'],
+            "SSN": date_annotations['SSN'],
+            "DU": date_annotations['DU'],
+            "DN": date_annotations['DN'],
+            "NUM31": date_annotations['NUM31'],
+            "RY": date_annotations['RY'],
+            "NUM": date_annotations['NUM'],
+            "PY": date_annotations["PY"],
+            "NUM12": date_annotations['NUM12'],
+            "CT": date_annotations['CT']
             }
-        # auxiliary annotation dictionary includes all annotations of time folder
+        # auxiliary annotation dictionary includes all annotations of auxiliary folder
         aux_annotations_dict = {
             "BNP": aux_annotations['BNP'],
             "NXT": aux_annotations['NXT'],
@@ -77,7 +87,7 @@ class Annotation:
             annotation_dict[key] = self.create_annotation(f"{annotation_path}/{f}")
 
         # all 1 to 4 digit numbers
-        annotation_dict['numbers'] = r'\\d{1,4}'
+        annotation_dict['NUM'] = r'\\d{1,4}'
 
         # supports persian numbers from one to four digits written with persian alphabet
         # example: سال هزار و سیصد و شصت و پنج
@@ -85,7 +95,7 @@ class Annotation:
         MAGNITUDE_JOIN = "|".join(const.MAGNITUDE.keys())
         HUNDREDS_TEXT_JOIN = "|".join(const.HUNDREDS_TEXT.keys())
         ONE_NINETY_NINE_JOIN = "|".join(list(const.ONE_NINETY_NINE.keys())[::-1])
-        annotation_dict["persianYear"] = rf'(?:(?:{ONE_TO_NINE_JOIN})?\\s*(?:{MAGNITUDE_JOIN})?\\s*(?:{const.JOINER})?\\s*(?:{HUNDREDS_TEXT_JOIN})?\\s*(?:{const.JOINER})?\\s*(?:{ONE_NINETY_NINE_JOIN}))'
+        annotation_dict["PY"] = rf'(?:(?:{ONE_TO_NINE_JOIN})?\\s*(?:{MAGNITUDE_JOIN})?\\s*(?:{const.JOINER})?\\s*(?:{HUNDREDS_TEXT_JOIN})?\\s*(?:{const.JOINER})?\\s*(?:{ONE_NINETY_NINE_JOIN}))'
 
         return annotation_dict
 
@@ -98,9 +108,11 @@ class Patterns:
     normalizer = Normalizer()
     patterns_path = os.path.join(os.path.dirname(__file__), 'pattern')
     regexes = {}
+    exceptional_words = {}
 
     def __init__(self):
         self.annotations = Annotation()
+        self.exceptional_words = get_exceptional_words()
         files = os.listdir(self.patterns_path)
         for f in files:
             self.regexes[f.replace('.txt', '')] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
@@ -112,8 +124,9 @@ class Patterns:
         :return: str
         """
         pattern = pattern.replace(" ", '+\\s')
-
         for key, value in self.annotations.annotations_dict.items():
+            for word, equal in self.exceptional_words.items():
+                pattern = pattern.replace(word, equal)
             pattern = re.sub(f'{key}', "(?:" + value + ")", pattern)
 
         pattern = pattern + '+\\s'

@@ -1,5 +1,4 @@
-﻿
-چند TU Prev
+﻿چند TU Prev
 چند TU Next
 Num TU Prev
 Num TU Next

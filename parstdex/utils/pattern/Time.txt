@@ -1,5 +1,4 @@
-﻿
-Hour ساعت و Min دقیقه و Min ثانیه
+﻿Hour ساعت و Min دقیقه و Min ثانیه
 ساعت Hour و Min دقیقه و Min ثانیه
 ساعت Hour و Min دقیقه و Min ثانیه DP
 Hour و Min دقیقه و Min ثانیه DP
