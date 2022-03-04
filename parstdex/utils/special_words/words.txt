@@ -1,9 +1,7 @@
 # General
-و
-
+و   VA
 # Time
-ساعت
-دقیقه
-ثانیه
-
+ساعت    SAAT
+دقیقه   DAGHIGHEH
+ثانیه   SANIEH
 # Date
