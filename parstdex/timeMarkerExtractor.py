@@ -2,7 +2,7 @@ import re
 from parstdex.utils.pattern_to_regex import Patterns
 from parstdex.utils.normalizer import Normalizer
 from parstdex.utils.word_to_value import ValueExtractor
-from parstdex.utils.merge_spans import merge_spans
+
 
 class MarkerExtractor:
     def __init__(self, normalizer=None, patterns=None, value_extractor=None):
@@ -50,22 +50,44 @@ class MarkerExtractor:
                     # store extracted markers in output_raw
                     output_raw[key] = output_raw[key] + matches
 
-
         spans = []
-        spans_key = []
-        for key in output_raw.keys():
-            matches = output_raw[key]
+        for matches in output_raw.values():
             for match in matches:
                 start = match.regs[0][0]
                 end = match.regs[0][1]
                 # match.group()
                 spans.append((start, end))
-                spans_key.append(key)
 
         if len(spans) == 0:
             return normalized_sentence, []
 
-        result = merge_spans(spans, spans_key)
+        result = []
+        pos = {
+            'start': 0,
+            'end': 1
+        }
+        # sort by start
+        spans = sorted(spans, key=lambda x: (x[0], x[1]-x[0]))
+        spans.append((spans[-1][pos['end']], spans[-1][pos['end']]))
+        i = 0
+        while i < len(spans)-1:
+            # end(i) < start(i+1)
+            if spans[i][pos['end']] < spans[i+1][pos['start']]:
+                result.append(spans[i])
+            # end(i)>=start(i+1)
+            else:
+                j = i
+                max_end = spans[j][pos['end']]
+                while max_end >= spans[j + 1][pos['start']]:
+                    j += 1
+                    if spans[j][pos['end']] > max_end:
+                        max_end = spans[j][pos['end']]
+                    if j == len(spans)-1:
+                        break
+                result.append((spans[i][pos['start']], max_end))
+                i = j
+            i += 1
+
         return normalized_sentence, result
 
     def time_value_extractor(self, input_sentence):
