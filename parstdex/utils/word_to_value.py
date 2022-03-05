@@ -368,18 +368,11 @@ class ValueExtractor:
 
     def compute_value(self, text):
 
-        text = self.normalize_numbers(text)
-
         #time part
-        res_time = re.sub(fr'\b(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
-        res_time = self.normalize_space(res_time)
-        res_time = self.time_reformat(res_time)
-
+        text = self.normalize_numbers(text)
+        res = re.sub(fr'\b(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
+        res = self.normalize_space(res)
         # if time doesnot work then try date: time reformat is more cautious the date reformat.
-        if res_time:
-            res = res_time
-        else:
-            res_date = self.normalize_space(text)
-            res = self.compute_date_value(res_date)
+        res = self.time_reformat(res) if self.time_reformat(res) is not None else self.compute_date_value(res)
 
         return res
