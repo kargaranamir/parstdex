@@ -63,7 +63,7 @@ class Annotation:
         annotation_dict['NUM'] = r'\\d{1,4}'
 
         # supports persian numbers from one to four digits written with persian alphabet
-        # example: سال هزار و سیصد و شصت و پنج
+        # example:  هزار و سیصد و شصت و پنج
         ONE_TO_NINE_JOIN = "|".join(const.ONE_TO_NINE.keys())
         MAGNITUDE_JOIN = "|".join(const.MAGNITUDE.keys())
         HUNDREDS_TEXT_JOIN = "|".join(const.HUNDREDS_TEXT.keys())

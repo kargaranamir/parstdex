@@ -23,7 +23,7 @@ class Normalizer:
 
     FA_NUMBERS = "۰|۱|۲|۳|۴|۵|۶|۷|۸|۹"
     EN_NUMBERS = "0|1|2|3|4|5|6|7|8|9"
-    Symbols = ":|/|-"
+    Symbols = ":|/|-|\."
     C_NUMBERS = FA_NUMBERS + "|" + EN_NUMBERS + "|" + Symbols
 
     def normalize_alphabet(self, text):
@@ -31,7 +31,7 @@ class Normalizer:
         return re.sub(pattern, lambda m: self.ALPHABET_DICT[m.group()], str(text))
 
     def normalize_space(self, text):
-        res = text.replace('،', '')
+        res = text.replace('،', ' ، ')
         res = ':'.join([i.lstrip().rstrip() for i in res.split(':')])
         res = '-'.join([i.lstrip().rstrip() for i in res.split('-')])
         res = '/'.join([i.lstrip().rstrip() for i in res.split('/')])
