@@ -32,41 +32,14 @@ class Annotation:
     annotations_dict = {}
 
     def __init__(self):
-        time_annotations = self.create_annotation_dict(self.time_annotation_path)
-        date_annotations = self.create_annotation_dict(self.date_annotation_path)
-        aux_annotations = self.create_annotation_dict(self.aux_annotation_path)
         # time annotation dictionary includes all annotations of time folder
-        time_annotations_dict = {
-            "TU": time_annotations['TU'],
-            "DP": time_annotations['DP'],
-            "MN": time_annotations['MN'],
-            "HN": time_annotations['HN'],
-            "HR": time_annotations['HR'],
-            "MNT": time_annotations['MNT']
-            }
+        time_annotations = self.create_annotation_dict(self.time_annotation_path)
         # date annotation dictionary includes all annotations of date folder
-        date_annotations_dict = {
-            "RD": date_annotations['RD'],
-            "WD": date_annotations['WD'],
-            "MNTH": date_annotations['MNTH'],
-            "SSN": date_annotations['SSN'],
-            "DU": date_annotations['DU'],
-            "DN": date_annotations['DN'],
-            "NUM31": date_annotations['NUM31'],
-            "RY": date_annotations['RY'],
-            "NUM": date_annotations['NUM'],
-            "PY": date_annotations["PY"],
-            "NUM12": date_annotations['NUM12'],
-            "CT": date_annotations['CT']
-            }
+        date_annotations = self.create_annotation_dict(self.date_annotation_path)
         # auxiliary annotation dictionary includes all annotations of auxiliary folder
-        aux_annotations_dict = {
-            "BNP": aux_annotations['BNP'],
-            "NXT": aux_annotations['NXT'],
-            "PRV": aux_annotations['PRV']
-            }
+        aux_annotations = self.create_annotation_dict(self.aux_annotation_path)
 
-        self.annotations_dict = {**time_annotations_dict, **date_annotations_dict, **aux_annotations_dict}
+        self.annotations_dict = {**time_annotations, **date_annotations, **aux_annotations}
 
     @staticmethod
     def create_annotation(path):
