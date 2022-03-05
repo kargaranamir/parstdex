@@ -1,184 +1,374 @@
-﻿
+﻿# Date
+
+# امروز
 RD
-RD WD
-RD WD DN Month
-RD WD DN Month Num
-RD WD DN Month سال Num
-RD WD DN Month ماه
-RD WD DN Month ماه Num
-RD WD DN Month ماه سال Num
-RD WD DN Month ماه سال Num شمسی
-RD WD DN Month ماه سال Num قمری
-RD WD DN Month ماه سال Num میلادی
-RD WD DN Month ماه سال Num هجری شمسی
-RD WD Num از Season
-RD Num روز از Season
-RD WD Num از Season سال Num
-RD WD Num از Season Num
-DN Month Num
-DN Month PY
-DN Month Num شمسی
-DN Month PY شمسی
-DN Month Num قمری
-DN Month PY قمری
-DN Month Num هجری شمسی
-DN Month PY هجری شمسی
-DN Month Num میلادی
-DN Month PY میلادی
-DN Month ماه
-Month Num
-تاریخ Month Num
-مورخ Month Num
-Month ماه
-Month ماه Num
-Month ماه PY
-Month ماه سال Num
-Month ماه سال PY
-ماه Month
-ماه Month Num
-ماه Month PY
-Month ی Num
-Month ی PY
-Month ی سال Num
-Month ی سال PY
-DN Month
-DN Month سال Num
-Month ی سال PY
-DN Month ماه سال Num
-DN Month ماه Num
-DN Month ماه Num شمسی
-DN Month ماه Num هجری شمسی
-DN Month ماه Num قمری
-DN Month ماه Num هجری قمری
-DN Month ماه Num میلادی
-DN Month ماه سال Num شمسی
-DN Month ماه سال Num هجری شمسی
-DN Month ماه سال Num قمری
-DN Month ماه سال Num هجری قمری
-DN Month ماه سال Num میلادی
-DN Monthماه سال Num
-DN Monthماه Num
-DN Monthماه Num شمسی
-DN Monthماه Num هجری شمسی
-DN Monthماه Num قمری
-DN Monthماه Num هجری قمری
-DN Monthماه Num میلادی
-DN Monthماه سال Num شمسی
-DN Monthماه سال Num هجری شمسی
-DN Monthماه سال Num قمری
-DN Monthماه سال Num هجری قمری
-DN Monthماه سال Num میلادی
-سال Num
-سال Num میلادی
-سال Num شمسی
-سال Num هجری شمسی
-سال Num قمری
-سال Num هجری
-سال Num هجری قمری
-سال Num ه\.ق\.
-سال Num ه\.ق
-سال Num ه\.ش\.
-سال Num ه\.ش
-ه\.ش
-ه\.ق
-ه\.ش\.
-ه\.ق\.
-میلادی
-شمسی
-قمری
-هجری قمری
-DN Month ماه سال PY
-DN Month ماه PY
-DN Month ماه PY شمسی
-DN Month ماه PY هجری شمسی
-DN Month ماه PY قمری
-DN Month ماه PY هجری قمری
-DN Month ماه PY میلادی
-DN Month ماه سال PY شمسی
-DN Month ماه سال PY هجری شمسی
-DN Month ماه سال PY قمری
-DN Month ماه سال PY هجری قمری
-DN Month ماه سال PY میلادی
-DN Monthماه سال PY
-DN Monthماه PY
-DN Monthماه PY شمسی
-DN Monthماه PY هجری شمسی
-DN Monthماه PY قمری
-DN Monthماه PY هجری قمری
-DN Monthماه PY میلادی
-DN Monthماه سال PY شمسی
-DN Monthماه سال PY هجری شمسی
-DN Monthماه سال PY قمری
-DN Monthماه سال PY هجری قمری
-DN Monthماه سال PY میلادی
-سال PY
-سال PY میلادی
-سال PY شمسی
-سال PY هجری شمسی
-سال PY قمری
-Month RY
-Month ی RY
-ماه Month ی RY
-Month RT
-Month ی RT
-ماه Month ی RT
-RT Month
-RT Month ماه
-RT Month Num
-RT Month سال Num
-RT Month سال Num شمسی
-RT Month سال Num میلادی
-RT Month سال Num
-روزهای RT سال Num
-روزهای RT سال Num شمسی
-روزهای RT سال Num قمری
-روزهای RT سال Num میلادی
-سه DU نخست سال Num
-سه DU اول DU Num
-سه DU پایانی DU Num
-سه DU دوم DU Num
-سه DU سوم DU Num
-سه DU ابتدایی DU Num
-سه DU انتهایی DU Num
-نیمه  اول DU Num
-نیمه دوم DU Num
-RT Season سال Num
-RT DU Num
-RT DU Num شمسی
-RT DU Num قمری
-RT DU Num میلادی
-Num/Twelve/ThirtyOne
-Num/Twelve/ThirtyOne شمسی
-Num/Twelve/ThirtyOne هجری شمسی
-Num/Twelve/ThirtyOne ه\.ش\.
-Num/Twelve/ThirtyOne ه\.ش
-Num/Twelve/ThirtyOne میلادی
-Num/Twelve/ThirtyOne قمری
-Num/Twelve/ThirtyOne هجری قمری
-Num/Twelve/ThirtyOne ه\.ق\.
-Num-Twelve-ThirtyOne ه\.ق
-Num-Twelve-ThirtyOne
-Num-Twelve-ThirtyOne شمسی
-Num-Twelve-ThirtyOne هجری شمسی
-Num-Twelve-ThirtyOne ه\.ش
-Num-Twelve-ThirtyOne ه\.ش\.
-Num-Twelve-ThirtyOne میلادی
-Num-Twelve-ThirtyOne قمری
-DU Num
-Num-Twelve-ThirtyOne هجری قمری
-Num-Twelve-ThirtyOne ه\.ق
-Num-Twelve-ThirtyOne ه\.ق\.
-ThirtyOne/Twelve/Num
-ThirtyOne/Twelve/Num میلادی
-ThirtyOne-Twelve-Num
-ThirtyOne-Twelve-Num میلادی
+# یکشنبه
+WD
+# پاییز
+SSN
+# امسال
+RY
+# ماه فروردین
+MAH MNTH
+
+### with DN
+# یک فروردین
+DN MNTH
+# یک فروردین ۱۳۷۵
+DN MNTH NUM
+DN MNTH PY
+# یک فروردین ۱۳۷۵ هجری شمسی
+DN MNTH NUM CT
+DN MNTH PY CT
+# یک فروردین سال ۱۳۷۵
+DN MNTH SAL NUM
+DN MNTH SAL PY
+# یک فروردین سال ۱۳۷۵ هجری شمسی
+DN MNTH SAL NUM CT
+DN MNTH SAL PY CT
+
+### without DN
+# فروردین ۱۳۷۵
+MNTH NUM
+MNTH PY
+# فروردین ۱۳۷۵ هجری شمسی
+MNTH NUM CT
+MNTH PY CT
+# فروردین سال ۱۳۷۵
+MNTH SAL NUM
+MNTH SAL PY
+# فروردین سال ۱۳۷۵ هجری شمسی
+MNTH SAL NUM CT
+MNTH SAL PY CT
+
+
+### with MAH and DN
+# یک فروردین ماه
+DN MNTH MAH
+# یک فروردین ماه ۱۳۷۵
+DN MNTH MAH NUM
+DN MNTH MAH PY
+# یک فروردین ماه ۱۳۷۵ هجری شمسی
+DN MNTH MAH NUM CT
+DN MNTH MAH PY CT
+# یک فروردین ماه سال ۱۳۷۵
+DN MNTH MAH SAL NUM
+DN MNTH MAH SAL PY
+# یک فروردین ماه سال ۱۳۷۵ هجری شمسی
+DN MNTH MAH SAL NUM CT
+DN MNTH MAH SAL PY CT
+
+### with MAH without DN
+# فروردین ماه
+MNTH MAH
+# فروردین ماه ۱۳۷۵
+MNTH MAH NUM
+MNTH MAH PY
+# فروردین ماه ۱۳۷۵ هجری شمسی
+MNTH MAH NUM CT
+MNTH MAH PY CT
+# فروردین ماه سال ۱۳۷۵
+MNTH MAH SAL NUM
+MNTH MAH SAL PY
+# فروردین ماه سال ۱۳۷۵ هجری شمسی
+MNTH MAH SAL NUM CT
+MNTH MAH SAL PY CT
+
+
+
+### with MAH sticking near MNTH (MNTHMAH) and DN
+# یک تیرماه
+DN MNTHMAH
+# یک تیرماه ۱۳۷۵
+DN MNTHMAH NUM
+DN MNTHMAH PY
+# یک تیرماه ۱۳۷۵ هجری شمسی
+DN MNTHMAH NUM CT
+DN MNTHMAH PY CT
+# یک تیرماه سال ۱۳۷۵
+DN MNTHMAH SAL NUM
+DN MNTHMAH SAL PY
+# یک تیرماه سال ۱۳۷۵ هجری شمسی
+DN MNTHMAH SAL NUM CT
+DN MNTHMAH SAL PY CT
+
+### with MAH sticking near MNTH (MNTHMAH) without DN
+# تیرماه
+MNTHMAH
+# تیرماه ۱۳۷۵
+MNTHMAH NUM
+MNTHMAH PY
+# تیرماه ۱۳۷۵ هجری شمسی
+MNTHMAH NUM CT
+MNTHMAH PY CT
+# تیرماه سال ۱۳۷۵
+MNTHMAH SAL NUM
+MNTHMAH SAL PY
+# تیرماه سال ۱۳۷۵ هجری شمسی
+MNTHMAH SAL NUM CT
+MNTHMAH SAL PY CT
+
+
+### wihtout MNTH
+# سال ۱۳۷۵
+SAL NUM
+SAL PY
+# سال ۱۳۷۵ هجری شمسی
+SAL NUM CT
+SAL PY CT
+# ۱۳۷۵ هجری شمسی
+NUM CT
+PY CT
+
+
+# 1300/12/9
+NUM/N12/N31
+NUM-N12-N31
+NUM\.N12\.N31
+
+# 1300/12/9 هجری شمسی
+NUM/N12/31 CT
+NUM\.N12\.N31 CT
+NUM-N12-N31 CT
+
+# سه (سومین) روز از بهار
+NUM ROOZ AZ SSN
+DN ROOZ AZ SSN
+NUM MAH AZ SSN
+DN MAH AZ SSN
+# سه (سومین) بهار
+DN SSN
+NUM SSN
+
+# From Before:
+MNTH RY
+MNTH ی RY
+ماه MNTH ی RY
+MNTH RT
+MNTH ی RT
+ماه MNTH ی RT
+RT MNTH
+RT MNTH ماه
+RT MNTH NUM
+RT MNTH سال NUM
+RT MNTH سال NUM شمسی
+RT MNTH سال NUM میلادی
+RT MNTH سال NUM
+روزهای RT سال NUM
+روزهای RT سال NUM شمسی
+روزهای RT سال NUM قمری
+روزهای RT سال NUM میلادی
+سه DU نخست سال NUM
+سه DU اول DU NUM
+سه DU پایانی DU NUM
+سه DU دوم DU NUM
+سه DU سوم DU NUM
+سه DU ابتدایی DU NUM
+سه DU انتهایی DU NUM
+نیمه  اول DU NUM
+نیمه دوم DU NUM
+RT Season سال NUM
+RT DU NUM
+RT DU NUM شمسی
+RT DU NUM قمری
+RT DU NUM میلادی
+DU NUM
 WD DP
 DP WD
-DP DN Month Num
+DP DN MNTH NUM
 WD
 TU
-TU Num و Num
+TU NUM و NUM
 سال کبیسه
 تاریخ
 مورخ
+تاریخ MNTH NUM
+مورخ MNTH NUM
 TU DN
+DU PY
+NUM ساله
+NUM سال
+PY سال
+PY ساله
+
+## pointer
+
+RT TU جاری
+RT این TU
+RT همین TU
+RT امسال
+RT پارسال
+RT پيرارسال
+همین امسال
+همین سال
+همین پارسال
+همین پیارسال
+
+
+
+## set
+
+هر WD
+هر WD DP
+DP هر WD
+هر شب
+هر روز
+هر سال
+MNTH هر سال
+MNTH ماه هر سال
+WD هر هفته
+هر هفته WD
+Season هر سال
+RT MNTH هر سال
+RT Season هر سال
+هر سال Season
+هر سال RT Season
+DNبار در هفته
+DN بار در هفته
+DN بار در ماه
+DNبار در ماه
+DN بار در سال
+DNبار در سال
+هر DN سال یک بار
+هر DN سال یکبار
+هر DNسال یک بار
+هر DNسال یکبار
+هر DNروز یکبار
+هر DN روز یکبار
+DN DP
+
+
+## relative:
+
+چند TU Prev
+چند TU Next
+NUM TU Prev
+NUM TU Next
+NUM MNTH TU Prev
+NUM MNTH TU Next
+NUM MNTH NUM TU Prev
+NUM MNTH NUM TU Next
+MNTH TU Prev
+MNTH TU Next
+MNTH NUM TU Prev
+MNTH NUM TU Next
+MNTH TU NUM TU Prev
+MNTH TU NUM TU Next
+RT NUM TU Next
+RT NUM TU Prev
+RT TU Prev
+RT TU Next
+WD Next
+WD Prev
+WD TU Next
+WD TU Prev
+WD NUM TU Next
+WD NUM TU Prev
+NUM TU NUM TU Next
+NUM TU NUM TU Prev
+DN TU Prev
+DN TU Next
+TU Prev
+TU Next
+WD DN TU Next
+WD DN TU Prev
+Next WD DN TU
+Prev WD DN TU
+Next DP WD TU
+Prev DP WD TU
+Next DP WD DN TU
+Prev DP WD DN TU
+Prev DP
+Next DP
+RD DP
+DP RD
+
+
+## duration
+
+
+TU DNتا DN
+TU DN تا DN
+سالDN تا DN
+طی چند TU Prev
+طی چند TU Next
+طی DN TU Prev
+طی DN TU Next
+WD DN MNTH لغایت WD DN MNTH
+WD DN MNTH تا WD DN MNTH
+WD DN MNTH الی WD DN MNTH
+WD DN MNTH - WD DN MNTH
+DN MNTH لغایت DN MNTH
+DN MNTH تا DN MNTH
+DN MNTH الی DN MNTH
+DN MNTH - DN MNTH
+DN MNTH لغایت DN MNTH
+DN MNTH تا DN MNTH
+DN MNTH الی DN MNTH
+DN MNTH - DN MNTH
+DN تا DN MNTH
+DN تا DN MNTH DN
+DN تا DN MNTH
+DN تا DN MNTH DN
+RD تا RT MNTH
+RD تا WD هفته Next
+RD تا RT ماه جاری
+RD تا DN روز Next
+RD تا DN MNTH
+RD تا RD
+DP RD تا RD DP
+DR DP تا RD DP
+ساعت DN DP RD تا RD
+ساعت DN DP RD تا WD
+ساعت DN DP RD تا WD Next
+ساعت DN RD تا RD
+ساعت DN RD تا روز WD
+ساعت DN RD تا روز WD Next
+RD DP تا RT هفته
+RD DP تا RT این هفته
+RD DP تا RT ماه
+RD DP تا RT این ماه
+RD DP تا RT MNTH
+RD DP تا RT MNTH ماه
+DP RD تا RT هفته
+DP RD تا RT این هفته
+DP RD تا RT این ماه
+DP RD تا RT این ماه
+DP RD تا RT MNTH
+DP RD تا RT MNTH ماه
+WD DP تا RT هفته
+WD DP تا RT این هفته
+WD DP تا RT ماه
+WD DP تا RT این ماه
+WD DP تا RT MNTH
+WD DP تا RT MNTH ماه
+DP WD تا RT هفته
+DP WD تا RT این هفته
+DP WD تا RT این ماه
+DP WD تا RT این ماه
+DP WD تا RT MNTH
+DP WD تا RT MNTH ماه
+RD تا RT هفته
+RD تا RT ماه
+RD تا RT این ماه
+RD تا RT هفته جاری
+DN MNTH تا RT MNTH
+DN MNTH تا RT MNTH امسال
+DN MNTH تا RT MNTH ماه
+DN MNTH تا RT MNTH ماه امسال
+DN MNTH ماه تا RT MNTH
+DN MNTH ماه تا RT MNTH امسال
+DN MNTH ماه تا RT MNTH ماه
+DN MNTH ماه تا RT MNTH ماه امسال
+RD تا RT MNTH
+RD تا RT MNTH ماه
+RD تا RT MNTH ماه امسال
+RD تا RT MNTH امسال
+DN MNTH تا DN MNTH
+DN MNTH تا DN MNTH ماه
+DN MNTH تا DN MNTH ماه امسال
+DN MNTH تا DN MNTH DN
+تا سال NUM
+تا ماه MNTH
+تا ماه MNTH NUM
+طول زمان

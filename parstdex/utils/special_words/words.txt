@@ -1,11 +1,13 @@
 # General
-و   VA
+VA	و
+AZ از
 
 # Time
-ساعت    SAAT
-دقیقه   DAGHIGHEH
-ثانیه   SANIEH
+SAAT	ساعت
+DAGHIGHEH	دقیقه
+SANIEH	ثانیه
 
 # Date
-سال   SAL
-ماه   MAH
+SAL	سال
+MAH	ماه
+ROOZ روز
