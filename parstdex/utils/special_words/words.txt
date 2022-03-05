@@ -1,7 +1,11 @@
 # General
 و   VA
+
 # Time
 ساعت    SAAT
 دقیقه   DAGHIGHEH
 ثانیه   SANIEH
+
 # Date
+سال   SAL
+ماه   MAH
