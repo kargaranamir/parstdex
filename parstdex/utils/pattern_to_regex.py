@@ -15,7 +15,7 @@ def get_special_words():
     lines = process_file(os.path.join(os.path.dirname(__file__), 'special_words/words.txt'))
     special_words = {}
     for line in lines:
-        word, equal = line.strip().split('\t')
+        word, equal = line.strip().split()
         special_words[word] = equal
     return special_words
 
