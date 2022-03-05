@@ -7,7 +7,7 @@ from parstdex.utils import const
 def process_file(path):
     with open(path, 'r', encoding='utf-8-sig') as file:
         text = file.readlines()
-        text = [x.rstrip() for x in text if not x.startswith('#') and len(x.strip())>0]  # remove \n
+        text = [x.rstrip() for x in text if not x.startswith('#') and len(x.strip()) > 0]  # remove \n
         return text
 
 

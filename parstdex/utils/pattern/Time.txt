@@ -1,87 +1,75 @@
-﻿Hour ساعت و Min دقیقه و Min ثانیه
-ساعت Hour و Min دقیقه و Min ثانیه
-ساعت Hour و Min دقیقه و Min ثانیه DP
-Hour و Min دقیقه و Min ثانیه DP
-ساعت Hour و Min دقیقه
-ساعت Hour و Min دقیقه DP
-ساعت Hour و Min دقیقه DP WD
-ساعت Hour و Min دقیقه WD DP
-Hour و Min دقیقه DP
-Hour و Min دقیقه WD DP
-Hour و Min دقیقه DP WD
-ساعت Hour DP
-Hour DP
-Hour DP RD
-RD Hour DP
-Num TU
-ساعت Hour
-ساعت Hour DP
-Hour DP WD
-ساعت Hour RD
-ساعت Hour DP RD
-Hour DP RD
-ساعت Hour WD
-Hour WD
-ساعت Hour DP WD
-ساعت Hour WD Next
-ساعت Hour DP WD Next
-ساعت Hour WD Prev
-ساعت Hour DP WD Prev
-HN:SN
-ساعت HN:SN
-ساعت HN:SN:SN
-ساعت HN:SN DP
-ساعت HN:SN RD
-ساعت HN:SN DP RD
-ساعت HN:SN WD
-ساعت HN:SN DP WD
-ساعت HN:SN WD Prev
-ساعت HN:SN DP WD Prev
-ساعت HN:SN WD Next
-ساعت HN:SN DP WD Next
-HN:SN دقیقه
-ساعت HH:SN دقیقه
-Hour ساعت و Min دقیقه و Min ثانیه Next ساعت Hour و Min دقیقه و Min ثانیه
-Hour ساعت و Min دقیقه و Min ثانیه Prev ساعت Hour و Min دقیقه و Min ثانیه
-Hour ساعت و Min دقیقه Next ساعت Hour و Min دقیقه و Min ثانیه
-Hour ساعت و Min دقیقه Prev ساعت Hour و Min دقیقه و Min ثانیه
-Hour ساعت Next ساعت Hour و Min دقیقه و Min ثانیه
-Hour ساعت Prev ساعت Hour و Min دقیقه و Min ثانیه
-Hour ساعت و Min دقیقه و Min ثانیه Next ساعت Hour و Min دقیقه
-Hour ساعت و Min دقیقه و Min ثانیه Prev ساعت Hour و Min دقیقه
-Hour ساعت و Min دقیقه و Min ثانیه Next ساعت Hour
-Hour ساعت و Min دقیقه و Min ثانیه Prev ساعت Hour
-Min دقیقه Next ساعت Hour و Min دقیقه و Min ثانیه
-Min دقیقه Prev ساعت Hour و Min دقیقه و Min ثانیه
-Min دقیقه Next ساعت Hour و Min دقیقه
-Min دقیقه Prev ساعت Hour و Min دقیقه
-Hour ساعت Next ساعت Hour
-Hour ساعت Prev ساعت Hour
-Min دقیقه Next ساعت Hour
-Min دقیقه Prev ساعت Hour
-Min ثانیه Next ساعت Hour
-Min ثانیه Prev ساعت Hour
-Min دقیقه مانده به Hour
+﻿# پنج ساعت و چهل و سه دقیقه و سی و چهار ثانیه
+HR SAAT VA MIN DAGHIGHEH VA MIN SANIEH
+# ساعت پنج و چهال و دو دقیقه و سی و چهار ثانیه
+SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+# ساعت پنج و سی و چهار دقیقه و چهل ثانیه عصر
+SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH DP
+# پنج و سی و چهار دقیقه و چهل ثانیه عصر
+HR VA MIN DAGHIGHEH VA MIN SANIEH DP
+# ساعت پنج و بیست دقیقه
+SAAT HR VA MIN DAGHIGHEH
+# ساعت پنج و بیست دقیقه عصر
+SAAT HR VA MIN DAGHIGHEH DP
+# پنج و بیست و دو دقیقه عصر
+HR VA MIN DAGHIGHEH DP
+# ساعت پنج عصر
+SAAT HR DP
+# پنج عصر
+HR DP
+# پنج ثانیه
+NUM TU
+# ساعت پنج
+SAAT HR
+# 12:23
+HN:MN
+# ساعت 12:23
+SAAT HN:MN
+# ساعت 03:53:23
+SAAT HN:MN:MN
+# ساعت 03:53 عصر
+SAAT HN:MN DP
+# ساعت 04:23 عصر
+SAAT HR:MN DP
+# دقیقه 23:23
+DAGHIGHEH MN:MN
+# 23:24 دقیقه
+MN:MN DAGHIGHEH
+# ساعت 04:23 دقیقه
+SAAT HN:MN DAGHIGHEH
+# دو ساعت و ۲۳ دقیقه و ۵۳ ثانیه قبل از ساعت ۳ و ۵۰ دقیقه و چهار ثانیه
+HR SAAT VA MIN DAGHIGHEH VA MIN SANIEH PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+# پنج ساعت و ۲۱ دقیقه قبل ساعت ۲ و پنجاه و ۴ دقیقه و ۲۰ ثانیه
+HR SAAT VA MIN DAGHIGHEH PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+# پنج ساعت بعد ساعت ۳ و سی و سه دقیقه و چهار ثانیه
+HR SAAT PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+# دو ساعت و ۲۳ دقیقه و ۵۳ ثانیه قبل از ساعت ۳ و ۵۰ دقیقه
+HR SAAT VA MIN DAGHIGHEH VA MIN SANIEH PRV SAAT HR VA MIN DAGHIGHEH
+# پنج ساعت و ۲۱ دقیقه قبل ساعت ۲ و پنجاه و ۴ دقیقه
+HR SAAT VA MIN DAGHIGHEH PRV SAAT HR VA MIN DAGHIGHEH
+# پنج ساعت بعد ساعت ۳ و سی و سه دقیقه
+HR SAAT PRV SAAT HR VA MIN DAGHIGHEH
+# چهارده دقیقه قبل از ساعت ۳ و سی و چهار دقیقه و چهل ثانیه
+MIN DAGHIGHEH PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+# چهارده دقیقه قبل از ساعت ۳ و سی و چهار دقیقه
+MIN DAGHIGHEH PRV SAAT HR VA MIN DAGHIGHEH
+# دو ساعت بعد ساعت ۵
+HR SAAT PRV SAAT HR
+# بیست دقیقه بعد ساعت ۳
+MIN DAGHIGHEH PRV SAAT HR
+# دو ثانیه مانده به ساعت ۴
+MIN SANIEH PRV SAAT HR
+# بیست دقیقه مانده به ۴
+MIN DAGHIGHEH PRV HR
+# بیست و دو ثانیه مانده به ۴
+MIN SANIEH PRV HR
+# بیست دقیقه و سی ثانیه مانده به ۴
+MIN DAGHIGHEH VA MIN SANIEH PRV HR
+
 Min دقیقه مانده به Hour DP
-Min دقیقه مانده به Hour RD
-Min دقیقه مانده به Hour DP RD
-Min دقیقه مانده به Hour WD
-Min دقیقه مانده به Hour DP WD
-Min دقیقه مانده به Hour WD Next
-Min دقیقه مانده به Hour WD Prev
-Min دقیقه مانده به Hour DP WD Next
-Min دقیقه مانده به Hour DP WD Prev
 Min دقیقه به Hour
 Min دقیقه به ساعت Hour
 Min دقیقه به Hour DP
-Min دقیقه به Hour RD
-Min دقیقه به Hour DP RD
-Min دقیقه به Hour WD
-Min دقیقه به Hour DP WD
-Min دقیقه به Hour WD Next
-Min دقیقه به Hour WD Prev
-Min دقیقه به Hour DP WD Next
-Min دقیقه به Hour DP WD Prev
+
 DN TU مانده به RT TU
 ساعت Hour و ربع
 ساعت Hour و ربع RD
