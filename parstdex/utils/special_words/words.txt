@@ -6,6 +6,9 @@ AZ از
 SAAT	ساعت
 DAGHIGHEH	دقیقه
 SANIEH	ثانیه
+ROB ربع
+NIM نیم
+YEK یک
 
 # Date
 SAL	سال

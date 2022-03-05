@@ -4,6 +4,7 @@ from parstdex.utils.normalizer import Normalizer
 from parstdex.utils.word_to_value import ValueExtractor
 from parstdex.utils.merge_spans import merge_spans
 
+
 class MarkerExtractor:
     def __init__(self, normalizer=None, patterns=None, value_extractor=None):
         # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
@@ -16,6 +17,7 @@ class MarkerExtractor:
     def time_marker_extractor(self, input_sentence, ud_patterns=None):
         """
         function should output list of spans, each item in list is a time marker span present in the input sentence.
+        :param ud_patterns:
         :param input_sentence: input sentence
         :return:
         normalized_sentence: normalized sentence
@@ -50,7 +52,6 @@ class MarkerExtractor:
                     # store extracted markers in output_raw
                     output_raw[key] = output_raw[key] + matches
 
-
         spans = []
         spans_key = []
         for key in output_raw.keys():
@@ -63,10 +64,10 @@ class MarkerExtractor:
                 spans_key.append(key)
 
         if len(spans) == 0:
-            return normalized_sentence, []
+            return normalized_sentence, [], []
 
         result = merge_spans(spans, spans_key)
-        return normalized_sentence, result
+        return normalized_sentence, output_raw, result
 
     def time_value_extractor(self, input_sentence):
         """
@@ -78,7 +79,7 @@ class MarkerExtractor:
         values: all extracted time-date values
         """
 
-        normalized_sentence, result = self.time_marker_extractor(input_sentence)
+        normalized_sentence, output_raw, result = self.time_marker_extractor(input_sentence)
         output_extracted = [normalized_sentence[item[0]:item[1]] for item in result]
         values = [self.value_extractor.compute_value(p) for p in output_extracted]
 

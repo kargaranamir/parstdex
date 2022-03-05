@@ -64,51 +64,21 @@ MIN DAGHIGHEH PRV HR
 MIN SANIEH PRV HR
 # بیست دقیقه و سی ثانیه مانده به ۴
 MIN DAGHIGHEH VA MIN SANIEH PRV HR
-
-Min دقیقه مانده به Hour DP
-Min دقیقه به Hour
-Min دقیقه به ساعت Hour
-Min دقیقه به Hour DP
-
-DN TU مانده به RT TU
-ساعت Hour و ربع
-ساعت Hour و ربع RD
-ساعت Hour و ربع WD
-ساعت Hour و ربع WD Next
-ساعت Hour و ربع WD Prev
-ساعت Hour و ربع DP
-ساعت Hour و ربع DP RD
-ساعت Hour و ربع DP WD
-ساعت Hour و ربع DP WD Next
-ساعت Hour و ربع DP WD Prev
-ساعت Hour و نیم
-ساعت Hour و نیم RD
-ساعت Hour و نیم WD
-ساعت Hour و نیم WD Next
-ساعت Hour و نیم WD Prev
-ساعت Hour و نیم DP
-ساعت Hour و نیم DP RD
-ساعت Hour و نیم DP WD
-ساعت Hour و نیم DP WD Next
-ساعت Hour و نیم DP WD Prev
-ساعت یک ربع به Hour
-ساعت یک ربع به Hour RD
-ساعت یک ربع به Hour WD
-ساعت یک ربع به Hour WD Next
-ساعت یک ربع به Hour WD Prev
-ساعت یک ربع به Hour DP
-ساعت یک ربع به Hour DP RD
-ساعت یک ربع به Hour DP WD
-ساعت یک ربع به Hour DP WD Next
-ساعت یک ربع به Hour DP WD Prev
-یک ربع به Hour
-یک ربع به Hour RD
-یک ربع به Hour WD
-یک ربع به Hour WD Next
-یک ربع به Hour WD Prev
-یک ربع به Hour DP
-یک ربع به Hour DP RD
-یک ربع به Hour DP WD
-یک ربع به Hour DP WD Next
-یک ربع به Hour DP WD Prev
-Min TU
+# پنج دقیقه مانده به سه عصر
+MIN DAGHIGHEH PRV HR DP
+# ساعت پنج و ربع
+SAAT HR VA ROB
+# ساعت پنج و ربع عصر
+SAAT HR VA ROB DP
+# ساعت پنج و نیم
+SAAT HR VA NIM
+# ساعت پنج و نیم صبح
+SAAT HR VA NIM DP
+# ساعت یک ربع به شیش
+SAAT YEK ROB PRV HR
+# ساعت یک ربع به هفت شب
+SAAT YEK ROB PRV DP
+# یک ربع به پنج
+YEK ROB BNP HR
+# یک ربع به هفت شب
+YEK ROB BNP HR DP
