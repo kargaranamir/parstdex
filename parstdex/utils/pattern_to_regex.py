@@ -97,10 +97,10 @@ class Patterns:
         :return: str
         """
         pattern = pattern.replace(" ", '+\\s')
-        for key, value in self.annotations.annotations_dict.items():
-            for word, equal in self.special_words.items():
-                pattern = pattern.replace(word, equal)
-            pattern = re.sub(f'{key}', "(?:" + value + ")", pattern)
+        final_annotations = {**self.annotations.annotations_dict, **self.special_words}
+        final_annotations_keys = sorted(final_annotations, key=len, reverse=True)
+        for key in final_annotations_keys:
+            pattern = re.sub(f'{key}', "(?:" + final_annotations[key] + ")", pattern)
 
         pattern = pattern + '+\\s'
         return pattern
