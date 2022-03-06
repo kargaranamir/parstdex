@@ -64,7 +64,7 @@ class MarkerExtractor:
                 spans_key.append(key)
 
         if len(spans) == 0:
-            return normalized_sentence, [], []
+            return normalized_sentence, output_raw, []
 
         result = merge_spans(spans, spans_key)
         return normalized_sentence, output_raw, result
