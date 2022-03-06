@@ -8,6 +8,13 @@ WD
 SSN
 # امسال
 RY
+# فروردین
+MNTH
+
+
+
+
+
 # ماه فروردین
 MAH MNTH
 
@@ -16,109 +23,106 @@ MAH MNTH
 DN MNTH
 # یک فروردین ۱۳۷۵
 DN MNTH NUM
-DN MNTH PY
+DN MNTH PN
 # یک فروردین ۱۳۷۵ هجری شمسی
 DN MNTH NUM CT
-DN MNTH PY CT
+DN MNTH PN CT
 # یک فروردین سال ۱۳۷۵
 DN MNTH SAL NUM
-DN MNTH SAL PY
+DN MNTH SAL PN
 # یک فروردین سال ۱۳۷۵ هجری شمسی
 DN MNTH SAL NUM CT
-DN MNTH SAL PY CT
+DN MNTH SAL PN CT
 
 ### without DN
 # فروردین ۱۳۷۵
 MNTH NUM
-MNTH PY
+MNTH PN
 # فروردین ۱۳۷۵ هجری شمسی
 MNTH NUM CT
-MNTH PY CT
+MNTH PN CT
 # فروردین سال ۱۳۷۵
 MNTH SAL NUM
-MNTH SAL PY
+MNTH SAL PN
 # فروردین سال ۱۳۷۵ هجری شمسی
 MNTH SAL NUM CT
-MNTH SAL PY CT
-
+MNTH SAL PN CT
 
 ### with MAH and DN
 # یک فروردین ماه
 DN MNTH MAH
 # یک فروردین ماه ۱۳۷۵
 DN MNTH MAH NUM
-DN MNTH MAH PY
+DN MNTH MAH PN
 # یک فروردین ماه ۱۳۷۵ هجری شمسی
 DN MNTH MAH NUM CT
-DN MNTH MAH PY CT
+DN MNTH MAH PN CT
 # یک فروردین ماه سال ۱۳۷۵
 DN MNTH MAH SAL NUM
-DN MNTH MAH SAL PY
+DN MNTH MAH SAL PN
 # یک فروردین ماه سال ۱۳۷۵ هجری شمسی
 DN MNTH MAH SAL NUM CT
-DN MNTH MAH SAL PY CT
+DN MNTH MAH SAL PN CT
 
 ### with MAH without DN
 # فروردین ماه
 MNTH MAH
 # فروردین ماه ۱۳۷۵
 MNTH MAH NUM
-MNTH MAH PY
+MNTH MAH PN
 # فروردین ماه ۱۳۷۵ هجری شمسی
 MNTH MAH NUM CT
-MNTH MAH PY CT
+MNTH MAH PN CT
 # فروردین ماه سال ۱۳۷۵
 MNTH MAH SAL NUM
-MNTH MAH SAL PY
+MNTH MAH SAL PN
 # فروردین ماه سال ۱۳۷۵ هجری شمسی
 MNTH MAH SAL NUM CT
-MNTH MAH SAL PY CT
-
-
+MNTH MAH SAL PN CT
 
 ### with MAH sticking near MNTH (MNTHMAH) and DN
 # یک تیرماه
 DN MNTHMAH
 # یک تیرماه ۱۳۷۵
 DN MNTHMAH NUM
-DN MNTHMAH PY
+DN MNTHMAH PN
 # یک تیرماه ۱۳۷۵ هجری شمسی
 DN MNTHMAH NUM CT
-DN MNTHMAH PY CT
+DN MNTHMAH PN CT
 # یک تیرماه سال ۱۳۷۵
 DN MNTHMAH SAL NUM
-DN MNTHMAH SAL PY
+DN MNTHMAH SAL PN
 # یک تیرماه سال ۱۳۷۵ هجری شمسی
 DN MNTHMAH SAL NUM CT
-DN MNTHMAH SAL PY CT
+DN MNTHMAH SAL PN CT
 
 ### with MAH sticking near MNTH (MNTHMAH) without DN
 # تیرماه
 MNTHMAH
 # تیرماه ۱۳۷۵
 MNTHMAH NUM
-MNTHMAH PY
+MNTHMAH PN
 # تیرماه ۱۳۷۵ هجری شمسی
 MNTHMAH NUM CT
-MNTHMAH PY CT
+MNTHMAH PN CT
 # تیرماه سال ۱۳۷۵
 MNTHMAH SAL NUM
-MNTHMAH SAL PY
+MNTHMAH SAL PN
 # تیرماه سال ۱۳۷۵ هجری شمسی
 MNTHMAH SAL NUM CT
-MNTHMAH SAL PY CT
+MNTHMAH SAL PN CT
 
 
 ### wihtout MNTH
 # سال ۱۳۷۵
 SAL NUM
-SAL PY
+SAL PN
 # سال ۱۳۷۵ هجری شمسی
 SAL NUM CT
-SAL PY CT
+SAL PN CT
 # ۱۳۷۵ هجری شمسی
 NUM CT
-PY CT
+PN CT
 
 
 # 1300/12/9
@@ -140,235 +144,224 @@ DN MAH AZ SSN
 DN SSN
 NUM SSN
 
-# From Before:
+
+# RY + MNTH + NXT + BNP + PRV
+# فروردین امسال
 MNTH RY
-MNTH ی RY
-ماه MNTH ی RY
-MNTH RT
-MNTH ی RT
-ماه MNTH ی RT
-RT MNTH
-RT MNTH ماه
-RT MNTH NUM
-RT MNTH سال NUM
-RT MNTH سال NUM شمسی
-RT MNTH سال NUM میلادی
-RT MNTH سال NUM
-روزهای RT سال NUM
-روزهای RT سال NUM شمسی
-روزهای RT سال NUM قمری
-روزهای RT سال NUM میلادی
-سه DU نخست سال NUM
-سه DU اول DU NUM
-سه DU پایانی DU NUM
-سه DU دوم DU NUM
-سه DU سوم DU NUM
-سه DU ابتدایی DU NUM
-سه DU انتهایی DU NUM
-نیمه  اول DU NUM
-نیمه دوم DU NUM
-RT Season سال NUM
-RT DU NUM
-RT DU NUM شمسی
-RT DU NUM قمری
-RT DU NUM میلادی
+# فروردین ماه امسال
+MNTH MAH RY
+# تیرماه امسال
+MNTHMAH RY
+# امسال فروردین
+RY MNTH
+# امسال فروردین ماه
+RY MNTH MAH
+# فروردین اخیر
+MNTH NXT
+# ماه فروردین اخیر
+MAH MNTH NXT
+# فروردین ماه اخیر
+MNTH MAH NXT
+# تیرماه اخیر
+MNTHMAH NXT
+# آغاز فروردین
+PRV MNTH
+# آغاز فروردین ماه
+PRV MNTH MAH
+# آغاز تیرماه
+PRV MNTHMAH
+# آغاز ماه فروردین
+PRV MAH MNTH
+# بعد فروردین
+BNP MNTH
+# بعد فروردین ماه
+BNP MNTH MAH
+# بعد تیرماه
+BNP MNTH MAH
+# بعد ماه فروردین
+BNP MAH MNTH
+# فروردین بعد
+MNTH BNP
+# فروردین ماه بعد
+MNTH MAH BNP
+# تیرماه بعد
+MNTHMAH BNP
+# ماه فروردین بعد
+MAH MNTH BNP
+
+
+
+# RY + SSN + NXT + BNP + PRV
+# پاییز امسال
+SSN RY
+# امسال پاییز
+RY SSN
+# پاییز اخیر
+SSN NXT
+# آغاز پاییز
+PRV SSN
+# بعد پاییز
+BNP SSN
+# پاییز بعد
+SSN BNP
+
+# روزهای آعازین
+ROOZHAYE NXT
+# سه هفته نخست
+DN DU NXT
+# سه هفته نخست ۱۴۰۰
+DN DU NXT NUM
+DN DU NXT PN
+# سه هفته بعد
+DN DU BNP
+# سه هفته قبل ۱۴۰۰
+DN DU BNP NUM
+DN DU BNP PN
+# سه هفته نخست ماه
+DN DU NXT DU
+# سه هفته سوم
+DN DU DN
+
+# نیمه نخست ماه
+PRV NXT DU
+PRV NXT DU NUM
+PRV NXT DU PN
+# نیمه اول ماه
+PRV DN DU
+PRV DN DU NUM
+PRV DN DU PN
+
+# شروع پاییز
+PRV SSN
+# شروع پاییز ۱۳۷۵
+PRV SSN NUM
+PRV SSN PN
+
+# هفته ۳
 DU NUM
-WD DP
-DP WD
-DP DN MNTH NUM
-WD
-TU
-TU NUM و NUM
-سال کبیسه
-تاریخ
-مورخ
-تاریخ MNTH NUM
-مورخ MNTH NUM
-TU DN
-DU PY
-NUM ساله
-NUM سال
-PY سال
-PY ساله
+DU PN
+# ۳ هفته
+NUM DU
+PN DU
+# سومین هفته
+DN DU
+# هفته سوم
+DU DN
+# هفته آینده
+DU NXT
+DU BNP
+# آِغاز هفته
+PRV DU
 
-## pointer
+# سال کبیسه
+SAL KABISE
+# در تاریخ
+DAR TARIKH
+# تاریخ فروردین
+TARIKH MNTH
+MOVAREKH MNTH
+# تاریخ ۳۱
+TARIKH DN
+MOVAREKH DN
 
-RT TU جاری
-RT این TU
-RT همین TU
-RT امسال
-RT پارسال
-RT پيرارسال
-همین امسال
-همین سال
-همین پارسال
-همین پیارسال
+# همین هفته-امشب-امسال
+HAMIN DU
+HAMIN RD
+HAMIN RY
 
+# هر شنبه
+HAR WD
+# هر هفته
+HAR DU
 
+# فروردین هر سال
+MNTH HAR SAL
+# فروردین ماه هر سال
+MNTH MAH HAR SAL
+# تیرماه هر سال
+MNTHMAH HAR SAL
+# شنبه هر هفته
+WD HAR HAFTE
+# هر هفته شنبه
+HAR HAFTE WD
+# پاییز هر سال
+SSN HAR SAL
+# هر سال پاییز
+HAR SAL SSN
 
-## set
+# سه روز/شب/هفته/ماه در هفته/سال/ماه
+DN DU DAR DU
+NUM DU DAR DU
+PN DU DAR DU
+# ۳روز در هفته
+DNDU DAR DU
+NUMDU DAR DU
+PNDU DAR DU
+# سه بار در هفته
+DN BAR DAR DU
+NUM BAR DAR DU
+PN BAR DAR DU
+# ۲بار در هفته
+DNBAR DAR DU
+NUMBAR DAR DU
+PNBAR DAR DU
+# هر سه هفته یکبار
+HAR DN DU YEKBAR
+HAR NUM DU YEKBAR
+HAR PN DU YEKBAR
+# هر ۲هفته یکبار
+HAR DNDU YEKBAR
+HAR NUMDU YEKBAR
+HAR PNDU YEKBAR
+# هر xبار در هفته
+HAR DN BAR DAR DU
+HAR NUM BAR DAR DU
+HAR PN BAR DAR DU
+HAR DNBAR DAR DU
+HAR NUMBAR DAR DU
+HAR PNBAR DAR DU
 
-هر WD
-هر WD DP
-DP هر WD
-هر شب
-هر روز
-هر سال
-MNTH هر سال
-MNTH ماه هر سال
-WD هر هفته
-هر هفته WD
-Season هر سال
-RT MNTH هر سال
-RT Season هر سال
-هر سال Season
-هر سال RT Season
-DNبار در هفته
-DN بار در هفته
-DN بار در ماه
-DNبار در ماه
-DN بار در سال
-DNبار در سال
-هر DN سال یک بار
-هر DN سال یکبار
-هر DNسال یک بار
-هر DNسال یکبار
-هر DNروز یکبار
-هر DN روز یکبار
-DN DP
+# چند سال
+CHAND DU
+CHANDIN DU
+CHANDAN DU
+# طی چند سال
+TEY CHAND DU
+TEY CHANDAN DU
+TEY CHANDIN DU
+# طی ۳ روز
+TEY DN DU
+# طول زمان
+TOOL ZAMAN
 
+# سال سوم تا پنجم
+‌DU DN CJ DN
+‌MNTH DN CJ DN
+SSN DN CJ DN
+# سوم تا پنجم ماه
+DN CJ DN DU
+DN CJ DN MNTH
+DN CJ DN SSN
+# سوم ماه تا پنجم ماه
+DN DU CJ DN DU
+DN DU CJ DN MNTH
+DN DU CJ DN SSN
 
-## relative:
+# سوم فروردین تا
+DN MNTH CJ
+# ۳ تا ۵ فروردین
+DN CJ DN MNTH
 
-چند TU Prev
-چند TU Next
-NUM TU Prev
-NUM TU Next
-NUM MNTH TU Prev
-NUM MNTH TU Next
-NUM MNTH NUM TU Prev
-NUM MNTH NUM TU Next
-MNTH TU Prev
-MNTH TU Next
-MNTH NUM TU Prev
-MNTH NUM TU Next
-MNTH TU NUM TU Prev
-MNTH TU NUM TU Next
-RT NUM TU Next
-RT NUM TU Prev
-RT TU Prev
-RT TU Next
-WD Next
-WD Prev
-WD TU Next
-WD TU Prev
-WD NUM TU Next
-WD NUM TU Prev
-NUM TU NUM TU Next
-NUM TU NUM TU Prev
-DN TU Prev
-DN TU Next
-TU Prev
-TU Next
-WD DN TU Next
-WD DN TU Prev
-Next WD DN TU
-Prev WD DN TU
-Next DP WD TU
-Prev DP WD TU
-Next DP WD DN TU
-Prev DP WD DN TU
-Prev DP
-Next DP
-RD DP
-DP RD
+# امروز تا
+RD CJ
+# یکشنبه تا
+WD CJ
+# پاییز تا
+SSN CJ
+# امسال تا
+RY CJ
+# فروردین تا
+MNTH CJ
 
-
-## duration
-
-
-TU DNتا DN
-TU DN تا DN
-سالDN تا DN
-طی چند TU Prev
-طی چند TU Next
-طی DN TU Prev
-طی DN TU Next
-WD DN MNTH لغایت WD DN MNTH
-WD DN MNTH تا WD DN MNTH
-WD DN MNTH الی WD DN MNTH
-WD DN MNTH - WD DN MNTH
-DN MNTH لغایت DN MNTH
-DN MNTH تا DN MNTH
-DN MNTH الی DN MNTH
-DN MNTH - DN MNTH
-DN MNTH لغایت DN MNTH
-DN MNTH تا DN MNTH
-DN MNTH الی DN MNTH
-DN MNTH - DN MNTH
-DN تا DN MNTH
-DN تا DN MNTH DN
-DN تا DN MNTH
-DN تا DN MNTH DN
-RD تا RT MNTH
-RD تا WD هفته Next
-RD تا RT ماه جاری
-RD تا DN روز Next
-RD تا DN MNTH
-RD تا RD
-DP RD تا RD DP
-DR DP تا RD DP
-ساعت DN DP RD تا RD
-ساعت DN DP RD تا WD
-ساعت DN DP RD تا WD Next
-ساعت DN RD تا RD
-ساعت DN RD تا روز WD
-ساعت DN RD تا روز WD Next
-RD DP تا RT هفته
-RD DP تا RT این هفته
-RD DP تا RT ماه
-RD DP تا RT این ماه
-RD DP تا RT MNTH
-RD DP تا RT MNTH ماه
-DP RD تا RT هفته
-DP RD تا RT این هفته
-DP RD تا RT این ماه
-DP RD تا RT این ماه
-DP RD تا RT MNTH
-DP RD تا RT MNTH ماه
-WD DP تا RT هفته
-WD DP تا RT این هفته
-WD DP تا RT ماه
-WD DP تا RT این ماه
-WD DP تا RT MNTH
-WD DP تا RT MNTH ماه
-DP WD تا RT هفته
-DP WD تا RT این هفته
-DP WD تا RT این ماه
-DP WD تا RT این ماه
-DP WD تا RT MNTH
-DP WD تا RT MNTH ماه
-RD تا RT هفته
-RD تا RT ماه
-RD تا RT این ماه
-RD تا RT هفته جاری
-DN MNTH تا RT MNTH
-DN MNTH تا RT MNTH امسال
-DN MNTH تا RT MNTH ماه
-DN MNTH تا RT MNTH ماه امسال
-DN MNTH ماه تا RT MNTH
-DN MNTH ماه تا RT MNTH امسال
-DN MNTH ماه تا RT MNTH ماه
-DN MNTH ماه تا RT MNTH ماه امسال
-RD تا RT MNTH
-RD تا RT MNTH ماه
-RD تا RT MNTH ماه امسال
-RD تا RT MNTH امسال
-DN MNTH تا DN MNTH
-DN MNTH تا DN MNTH ماه
-DN MNTH تا DN MNTH ماه امسال
-DN MNTH تا DN MNTH DN
-تا سال NUM
-تا ماه MNTH
-تا ماه MNTH NUM
-طول زمان
+# تا سال
+CJ DU
