@@ -21,7 +21,9 @@ def main():
 
             # Print results
             print("Normalized Sentence:\n", normalized_sentence)
-            print("Raw Output:\n", output_raw)
+
+            print("Time Raw Output:\n", output_raw.get('Time', []))
+            print("Date Raw Output:\n", output_raw.get('Date', []))
             print("All Extracted Markers: ")
             print(result)
             for item in result:
