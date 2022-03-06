@@ -1,11 +1,14 @@
-﻿# پنج ثانیه
+﻿# DP
+DP
+
+# پنج ثانیه
 NUM TU
 # دقیقه پنج
 TU NUM
 
 # پنج ساعت
 HR SAAT
-# پیست دقیقه
+# بیست دقیقه
 MIN DAGHIGHEH
 # سی و دو ثانیه
 MIN SANIEH
@@ -20,127 +23,76 @@ HR SAAT VA MIN DAGHIGHEH VA MIN SANIEH
 
 # ساعت پنج
 SAAT HR
-# ساعت پنج عصر
-SAAT HR DP
 # ساعت پنج و بیست دقیقه
 SAAT HR VA MIN DAGHIGHEH
-# ساعت پنج و بیست دقیقه عصر
-SAAT HR VA MIN DAGHIGHEH DP
 # ساعت پنج و چهل ثانیه
 SAAT HR VA MIN SANIEH
-# ساعت پنج و چهل ثانیه صبح
-SAAT HR VA MIN SANIEH DP
 # ساعت پنج و چهال و دو دقیقه و سی و چهار ثانیه
 SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
-# ساعت پنج و سی و چهار دقیقه و چهل ثانیه عصر
-SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH DP
 
 # پنج عصر
 HR DP
-# پنج و بیست و دو دقیقه عصر
-HR VA MIN DAGHIGHEH DP
-# پنج و بیست ثانیه صبح
-HR VA MIN SANIEH DP
-# پنج و سی و چهار دقیقه و چهل ثانیه عصر
-HR VA MIN DAGHIGHEH VA MIN SANIEH DP
 
 # 12:23
 N24:N60
 # 12:23 am
 N24:N60 APM
-# 12:23 عصر
-N24:N60 DP
 # 12:23 دقیقه
 N24:N60 DAGHIGHEH
-# 12:23 دقیقه عصر
-N24:N60 DAGHIGHEH DP
 
 # ساعت 12:23
 SAAT N24:N60
 # ساعت ۱۲:۲۳ AM
 SAAT N24:N60 APM
-# ساعت ۱۲:۳۴ صبح
-SAAT N24:N60 DP
 # ساعت 04:23 دقیقه
 SAAT N24:N60 DAGHIGHEH
-# ساعت 04:23 دقیقه عصر
-SAAT N24:N60 DAGHIGHEH DP
 
 # 12:34:23
 N24:N60:N60
 # 12:23:23 am
 N24:N60:N60 APM
-# 15:12:23 عصر
-N24:N60:N60 DP
 # 17:04:23 ثانیه
 N24:N60:N60 SANIEH
-# 17:04:23 ثانیه عصر
-N24:N60:N60 SANIEH DP
 
 # ساعت 03:53:23
 SAAT N24:N60:N60
-# ساعت 03:23:34 عصر
-SAAT N24:N60:N60 DP
 # ساعت 03:53:23 am
 SAAT N24:N60:N60 APM
 # ساعت 17:04:23 ثانیه
 SAAT N24:N60:N60 SANIEH
-# ساعت 17:04:23 ثانیه عصر
-SAAT N24:N60:N60 SANIEH DP
 
 # دقیقه 23:23
 DAGHIGHEH N60:N60
 # ثانیه 00:23
 N60:N60 SANIEH
 
-# دو ساعت قبل از ساعت ۳ و ۵۰ دقیقه و چهار ثانیه
-HR SAAT PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
-# دو ساعت و ۲۳ دقیقه قبل از ساعت ۳ و ۵۰ دقیقه و چهار ثانیه
-HR SAAT VA MIN DAGHIGHEH PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
-# دو ساعت و ۲۳ دقیقه و ۵۳ ثانیه قبل از ساعت ۳ و ۵۰ دقیقه و چهار ثانیه
-HR SAAT VA MIN DAGHIGHEH VA MIN SANIEH PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+# قبل از ساعت ۳ و ۵۰ دقیقه و چهار ثانیه
+PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+# قبل از ساعت ۳ و ۵۰ دقیقه
+PRV SAAT HR VA MIN DAGHIGHEH
+# قبل از ساعت سه
+PRV SAAT HR
 
-# دو ساعت قبل از ساعت ۳ و ۵۰ دقیقه
-HR SAAT PRV SAAT HR VA MIN DAGHIGHEH
-# دو ساعت و ۲۳ دقیقه قبل از ساعت ۳ و ۵۰ دقیقه
-HR SAAT VA MIN DAGHIGHEH PRV SAAT HR VA MIN DAGHIGHEH
-# دو ساعت و ۲۳ دقیقه و ۵۳ ثانیه قبل از ساعت ۳ و ۵۰ دقیقه
-HR SAAT VA MIN DAGHIGHEH VA MIN SANIEH PRV SAAT HR VA MIN DAGHIGHEH
-
-# دو ساعت قبل از ساعت سه
-HR SAAT PRV SAAT HR
-# دو ساعت و ۲۳ دقیقه قبل از ساعت سه
-HR SAAT VA MIN DAGHIGHEH PRV SAAT HR
-# دو ساعت و ۲۳ دقیقه و ۵۳ ثانیه قبل از ساعت سه
-HR SAAT VA MIN DAGHIGHEH VA MIN SANIEH PRV SAAT HR
+# قبل از ۳
+PRV HR
+# قبل از ۳ و سی و چهار دقیقه
+PRV HR VA MIN DAGHIGHEH
+# قبل از ۳ و سی و چهار دقیقه و چهل ثانیه
+PRV HR VA MIN DAGHIGHEH VA MIN SANIEH
 
 # چهارده دقیقه قبل از ساعت ۳
-MIN DAGHIGHEH PRV SAAT HR
-# چهارده دقیقه قبل از ساعت ۳ و سی و چهار دقیقه
-MIN DAGHIGHEH PRV SAAT HR VA MIN DAGHIGHEH
-# چهارده دقیقه قبل از ساعت ۳ و سی و چهار دقیقه و چهل ثانیه
-MIN DAGHIGHEH PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
-
-# چهارده دقیقه و بیست ثانیه قبل از ساعت ۳
-MIN DAGHIGHEH VA MIN SANIEH PRV HR
-# چهارده دقیقه و بیست ثانیه قبل از ۳ و سی و چهار دقیقه
-MIN DAGHIGHEH VA MIN SANIEH PRV HR VA MIN DAGHIGHEH
-# چهارده دقیقه و بیست ثانیه قبل از ۳ و سی و چهار دقیقه و چهل ثانیه
-MIN DAGHIGHEH VA MIN SANIEH PRV HR VA MIN DAGHIGHEH VA MIN SANIEH
-
-# چهارده دقیقه قبل از ساعت ۳
-MIN DAGHIGHEH PRV HR
+PRV HR
 # چهارده دقیقه قبل از ۳ و سی و چهار دقیقه
-MIN DAGHIGHEH PRV HR VA MIN DAGHIGHEH
+PRV HR VA MIN DAGHIGHEH
 # چهارده دقیقه قبل از ۳ و سی و چهار دقیقه و چهل ثانیه
-MIN DAGHIGHEH PRV HR VA MIN DAGHIGHEH VA MIN SANIEH
+PRV HR VA MIN DAGHIGHEH VA MIN SANIEH
 
 # چهارده دقیقه قبل از ساعت ۳ عصر
-MIN DAGHIGHEH PRV HR DP
+PRV HR DP
 # چهارده دقیقه قبل از ۳ و سی و چهار دقیقه عصر
-MIN DAGHIGHEH PRV HR VA MIN DAGHIGHEH DP
+PRV HR VA MIN DAGHIGHEH DP
 # چهارده دقیقه قبل از ۳ و سی و چهار دقیقه و چهل ثانیه عصر
-MIN DAGHIGHEH PRV HR VA MIN DAGHIGHEH VA MIN SANIEH DP
+PRV HR VA MIN DAGHIGHEH VA MIN SANIEH DP
 
 # چهارده دقیقه قبل از ساعت ۳ am
 MIN DAGHIGHEH PRV HR APM

@@ -16,30 +16,30 @@ MAH MNTH
 DN MNTH
 # یک فروردین ۱۳۷۵
 DN MNTH NUM
-DN MNTH PY
+DN MNTH PN
 # یک فروردین ۱۳۷۵ هجری شمسی
 DN MNTH NUM CT
-DN MNTH PY CT
+DN MNTH PN CT
 # یک فروردین سال ۱۳۷۵
 DN MNTH SAL NUM
-DN MNTH SAL PY
+DN MNTH SAL PN
 # یک فروردین سال ۱۳۷۵ هجری شمسی
 DN MNTH SAL NUM CT
-DN MNTH SAL PY CT
+DN MNTH SAL PN CT
 
 ### without DN
 # فروردین ۱۳۷۵
 MNTH NUM
-MNTH PY
+MNTH PN
 # فروردین ۱۳۷۵ هجری شمسی
 MNTH NUM CT
-MNTH PY CT
+MNTH PN CT
 # فروردین سال ۱۳۷۵
 MNTH SAL NUM
-MNTH SAL PY
+MNTH SAL PN
 # فروردین سال ۱۳۷۵ هجری شمسی
 MNTH SAL NUM CT
-MNTH SAL PY CT
+MNTH SAL PN CT
 
 
 ### with MAH and DN
@@ -47,32 +47,32 @@ MNTH SAL PY CT
 DN MNTH MAH
 # یک فروردین ماه ۱۳۷۵
 DN MNTH MAH NUM
-DN MNTH MAH PY
+DN MNTH MAH PN
 # یک فروردین ماه ۱۳۷۵ هجری شمسی
 DN MNTH MAH NUM CT
-DN MNTH MAH PY CT
+DN MNTH MAH PN CT
 # یک فروردین ماه سال ۱۳۷۵
 DN MNTH MAH SAL NUM
-DN MNTH MAH SAL PY
+DN MNTH MAH SAL PN
 # یک فروردین ماه سال ۱۳۷۵ هجری شمسی
 DN MNTH MAH SAL NUM CT
-DN MNTH MAH SAL PY CT
+DN MNTH MAH SAL PN CT
 
 ### with MAH without DN
 # فروردین ماه
 MNTH MAH
 # فروردین ماه ۱۳۷۵
 MNTH MAH NUM
-MNTH MAH PY
+MNTH MAH PN
 # فروردین ماه ۱۳۷۵ هجری شمسی
 MNTH MAH NUM CT
-MNTH MAH PY CT
+MNTH MAH PN CT
 # فروردین ماه سال ۱۳۷۵
 MNTH MAH SAL NUM
-MNTH MAH SAL PY
+MNTH MAH SAL PN
 # فروردین ماه سال ۱۳۷۵ هجری شمسی
 MNTH MAH SAL NUM CT
-MNTH MAH SAL PY CT
+MNTH MAH SAL PN CT
 
 
 
@@ -81,44 +81,44 @@ MNTH MAH SAL PY CT
 DN MNTHMAH
 # یک تیرماه ۱۳۷۵
 DN MNTHMAH NUM
-DN MNTHMAH PY
+DN MNTHMAH PN
 # یک تیرماه ۱۳۷۵ هجری شمسی
 DN MNTHMAH NUM CT
-DN MNTHMAH PY CT
+DN MNTHMAH PN CT
 # یک تیرماه سال ۱۳۷۵
 DN MNTHMAH SAL NUM
-DN MNTHMAH SAL PY
+DN MNTHMAH SAL PN
 # یک تیرماه سال ۱۳۷۵ هجری شمسی
 DN MNTHMAH SAL NUM CT
-DN MNTHMAH SAL PY CT
+DN MNTHMAH SAL PN CT
 
 ### with MAH sticking near MNTH (MNTHMAH) without DN
 # تیرماه
 MNTHMAH
 # تیرماه ۱۳۷۵
 MNTHMAH NUM
-MNTHMAH PY
+MNTHMAH PN
 # تیرماه ۱۳۷۵ هجری شمسی
 MNTHMAH NUM CT
-MNTHMAH PY CT
+MNTHMAH PN CT
 # تیرماه سال ۱۳۷۵
 MNTHMAH SAL NUM
-MNTHMAH SAL PY
+MNTHMAH SAL PN
 # تیرماه سال ۱۳۷۵ هجری شمسی
 MNTHMAH SAL NUM CT
-MNTHMAH SAL PY CT
+MNTHMAH SAL PN CT
 
 
 ### wihtout MNTH
 # سال ۱۳۷۵
 SAL NUM
-SAL PY
+SAL PN
 # سال ۱۳۷۵ هجری شمسی
 SAL NUM CT
-SAL PY CT
+SAL PN CT
 # ۱۳۷۵ هجری شمسی
 NUM CT
-PY CT
+PN CT
 
 
 # 1300/12/9
@@ -185,11 +185,11 @@ TU NUM و NUM
 تاریخ MNTH NUM
 مورخ MNTH NUM
 TU DN
-DU PY
+DU PN
 NUM ساله
 NUM سال
-PY سال
-PY ساله
+PN سال
+PN ساله
 
 ## pointer
 
