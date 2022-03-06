@@ -1,4 +1,4 @@
-﻿# DP
+﻿# صبح ظهر عصر شب ...
 DP
 
 # پنج ثانیه
@@ -66,12 +66,19 @@ DAGHIGHEH N60:N60
 # ثانیه 00:23
 N60:N60 SANIEH
 
-# قبل از ساعت ۳ و ۵۰ دقیقه و چهار ثانیه
-PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
-# قبل از ساعت ۳ و ۵۰ دقیقه
-PRV SAAT HR VA MIN DAGHIGHEH
 # قبل از ساعت سه
 PRV SAAT HR
+# قبل از ساعت ۳ و ۵۰ دقیقه
+PRV SAAT HR VA MIN DAGHIGHEH
+# قبل از ساعت ۳ و ۵۰ دقیقه و چهار ثانیه
+PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+
+# قبل از ساعت ۳ am
+PRV SAAT HR APM
+# قبل از ۳ و سی و چهار دقیقه am
+PRV SAAT HR VA MIN DAGHIGHEH APM
+# قبل از ۳ و سی و چهار دقیقه و چهل ثانیه am
+PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH APM
 
 # قبل از ۳
 PRV HR
@@ -80,60 +87,24 @@ PRV HR VA MIN DAGHIGHEH
 # قبل از ۳ و سی و چهار دقیقه و چهل ثانیه
 PRV HR VA MIN DAGHIGHEH VA MIN SANIEH
 
-# چهارده دقیقه قبل از ساعت ۳
-PRV HR
-# چهارده دقیقه قبل از ۳ و سی و چهار دقیقه
-PRV HR VA MIN DAGHIGHEH
-# چهارده دقیقه قبل از ۳ و سی و چهار دقیقه و چهل ثانیه
-PRV HR VA MIN DAGHIGHEH VA MIN SANIEH
-
-# چهارده دقیقه قبل از ساعت ۳ عصر
-PRV HR DP
-# چهارده دقیقه قبل از ۳ و سی و چهار دقیقه عصر
-PRV HR VA MIN DAGHIGHEH DP
-# چهارده دقیقه قبل از ۳ و سی و چهار دقیقه و چهل ثانیه عصر
-PRV HR VA MIN DAGHIGHEH VA MIN SANIEH DP
-
-# چهارده دقیقه قبل از ساعت ۳ am
-MIN DAGHIGHEH PRV HR APM
-# چهارده دقیقه قبل از ۳ و سی و چهار دقیقه am
-MIN DAGHIGHEH PRV HR VA MIN DAGHIGHEH APM
-# چهارده دقیقه قبل از ۳ و سی و چهار دقیقه و چهل ثانیه am
-MIN DAGHIGHEH PRV HR VA MIN DAGHIGHEH VA MIN SANIEH APM
-
-# دو ثانیه مانده به ساعت ۴ و پنجاه دقیقه و ۲۳ ثانیه
-MIN SANIEH PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
-# دو ثانیه مانده به ساعت ۴ و پنجاه دقیقه
-MIN SANIEH PRV SAAT HR VA MIN DAGHIGHEH
-# دو ثانیه مانده به ساعت ۴
-MIN SANIEH PRV SAAT HR
-
-# دو ثانیه مانده به ۴ و پنجاه دقیقه و ۲۳ ثانیه
-MIN SANIEH PRV HR VA MIN DAGHIGHEH VA MIN SANIEH
-# دو ثانیه مانده به ۴ و پنجاه دقیقه
-MIN SANIEH PRV HR VA MIN DAGHIGHEH
-# دو ثانیه مانده به ۴
-MIN SANIEH PRV HR
+# قبل از ساعت ۳ am
+PRV HR APM
+# قبل از ۳ و سی و چهار دقیقه am
+PRV HR VA MIN DAGHIGHEH APM
+# قبل از ۳ و سی و چهار دقیقه و چهل ثانیه am
+PRV HR VA MIN DAGHIGHEH VA MIN SANIEH APM
 
 # ساعت پنج و ربع
 SAAT HR VA ROB
-# ساعت پنج و ربع عصر
-SAAT HR VA ROB DP
 
 # ساعت یک ربع به شیش
-SAAT YEK ROB PRV HR
-# ساعت یک ربع به هفت شب
-SAAT YEK ROB PRV DP
+SAAT YEK ROB PRV
 
 # یک ربع به پنج
 YEK ROB BNP HR
-# یک ربع به هفت شب
-YEK ROB BNP HR DP
 
 # ساعت پنج و نیم
 SAAT HR VA NIM
-# ساعت پنج و نیم صبح
-SAAT HR VA NIM DP
 
 
 
