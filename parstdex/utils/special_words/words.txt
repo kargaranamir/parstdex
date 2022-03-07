@@ -1,7 +1,3 @@
-# General
-VA	و
-AZ از
-
 # Time
 SAAT	ساعت
 DAGHIGHEH	دقیقه
@@ -13,4 +9,23 @@ YEK یک
 # Date
 SAL	سال
 MAH	ماه
+HAFTE   هفته
 ROOZ روز
+ROOZHAYE    روزهای
+KABISE  کبیسه
+TARIKH  تاریخ
+
+# General
+HAMIN   همین
+YEKBAR یکبار
+BAR بار
+CHANDIN چندین
+CHANDAN چندان
+CHAND   چند
+TEY طی
+TOOL    طول
+ZAMAN   زمان
+HAR هر
+DAR در
+VA	و
+AZ از
