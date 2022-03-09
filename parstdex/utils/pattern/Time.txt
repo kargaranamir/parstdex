@@ -46,6 +46,17 @@ N24:N60 APM
 # 12:23 دقیقه
 N24:N60 DAGHIGHEH
 
+
+# قبل از 12:23
+PRV N24:N60
+# قبل از 12:23 am
+PRV N24:N60 APM
+# قبل از 12:23 دقیقه
+PRV N24:N60 DAGHIGHEH
+
+# قبل از ساعت
+PRV SSAT
+
 # ساعت 12:23
 SAAT N24:N60
 # ساعت ۱۲:۲۳ AM
@@ -66,6 +77,11 @@ SAAT N24:N60:N60
 SAAT N24:N60:N60 APM
 # ساعت 17:04:23 ثانیه
 SAAT N24:N60:N60 SANIEH
+
+# ساعت بیست و بیست و سه
+SAAT HR VA MIN
+# ساعت ۲۰ و ۲۳
+SAAT N24 VA N60
 
 # دقیقه 23:23
 DAGHIGHEH N60:N60
@@ -95,6 +111,7 @@ PRV HR VA MIN DAGHIGHEH VA MIN SANIEH
 
 # قبل از ساعت ۳ am
 PRV HR APM
+PRV SAAT HR APM
 # قبل از ۳ و سی و چهار دقیقه am
 PRV HR VA MIN DAGHIGHEH APM
 # قبل از ۳ و سی و چهار دقیقه و چهل ثانیه am
@@ -105,9 +122,18 @@ SAAT HR VA ROB
 
 # ساعت یک ربع به شیش
 SAAT YEK ROB PRV
-
+SAAT YEK ROB BNP
+SAAT YEK ROB BE
 # یک ربع به پنج
 YEK ROB BNP HR
+YEK ROB BE HR
+YEK ROB PRV
+YEK ROB NXT
+
+# ۳ دقیقه بعد
+MIN TU BNP
+NUM TU BNP
+PN TU BNP
 
 # ساعت پنج و نیم
 SAAT HR VA NIM
