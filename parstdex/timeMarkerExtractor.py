@@ -1,20 +1,23 @@
 import re
 from parstdex.utils.pattern_to_regex import Patterns
 from parstdex.utils.normalizer import Normalizer
+from parstdex.utils.spans import create_spans, subtract_spans
 from parstdex.utils.word_to_value import ValueExtractor
-from parstdex.utils.merge_spans import merge_spans
+from parstdex.utils.spans import merge_spans
 
 
 class MarkerExtractor:
-    def __init__(self, normalizer=None, patterns=None, value_extractor=None):
+    def __init__(self, normalizer=None, patterns=None, adv_patterns=None, value_extractor=None):
         # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
         self.normalizer = normalizer if normalizer else Normalizer()
         # Patterns: patterns to regex generator
-        self.patterns = patterns if patterns else Patterns()
+        self.patterns = patterns if patterns else Patterns('pattern/positive')
+        # Adversarial Patterns: patterns to regex generator
+        self.adv_patterns = adv_patterns if adv_patterns else Patterns('pattern/negative')
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = value_extractor if value_extractor else ValueExtractor()
 
-    def time_marker_extractor(self, input_sentence, ud_patterns=None):
+    def time_marker_extractor(self, input_sentence):
         """
         function should output list of spans, each item in list is a time marker span present in the input sentence.
         :param ud_patterns:
@@ -27,46 +30,31 @@ class MarkerExtractor:
         # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
         normalizer = self.normalizer
         # Patterns: patterns to regex generator
-        patterns = ud_patterns if ud_patterns else self.patterns
+        patterns = self.patterns
+        # Adversarial patterns
+        adv_patterns = self.adv_patterns
 
         # apply normalizer on input sentence
         normalized_sentence = normalizer.normalize_cumulative(input_sentence)
 
-        # define data structures to compute and postprocess the extracted patterns
-        output_raw = {"Date": [], "Time": []}
-        output_extracted = {}
-
-        # add pattern keys to dictionaries and define a list structure for each key
-        for key in patterns.regexes.keys():
-            output_raw[key]: list = []
-            output_extracted[key]: list = []
-
-        # apply regexes on normalized sentence and store extracted markers in output_raw
-        for key in patterns.regexes.keys():
-            for regex_value in patterns.regexes[key]:
-                # apply regex
-                out = re.findall(fr'\b(?:{regex_value})', normalized_sentence)
-                # ignore empty markers
-                if len(out) > 0:
-                    matches = list(re.finditer(fr'\b(?:{regex_value})', normalized_sentence))
-                    # store extracted markers in output_raw
-                    output_raw[key] = output_raw[key] + matches
-
-        spans = []
-        spans_key = []
-        for key in output_raw.keys():
-            matches = output_raw[key]
-            for match in matches:
-                start = match.regs[0][0]
-                end = match.regs[0][1]
-                # match.group()
-                spans.append((start, end))
-                spans_key.append(key)
+        # Create normal spans
+        output_raw, spans, spans_key = create_spans(normalized_sentence, patterns)
 
         if len(spans) == 0:
             return normalized_sentence, output_raw, []
 
-        result = merge_spans(spans, spans_key)
+        # e.x. [(0, 15), (26, 35), (37, 42)]
+        normal_spans = merge_spans(spans, spans_key)
+
+        # Create Adversarial spans
+        adv_output_raw, adv_spans, adv_spans_key = create_spans(normalized_sentence, adv_patterns)
+
+        # e.x. [(3, 10)]
+        adv_spans = merge_spans(adv_spans, adv_spans_key)
+
+        # Subtract Adversarial spans from normal spans
+        result = subtract_spans(normal_spans, adv_spans)
+
         return normalized_sentence, output_raw, result
 
     def time_value_extractor(self, input_sentence):
