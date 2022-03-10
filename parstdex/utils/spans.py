@@ -69,7 +69,7 @@ def find_spans(encoded_sent):
             i += 1
             continue
         else:
-            start = i
+            start = i - 1
             while i < len(encoded_sent) and encoded_sent[i] == 1:
                 i += 1
             end = i - 1
