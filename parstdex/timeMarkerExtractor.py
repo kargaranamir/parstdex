@@ -1,7 +1,7 @@
 import re
 from parstdex.utils.pattern_to_regex import Patterns
 from parstdex.utils.normalizer import Normalizer
-from parstdex.utils.spans import create_spans, subtract_spans
+from parstdex.utils.spans import create_spans
 from parstdex.utils.word_to_value import ValueExtractor
 from parstdex.utils.spans import merge_spans
 
@@ -11,9 +11,7 @@ class MarkerExtractor:
         # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
         self.normalizer = normalizer if normalizer else Normalizer()
         # Patterns: patterns to regex generator
-        self.patterns = patterns if patterns else Patterns('pattern/positive')
-        # Adversarial Patterns: patterns to regex generator
-        self.adv_patterns = adv_patterns if adv_patterns else Patterns('pattern/negative')
+        self.patterns = patterns if patterns else Patterns()
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = value_extractor if value_extractor else ValueExtractor()
 
@@ -31,30 +29,20 @@ class MarkerExtractor:
         normalizer = self.normalizer
         # Patterns: patterns to regex generator
         patterns = self.patterns
-        # Adversarial patterns
-        adv_patterns = self.adv_patterns
 
         # apply normalizer on input sentence
         normalized_sentence = normalizer.normalize_cumulative(input_sentence)
 
-        # Create normal spans
-        output_raw, spans, spans_key = create_spans(normalized_sentence, patterns)
+        # Create spans
+        output_raw, spans = create_spans(patterns, normalized_sentence)
 
-        if len(spans) == 0:
+        if len(spans['Time']) == 0 and len(spans['Date']) == 0:
             return normalized_sentence, output_raw, []
 
-        # e.x. [(0, 15), (26, 35), (37, 42)]
-        normal_spans = merge_spans(spans, spans_key)
+        result = merge_spans(spans, normalized_sentence)
 
-        # Create Adversarial spans
-        adv_output_raw, adv_spans, adv_spans_key = create_spans(normalized_sentence, adv_patterns)
-
-        # e.x. [(3, 10)]
-        adv_spans = merge_spans(adv_spans, adv_spans_key)
-
-        # Subtract Adversarial spans from normal spans
-        result = subtract_spans(normal_spans, adv_spans)
-
+        # temp
+        result = result['Date'] + result['Time']
         return normalized_sentence, output_raw, result
 
     def time_value_extractor(self, input_sentence):

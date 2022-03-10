@@ -82,10 +82,10 @@ class Patterns:
     regexes = {}
     special_words = {}
 
-    def __init__(self, patterns_path):
+    def __init__(self):
         self.annotations = Annotation()
         self.special_words = get_special_words()
-        self.patterns_path = os.path.join(os.path.dirname(__file__), patterns_path)
+        self.patterns_path = os.path.join(os.path.dirname(__file__), 'pattern')
         files = os.listdir(self.patterns_path)
         for f in files:
             self.regexes[f.replace('.txt', '')] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
