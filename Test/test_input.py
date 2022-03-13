@@ -5,9 +5,8 @@ import os
 from parstdex import MarkerExtractor
 
 
-
 def create_data():
-    file_path = os.getcwd() + './AutoTest/inputs.json'
+    file_path = os.getcwd() + '/inputs.json'
     f = open(file_path, 'r', encoding='utf8')
     data = json.load(f)
 
