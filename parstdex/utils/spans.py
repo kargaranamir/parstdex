@@ -52,11 +52,13 @@ def encode_span(normal_spans, adv_spans, normalized_sentence):
 
     for span in normal_spans:
         for i in range(span[0], span[1] + 1):
-            encoded_sent[i] = 1
+            if i < len(encoded_sent):
+                encoded_sent[i] = 1
 
     for span in adv_spans:
         for i in range(span[0], span[1] + 1):
-            encoded_sent[i] = 0
+            if i < len(encoded_sent):
+                encoded_sent[i] = 0
 
     return encoded_sent
 

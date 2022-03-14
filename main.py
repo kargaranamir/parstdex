@@ -11,22 +11,20 @@ def main():
     test_data = json.load(f)
     extractor = MarkerExtractor()
 
-    for filename in test_data:
-
-        print(filename['in'])
-        ## get input test case
-        input_sentence = filename['in']
+    for testcase in test_data:
+        input_sentence = testcase['in']
         print("Original Sentence:\n", input_sentence)
-        ## time_marker_extractor will return normalized sentence and time-date markers
-        normalized_sentence, result = extractor.time_marker_extractor(input_sentence)
+        # time_marker_extractor will return normalized sentence and time-date markers
+        normalized_sentence, output_raw, result = extractor.time_marker_extractor(input_sentence)
 
-        ## Print results
+        # Print results
         print("Normalized Sentence:\n", normalized_sentence)
+
+        # Print extracted markers
         print("All Extracted Markers: ")
         print(result)
         for item in result:
             print(normalized_sentence[item[0]:item[1]])
-
 
         ## time_value_extractor will return normalized sentence and time-date markers and values
         # normalized_sentence, result, values = extractor.time_value_extractor(input_sentence)

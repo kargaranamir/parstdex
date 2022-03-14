@@ -31,17 +31,9 @@ class Normalizer:
         return re.sub(pattern, lambda m: self.ALPHABET_DICT[m.group()], str(text))
 
     def normalize_space(self, text):
-        res = text.replace('،', ' ، ')
-        res = ':'.join([i.lstrip().rstrip() for i in res.split(':')])
-        res = '-'.join([i.lstrip().rstrip() for i in res.split('-')])
-        res = '/'.join([i.lstrip().rstrip() for i in res.split('/')])
-        res = ' ( '.join([i.lstrip().rstrip() for i in res.split('(')])
-        res = ' ) '.join([i.lstrip().rstrip() for i in res.split(')')])
-        res = '/'.join([i.lstrip().rstrip() for i in res.split('\\')])
-        res = re.sub(fr'((?:{self.C_NUMBERS})+(\.(?:{self.C_NUMBERS})+)?)', r' \1 ', res)
-        # res = res.replace('\u200c', '')
-        res = ' '.join(res.split())
-        res = res + ' .' if res[-1] != '.' else res
+        res = text.replace('،', ' ')
+        res = re.sub(rf"[:\-\/\\](?!{self.C_NUMBERS}+)", " ", res)
+        res = re.sub(r"\(|\)|\.", " ", res)
         return res
 
     def normalize_cumulative(self, text):
