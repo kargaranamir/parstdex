@@ -115,4 +115,3 @@ class Patterns:
         patterns = process_file(path)
         regexes = [self.pattern_to_regex(pattern) for pattern in patterns]
         return regexes
-
