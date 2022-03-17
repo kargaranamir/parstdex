@@ -130,10 +130,20 @@ NUM/N12/N31
 NUM-N12-N31
 NUM\.N12\.N31
 
+# 9/12/1400
+N31/N12/NUM
+N31-N12-NUM
+N31\.N12\.NUM
+
 # 1300/12/9 هجری شمسی
 NUM/N12/31 CT
 NUM\.N12\.N31 CT
 NUM-N12-N31 CT
+
+# 9/12/1400 هجری شمسی
+N31/N12/NUM CT
+N31-N12-NUM CT
+N31\.N12\.NUM CT
 
 # سه (سومین) روز از بهار
 NUM ROOZ AZ SSN
@@ -271,8 +281,20 @@ HAMIN RY
 
 # هر شنبه
 HAR WD
+# از شنبه
+AZ WD
+# شنبه ها
+WD HA
+# شنبه‌ها
+WDHSPACEHA
 # هر هفته
 HAR DU
+AZ DU
+# هر روز هفته
+HAR DU DU
+
+# بجز پنجشنبه
+PRV WD
 
 # فروردین هر سال
 MNTH HAR SAL
@@ -354,14 +376,24 @@ DN CJ DN MNTH
 
 # امروز تا
 RD CJ
+# امروز و دیروز
+RD VA RD
 # یکشنبه تا
 WD CJ
+# دوشنبه و پنج‌شنبه
+WD VA WD
 # پاییز تا
 SSN CJ
+# پاییز و زمستان
+SSN VA SSN
 # امسال تا
 RY CJ
+# امسال و پیلارسال
+RY VA RY
 # فروردین تا
 MNTH CJ
+# فروردین و اردیبهشت
+MNTH VA MNTH
 
 # تا سال
 CJ DU

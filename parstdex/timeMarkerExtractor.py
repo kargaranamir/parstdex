@@ -42,7 +42,7 @@ class MarkerExtractor:
         result = merge_spans(spans, normalized_sentence)
 
         # temp
-        result = result['Date'] + result['Time']
+        result = result['Date'] + result['Time'] + result['DateTime']
         return normalized_sentence, output_raw, result
 
     def time_value_extractor(self, input_sentence):

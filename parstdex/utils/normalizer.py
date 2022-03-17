@@ -30,10 +30,12 @@ class Normalizer:
         pattern = "|".join(map(re.escape, self.ALPHABET_DICT.keys()))
         return re.sub(pattern, lambda m: self.ALPHABET_DICT[m.group()], str(text))
 
-    def normalize_space(self, text):
+    @staticmethod
+    def normalize_space(text):
+        # Remove persian comma
         res = text.replace('،', ' ')
-        res = re.sub(rf"[:\-\/\\](?!{self.C_NUMBERS}+)", " ", res)
-        res = re.sub(r"\(|\)|\.", " ", res)
+        # Remove parenthesis
+        res = re.sub(r"\(|\)", " ", res)
         return res
 
     def normalize_cumulative(self, text):

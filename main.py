@@ -13,12 +13,15 @@ def main():
 
     for testcase in test_data:
         input_sentence = testcase['in']
-        print("Original Sentence:\n", input_sentence)
+        print(f"Original Sentence:\n{input_sentence}")
         # time_marker_extractor will return normalized sentence and time-date markers
         normalized_sentence, output_raw, result = extractor.time_marker_extractor(input_sentence)
 
         # Print results
-        print("Normalized Sentence:\n", normalized_sentence)
+        print(f"Normalized Sentence:\n{normalized_sentence}")
+
+        # Print raw output
+        print(f"Raw Output:\n{output_raw}")
 
         # Print extracted markers
         print("All Extracted Markers: ")

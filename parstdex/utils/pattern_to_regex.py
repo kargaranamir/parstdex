@@ -28,6 +28,7 @@ class Annotation:
     time_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/time')
     date_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/date')
     aux_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/ax')
+    adv_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/adv')
 
     annotations_dict = {}
 
@@ -38,8 +39,13 @@ class Annotation:
         date_annotations = self.create_annotation_dict(self.date_annotation_path)
         # auxiliary annotation dictionary includes all annotations of auxiliary folder
         aux_annotations = self.create_annotation_dict(self.aux_annotation_path)
+        # adversarial annotation dictionary includes all annotations of adversarial folder
+        adv_annotations = self.create_annotation_dict(self.adv_annotation_path)
 
-        self.annotations_dict = {**time_annotations, **date_annotations, **aux_annotations}
+        self.annotations_dict = {**time_annotations,
+                                 **date_annotations,
+                                 **aux_annotations,
+                                 **adv_annotations}
 
     @staticmethod
     def create_annotation(path):
@@ -96,13 +102,12 @@ class Patterns:
         :param pattern: str
         :return: str
         """
-        pattern = pattern.replace(" ", '+\\s')
+        pattern = pattern.replace(" ", r'\s*')
         final_annotations = {**self.annotations.annotations_dict, **self.special_words}
         final_annotations_keys = sorted(final_annotations, key=len, reverse=True)
         for key in final_annotations_keys:
-            pattern = re.sub(f'{key}', "(?:" + final_annotations[key] + ")", pattern)
+            pattern = re.sub(f'{key}', fr"(?:{final_annotations[key]})", pattern)
 
-        pattern = pattern + '+\\s'
         return pattern
 
     def create_regexes_from_patterns(self, path):

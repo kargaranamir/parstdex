@@ -36,6 +36,9 @@ SAAT HR VA MIN SANIEH
 # ساعت پنج و چهال و دو دقیقه و سی و چهار ثانیه
 SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
 
+# بعد از ظهر اخیر
+DP NXT
+
 # پنج عصر
 HR DP
 
