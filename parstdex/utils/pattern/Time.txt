@@ -55,6 +55,9 @@ SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
 # بعد از ظهر اخیر
 DP NXT
 
+# قبل ظهر
+PRV DP
+
 # پنج عصر
 HR DP
 
@@ -154,6 +157,8 @@ MIN TU BNP
 NUM TU BNP
 PN TU BNP
 
+# ۳ دقیقه بعد
+MIN TU BNP HR
 
 # دقیقه ای
 TU NXT
