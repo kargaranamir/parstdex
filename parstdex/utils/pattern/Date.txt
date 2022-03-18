@@ -12,9 +12,6 @@ RY
 MNTH
 
 
-
-
-
 # ماه فروردین
 MAH MNTH
 
@@ -355,8 +352,8 @@ TEY DN DU
 TOOL ZAMAN
 
 # سال سوم تا پنجم
-‌DU DN CJ DN
-‌MNTH DN CJ DN
+DU DN CJ DN
+MNTH DN CJ DN
 SSN DN CJ DN
 # سوم تا پنجم ماه
 DN CJ DN DU
@@ -395,3 +392,9 @@ MNTH VA MNTH
 
 # تا سال
 CJ DU
+
+# پنج تا ۵ هفته
+NUM CJ NUM DU
+NUM CJ PN DU
+PN CJ NUM DU
+PN CJ PN DU

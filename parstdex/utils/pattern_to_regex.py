@@ -71,6 +71,7 @@ class Annotation:
         # supports persian numbers from one to four digits written with persian alphabet
         # example:  هزار و سیصد و شصت و پنج
         ONE_TO_NINE_JOIN = "|".join(const.ONE_TO_NINE.keys())
+        MAGNITUDE_JOIN = "|".join(const.MAGNITUDE.keys())
         HEZAR = "هزار"
         HUNDREDS_TEXT_JOIN = "|".join(const.HUNDREDS_TEXT.keys())
         ONE_NINETY_NINE_JOIN = "|".join(list(const.ONE_NINETY_NINE.keys())[::-1])
@@ -93,7 +94,10 @@ class Annotation:
         PN3HEZAR = rf"{PN1HEZAR}{WHITE_SPACE}*(?:{const.JOINER}){WHITE_SPACE}*" + "(?:" + PN3 + "|" + PN2 + "|" + PN1 + ")"
         PN4 = PN3HEZAR + "|" + PN2HEZAR + "|" + PN1HEZAR + "|" + PNHEZAR
 
-        PN = PN4 + "|" + PN3 + "|" + PN2 + "|" + PN1
+        # TODO: support larger numbers
+        MAGNITUDES = MAGNITUDE_JOIN
+
+        PN = PN4 + "|" + PN3 + "|" + PN2 + "|" + PN1 + "|" + MAGNITUDES
         annotation_dict["PN"] = PN
 
         return annotation_dict

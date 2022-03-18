@@ -1,10 +1,9 @@
 import re
+from typing import Dict
 
 
-def merge_spans(spans, normalized_sentence):
-    result, encoded = {}, {}
-
-    # spans = remove_space(spans, normalized_sentence)
+def merge_spans(spans: Dict, normalized_sentence: str):
+    result, encoded = dict(), dict()
 
     encoded['DateTime'] = encode_span(spans['DateTime'], spans['Adversarial'], normalized_sentence)
     encoded['Date'] = encode_span(spans['Date'], spans['Adversarial'] + spans['DateTime'], normalized_sentence)
@@ -16,23 +15,6 @@ def merge_spans(spans, normalized_sentence):
     result['DateTime'] = find_spans(encoded['DateTime'])
 
     return result
-
-
-# def remove_space(spans: dict, normalized_sentence):
-#     result_spans = {}
-#
-#     for key in spans.keys():
-#         result_spans[key] = []
-#
-#         for span in spans[key]:
-#             start, end = span
-#             while normalized_sentence[start] == ' ' and start < end:
-#                 start += 1
-#             while normalized_sentence[end] == ' ' and start < end:
-#                 end -= 1
-#             result_spans[key].append((start, end))
-#
-#     return result_spans
 
 
 def create_spans(patterns, normalized_sentence):

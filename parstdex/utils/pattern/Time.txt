@@ -16,6 +16,18 @@ TU NUM
 TU MIN
 TU PN
 
+# پنج تا ۵ ساعت
+NUM CJ NUM TU
+NUM CJ PN TU
+PN CJ NUM TU
+PN CJ PN TU
+
+# پنج تا شیش غروب
+NUM CJ NUM DP
+NUM CJ PN DP
+PN CJ NUM DP
+PN CJ PN DP
+
 # پنج ساعت
 HR SAAT
 # بیست دقیقه
