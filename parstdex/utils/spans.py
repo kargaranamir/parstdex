@@ -2,22 +2,37 @@ import re
 
 
 def merge_spans(spans, normalized_sentence):
+    result, encoded = {}, {}
 
-    result = {
-        "Date": [],
-        "Time": []
-    }
+    # spans = remove_space(spans, normalized_sentence)
 
-    encoded_date = encode_span(spans['Date'], spans['Adversarial'] + spans['DateTime'], normalized_sentence)
-    # Remove Anything that date matches too, they are enemies :)
-    encoded_time = encode_span(spans['Time'], spans['Adversarial'] + spans['Date'] + spans['DateTime'], normalized_sentence)
-    encoded_date_time = encode_span(spans['DateTime'], spans['Adversarial'], normalized_sentence)
+    encoded['DateTime'] = encode_span(spans['DateTime'], spans['Adversarial'], normalized_sentence)
+    encoded['Date'] = encode_span(spans['Date'], spans['Adversarial'] + spans['DateTime'], normalized_sentence)
+    encoded['Time'] = encode_span(spans['Time'], spans['Adversarial'] + spans['DateTime'], normalized_sentence)
+    encoded['Date'], encoded['Time'] = encode_rtl(encoded['Date'], encoded['Time'])
 
-    result['Date'] = find_spans(encoded_date)
-    result['Time'] = find_spans(encoded_time)
-    result['DateTime'] = find_spans(encoded_date_time)
+    result['Date'] = find_spans(encoded['Date'])
+    result['Time'] = find_spans(encoded['Time'])
+    result['DateTime'] = find_spans(encoded['DateTime'])
 
     return result
+
+
+# def remove_space(spans: dict, normalized_sentence):
+#     result_spans = {}
+#
+#     for key in spans.keys():
+#         result_spans[key] = []
+#
+#         for span in spans[key]:
+#             start, end = span
+#             while normalized_sentence[start] == ' ' and start < end:
+#                 start += 1
+#             while normalized_sentence[end] == ' ' and start < end:
+#                 end -= 1
+#             result_spans[key].append((start, end))
+#
+#     return result_spans
 
 
 def create_spans(patterns, normalized_sentence):
@@ -78,3 +93,32 @@ def find_spans(encoded_sent):
             end = i - 1
             spans.append((start, end))
     return spans
+
+
+def encode_rtl(encoded_date, encoded_time):
+    i = 0
+    while i < len(encoded_date):
+
+        if encoded_date[i] == 1 and encoded_time[i] == 1:
+            if encoded_time[i - 1] == 1 and encoded_date[i - 1] == 0:
+                while encoded_time[i] == 1:
+                    encoded_date[i] = 0
+                    if i < len(encoded_time) - 1:
+                        i += 1
+                    else:
+                        break
+            elif encoded_date[i - 1] == 1 and encoded_time[i - 1] == 0:
+                while encoded_date[i] == 1:
+                    encoded_time[i] = 0
+                    if i < len(encoded_date) - 1:
+                        i += 1
+                    else:
+                        break
+
+            else:
+                # TODO
+                print("#TODO")
+                i += 1
+        else:
+            i += 1
+    return encoded_date, encoded_time

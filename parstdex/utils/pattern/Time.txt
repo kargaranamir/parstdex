@@ -9,8 +9,12 @@ CJ DP
 
 # پنج ثانیه
 NUM TU
+MIN TU
+PN TU
 # دقیقه پنج
 TU NUM
+TU MIN
+TU PN
 
 # پنج ساعت
 HR SAAT
@@ -138,8 +142,18 @@ MIN TU BNP
 NUM TU BNP
 PN TU BNP
 
+
+# دقیقه ای
+TU NXT
+# دقیقه ی آینده
+TU NXT NXT
+# دقیقه‌ای
+TUHSPACENXT
+
 # ساعت پنج و نیم
 SAAT HR VA NIM
+
+
 
 
 

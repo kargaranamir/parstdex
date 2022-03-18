@@ -15,6 +15,9 @@ ROOZHAYE    روزهای
 KABISE  کبیسه
 TARIKH  تاریخ
 
+# DateTime
+SHABROOZ شب|روز
+
 # General
 HA ها
 VA	و
@@ -26,10 +29,8 @@ TEY طی
 HAR هر
 DAR در
 TOOL    طول
-CHAND   چند
+CHAND   چند|چندین
 ZAMAN   زمان
 HAMIN   همین
 HSPACE  \\u200C
 YEKBAR یکبار
-CHANDIN چندین
-CHANDAN چندان

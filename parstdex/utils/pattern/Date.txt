@@ -145,11 +145,6 @@ N31/N12/NUM CT
 N31-N12-NUM CT
 N31\.N12\.NUM CT
 
-# سه (سومین) روز از بهار
-NUM ROOZ AZ SSN
-DN ROOZ AZ SSN
-NUM MAH AZ SSN
-DN MAH AZ SSN
 # سه (سومین) بهار
 DN SSN
 NUM SSN
@@ -168,6 +163,12 @@ RY MNTH
 RY MNTH MAH
 # فروردین اخیر
 MNTH NXT
+# ژانویه آینده ۱۹۹۹ - ژانویه ی ۱۹۹۹
+MNTH NXT NUM
+MNTH NXT PN
+# ژانویه‌ی ۱۹۹۹
+MNTHHSPACE NXT NUM
+MNTHHSPACE NXT PN
 # ماه فروردین اخیر
 MAH MNTH NXT
 # فروردین ماه اخیر
@@ -219,6 +220,12 @@ SSN BNP
 ROOZHAYE NXT
 # سه هفته نخست
 DN DU NXT
+# سه هفته‌ای
+DN DUHSPACENXT
+# سه ماه‌ی نخست
+DN DUHSPACENXT NXT
+# سه ماه نخست آینده
+DN DU NXT NXT
 # سه هفته نخست ۱۴۰۰
 DN DU NXT NUM
 DN DU NXT PN
@@ -265,8 +272,6 @@ PRV DU
 
 # سال کبیسه
 SAL KABISE
-# در تاریخ
-DAR TARIKH
 # تاریخ فروردین
 TARIKH MNTH
 MOVAREKH MNTH
@@ -281,15 +286,12 @@ HAMIN RY
 
 # هر شنبه
 HAR WD
-# از شنبه
-AZ WD
 # شنبه ها
 WD HA
 # شنبه‌ها
 WDHSPACEHA
 # هر هفته
 HAR DU
-AZ DU
 # هر روز هفته
 HAR DU DU
 
@@ -345,12 +347,8 @@ HAR PNBAR DAR DU
 
 # چند سال
 CHAND DU
-CHANDIN DU
-CHANDAN DU
 # طی چند سال
 TEY CHAND DU
-TEY CHANDAN DU
-TEY CHANDIN DU
 # طی ۳ روز
 TEY DN DU
 # طول زمان
