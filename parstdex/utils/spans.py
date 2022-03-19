@@ -100,6 +100,8 @@ def encode_rtl(encoded_date, encoded_time):
             else:
                 # TODO
                 print("#TODO")
+                print(f"Encoded Date:\n {encoded_date}")
+                print(f"Encoded Date:\n {encoded_time}")
                 i += 1
         else:
             i += 1
