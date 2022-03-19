@@ -1,5 +1,6 @@
 import os
 import json
+import pprint
 
 from parstdex import MarkerExtractor
 
@@ -31,7 +32,9 @@ def main():
                     "token": match.string[start:end],
                     "span": [start, end]
                 })
-        print(f"Raw Output:\n{dict_output_raw}")
+
+        print("Raw Output:")
+        pprint.pprint(dict_output_raw)
 
         # Print extracted markers
         print("All Extracted Markers: ")
