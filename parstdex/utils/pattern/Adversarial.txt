@@ -1,6 +1,11 @@
 به روز رسانی
 امام جمعه
 غروب خورشید
+# لیگ شانزدهم
+LEAGUE NUM
+LEAGUE PN
+LEAGUE DN
+
 MEE PEVPOV
 MEE PAVPOV
 MEEHSPACEPEVPOV

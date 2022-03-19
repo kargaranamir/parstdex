@@ -21,7 +21,17 @@ def main():
         print(f"Normalized Sentence:\n{normalized_sentence}")
 
         # Print raw output
-        print(f"Raw Output:\n{output_raw}")
+        dict_output_raw = {}
+        for key in output_raw.keys():
+            dict_output_raw[key] = []
+            for match in output_raw[key]:
+                start = match.regs[0][0]
+                end = match.regs[0][1]
+                dict_output_raw[key].append({
+                    "token": match.string[start:end],
+                    "span": [start, end]
+                })
+        print(f"Raw Output:\n{dict_output_raw}")
 
         # Print extracted markers
         print("All Extracted Markers: ")
