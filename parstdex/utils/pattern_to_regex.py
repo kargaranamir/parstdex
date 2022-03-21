@@ -120,6 +120,8 @@ class Patterns:
         for f in files:
             self.regexes[f.replace('.txt', '')] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
 
+        self.regexes['Space'] = [rf"\u200c+", rf"\s+"]
+
     def pattern_to_regex(self, pattern):
         """
         pattern_to_regex takes pattern and return corresponding regex

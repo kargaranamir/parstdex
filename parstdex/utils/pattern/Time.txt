@@ -170,7 +170,3 @@ TUHSPACENXT
 # ساعت پنج و نیم
 SAAT HR VA NIM
 
-
-
-
-

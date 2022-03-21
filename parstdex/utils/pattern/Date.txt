@@ -202,7 +202,6 @@ MNTHMAH BNP
 MAH MNTH BNP
 
 
-
 # RY + SSN + NXT + BNP + PRV
 # پاییز امسال
 SSN RY
@@ -218,7 +217,8 @@ BNP SSN
 SSN BNP
 
 # روزهای آعازین
-ROOZHAYE NXT
+DU NXT NXT
+DUNXT NXT
 # سه هفته نخست
 DN DU NXT
 # سه هفته‌ای
