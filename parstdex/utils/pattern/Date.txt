@@ -267,6 +267,7 @@ DN DU
 DU DN
 # هفته آینده
 DU NXT
+DU HSPACE NXT
 DU BNP
 # آِغاز هفته
 PRV DU
