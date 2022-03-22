@@ -124,8 +124,6 @@ PRV SAAT HR VA MIN DAGHIGHEH APM
 # قبل از ۳ و سی و چهار دقیقه و چهل ثانیه am
 PRV SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH APM
 
-# قبل از ۳
-PRV HR
 # قبل از ۳ و سی و چهار دقیقه
 PRV HR VA MIN DAGHIGHEH
 # قبل از ۳ و سی و چهار دقیقه و چهل ثانیه

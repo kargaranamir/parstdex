@@ -7,15 +7,16 @@ def merge_spans(spans: Dict, normalized_sentence: str):
 
     encoded['Date'] = encode_span(spans['Date'],
                                   spans['Adversarial'],
-                                  spans['Space'],
                                   normalized_sentence)
 
     encoded['Time'] = encode_span(spans['Time'],
                                   spans['Adversarial'],
-                                  spans['Space'],
                                   normalized_sentence)
 
     encoded['Date'], encoded['Time'] = encode_rtl(encoded['Date'], encoded['Time'])
+
+    encoded['Date'] = encode_space(encoded['Date'], spans['Space'])
+    encoded['Time'] = encode_space(encoded['Time'], spans['Space'])
 
     result['Date'] = find_spans(encoded['Date'])
     result['Time'] = find_spans(encoded['Time'])
@@ -53,7 +54,8 @@ def create_spans(patterns, normalized_sentence):
     return output_raw, spans
 
 
-def encode_span(normal_spans, adv_spans, space_spans, normalized_sentence):
+
+def encode_span(normal_spans, adv_spans, normalized_sentence):
     encoded_sent = [0] * len(normalized_sentence)
 
     for span in normal_spans:
@@ -63,11 +65,6 @@ def encode_span(normal_spans, adv_spans, space_spans, normalized_sentence):
     for span in adv_spans:
         for i in range(span[0], span[1]):
             encoded_sent[i] = 0
-
-    for span in space_spans:
-        for i in range(span[0], span[1]):
-            encoded_sent[i] = -1
-
     return encoded_sent
 
 
@@ -101,14 +98,15 @@ def encode_rtl(encoded_date, encoded_time):
     while i < len(encoded_date):
 
         if encoded_date[i] == 1 and encoded_time[i] == 1:
-            if encoded_time[i - 1] == 1 and (encoded_date[i - 1] == 0 or encoded_date[i - 1] == -1):
+
+            if encoded_time[i - 1] == 1 and encoded_date[i - 1] == 0:
                 while encoded_time[i] == 1:
                     encoded_date[i] = 0
                     if i < len(encoded_time) - 1:
                         i += 1
                     else:
                         break
-            elif (encoded_time[i - 1] == 0 or encoded_time[i - 1] == -1) and encoded_date[i - 1] == 1:
+            elif encoded_time[i - 1] == 0 and encoded_date[i - 1] == 1:
                 while encoded_date[i] == 1:
                     encoded_time[i] = 0
                     if i < len(encoded_date) - 1:
@@ -117,6 +115,9 @@ def encode_rtl(encoded_date, encoded_time):
                         break
 
             else:
+                # start = i
+                # while encoded_time[i] == 1 or encoded_date[i] == 1:
+                #
                 # TODO
                 print("#TODO")
                 print(f"Encoded Date:\n {encoded_date}")
@@ -125,3 +126,12 @@ def encode_rtl(encoded_date, encoded_time):
         else:
             i += 1
     return encoded_date, encoded_time
+
+
+def encode_space(encoded_sent, space_spans):
+    
+    for span in space_spans:
+        for i in range(span[0], span[1]):
+            encoded_sent[i] = -1
+    
+    return encoded_sent
