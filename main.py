@@ -39,8 +39,10 @@ def main():
         # Print extracted markers
         print("All Extracted Markers: ")
         print(result)
-        for item in result:
-            print(normalized_sentence[item[0]:item[1]])
+        for key in result.keys():
+            print(f"result for {key}:")
+            for item in result[key]:
+                print(normalized_sentence[item[0]:item[1]])
 
         print("==" * 50)
 

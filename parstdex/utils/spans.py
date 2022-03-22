@@ -18,6 +18,7 @@ def merge_spans(spans: Dict, normalized_sentence: str):
     encoded['Date'] = encode_space(encoded['Date'], spans['Space'])
     encoded['Time'] = encode_space(encoded['Time'], spans['Space'])
 
+    result['Date+Time'] = find_spans(merge_encodes(encoded['Time'], encoded['Date']))
     result['Date'] = find_spans(encoded['Date'])
     result['Time'] = find_spans(encoded['Time'])
 
@@ -54,7 +55,6 @@ def create_spans(patterns, normalized_sentence):
     return output_raw, spans
 
 
-
 def encode_span(normal_spans, adv_spans, normalized_sentence):
     encoded_sent = [0] * len(normalized_sentence)
 
@@ -83,7 +83,7 @@ def find_spans(encoded_sent):
             start = i
             end = i + 1
             # continue if you see 1 or -1
-            while i < len_sent and (encoded_sent[i] == 1 or encoded_sent[i]== -1):
+            while i < len_sent and (encoded_sent[i] == 1 or encoded_sent[i] == -1):
                 # store the last time you see 1
                 if encoded_sent[i] == 1:
                     end = i + 1
@@ -129,9 +129,22 @@ def encode_rtl(encoded_date, encoded_time):
 
 
 def encode_space(encoded_sent, space_spans):
-    
     for span in space_spans:
         for i in range(span[0], span[1]):
             encoded_sent[i] = -1
-    
+
     return encoded_sent
+
+
+def sgn(num: int):
+    if num >= 1:
+        return 1
+    elif num <= -1:
+        return -1
+    else:
+        return 0
+
+
+def merge_encodes(encoded_time, encoded_date):
+    sum_encoded = [sgn(a+b) for a, b in zip(encoded_time, encoded_date)]
+    return sum_encoded

@@ -42,8 +42,6 @@ class MarkerExtractor:
 
         result = merge_spans(spans, normalized_sentence)
 
-        # temp
-        result = result['Date'] + result['Time']
         return normalized_sentence, output_raw, result
 
     def time_value_extractor(self, input_sentence):
@@ -57,7 +55,8 @@ class MarkerExtractor:
         """
 
         normalized_sentence, output_raw, result = self.time_marker_extractor(input_sentence)
-        output_extracted = [normalized_sentence[item[0]:item[1]] for item in result]
+        spans = result['Date+Time']
+        output_extracted = [normalized_sentence[item[0]:item[1]] for item in spans]
         values = [self.value_extractor.compute_value(p) for p in output_extracted]
 
         return normalized_sentence, result, values
@@ -65,6 +64,7 @@ class MarkerExtractor:
     def time_ner_extractor(self, input_sentence: str):
 
         sentence, output_raw, spans = self.time_marker_extractor(input_sentence)
+        spans = spans['Date+Time']
         result = []
         tokens = nltk.word_tokenize(sentence)
         all_spans = textspan.get_original_spans(tokens, sentence)
