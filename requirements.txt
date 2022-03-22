@@ -1,0 +1,2 @@
+nltk~=3.3
+pytextspan==0.5.4

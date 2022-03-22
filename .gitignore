@@ -1,4 +1,5 @@
 .idea/*
 .venv/*
+.env/*
 *.pyc
 patterns.txt
