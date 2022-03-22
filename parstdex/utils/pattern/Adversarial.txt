@@ -16,3 +16,18 @@ MEE PEV
 MEE PAV
 MEEHSPACEPEV
 MEEHSPACEPAV
+
+
+# ورزشگاه ۱۷ تیر
+PLACE DN MNTH
+PLACE NUM MNTH
+PLACE PN MNTH
+# میدان ۱۷ تیر
+ADD DN MNTH
+ADD NUM MNTH
+ADD PN MNTH
+
+# ورزشگاه خرداد
+PLACE MNTH
+# میدان فروردین
+ADD MNTH
