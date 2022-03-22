@@ -144,21 +144,20 @@ SAAT HR VA ROB
 
 # ساعت یک ربع به شیش
 SAAT YEK ROB PRV
-SAAT YEK ROB BNP
 SAAT YEK ROB BE
 # یک ربع به پنج
-YEK ROB BNP HR
+YEK ROB PRV HR
 YEK ROB BE HR
 YEK ROB PRV
 YEK ROB NXT
 
 # ۳ دقیقه بعد
-MIN TU BNP
-NUM TU BNP
-PN TU BNP
+MIN TU NXT
+NUM TU NXT
+PN TU NXT
 
 # ۳ دقیقه بعد
-MIN TU BNP HR
+MIN TU NXT HR
 
 # دقیقه ای
 TU NXT

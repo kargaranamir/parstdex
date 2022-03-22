@@ -1,16 +1,16 @@
-import re
-from parstdex.utils.pattern_to_regex import Patterns
-from parstdex.utils.normalizer import Normalizer
-from parstdex.utils.spans import create_spans
-from parstdex.utils.word_to_value import ValueExtractor
-from parstdex.utils.spans import merge_spans
-
-import textspan
 import nltk
+import textspan
+
+from parstdex.utils.normalizer import Normalizer
+from parstdex.utils.pattern_to_regex import Patterns
+from parstdex.utils.spans import create_spans
+from parstdex.utils.spans import merge_spans
+from parstdex.utils.word_to_value import ValueExtractor
+
 
 class MarkerExtractor:
     def __init__(self, normalizer=None, patterns=None, adv_patterns=None, value_extractor=None):
-        # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
+        # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = normalizer if normalizer else Normalizer()
         # Patterns: patterns to regex generator
         self.patterns = patterns if patterns else Patterns()
@@ -20,7 +20,6 @@ class MarkerExtractor:
     def time_marker_extractor(self, input_sentence: str):
         """
         function should output list of spans, each item in list is a time marker span present in the input sentence.
-        :param ud_patterns:
         :param input_sentence: input sentence
         :return:
         normalized_sentence: normalized sentence
@@ -38,13 +37,13 @@ class MarkerExtractor:
         # Create spans
         output_raw, spans = create_spans(patterns, normalized_sentence)
 
-        if len(spans['Time']) == 0 and len(spans['Date']) == 0 and len(spans['DateTime']) == 0:
+        if len(spans['Time']) == 0 and len(spans['Date']) == 0:
             return normalized_sentence, output_raw, []
 
         result = merge_spans(spans, normalized_sentence)
 
         # temp
-        result = result['Date'] + result['Time'] + result['DateTime']
+        result = result['Date'] + result['Time']
         return normalized_sentence, output_raw, result
 
     def time_value_extractor(self, input_sentence):
@@ -83,4 +82,3 @@ class MarkerExtractor:
             if not chosen:
                 result.append((sentence[span[0]:span[1]], 'O'))
         return result
-

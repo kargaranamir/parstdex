@@ -5,18 +5,13 @@ from typing import Dict
 def merge_spans(spans: Dict, normalized_sentence: str):
     result, encoded = dict(), dict()
 
-    encoded['DateTime'] = encode_span(spans['DateTime'],
-                                      spans['Adversarial'],
-                                      spans['Space'],
-                                      normalized_sentence)
-
     encoded['Date'] = encode_span(spans['Date'],
-                                  spans['Adversarial'] + spans['DateTime'],
+                                  spans['Adversarial'],
                                   spans['Space'],
                                   normalized_sentence)
 
     encoded['Time'] = encode_span(spans['Time'],
-                                  spans['Adversarial'] + spans['DateTime'],
+                                  spans['Adversarial'],
                                   spans['Space'],
                                   normalized_sentence)
 
@@ -24,7 +19,6 @@ def merge_spans(spans: Dict, normalized_sentence: str):
 
     result['Date'] = find_spans(encoded['Date'])
     result['Time'] = find_spans(encoded['Time'])
-    result['DateTime'] = find_spans(encoded['DateTime'])
 
     return result
 
