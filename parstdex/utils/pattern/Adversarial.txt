@@ -29,5 +29,7 @@ ADD PN MNTH
 
 # ورزشگاه خرداد
 PLACE MNTH
+PLACE SSN
 # میدان فروردین
 ADD MNTH
+ADD SSN

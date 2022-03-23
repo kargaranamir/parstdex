@@ -1,2 +1,2 @@
 import sys
-from .timeMarkerExtractor import MarkerExtractor
+from .time_marker_extractor import MarkerExtractor
