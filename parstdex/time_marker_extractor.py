@@ -38,7 +38,7 @@ class MarkerExtractor:
         output_raw, spans = create_spans(patterns, normalized_sentence)
 
         if len(spans['Time']) == 0 and len(spans['Date']) == 0:
-            return normalized_sentence, output_raw, []
+            return normalized_sentence, output_raw, {}
 
         result = merge_spans(spans, normalized_sentence)
 

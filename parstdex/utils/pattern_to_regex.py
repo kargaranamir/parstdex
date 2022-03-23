@@ -107,15 +107,17 @@ class Patterns:
     """
     Patterns class is used to create regexes corresponding to patterns defined in utilities/pattern folder.
     """
-    annotations = {}
     normalizer = Normalizer()
     regexes = {}
-    special_words = {}
+    cumulative_annotations = {}
+    cumulative_annotations_keys = []
 
     def __init__(self):
-        self.annotations = Annotation()
-        self.special_words = get_special_words()
+        annotations = Annotation()
+        special_words = get_special_words()
         self.patterns_path = os.path.join(os.path.dirname(__file__), 'pattern')
+        self.cumulative_annotations = {**annotations.annotations_dict, **special_words}
+        self.cumulative_annotations_keys = sorted(self.cumulative_annotations, key=len, reverse=True)
         files = os.listdir(self.patterns_path)
         for f in files:
             self.regexes[f.replace('.txt', '')] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
@@ -129,10 +131,8 @@ class Patterns:
         :return: str
         """
         pattern = pattern.replace(" ", r'\s*')
-        final_annotations = {**self.annotations.annotations_dict, **self.special_words}
-        final_annotations_keys = sorted(final_annotations, key=len, reverse=True)
-        for key in final_annotations_keys:
-            pattern = re.sub(f'{key}', fr"(?:{final_annotations[key]})", pattern)
+        for key in self.cumulative_annotations_keys:
+            pattern = re.sub(f'{key}', fr"(?:{self.cumulative_annotations[key]})", pattern)
 
         return pattern
 
