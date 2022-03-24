@@ -109,7 +109,9 @@ class Patterns:
         """
         # TODO: WHY \s*
         pattern = pattern.replace(" ", r'\s*')
-        for key in self.cumulative_annotations_keys:
+        annotation_keys = "|".join(self.cumulative_annotations_keys)
+        matches = re.findall(annotation_keys, pattern)
+        for key in matches:
             pattern = re.sub(f'{key}', fr"(?:{self.cumulative_annotations[key]})", pattern)
 
         return pattern
