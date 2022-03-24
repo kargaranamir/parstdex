@@ -46,19 +46,6 @@ def main():
 
         print("==" * 50)
 
-        ## time_value_extractor will return normalized sentence and time-date markers and values
-        # normalized_sentence, result, values = extractor.time_value_extractor(input_sentence)
-        #
-        ## Print results
-        # print("Normalized Sentence:\n", normalized_sentence)
-        # print("All Extracted Markers: ")
-        # print(result)
-        # for item in result:
-        #     print(normalized_sentence[item[0]:item[1]])
-        #
-        # print("All Value Markers Extracted: ")
-        # print(values)
-
 
 if __name__ == '__main__':
     main()

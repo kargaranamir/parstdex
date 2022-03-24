@@ -33,6 +33,8 @@ class Annotation:
     annotations_dict = {}
 
     def __init__(self):
+        # numbers annotation
+        numbers_annotations = self.create_number_annotation_dict()
         # time annotation dictionary includes all annotations of time folder
         time_annotations = self.create_annotation_dict(self.time_annotation_path)
         # date annotation dictionary includes all annotations of date folder
@@ -42,7 +44,8 @@ class Annotation:
         # adversarial annotation dictionary includes all annotations of adversarial folder
         adv_annotations = self.create_annotation_dict(self.adv_annotation_path)
 
-        self.annotations_dict = {**time_annotations,
+        self.annotations_dict = {**numbers_annotations,
+                                 **time_annotations,
                                  **date_annotations,
                                  **aux_annotations,
                                  **adv_annotations}
@@ -52,6 +55,15 @@ class Annotation:
         text = process_file(path)
         annotation_mark = "|".join(text)
         return annotation_mark
+
+    @staticmethod
+    def create_number_annotation_dict():
+        annotation_dict = {
+            'NUM': r'\\d{1,4}',  # all 1 to 4 digit numbers
+            'PN': const.PN  # Persian alphabetic numbers
+        }
+
+        return annotation_dict
 
     def create_annotation_dict(self, annotation_path):
         """
@@ -64,41 +76,6 @@ class Annotation:
         for f in files:
             key = f.replace('.txt', '')
             annotation_dict[key] = self.create_annotation(f"{annotation_path}/{f}")
-
-        # all 1 to 4 digit numbers
-        annotation_dict['NUM'] = r'\\d{1,4}'
-
-        # supports persian numbers from one to four digits written with persian alphabet
-        # example:  هزار و سیصد و شصت و پنج
-        ONE_TO_NINE_JOIN = "|".join(const.ONE_TO_NINE.keys())
-        MAGNITUDE_JOIN = "|".join(const.MAGNITUDE.keys())
-        HEZAR = "هزار"
-        HUNDREDS_TEXT_JOIN = "|".join(const.HUNDREDS_TEXT.keys())
-        ONE_NINETY_NINE_JOIN = "|".join(list(const.ONE_NINETY_NINE.keys())[::-1])
-        NIM_SPACE = '\u200c'
-        WHITE_SPACE = rf'[{NIM_SPACE}\\s]'
-
-        PN1 = rf"(?:{ONE_TO_NINE_JOIN})"
-
-        PNDAH = rf"(?:{ONE_NINETY_NINE_JOIN})"
-        PN1DAH = rf"{PNDAH}{WHITE_SPACE}*(?:{const.JOINER}){WHITE_SPACE}*" + PN1
-        PN2 = PN1DAH + "|" + PNDAH
-
-        PNSAD = rf"(?:{HUNDREDS_TEXT_JOIN})"
-        PN2SAD = rf"{PNSAD}{WHITE_SPACE}*(?:{const.JOINER}){WHITE_SPACE}*" + "(?:" + PN2 + "|" + PN1 + ")"
-        PN3 = PN2SAD + "|" + PNSAD
-
-        PNHEZAR = rf"{HEZAR}"
-        PN1HEZAR = "(?:" + PN3 + "|" + PN2 + "|" + PN1 + ")" + rf"{WHITE_SPACE}*{PNHEZAR}"
-        PN2HEZAR = rf"{PNHEZAR}{WHITE_SPACE}*(?:{const.JOINER}){WHITE_SPACE}*" + "(?:" + PN3 + "|" + PN2 + "|" + PN1 + ")"
-        PN3HEZAR = rf"{PN1HEZAR}{WHITE_SPACE}*(?:{const.JOINER}){WHITE_SPACE}*" + "(?:" + PN3 + "|" + PN2 + "|" + PN1 + ")"
-        PN4 = PN3HEZAR + "|" + PN2HEZAR + "|" + PN1HEZAR + "|" + PNHEZAR
-
-        # TODO: support larger numbers
-        MAGNITUDES = MAGNITUDE_JOIN
-
-        PN = PN4 + "|" + PN3 + "|" + PN2 + "|" + PN1 + "|" + MAGNITUDES
-        annotation_dict["PN"] = PN
 
         return annotation_dict
 
@@ -130,6 +107,7 @@ class Patterns:
         :param pattern: str
         :return: str
         """
+        # TODO: WHY \s*
         pattern = pattern.replace(" ", r'\s*')
         for key in self.cumulative_annotations_keys:
             pattern = re.sub(f'{key}', fr"(?:{self.cumulative_annotations[key]})", pattern)

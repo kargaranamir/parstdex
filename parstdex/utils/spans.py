@@ -1,6 +1,8 @@
 import re
 from typing import Dict
 
+from parstdex.utils import const
+
 
 def merge_spans(spans: Dict, normalized_sentence: str):
     result, encoded = dict(), dict()
@@ -37,7 +39,11 @@ def create_spans(patterns, normalized_sentence):
     for key in patterns.regexes.keys():
         for regex_value in patterns.regexes[key]:
             # apply regex
-            matches = list(re.finditer(fr'\b(?:{regex_value})(?!\S)?', normalized_sentence))
+            matches = list(
+                re.finditer(
+                    fr'\b(?:{regex_value})\b',
+                    normalized_sentence)
+            )
             # ignore empty markers
             if len(matches) > 0:
                 # store extracted markers in output_raw

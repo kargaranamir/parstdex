@@ -1,2 +1,0 @@
-# supports persian numbers from one to four digits written with persian alphabet
-# example: هزار و سیصد و شصت و پنج
