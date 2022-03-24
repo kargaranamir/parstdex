@@ -42,7 +42,7 @@ def create_spans(patterns, normalized_sentence):
             # apply regex
             matches = list(
                 re.finditer(
-                    fr'\b(?:{regex_value})(?!{const.FA_SYM}\d)',
+                    fr'\b(?:{regex_value})(?:\b|(?!{const.FA_SYM}))',
                     normalized_sentence)
             )
             # ignore empty markers
