@@ -50,6 +50,7 @@ def create_spans(patterns, normalized_sentence):
                     start = match.regs[0][0]
                     end = match.regs[0][1]
                     spans[key].append((start, end))
+                    output_raw[key].append(match)
 
     return output_raw, spans
 
