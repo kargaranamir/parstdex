@@ -33,8 +33,10 @@ def main():
                     "span": [start, end]
                 })
 
-        print("Raw Output:")
-        pprint.pprint(dict_output_raw)
+        PRINT_RAW = False
+        if PRINT_RAW:
+            print("Raw Output:")
+            pprint.pprint(dict_output_raw)
 
         # Print extracted markers
         print("All Extracted Markers: ")
