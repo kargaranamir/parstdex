@@ -524,7 +524,10 @@ Symbols = ":|/|-"
 
 JOINER = "و"
 
-FA_ALPHABET = '[\u0621-\u0628\u062A-\u063A\u0641-\u0642\u0644-\u0648\u064E-\u0651\u0655\u067E\u0686\u0698\u06A9\u06AF\u06BE\u06CC]'
+FA_ALPHABET = '\u0621-\u0628\u062A-\u063A\u0641-\u0642\u0644-\u0648\u064E-\u0651\u0655\u067E\u0686\u0698\u06A9\u06AF\u06BE\u06CC'
+FA_PUNCT = '\u060C\u061B\u061F\u0640\u066A\u066B\u066C'
+FA_NUM = '\u06F0-\u06F9'
+FA_SYM = fr"[{FA_ALPHABET}{FA_PUNCT}{FA_NUM}]"
 
 # supports persian numbers from one to four digits written with persian alphabet
 # example:  هزار و سیصد و شصت و پنج
