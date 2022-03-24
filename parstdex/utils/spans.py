@@ -1,7 +1,6 @@
 import re
 from typing import Dict
-
-from parstdex.utils import const
+import numpy as np
 
 
 def merge_spans(spans: Dict, normalized_sentence: str):
@@ -47,29 +46,23 @@ def create_spans(patterns, normalized_sentence):
             # ignore empty markers
             if len(matches) > 0:
                 # store extracted markers in output_raw
-                output_raw[key] = output_raw[key] + matches
-
-    for key in output_raw.keys():
-        matches = output_raw[key]
-        for match in matches:
-            start = match.regs[0][0]
-            end = match.regs[0][1]
-            # match.group()
-            spans[key].append((start, end))
+                for match in matches:
+                    start = match.regs[0][0]
+                    end = match.regs[0][1]
+                    spans[key].append((start, end))
 
     return output_raw, spans
 
 
 def encode_span(normal_spans, adv_spans, normalized_sentence):
-    encoded_sent = [0] * len(normalized_sentence)
+    encoded_sent = np.zeros(len(normalized_sentence))
 
     for span in normal_spans:
-        for i in range(span[0], span[1]):
-            encoded_sent[i] = 1
+        encoded_sent[span[0]: span[1]] = 1
 
     for span in adv_spans:
-        for i in range(span[0], span[1]):
-            encoded_sent[i] = 0
+        encoded_sent[span[0]: span[1]] = 0
+
     return encoded_sent
 
 
@@ -150,8 +143,7 @@ def encode_space(encoded_sent, space_spans):
     :return: list
     """
     for span in space_spans:
-        for i in range(span[0], span[1]):
-            encoded_sent[i] = -1
+        encoded_sent[span[0]: span[1]] = -1
 
     return encoded_sent
 
