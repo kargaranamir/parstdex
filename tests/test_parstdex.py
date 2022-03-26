@@ -7,7 +7,7 @@ from settings import ROOT_DIR
 
 
 def prepare_test_scenarios():
-    file_path = ROOT_DIR + '/Test/data.json'
+    file_path = ROOT_DIR + '/tests/data.json'
 
     # Read Test file
     test_data_file = open(file_path, 'r', encoding='utf8')

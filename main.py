@@ -2,12 +2,13 @@ import os
 import json
 import pprint
 
+import settings
 from parstdex import MarkerExtractor
 
 
 def main():
     # read all test inputs in Test folder
-    test_path = os.getcwd() + './Test/data.json'
+    test_path = settings.ROOT_DIR + './tests/data.json'
     f = open(test_path, 'r', encoding='utf8')
     test_data = json.load(f)
     extractor = MarkerExtractor()
