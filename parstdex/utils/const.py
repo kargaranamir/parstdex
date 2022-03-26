@@ -545,9 +545,7 @@ HUNDREDS_TEXT_JOIN = "|".join(HUNDREDS_TEXT.keys())
 # اعداد یک تا نود و نه
 ONE_NINETY_NINE_JOIN = "|".join(list(ONE_NINETY_NINE.keys())[::-1])
 
-NIM_SPACE = '\u200c'
-# TODO: fix space
-WHITE_SPACE = fr'[\\s*{NIM_SPACE}]'
+WHITE_SPACE = u'[\u200c\\\s]{0,5}'
 
 PN2 = rf"(?:{ONE_NINETY_NINE_JOIN})"
 
