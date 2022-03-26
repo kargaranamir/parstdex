@@ -9,8 +9,8 @@ with open("README.md") as fh:
 
 setuptools.setup(
     name='parstdex',
-    version="0.1.3",
-    description="Pars Time Date Extractor",
+    version="1.0.0",
+    description="Persian time and date marker extractor",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
@@ -21,6 +21,6 @@ setuptools.setup(
         "Topic :: Natural Language Processing :: Time Date Marker Extractor"
     ],
     install_requires=required,
-    author='ASH Group',
-    author_email='kargaran.amir@gmail.com'
+    author='Amir Kargaran, Sajad Mirzababaei',
+    author_email='kargaran.amir@gmail.com, ss.mirzababaei@gmail.com'
  )

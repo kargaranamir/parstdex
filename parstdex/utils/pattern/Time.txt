@@ -176,3 +176,5 @@ TUHSPACENXT
 # ساعت پنج و نیم
 SAAT HR VA NIM
 
+# ۷ غروب و ۸ صبح
+HR DP VA HR DP

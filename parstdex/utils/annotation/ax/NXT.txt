@@ -18,6 +18,7 @@
 قبلی
 گذشته
 جاری
+متوالی
 
 # post fix for date and time unit
 # ساعتی
