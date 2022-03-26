@@ -3,10 +3,11 @@ import json
 import ast
 import os
 from parstdex import MarkerExtractor
+from settings import ROOT_DIR
 
 
 def prepare_test_scenarios():
-    file_path = './data.json'
+    file_path = ROOT_DIR + '/Test/data.json'
 
     # Read Test file
     test_data_file = open(file_path, 'r', encoding='utf8')
