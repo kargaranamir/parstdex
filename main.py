@@ -1,5 +1,6 @@
 import os
 import json
+import pprint
 
 from parstdex import MarkerExtractor
 
@@ -11,35 +12,42 @@ def main():
     test_data = json.load(f)
     extractor = MarkerExtractor()
 
-    for filename in test_data:
+    for testcase in test_data:
+        input_sentence = testcase['in']
+        print(f"Original Sentence:\n{input_sentence}")
+        # time_marker_extractor will return normalized sentence and time-date markers
+        normalized_sentence, output_raw, result = extractor.time_marker_extractor(input_sentence)
 
-        print(filename['in'])
-        ## get input test case
-        input_sentence = filename['in']
-        print("Original Sentence:\n", input_sentence)
-        ## time_marker_extractor will return normalized sentence and time-date markers
-        normalized_sentence, result = extractor.time_marker_extractor(input_sentence)
+        # Print results
+        print(f"Normalized Sentence:\n{normalized_sentence}")
 
-        ## Print results
-        print("Normalized Sentence:\n", normalized_sentence)
+        # Print raw output
+        dict_output_raw = {}
+        for key in output_raw.keys():
+            dict_output_raw[key] = []
+            for match in output_raw[key]:
+                start = match.regs[0][0]
+                end = match.regs[0][1]
+                dict_output_raw[key].append({
+                    "token": match.string[start:end],
+                    "span": [start, end]
+                })
+
+        PRINT_RAW = False
+        if PRINT_RAW:
+            print("Raw Output:")
+            pprint.pprint(dict_output_raw)
+
+        # Print extracted markers
         print("All Extracted Markers: ")
         print(result)
-        for item in result:
-            print(normalized_sentence[item[0]:item[1]])
+        for key in result.keys():
+            print(f"result for {key}:")
+            for item in result[key]:
+                print(normalized_sentence[item[0]:item[1]])
 
+        print("==" * 50)
 
-        ## time_value_extractor will return normalized sentence and time-date markers and values
-        # normalized_sentence, result, values = extractor.time_value_extractor(input_sentence)
-        #
-        ## Print results
-        # print("Normalized Sentence:\n", normalized_sentence)
-        # print("All Extracted Markers: ")
-        # print(result)
-        # for item in result:
-        #     print(normalized_sentence[item[0]:item[1]])
-        #
-        # print("All Value Markers Extracted: ")
-        # print(values)
 
 if __name__ == '__main__':
     main()

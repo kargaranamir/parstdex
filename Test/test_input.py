@@ -25,4 +25,4 @@ input_data = create_data()
 
 @pytest.mark.parametrize("sentence, span", input_data)
 def test_input(sentence, span):
-    assert extractor.time_marker_extractor(sentence)[1] == span
+    assert extractor.time_marker_extractor(sentence)[2]['Date+Time'] == span

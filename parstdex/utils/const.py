@@ -523,3 +523,42 @@ EN_NUMBERS = "0|1|2|3|4|5|6|7|8|9"
 Symbols = ":|/|-"
 
 JOINER = "و"
+
+FA_ALPHABET = '\u0621-\u0628\u062A-\u063A\u0641-\u0642\u0644-\u0648\u064E-\u0651\u0655\u067E\u0686\u0698\u06A9\u06AF\u06BE\u06CC'
+FA_PUNCT = '\u060C\u061B\u061F\u0640\u066A\u066B\u066C'
+FA_NUM = '\u06F0-\u06F9'
+FA_SYM = fr"[{FA_ALPHABET}{FA_PUNCT}{FA_NUM}]"
+
+# supports persian numbers from one to four digits written with persian alphabet
+# example:  هزار و سیصد و شصت و پنج
+
+# اعداد یک تا نه
+ONE_TO_NINE_JOIN = "|".join(ONE_TO_NINE.keys())
+# هزار میلیون بیلیون ...
+MAGNITUDE_JOIN = "|".join(MAGNITUDE.keys())
+
+HEZAR = "هزار"
+
+# یکصد دویست ...
+HUNDREDS_TEXT_JOIN = "|".join(HUNDREDS_TEXT.keys())
+
+# اعداد یک تا نود و نه
+ONE_NINETY_NINE_JOIN = "|".join(list(ONE_NINETY_NINE.keys())[::-1])
+
+WHITE_SPACE = u'[\u200c\\\s]{0,5}'
+
+PN2 = rf"(?:{ONE_NINETY_NINE_JOIN})"
+
+PN3MAG = rf"(?:{HUNDREDS_TEXT_JOIN})"
+PN3NUM = rf"(?:{PN3MAG}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}{PN2})"
+PN3 = PN3NUM + "|" + PN3MAG
+
+PN1HEZAR = "(?:" + PN3 + "|" + PN2 + ")" + rf"{WHITE_SPACE}{HEZAR}"
+PN2HEZAR = rf"(?:{HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}" + "(?:" + PN3 + "|" + PN2 + ")"
+PN3HEZAR = rf"(?:{PN1HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}" + "(?:" + PN3 + "|" + PN2 + ")"
+PN4 = PN3HEZAR + "|" + PN2HEZAR + "|" + PN1HEZAR + "|" + HEZAR
+
+# TODO: support larger numbers
+MAGNITUDES = MAGNITUDE_JOIN
+
+PN = "(?:" + PN4 + "|" + PN3 + "|" + PN2 + "|" + MAGNITUDE_JOIN + ")"

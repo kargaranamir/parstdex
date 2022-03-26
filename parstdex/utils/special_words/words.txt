@@ -1,0 +1,36 @@
+# Time
+SAAT	ساعت
+DAGHIGHEH	دقیقه
+SANIEH	ثانیه
+ROB ربع
+NIM نیم
+YEK یک
+
+# Date
+SAL	سال
+MAH	ماه
+HAFTE   هفته
+ROOZ روز
+ROOZHAYE    روزهای
+KABISE  کبیسه
+TARIKH  تاریخ
+LEAGUE  لیگ
+# DateTime
+SHABROOZ شب|روز
+
+# General
+HA ها
+VA	و
+AZ از
+BE به
+MEE می
+BAR بار
+TEY طی
+HAR هر
+DAR در
+TOOL    طول
+CHAND   چند|چندین
+ZAMAN   زمان
+HAMIN   همین
+HSPACE  \\u200C
+YEKBAR یکبار

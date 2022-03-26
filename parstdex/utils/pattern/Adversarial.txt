@@ -1,0 +1,35 @@
+به روز رسانی
+امام جمعه
+غروب خورشید
+# لیگ شانزدهم
+LEAGUE NUM
+LEAGUE PN
+LEAGUE DN
+
+MEE PEVPOV
+MEE PAVPOV
+MEEHSPACEPEVPOV
+MEEHSPACEPAVPOV
+
+# می‌توان
+MEE PEV
+MEE PAV
+MEEHSPACEPEV
+MEEHSPACEPAV
+
+
+# ورزشگاه ۱۷ تیر
+PLACE DN MNTH
+PLACE NUM MNTH
+PLACE PN MNTH
+# میدان ۱۷ تیر
+ADD DN MNTH
+ADD NUM MNTH
+ADD PN MNTH
+
+# ورزشگاه خرداد
+PLACE MNTH
+PLACE SSN
+# میدان فروردین
+ADD MNTH
+ADD SSN
