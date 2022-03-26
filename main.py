@@ -7,13 +7,13 @@ from parstdex import MarkerExtractor
 
 def main():
     # read all test inputs in Test folder
-    test_path = os.getcwd() + './Test/inputs.json'
+    test_path = os.getcwd() + './Test/data.json'
     f = open(test_path, 'r', encoding='utf8')
     test_data = json.load(f)
     extractor = MarkerExtractor()
 
     for testcase in test_data:
-        input_sentence = testcase['in']
+        input_sentence = testcase['test_input']
         print(f"Original Sentence:\n{input_sentence}")
         # time_marker_extractor will return normalized sentence and time-date markers
         normalized_sentence, output_raw, result = extractor.time_marker_extractor(input_sentence)

@@ -149,6 +149,15 @@ YEK ROB BE HR
 YEK ROB PRV
 YEK ROB NXT
 
+# ۱۵ دقیقه به
+MIN DAGHIGHEH BE
+HR SAAT BE
+PN TU BE
+NUM TU BE
+
+# ۱۹ دقیقه به ۸
+MIN DAGHIGHEH BE HR
+
 # ۳ دقیقه بعد
 MIN TU NXT
 NUM TU NXT
