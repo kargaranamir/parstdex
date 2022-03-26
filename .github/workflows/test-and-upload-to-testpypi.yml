@@ -44,4 +44,4 @@ jobs:
           
       # Tests with Pytest
       - name: Test with Pytest
-        run: pytest
+        run: python -m pytest
