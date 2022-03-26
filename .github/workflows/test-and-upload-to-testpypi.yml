@@ -38,7 +38,7 @@ jobs:
           # Install build deps
           python3 -m pip install setuptools wheel twine
           # If requirements.txt exists, install from it
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install -r requirements.txt
           # Install the package from setup.py
           python3 setup.py install
           
