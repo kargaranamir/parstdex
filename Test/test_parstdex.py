@@ -6,7 +6,7 @@ from parstdex import MarkerExtractor
 
 
 def prepare_test_scenarios():
-    file_path = os.getcwd() + '/data.json'
+    file_path = './data.json'
 
     # Read Test file
     test_data_file = open(file_path, 'r', encoding='utf8')
