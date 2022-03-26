@@ -20,19 +20,6 @@
 جاری
 متوالی
 
-# post fix for date and time unit
-# ساعتی
-ی
-# هفته‌ای
-ای
-# ساله
-ه
-# روزها
-ها
-# روزهای
-های
-
-
 
 ## Common: know as BNP (Bi Next and P)
 بعد

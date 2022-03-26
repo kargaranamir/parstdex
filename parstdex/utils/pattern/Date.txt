@@ -11,7 +11,6 @@ RY
 # فروردین
 MNTH
 
-
 # ماه فروردین
 MAH MNTH
 
@@ -164,12 +163,9 @@ RY MNTH
 RY MNTH MAH
 # فروردین اخیر
 MNTH NXT
-# ژانویه آینده ۱۹۹۹ - ژانویه ی ۱۹۹۹
+# ژانویه آینده ۱۹۹۹
 MNTH NXT NUM
 MNTH NXT PN
-# ژانویه‌ی ۱۹۹۹
-MNTHHSPACE NXT NUM
-MNTHHSPACE NXT PN
 # ماه فروردین اخیر
 MAH MNTH NXT
 # فروردین ماه اخیر
@@ -197,7 +193,7 @@ SSN NXT
 PRV SSN
 
 
-# ماه های آعازین
+# ماه نخست آعازین
 DU NXT NXT
 DUNXT NXT
 # سه هفته نخست
@@ -394,6 +390,63 @@ NUM CJ PN DU
 PN CJ NUM DU
 PN CJ PN DU
 
+
+### Indefinite Date
+
+# هفته ها
+DU PF
+DU HSPACE PF
+
+# فروردین ها
+MNTH PF
+
+# پاییز ها
+SSN PF
+
+# ژانویه‌ی ۱۹۹۹
+MNTHHSPACE PF NUM
+MNTHHSPACE PF PN
+
+# ژانویه ی ۱۹۹۹
+MNTH PF NUM
+MNTH PF PN
+
+# ژانویه ی آینده ۱۹۹۹
+MNTH PF NXT NUM
+MNTH PF NXT PN
+
+# ژانویه آینده ی ۱۹۹۹
+MNTH NXT PF NUM
+MNTH NXT PF PN
+
+# ماه های آعازین
+DU PF NXT
+DUPF NXT
+
+# ماه های آعازین
+DU PF NXT
+DUPF NXT
+
+# سه هفته ای
+DN DU PF
+
+# سه ماه‌ی
+DN DUHSPACEPF
+# سه ماه‌ی نخست
+DN DUHSPACEPF NXT
+# سه ماه ی آینده
+DN DU PF NXT
+# سه هفته ی ۱۴۰۰
+DN DU PF NUM
+DN DU PF PN
+# سه هفته ی ماه
+DN DU PF DU
+
+
+# نیمه ی ماه
+PRV PF DU
+PRV PF DU NUM
+PRV PF DU PN
 
 
 ### Complex or Ambiguous: Date + Time

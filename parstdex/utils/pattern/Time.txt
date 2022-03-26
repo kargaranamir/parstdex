@@ -166,11 +166,11 @@ PN TU NXT
 # ۳ دقیقه بعد
 MIN TU NXT HR
 
-# دقیقه ای
+# دقیقه آینده
 TU NXT
-# دقیقه ی آینده
+# دقیقه نخست آینده
 TU NXT NXT
-# دقیقه‌ای
+# دقیقه‌‌آینده
 TUHSPACENXT
 
 # ساعت پنج و نیم
@@ -178,3 +178,13 @@ SAAT HR VA NIM
 
 # ۷ غروب و ۸ صبح
 HR DP VA HR DP
+
+### Indefinite Time
+# دقیقه ای
+TU PF
+# دقیقه ی آینده
+TU PF NXT
+# دقیقه ی نخست آینده
+TU PF NXT NXT
+# دقیقه‌ای
+TUHSPACEPF
