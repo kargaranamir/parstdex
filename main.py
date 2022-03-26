@@ -11,41 +11,33 @@ def main():
     test_path = settings.ROOT_DIR + './tests/data.json'
     f = open(test_path, 'r', encoding='utf8')
     test_data = json.load(f)
-    extractor = MarkerExtractor()
+
+    model = MarkerExtractor(DEBUG=False)
 
     for testcase in test_data:
         input_sentence = testcase['test_input']
         print(f"Original Sentence:\n{input_sentence}")
         # time_marker_extractor will return normalized sentence and time-date markers
-        normalized_sentence, output_raw, result = extractor.time_marker_extractor(input_sentence)
+        markers = model.extract_marker(input_sentence)
 
-        # Print results
-        print(f"Normalized Sentence:\n{normalized_sentence}")
-
-        # Print raw output
-        dict_output_raw = {}
-        for key in output_raw.keys():
-            dict_output_raw[key] = []
-            for match in output_raw[key]:
-                start = match.regs[0][0]
-                end = match.regs[0][1]
-                dict_output_raw[key].append({
-                    "token": match.string[start:end],
-                    "span": [start, end]
-                })
-
-        PRINT_RAW = False
-        if PRINT_RAW:
-            print("Raw Output:")
-            pprint.pprint(dict_output_raw)
-
+        print("\n")
         # Print extracted markers
-        print("All Extracted Markers: ")
-        print(result)
-        for key in result.keys():
+        print("All Extracted Markers:")
+        print(markers)
+        for key in markers.keys():
             print(f"result for {key}:")
-            for item in result[key]:
-                print(normalized_sentence[item[0]:item[1]])
+            for item in markers[key]:
+                print(input_sentence[item[0]:item[1]])
+
+        print("\n")
+        markers, values = model.extract_value(input_sentence)
+        print("All Extracted Values:")
+        print(values)
+
+        print("\n")
+        markers, ners = model.extract_ner(input_sentence)
+        print("All Extracted NER:")
+        print(ners)
 
         print("==" * 50)
 

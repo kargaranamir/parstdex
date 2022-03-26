@@ -25,11 +25,11 @@ def prepare_test_scenarios():
     return scenarios
 
 
-extractor = MarkerExtractor()
+model = MarkerExtractor()
 test_scenarios = prepare_test_scenarios()
 
 
 @pytest.mark.parametrize("sentence, expected", test_scenarios)
 def test_parstdex_extractor(sentence, expected):
-    extraction_result = extractor.time_marker_extractor(sentence)
-    assert extraction_result[2]['Date+Time'] == expected
+    markers = model.extract_marker(sentence)
+    assert markers['Date+Time'] == expected

@@ -1,3 +1,5 @@
+import pprint
+
 import nltk
 import textspan
 
@@ -9,42 +11,51 @@ from parstdex.utils.word_to_value import ValueExtractor
 
 
 class MarkerExtractor:
-    def __init__(self, normalizer=None, patterns=None, adv_patterns=None, value_extractor=None):
+    def __init__(self, DEBUG=False):
         # Normalizer: convert arabic YE and KAF to persian ones.
-        self.normalizer = normalizer if normalizer else Normalizer()
+        self.normalizer = Normalizer()
         # Patterns: patterns to regex generator
-        self.patterns = patterns if patterns else Patterns()
+        self.patterns = Patterns()
         # ValueExtractor: value extractor from known time and date
-        self.value_extractor = value_extractor if value_extractor else ValueExtractor()
+        self.value_extractor = ValueExtractor()
+        self.DEBUG = DEBUG
 
-    def time_marker_extractor(self, input_sentence: str):
+    def extract_marker(self, input_sentence: str):
         """
         function should output list of spans, each item in list is a time marker span present in the input sentence.
         :param input_sentence: input sentence
         :return:
-        normalized_sentence: normalized sentence
-        result: all extracted spans
+        markers: all extracted spans
         """
 
-        # Normalizer: manage spaces, converts numbers to en, converts alphabet to fa
-        normalizer = self.normalizer
-        # Patterns: patterns to regex generator
-        patterns = self.patterns
-
         # apply normalizer on input sentence
-        normalized_sentence = normalizer.normalize_cumulative(input_sentence)
+        normalized_sentence = self.normalizer.normalize_cumulative(input_sentence)
 
         # Create spans
-        output_raw, spans = create_spans(patterns, normalized_sentence)
+        output_raw, spans = create_spans(self.patterns, normalized_sentence)
+
+        if self.DEBUG:
+            # Print raw output
+            dict_output_raw = {}
+            for key in output_raw.keys():
+                dict_output_raw[key] = []
+                for match in output_raw[key]:
+                    start = match.regs[0][0]
+                    end = match.regs[0][1]
+                    dict_output_raw[key].append({
+                        "token": match.string[start:end],
+                        "span": [start, end]
+                    })
+            pprint.pprint(dict_output_raw)
 
         if len(spans['Time']) == 0 and len(spans['Date']) == 0:
-            return normalized_sentence, output_raw, {}
+            return {'Date+Time':[], 'Date':[], 'Time':[]}
 
-        result = merge_spans(spans, normalized_sentence)
+        markers = merge_spans(spans, normalized_sentence)
 
-        return normalized_sentence, output_raw, result
+        return markers
 
-    def time_value_extractor(self, input_sentence):
+    def extract_value(self, input_sentence: str):
         """
         function should output list of values, each item in list is a time marker value present in the input sentence.
         :param input_sentence: input sentence
@@ -54,31 +65,31 @@ class MarkerExtractor:
         values: all extracted time-date values
         """
 
-        normalized_sentence, output_raw, result = self.time_marker_extractor(input_sentence)
-        spans = result['Date+Time']
-        output_extracted = [normalized_sentence[item[0]:item[1]] for item in spans]
+        markers = self.extract_marker(input_sentence)
+        spans = markers['Date+Time']
+        output_extracted = [input_sentence[item[0]:item[1]] for item in spans]
         values = [self.value_extractor.compute_value(p) for p in output_extracted]
 
-        return normalized_sentence, result, values
+        return markers, values
 
-    def time_ner_extractor(self, input_sentence: str):
+    def extract_ner(self, input_sentence: str):
 
-        sentence, output_raw, spans = self.time_marker_extractor(input_sentence)
-        spans = spans['Date+Time']
-        result = []
-        tokens = nltk.word_tokenize(sentence)
-        all_spans = textspan.get_original_spans(tokens, sentence)
+        markers = self.extract_marker(input_sentence)
+        spans = markers['Date+Time']
+        ners = []
+        tokens = nltk.word_tokenize(input_sentence)
+        all_spans = textspan.get_original_spans(tokens, input_sentence)
         all_spans = [span[0] for span in all_spans if span != []]
         for span in all_spans:
             chosen = False
             for ner_span in spans:
                 if span[0] >= ner_span[0] and span[1] <= ner_span[1]:
                     if span[0] == ner_span[0]:
-                        result.append((sentence[span[0]:span[1]], 'B-DAT'))
+                        ners.append((input_sentence[span[0]:span[1]], 'B-DAT'))
                     else:
-                        result.append((sentence[span[0]:span[1]], 'I-DAT'))
+                        ners.append((input_sentence[span[0]:span[1]], 'I-DAT'))
                     chosen = True
                     break
             if not chosen:
-                result.append((sentence[span[0]:span[1]], 'O'))
-        return result
+                ners.append((input_sentence[span[0]:span[1]], 'O'))
+        return markers, ners
