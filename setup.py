@@ -16,11 +16,14 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     include_package_data=True,
     classifiers=[
-        'License :: OSI Approved :: Apache-2.0 License ',
-        "Programming Language :: Python :: 3.8.8",
-        "Topic :: Natural Language Processing :: Time Date Marker Extractor"
+		'Topic :: Text Processing',
+		'Natural Language :: Persian',
+		'Programming Language :: Python :: 3.6',
+		'Programming Language :: Python :: 3.7',
+		'Programming Language :: Python :: 3.8',
+		'License :: OSI Approved :: MIT License'
     ],
     install_requires=required,
     author='Amir Kargaran, Sajad Mirzababaei',
-    author_email='kargaran.amir@gmail.com, ss.mirzababaei@gmail.com'
+    author_email='kargaranamir@gmail.com, ss.mirzababaei@gmail.com'
  )
