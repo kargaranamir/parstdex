@@ -106,7 +106,7 @@ class ValueExtractor:
             return word[:-1]
         return word
 
-    def compute_date(self, tokens):
+    def compute_py(self, tokens):
         """
         it takes persian year and converts it into corresponding value
         :param tokens: str
@@ -131,7 +131,7 @@ class ValueExtractor:
 
     def convert_word_to_digits(self, text):
         """
-        convert_word_to_digits will apply preprocess needed to convert text into tokens appropriate for compute_date method
+        convert_word_to_digits will apply preprocess needed to convert text into tokens appropriate for compute_py method
         :param text: str
         :return: int
         """
@@ -142,7 +142,7 @@ class ValueExtractor:
             return ' ' + self.JOINER + ' '
 
         text_date = self.remove_ordinal_suffix(text)
-        computed = self.compute_date(self.tokenize(text_date))
+        computed = self.compute_py(self.tokenize(text_date))
         return computed
 
     def date_reformat(self, text):
@@ -365,17 +365,18 @@ class ValueExtractor:
         res = self.time_reformat(res) if self.time_reformat(res) is not None else res
         return res
 
-
     def compute_value(self, text):
-
+        """
+        temporary function to support both time and date
+        """
         text = self.normalize_numbers(text)
 
-        #time part
+        # time part
         res_time = re.sub(fr'\b(?:{self.MINUTES_LIST})\b', lambda m: str(self.MINUTES[m.group()]), str(text))
         res_time = self.normalize_space(res_time)
         res_time = self.time_reformat(res_time)
 
-        # if time doesnot work then try date: time reformat is more cautious the date reformat.
+        # if time doesn't work then try date: time reformat is more cautious the date reformat.
         if res_time:
             res = res_time
         else:

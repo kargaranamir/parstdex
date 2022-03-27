@@ -32,8 +32,8 @@ _NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 #### **Do you have questions about the source code?**
 
 * Please feel free to ask your questions by mailing authors, and we will document common questions as soon as possible.
-  - [Sajad Mirzababaei](mailto:ss.mirzababaei@gamil.com?subject=[Parstdex-Question])
-  - [Amir Kargaran](mailto:kargaranamir@gamil.com?subject=[Parstdex-Question])
+  - [Sajad Mirzababaei](mailto:ss.mirzababaei@gmail.com?subject=[Parstdex-Question])
+  - [Amir Hossein Kargaran](mailto:kargaranamir@gmail.com?subject=[Parstdex-Question])
 
 
 Thanks! :heart: 🌻 🌸

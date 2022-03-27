@@ -18,6 +18,10 @@ def examples():
         input_sentence = testcase['test_input']
         result['sentence'] = input_sentence
         # time_marker_extractor will return normalized sentence and time-date markers
+
+        spans = model.extract_span(input_sentence)
+        result['spans'] = spans
+
         markers = model.extract_marker(input_sentence)
         result['markers'] = markers
 

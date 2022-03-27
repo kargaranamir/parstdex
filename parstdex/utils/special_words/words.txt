@@ -10,11 +10,10 @@ YEK یک
 SAL	سال
 MAH	ماه
 HAFTE   هفته
-ROOZ روز
-ROOZHAYE    روزهای
 KABISE  کبیسه
 TARIKH  تاریخ
 LEAGUE  لیگ
+
 # DateTime
 SHABROOZ شب|روز
 

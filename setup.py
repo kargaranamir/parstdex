@@ -8,7 +8,7 @@ with open("README.md") as fh:
 
 setuptools.setup(
     name='parstdex',
-    version="1.0.2",
+    version="1.0.3",
     description="Persian time and date marker extractor",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -23,6 +23,6 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License'
     ],
     install_requires=required,
-    author='Amir Kargaran, Sajad Mirzababaei',
+    author='Amir Hossein Kargaran, Sajad Mirzababaei',
     author_email='kargaranamir@gmail.com, ss.mirzababaei@gmail.com'
 )

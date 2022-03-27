@@ -31,5 +31,5 @@ test_scenarios = prepare_test_scenarios()
 
 @pytest.mark.parametrize("sentence, expected", test_scenarios)
 def test_parstdex_extractor(sentence, expected):
-    markers = model.extract_marker(sentence)
-    assert json.loads(markers)['datetime'] == expected
+    spans = model.extract_span(sentence)
+    assert json.loads(spans)['datetime'] == expected

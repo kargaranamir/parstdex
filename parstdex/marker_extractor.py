@@ -22,7 +22,7 @@ class MarkerExtractor(object):
         self.DEBUG = debug_mode
         super(MarkerExtractor, self).__init__()
 
-    def extract_marker(self, input_sentence: str):
+    def extract_span(self, input_sentence: str):
         """
         function should output list of spans, each item in list is a time marker span present in the input sentence.
         :param input_sentence: input sentence
@@ -53,9 +53,18 @@ class MarkerExtractor(object):
         if len(spans['time']) == 0 and len(spans['date']) == 0:
             return {'datetime': [], 'date': [], 'time': []}
 
-        markers = merge_spans(spans, normalized_sentence)
+        spans = merge_spans(spans, normalized_sentence)
 
-        return json.dumps(markers)
+        return json.dumps(spans)
+
+    def extract_marker(self, input_sentence: str):
+        markers = {'datetime': {}, 'date': {}, 'time': {}}
+        spans = json.loads(self.extract_span(input_sentence))
+        for key in spans.keys():
+            spans_list = spans[key]
+            markers[key] = {str(span): input_sentence[span[0]: span[1]] for span in spans_list}
+
+        return markers
 
     def extract_value(self, input_sentence: str):
         """
@@ -67,17 +76,24 @@ class MarkerExtractor(object):
         values: all extracted time-date values
         """
 
-        markers = self.extract_marker(input_sentence)
-        spans = json.loads(markers)['datetime']
-        output_extracted = [input_sentence[item[0]:item[1]] for item in spans]
-        values = [self.value_extractor.compute_value(p) for p in output_extracted]
+        values = {"time": {}, "date": {}}
+        spans = self.extract_span(input_sentence)
+
+        time_spans = json.loads(spans)['time']
+        date_spans = json.loads(spans)['date']
+
+        time_values = [self.value_extractor.compute_time_value(input_sentence[e[0]:e[1]]) for e in time_spans]
+        date_values = [self.value_extractor.compute_date_value(input_sentence[e[0]:e[1]]) for e in date_spans]
+
+        values['time'] = {str(span): str(value) for span, value in zip(time_spans, time_values)}
+        values['date'] = {str(span): str(value) for span, value in zip(date_spans, date_values)}
 
         return values
 
     def extract_ner(self, input_sentence: str):
 
-        markers = self.extract_marker(input_sentence)
-        spans = json.loads(markers)['datetime']
+        spans_dict = self.extract_span(input_sentence)
+        spans = json.loads(spans_dict)['datetime']
         ners = []
         tokens = word_tokenize(input_sentence)
         all_spans = textspan.get_original_spans(tokens, input_sentence)
