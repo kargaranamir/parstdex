@@ -449,7 +449,7 @@ PRV PF DU NUM
 PRV PF DU PN
 
 
-### Complex or Ambiguous: Date + Time
+### Complex or Ambiguous: datetime
 
 # روز
 SHABROOZ

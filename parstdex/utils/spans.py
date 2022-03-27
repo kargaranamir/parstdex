@@ -8,22 +8,22 @@ from parstdex.utils import const
 def merge_spans(spans: Dict, normalized_sentence: str):
     result, encoded = dict(), dict()
 
-    encoded['Date'] = encode_span(spans['Date'],
-                                  spans['Adversarial'],
+    encoded['date'] = encode_span(spans['date'],
+                                  spans['adversarial'],
                                   normalized_sentence)
 
-    encoded['Time'] = encode_span(spans['Time'],
-                                  spans['Adversarial'],
+    encoded['time'] = encode_span(spans['time'],
+                                  spans['adversarial'],
                                   normalized_sentence)
 
-    encoded['Date'], encoded['Time'] = encode_rtl(encoded['Date'], encoded['Time'])
+    encoded['date'], encoded['time'] = encode_rtl(encoded['date'], encoded['time'])
 
-    encoded['Date'] = encode_space(encoded['Date'], spans['Space'])
-    encoded['Time'] = encode_space(encoded['Time'], spans['Space'])
+    encoded['date'] = encode_space(encoded['date'], spans['Space'])
+    encoded['time'] = encode_space(encoded['time'], spans['Space'])
 
-    result['Date+Time'] = find_spans(merge_encodings(encoded['Time'], encoded['Date']))
-    result['Date'] = find_spans(encoded['Date'])
-    result['Time'] = find_spans(encoded['Time'])
+    result['datetime'] = find_spans(merge_encodings(encoded['time'], encoded['date']))
+    result['date'] = find_spans(encoded['date'])
+    result['time'] = find_spans(encoded['time'])
 
     return result
 
@@ -129,9 +129,7 @@ def encode_rtl(encoded_date, encoded_time):
                         break
             # else if both are 0
             else:
-                print("#TODO")
-                print(f"Encoded Date:\n {encoded_date}")
-                print(f"Encoded Date:\n {encoded_time}")
+                # debug may be required in future versions
                 i += 1
         else:
             i += 1

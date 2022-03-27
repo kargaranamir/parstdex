@@ -1,6 +1,6 @@
 import pprint
 
-import nltk
+from hazm import word_tokenize
 import textspan
 
 from parstdex.utils.normalizer import Normalizer
@@ -10,15 +10,16 @@ from parstdex.utils.spans import merge_spans
 from parstdex.utils.word_to_value import ValueExtractor
 
 
-class MarkerExtractor:
-    def __init__(self, DEBUG=False):
+class MarkerExtractor(object):
+    def __init__(self, debug_mode=False):
         # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = Normalizer()
         # Patterns: patterns to regex generator
         self.patterns = Patterns()
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = ValueExtractor()
-        self.DEBUG = DEBUG
+        self.DEBUG = debug_mode
+        super(MarkerExtractor, self).__init__()
 
     def extract_marker(self, input_sentence: str):
         """
@@ -48,8 +49,8 @@ class MarkerExtractor:
                     })
             pprint.pprint(dict_output_raw)
 
-        if len(spans['Time']) == 0 and len(spans['Date']) == 0:
-            return {'Date+Time':[], 'Date':[], 'Time':[]}
+        if len(spans['time']) == 0 and len(spans['date']) == 0:
+            return {'datetime': [], 'date': [], 'time': []}
 
         markers = merge_spans(spans, normalized_sentence)
 
@@ -66,18 +67,18 @@ class MarkerExtractor:
         """
 
         markers = self.extract_marker(input_sentence)
-        spans = markers['Date+Time']
+        spans = markers['datetime']
         output_extracted = [input_sentence[item[0]:item[1]] for item in spans]
         values = [self.value_extractor.compute_value(p) for p in output_extracted]
 
-        return markers, values
+        return values
 
     def extract_ner(self, input_sentence: str):
 
         markers = self.extract_marker(input_sentence)
-        spans = markers['Date+Time']
+        spans = markers['datetime']
         ners = []
-        tokens = nltk.word_tokenize(input_sentence)
+        tokens = word_tokenize(input_sentence)
         all_spans = textspan.get_original_spans(tokens, input_sentence)
         all_spans = [span[0] for span in all_spans if span != []]
         for span in all_spans:
@@ -92,4 +93,4 @@ class MarkerExtractor:
                     break
             if not chosen:
                 ners.append((input_sentence[span[0]:span[1]], 'O'))
-        return markers, ners
+        return ners

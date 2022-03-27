@@ -1,8 +1,8 @@
 import pytest
 import json
 import ast
-import os
-from parstdex import MarkerExtractor
+
+from parstdex import Parstdex
 from settings import ROOT_DIR
 
 
@@ -25,11 +25,11 @@ def prepare_test_scenarios():
     return scenarios
 
 
-model = MarkerExtractor()
+model = Parstdex()
 test_scenarios = prepare_test_scenarios()
 
 
 @pytest.mark.parametrize("sentence, expected", test_scenarios)
 def test_parstdex_extractor(sentence, expected):
     markers = model.extract_marker(sentence)
-    assert markers['Date+Time'] == expected
+    assert markers['datetime'] == expected
