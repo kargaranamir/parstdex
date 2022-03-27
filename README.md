@@ -1,8 +1,6 @@
 # parstdex (persian time date extractor) - پارس تی‌دِکس
 
-## Pre-requisites
-* This utility is written in Python 3. You will need a Python 3 interpreter installed or you will have to package this into a self contained executable.
-
+![](https://badgen.net/pypi/v/parstdex) ![](https://badgen.net/pypi/license/parstdex) ![](https://badgen.net/pypi/python/parstdex)
 ## How to Install parstdex
 
 ```bash
@@ -34,13 +32,19 @@ model.extract_marker(sentence)
 
 ```json
 {
-"datetime": {'[6, 47]': 'شنبه عصر راس ساعت ۱۷ و بیست و سه دقیقه به',
-             '[68, 78]': 'سه روز بعد',
-             '[82, 111]': 'تاریخ ۱۸ شهریور سال ۱۳۷۸ ه.ش.'},
-"date": {'[6, 10]': 'شنبه',
-         '[68, 78]': 'سه روز بعد',
-         '[82, 111]': 'تاریخ ۱۸ شهریور سال ۱۳۷۸ ه.ش.'},
-"time": {'[11, 47]': 'عصر راس ساعت ۱۷ و بیست و سه دقیقه به'}
+   "datetime":{
+      "[6, 47]":"شنبه عصر راس ساعت ۱۷ و بیست و سه دقیقه به",
+      "[68, 78]":"سه روز بعد",
+      "[82, 111]":"تاریخ ۱۸ شهریور سال ۱۳۷۸ ه.ش."
+   },
+   "date":{
+      "[6, 10]":"شنبه",
+      "[68, 78]":"سه روز بعد",
+      "[82, 111]":"تاریخ ۱۸ شهریور سال ۱۳۷۸ ه.ش."
+   },
+   "time":{
+      "[11, 47]":"عصر راس ساعت ۱۷ و بیست و سه دقیقه به"
+   }
 }
 ```
 
@@ -51,10 +55,14 @@ model.extract_value(sentence)
 output :
 ```json
 {
-'date': {'[6, 10]': 'شنبه',
-        '[68, 78]': '3 روز بعد',
-        '[82, 111]': '1378/06/18'},
-'time': {'[11, 47]': '17:23:00'}
+   "date":{
+      "[6, 10]":"شنبه",
+      "[68, 78]":"3 روز بعد",
+      "[82, 111]":"1378/06/18"
+   },
+   "time":{
+      "[11, 47]":"17:23:00"
+   }
 }
 ```
 ### Extract markers' NER tags
