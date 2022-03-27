@@ -1,3 +1,4 @@
+import json
 import pprint
 
 from hazm import word_tokenize
@@ -54,7 +55,7 @@ class MarkerExtractor(object):
 
         markers = merge_spans(spans, normalized_sentence)
 
-        return markers
+        return json.dumps(markers)
 
     def extract_value(self, input_sentence: str):
         """
@@ -67,7 +68,7 @@ class MarkerExtractor(object):
         """
 
         markers = self.extract_marker(input_sentence)
-        spans = markers['datetime']
+        spans = json.loads(markers)['datetime']
         output_extracted = [input_sentence[item[0]:item[1]] for item in spans]
         values = [self.value_extractor.compute_value(p) for p in output_extracted]
 
@@ -76,7 +77,7 @@ class MarkerExtractor(object):
     def extract_ner(self, input_sentence: str):
 
         markers = self.extract_marker(input_sentence)
-        spans = markers['datetime']
+        spans = json.loads(markers)['datetime']
         ners = []
         tokens = word_tokenize(input_sentence)
         all_spans = textspan.get_original_spans(tokens, input_sentence)
