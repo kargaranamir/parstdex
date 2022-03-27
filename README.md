@@ -116,6 +116,10 @@ Parstdex architecture is very flexible and scalable and therefore suggests an ea
 └── setup.py
 ```
 
+## How to contribute
+
+Please feel free to provide us with any feedback or suggestions.  You can find more information on how to contribute to Parstdex by reading the 
+[contribution document](https://github.com/kargaranamir/parstdex/blob/main/contributing.md).
 
 ## Citation
 If you use any part of this library in your research, please cite it using the following BibTex entry.
