@@ -8,7 +8,7 @@ from parstdex import Parstdex
 def examples():
     # read all test inputs in Test folder
     test_path = settings.ROOT_DIR + './tests/data.json'
-    f = open(test_path, 'r', encoding='utf8')
+    f = open(test_path, 'r', encoding='utf-8-sig')
     test_data = json.load(f)
 
     model = Parstdex(debug_mode=False)
@@ -27,5 +27,8 @@ def examples():
         ners = model.extract_ner(input_sentence)
         result['ner'] = ners
 
-        pprint.pprint(result)
+        pprint.pprint(result,)
         print("==" * 50)
+
+
+examples()

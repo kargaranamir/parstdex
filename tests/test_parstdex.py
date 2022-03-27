@@ -10,7 +10,7 @@ def prepare_test_scenarios():
     file_path = ROOT_DIR + '/tests/data.json'
 
     # Read Test file
-    test_data_file = open(file_path, 'r', encoding='utf8')
+    test_data_file = open(file_path, 'r', encoding='utf-8-sig')
     test_inputs = json.load(test_data_file)
 
     # Create test scenarios
