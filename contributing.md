@@ -8,6 +8,16 @@
 Be sure to include a **title and clear description**, as much relevant information as possible or an **executable test case** demonstrating the 
 expected behavior that is not occurring.
 
+* Please refer to each project's style and contribution guidelines for submitting patches and additions. In general, we follow the **fork-and-pull** Git workflow.
+
+  - Fork the repo on GitHub
+  - Clone the project to your own machine
+  - Commit changes to your own branch
+  - Push your work back up to your fork
+  - Submit a Pull request so that we can review your changes
+
+_NOTE: Be sure to merge the latest from "upstream" before making a pull request!_
+
 #### **Did you write a patch that fixes a bug?**
 
 * Open a new GitHub pull request with the patch.
