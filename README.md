@@ -1,92 +1,92 @@
 # parstdex (persian time date extractor) - پارس تی‌دِکس
 
 ## Pre-requisites
-* This utility is written in Python 3. You will need a Python 3 interpreter installed or you will have to package this into a self contained executable. 
-
-* This utility just uses builtin [re](https://docs.python.org/3/library/re.html). Therefore, you will not need to install any dependencies. 
+* This utility is written in Python 3. You will need a Python 3 interpreter installed or you will have to package this into a self contained executable.
 
 ## How to Install parstdex
 
 ```bash
-pip install git+https://github.com/kargaranamir/parstdex
+pip install parstdex
 ```
 
 ## How to Upgrade parstdex
 
 ```bash
-pip install --upgrade git+https://github.com/kargaranamir/parstdex
+pip install --upgrade parstdex
 ```
 
 ## How to use
-### Beta: Both marker and value extractor are supported
-```python
-from parstdex import MarkerExtractor
-
-# make a marker extractor object: this object will provide an environment for producing regexes and functions to process input text 
-extractor = MarkerExtractor()
-
-input_sentence = """ماریا شنبه عصر در ساعت نه و پنجاه نه دقیقه مورخ 13می 1999 با نادیا تماس گرفت اما نادیا بعدا در 1100/09/09 قمری به پرسش او پاسخ داد."""
-print("Original Sentence:\n", input_sentence)
-normalized_sentence, result, values = extractor.time_value_extractor(input_sentence)
-
-## Print results
-print("Normalized Sentence:\n", normalized_sentence)
-print("All Extracted Markers: ")
-print(result)
-for item in result:
-    print(normalized_sentence[item[0]:item[1]])
-
-print("All Value Markers Extracted: ")
-print(values)
-```
 
 ```python
-Original Sentence:
- ماریا شنبه عصر در ساعت نه و پنجاه نه دقیقه مورخ 13می 1999 با نادیا تماس گرفت اما نادیا بعدا در 1100/09/09 قمری به پرسش او پاسخ داد.
-Normalized Sentence:
- ماریا شنبه عصر در ساعت نه و پنجاه نه دقیقه مورخ 13 می 1999 با نادیا تماس گرفت اما نادیا بعدا در 1100/09/09 قمری به پرسش او پاسخ داد.
-All Extracted Markers: 
-[(6, 15), (18, 43), (48, 59), (96, 112)]
-شنبه عصر 
-ساعت نه و پنجاه نه دقیقه 
-13 می 1999 
-1100/09/09 قمری 
-All Value Markers Extracted: 
-['شنبه عصر', '09:59:00', '13/05/1999', '1100/09/09 ه.ق']
+from parstdex import Parstdex
+
+parstdex = Parstdex()
+
+sentence = """ماریا شنبه عصر راس ساعت ۱۷ و بیست و سه دقیقه به نادیا زنگ زد اما تا سه روز بعد در تاریخ ۱۸ شهریور سال ۱۳۷۸ ه.ش. خبری از نادیا نشد"""
 ```
-
-
-### Stable: Marker extractor is supported (Faster than Beta Version)
+### Extract markers
 ```python
-from parstdex import MarkerExtractor
-
-# make a marker extractor object: this object will provide an environment for producing regexes and functions to process input text 
-extractor = MarkerExtractor()
-
-input_sentence = """ماریا شنبه عصر در ساعت نه و پنجاه نه دقیقه مورخ 13می 1999 با نادیا تماس گرفت اما نادیا بعدا در 1100/09/09 قمری به پرسش او پاسخ داد."""
-print("Original Sentence:\n", input_sentence)
-normalized_sentence, result = extractor.time_marker_extractor(input_sentence)
-
-## Print results
-print("Normalized Sentence:\n", normalized_sentence)
-print("All Extracted Markers: ")
-print(result)
-for item in result:
-    print(normalized_sentence[item[0]:item[1]])
-
+parstdex.extract_marker(sentence)
 ```
-
+output :
+```json
+{"datetime": [[6, 47], [68, 78], [82, 111]], "date": [[6, 10], [68, 78], [82, 111]], "time": [[11, 47]]}
+```
+### Extract markers' value
 ```python
-Original Sentence:
- ماریا شنبه عصر در ساعت نه و پنجاه نه دقیقه مورخ 13می 1999 با نادیا تماس گرفت اما نادیا بعدا در 1100/09/09 قمری به پرسش او پاسخ داد.
-Normalized Sentence:
- ماریا شنبه عصر در ساعت نه و پنجاه نه دقیقه مورخ 13 می 1999 با نادیا تماس گرفت اما نادیا بعدا در 1100/09/09 قمری به پرسش او پاسخ داد.
-All Extracted Markers: 
-[(6, 15), (18, 43), (48, 59), (96, 112)]
-شنبه عصر 
-ساعت نه و پنجاه نه دقیقه 
-13 می 1999 
+parstdex.extract_value(sentence)
 ```
+output :
+```json
+[
+   "17:23:00",
+   "3 روز بعد",
+   "1378/06/18"
+]
+```
+### Extract markers' NER tags
+```python
+parstdex.extract_ner(sentence)
+```
+output :
+```
+[('ماریا', 'O'),
+ ('شنبه', 'B-DAT'),
+ ('عصر', 'I-DAT'),
+ ('راس', 'I-DAT'),
+ ('ساعت', 'I-DAT'),
+ ('۱۷', 'I-DAT'),
+ ('و', 'I-DAT'),
+ ('بیست', 'I-DAT'),
+ ('و', 'I-DAT'),
+ ('سه', 'I-DAT'),
+ ('دقیقه', 'I-DAT'),
+ ('به', 'I-DAT'),
+ ('نادیا', 'O'),
+ ('زنگ', 'O'),
+ ('زد', 'O'),
+ ('اما', 'O'),
+ ('تا', 'O'),
+ ('سه', 'B-DAT'),
+ ('روز', 'I-DAT'),
+ ('بعد', 'I-DAT'),
+ ('در', 'O'),
+ ('تاریخ', 'B-DAT'),
+ ('۱۸', 'I-DAT'),
+ ('شهریور', 'I-DAT'),
+ ('سال', 'I-DAT'),
+ ('۱۳۷۸', 'I-DAT'),
+ ('ه', 'I-DAT'),
+ ('.', 'I-DAT'),
+ ('ش', 'I-DAT'),
+ ('.', 'I-DAT'),
+ ('خبری', 'O'),
+ ('از', 'O'),
+ ('نادیا', 'O'),
+ ('نشد', 'O')]
+
+```
+
 
 ## File Structure:
 Parstdex architecture is very flexible and scalable and therefore suggests an easy solution to adapt to new patterns which haven't been considered yet.
@@ -98,24 +98,24 @@ Parstdex architecture is very flexible and scalable and therefore suggests an ea
 |   |   |   └── ...
 |   |   └── pattern
 |   |   |   └── ...
+|   |   └── special_words
+|   |   |   └── words.txt
 |   |   └── const.py
 |   |   └── normalizer.py
 |   |   └── pattern_to_regex.py
+|   |   └── spans.py
 |   |   └── word_to_value.py
-|   └── timeMarkerExtractor.py
+|   └── marker_extractor.py
 └── Test           
-│   └── in
-|       └── ...
-└── main.py
+│   └── data.json
+|   └── test_parstdex.py
+|      
+└── examples.py
 └── requirement.txt
+└── settings.py
+└── setup.py
 ```
 
-## Acknowledgement
-Initiation of this work came from this article and corresponding [repository](https://github.com/BehroozMansouri/ParsTime).
-```
-Mansouri, Behrooz, et al. "ParsTime: Rule-Based Extraction and Normalization of Persian Temporal Expressions." 
-European Conference on Information Retrieval. Springer, Cham, 2018.
-```
 
 ## Citation
 If you use any part of this library in your research, please cite it using the following BibTex entry.
