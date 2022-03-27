@@ -4,3 +4,5 @@
 *.pyc
 patterns.txt
 .pytest_cache/*
+./docs/_build/*
+./docs/_*/*
