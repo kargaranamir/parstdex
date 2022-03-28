@@ -8,10 +8,11 @@ with open("README.md") as fh:
 
 setuptools.setup(
     name='parstdex',
-    version="1.0.7",
+    version="1.0.8",
     description="Persian time and date marker extractor",
     long_description=long_description,
     long_description_content_type="text/markdown",
+    url='https://github.com/kargaranamir/parstdex',
     packages=setuptools.find_packages(),
     package_data={
         'parstdex.utils': ['pattern/*.txt',
@@ -19,7 +20,8 @@ setuptools.setup(
                            'annotation/adv/*.txt',
                            'annotation/date/*.txt',
                            'annotation/time/*.txt',
-                           'special_words/*.txt']
+                           'special_words/*.txt'],
+        'tests': ['data.json']
     },
     include_package_data=True,
     classifiers=[
