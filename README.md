@@ -128,13 +128,13 @@ Parstdex architecture is very flexible and scalable and therefore suggests an ea
 |   |   └── spans.py
 |   |   └── word_to_value.py
 |   └── marker_extractor.py
+|   └── settings.py
 └── Test           
 │   └── data.json
 |   └── test_parstdex.py
 |      
 └── examples.py
 └── requirement.txt
-└── settings.py
 └── setup.py
 ```
 
