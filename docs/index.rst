@@ -6,10 +6,7 @@
 Welcome to parstdex's documentation!
 ====================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
+Parstdex is a python package to extract time and date markers with high performance. Parstdex only uses regexes to extract markers.
 
 
 How to Install parstdex
