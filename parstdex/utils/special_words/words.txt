@@ -34,3 +34,6 @@ ZAMAN   زمان
 HAMIN   همین
 HSPACE  \\u200C
 YEKBAR یکبار
+
+# Adverserial
+BAZAR بازار

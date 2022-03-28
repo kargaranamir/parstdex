@@ -1,6 +1,6 @@
-به روز رسانی
-امام جمعه
-غروب خورشید
+# دوشنبه بازار
+WD BAZAR
+
 # لیگ شانزدهم
 LEAGUE NUM
 LEAGUE PN
@@ -45,3 +45,9 @@ PRV MEE PEV
 PRV MEE PAV
 PRV MEEHSPACEPEV
 PRV MEEHSPACEPAV
+
+
+# Adverserial Keywords
+به روز رسانی
+امام جمعه
+غروب خورشید
