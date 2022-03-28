@@ -6,3 +6,5 @@ patterns.txt
 .pytest_cache/*
 ./docs/_build/*
 ./docs/_*/*
+./build/*
+./parstdex.egg-info/*

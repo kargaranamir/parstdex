@@ -25,10 +25,13 @@ class Annotation:
     Annotation class is used to create annotation dictionary which will be used for creating regex from patterns
     in following steps.
     """
-    time_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/time')
-    date_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/date')
-    aux_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/ax')
-    adv_annotation_path = os.path.join(os.path.dirname(__file__), 'annotation/adv')
+
+    path_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'annotation')
+
+    time_annotation_path = os.path.join(path_dir, 'time', "")
+    date_annotation_path = os.path.join(path_dir, 'date', "")
+    aux_annotation_path = os.path.join(path_dir, 'ax', "")
+    adv_annotation_path = os.path.join(path_dir, 'adv', "")
 
     annotations_dict = {}
 
@@ -92,7 +95,7 @@ class Patterns:
     def __init__(self):
         annotations = Annotation()
         special_words = get_special_words()
-        self.patterns_path = os.path.join(os.path.dirname(__file__), 'pattern')
+        self.patterns_path = os.path.join(os.path.dirname(__file__), 'pattern', "")
         self.cumulative_annotations = {**annotations.annotations_dict, **special_words}
         self.cumulative_annotations_keys = sorted(self.cumulative_annotations, key=len, reverse=True)
         files = os.listdir(self.patterns_path)
