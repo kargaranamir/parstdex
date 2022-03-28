@@ -1,13 +1,12 @@
 import json
 import pprint
 
-import settings
-from parstdex import Parstdex
+from parstdex import Parstdex, settings
 
 
 def examples():
     # read all test inputs in Test folder
-    test_path = settings.ROOT_DIR + './tests/data.json'
+    test_path = settings.ROOT_DIR + '/tests/data.json'
     f = open(test_path, 'r', encoding='utf-8-sig')
     test_data = json.load(f)
 

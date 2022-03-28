@@ -2,12 +2,11 @@ import pytest
 import json
 import ast
 
-from parstdex import Parstdex
-from settings import ROOT_DIR
+from parstdex import Parstdex, settings
 
 
 def prepare_test_scenarios():
-    file_path = ROOT_DIR + '/tests/data.json'
+    file_path = settings.ROOT_DIR + '/tests/data.json'
 
     # Read Test file
     test_data_file = open(file_path, 'r', encoding='utf-8-sig')
