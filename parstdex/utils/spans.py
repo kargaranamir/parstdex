@@ -95,7 +95,7 @@ def find_spans(encoded_sent):
                     end = i + 1
                 i += 1
 
-            spans.append((start, end))
+            spans.append([start, end])
     return spans
 
 
