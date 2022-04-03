@@ -62,7 +62,7 @@ class Annotation:
     @staticmethod
     def create_number_annotation_dict():
         annotation_dict = {
-            'NUM': r'\\d{1,4}',  # all 1 to 4 digit numbers
+            'NUM': r'\\d{1,4}|\\d{1}\.\\d{1}',  # all 1 to 4 digit numbers + decimal format 1 to 9
             'PN': const.PN  # Persian alphabetic numbers
         }
 

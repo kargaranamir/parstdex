@@ -11,6 +11,13 @@ RY
 # فروردین
 MNTH
 
+# طول ماه
+TOOL DU
+# طول ۵ سال
+TOOL NUM DU
+# سوال پنج سال
+TOOL PN DU
+
 # ماه فروردین
 MAH MNTH
 
@@ -110,6 +117,11 @@ MNTHMAH SAL PN CT
 
 
 ### wihtout MNTH
+اوایل سال میلادی
+PRV SAL CT
+# اوایل سال نو میلادی
+PRV SAL JADID CT
+
 # سال ۱۳۷۵
 SAL NUM
 SAL PN
@@ -418,10 +430,6 @@ MNTH PF NXT PN
 # ژانویه آینده ی ۱۹۹۹
 MNTH NXT PF NUM
 MNTH NXT PF PN
-
-# ماه های آعازین
-DU PF NXT
-DUPF NXT
 
 # ماه های آعازین
 DU PF NXT

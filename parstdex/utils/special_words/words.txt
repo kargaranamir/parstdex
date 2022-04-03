@@ -34,6 +34,6 @@ ZAMAN   زمان
 HAMIN   همین
 HSPACE  \\u200C
 YEKBAR یکبار
-
+JADID   جدید|نو
 # Adverserial
 BAZAR بازار

@@ -7,6 +7,12 @@ CJ TU
 # تا غروب
 CJ DP
 
+# طول دقیقه
+TOOL TU
+TOOL NUM TU
+TOOL PN TU
+TOOL MIN TU
+
 # پنج ثانیه
 NUM TU
 MIN TU
