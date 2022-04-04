@@ -39,3 +39,4 @@ JADID   جدید|نو
 BAZAR بازار
 GHARN   قرن
 MOBARAK مبارک
+COMMA   ،
