@@ -52,3 +52,9 @@ PRV MEEHSPACEPAV
 امام جمعه
 غروب خورشید
 خبرگزاری مهر
+وطن امروز
+روزه
+رجب طیب
+
+# remove event part of patterns
+EVE

@@ -132,6 +132,11 @@ SAL PN CT
 NUM CT
 PN CT
 
+# 1878 1948 ميلادي
+NUM NUM CT
+# 1902 – 1979 ميلادي
+NUM – NUM CT
+NUM - NUM CT
 
 # 1300/12/9
 NUM/N12/N31
@@ -204,7 +209,8 @@ SSN NXT
 # آغاز پاییز
 PRV SSN
 
-
+# پنجشنبه گذشته
+WD NXT
 # ماه نخست آعازین
 DU NXT NXT
 DUNXT NXT
@@ -434,6 +440,10 @@ MNTH NXT PF PN
 # ماه های آعازین
 DU PF NXT
 DUPF NXT
+DUHSPACEPF NXT
+
+# سال جاری تا ۱۴۰۰
+DU NXT CJ NUM
 
 # سه هفته ای
 DN DU PF
@@ -456,6 +466,8 @@ PRV PF DU
 PRV PF DU NUM
 PRV PF DU PN
 
+# سال ۱۳۴۳ تا ۱۳۵۴
+DU NUM CJ NUM
 
 ### Complex or Ambiguous: datetime
 
@@ -539,3 +551,37 @@ NUM CJ PN SHABROOZ
 PN CJ NUM SHABROOZ
 PN CJ PN SHABROOZ
 
+# فتنه‌گران ۸۸
+EVE NUM
+EVE PN
+
+# روز‌های ۴ و ۵
+DUPF NUM VA NUM
+DUHSPACEPF NUM VA NUM
+
+# 11 . 24 . 2016
+N12 \. N31 \. NUM
+
+# ۱۸ - ۲۰ آذر
+PN – PN MNTH
+N31 – N31 MNTH
+PN - PN MNTH
+N31 - N31 MNTH
+
+# تابستان ۱۳۹۷
+SSN NUM
+SSN PN
+
+# قرن پانزدهم میلادی
+GHARN DN CT
+
+# ماه مبارک رمضان
+MAH MOBARAK MNTH
+
+# فروردین لغایت خرداد
+MNTH CJ MNTH
+MNTH CJ DN MNTH
+MNTH MAH CJ MNTH
+MNTH MAH CJ DN MNTH
+MNTHHSPACEMAH CJ MNTH
+MNTHHSPACEMAH CJ DN MNTH

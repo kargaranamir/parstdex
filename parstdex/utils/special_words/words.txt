@@ -37,3 +37,5 @@ YEKBAR یکبار
 JADID   جدید|نو
 # Adverserial
 BAZAR بازار
+GHARN   قرن
+MOBARAK مبارک

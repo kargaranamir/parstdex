@@ -10,7 +10,7 @@ def examples():
     f = open(test_path, 'r', encoding='utf-8-sig')
     test_data = json.load(f)
 
-    model = Parstdex(debug_mode=False)
+    model = Parstdex(debug_mode=True)
 
     result = {}
     for testcase in test_data:
