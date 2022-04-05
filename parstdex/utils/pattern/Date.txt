@@ -144,11 +144,13 @@ MNTHMAH SAL NUM CT
 MNTHMAH SAL PN CT
 
 
-### wihtout MNTH
+### with out MNTH
+# سال میلادی
+DU CT
 اوایل سال میلادی
-PRV SAL CT
+PRV DU CT
 # اوایل سال نو میلادی
-PRV SAL JADID CT
+PRV DU JADID CT
 
 # سال ۱۳۷۵
 SAL NUM
@@ -253,8 +255,6 @@ WD NXT
 # ماه نخست آعازین
 DU NXT NXT
 DUNXT NXT
-# سه هفته نخست
-DN DU NXT
 # سه هفته‌ای
 DN DUHSPACENXT
 # سه ماه‌ی نخست
@@ -291,9 +291,12 @@ DU NUM
 DU PN
 # ۳ هفته
 NUM DU
+NUMDU
 PN DU
+## ?? PNDU
 # سومین هفته
 DN DU
+## ?? DNDU
 # هفته سوم
 DU DN
 # هفته آینده
@@ -379,8 +382,14 @@ HAR PNBAR DAR DU
 
 # ۵ ساله
 NUM DUPF
+# پنج ساله
 PN DUPF
+# صدساله
+## ?? PNDUPF
+# هجده ساله
 DN DUPF
+# دوساله
+## ?? DNDUPF
 
 # هفته‌ای ۱۲ بار
 DUPF PN BAR

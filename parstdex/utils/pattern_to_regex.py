@@ -116,7 +116,7 @@ class Patterns:
         :return: str
         """
         # TODO: WHY \s*
-        pattern = pattern.replace(" ", r'[\u200c\s]+')
+        pattern = pattern.replace(" ", r'[\u200c\s]{1,3}')
         annotation_keys = "|".join(self.cumulative_annotations_keys)
         matches = re.findall(annotation_keys, pattern)
         for key in matches:
