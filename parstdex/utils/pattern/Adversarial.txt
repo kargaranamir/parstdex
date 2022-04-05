@@ -46,6 +46,9 @@ PRV MEE PAV
 PRV MEEHSPACEPEV
 PRV MEEHSPACEPAV
 
+# پنج هزار تومان
+PN CUR
+NUM CUR
 
 # Adverserial Keywords
 به روز رسانی
@@ -56,6 +59,7 @@ PRV MEEHSPACEPAV
 عصر نفت
 روزه
 رجب طیب
+رجب اردوغان
 بهمن نامور
 سیگار بهمن
 بهمن مفید

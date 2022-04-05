@@ -7,9 +7,19 @@ class Normalizer:
     - normalized arabic alphabet into persian alphabet(normalize_alphabet)
     """
     ALPHABET_DICT = {
-        'ك': 'ک',
-        'ى': 'ی',
-        'ي': 'ی',
+        "ك": "ک",
+        "ى": "ی",
+        "ي": "ی",
+        "۰": "0",
+        "۱": "1",
+        "۲": "2",
+        "۳": "3",
+        "۴": "4",
+        "۵": "5",
+        "۶": "6",
+        "۷": "7",
+        "۸": "8",
+        "۹": "9"
     }
 
     def normalize_alphabet(self, text):

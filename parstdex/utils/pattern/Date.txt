@@ -1,5 +1,13 @@
 ﻿# Date
 
+# phrases with only one appearance in patterns like سال کبیسه
+UNQ
+
+# 1323
+NY4
+
+# سال
+DU
 # امروز
 RD
 # یکشنبه
@@ -8,6 +16,8 @@ WD
 SSN
 # امسال
 RY
+# اوایل امسال
+PRV RY
 
 # سالروز
 SALROOZ
@@ -15,8 +25,16 @@ SALROOZ
 # فروردین
 MNTH
 
+# سالی
+DUPF
+DU PF
+
 # طول ماه
 TOOL DU
+# طول هفت ماه
+TOOL DN DU
+# طول هفت ماه
+TOOL DN DUPF
 # طول ۵ سال
 TOOL NUM DU
 # سوال پنج سال
@@ -92,6 +110,8 @@ MNTH MAH SAL NUM CT
 MNTH MAH SAL PN CT
 
 ### with MAH sticking near MNTH (MNTHMAH) and DN
+# تیرماه
+MNTHMAH
 # یک تیرماه
 DN MNTHMAH
 # یک تیرماه ۱۳۷۵
@@ -170,6 +190,9 @@ N31\\N12\\NUM CT
 N31-N12-NUM CT
 N31\.N12\.NUM CT
 
+# فصل پاییز
+FASL SSN
+
 # سه (سومین) بهار
 DN SSN
 NUM SSN
@@ -246,6 +269,8 @@ PRV NXT DU PN
 PRV DN DU
 PRV DN DU NUM
 PRV DN DU PN
+# نیمه اول امسال
+PRV DN RY
 
 # شروع پاییز
 PRV SSN
@@ -269,8 +294,6 @@ DU HSPACE NXT
 # آِغاز هفته
 PRV DU
 
-# سال کبیسه
-SAL KABISE
 # تاریخ فروردین
 TARIKH MNTH
 MOVAREKH MNTH
@@ -346,6 +369,11 @@ HAR DNBAR DAR DU
 HAR NUMBAR DAR DU
 HAR PNBAR DAR DU
 
+# ۵ ساله
+NUM DUPF
+PN DUPF
+DN DUPF
+
 # هفته‌ای ۱۲ بار
 DUPF PN BAR
 DU PF PN BAR
@@ -360,8 +388,6 @@ CHAND DU
 TEY CHAND DU
 # طی ۳ ماه
 TEY DN DU
-# طول زمان
-TOOL ZAMAN
 
 # اول تا اواسط آذر
 DN CJ PRV DU
@@ -410,6 +436,25 @@ MNTH VA MNTH
 # تا سال
 CJ DU
 
+# لغایت ۱۴ خرداد
+CJ DN MNTH
+CJ DN MNTHMAH
+CJ DN MAH MNTH
+CJ MNTH
+CJ MAH MNTH
+# تا پاییز
+CJ SSN
+CJ FASL SSN
+CJ DN SSN
+CJ DN FASL SSN
+# تا دومین روز پاییز
+CJ DN SHABROOZ SSN
+CJ DN SHABROOZ FASL SSN
+
+# از سومین روز از پاییز
+PRV DN SHABROOZ AZ SSN
+PRV DN SHABROOZ AZ FASL SSN
+
 # پنج تا ۵ هفته
 NUM CJ NUM DU
 NUM CJ PN DU
@@ -448,7 +493,6 @@ MNTH NXT PF PN
 # ماه های آعازین
 DU PF NXT
 DUPF NXT
-DUHSPACEPF NXT
 
 # سال جاری تا ۱۴۰۰
 DU NXT CJ NUM
@@ -476,6 +520,41 @@ PRV PF DU PN
 
 # سال ۱۳۴۳ تا ۱۳۵۴
 DU NUM CJ NUM
+
+
+# فتنه‌گران ۸۸
+EVE NUM
+EVE PN
+
+# روز‌های ۴ و ۵
+DUPF NUM VA NUM
+DUHSPACEPF NUM VA NUM
+
+# 11 . 24 . 2016
+N12 \. N31 \. NUM
+# 23 . 8 . 1395
+N31 \. N12 \. NUM
+
+# ۱۸ - ۲۰ آذر
+DN – DN MNTH
+
+# تابستان ۱۳۹۷
+SSN NUM
+SSN PN
+
+# قرن پانزدهم میلادی
+GHARN DN CT
+
+# ماه مبارک رمضان
+MAH MOBARAK MNTH
+
+# ۲۶ سالگی
+NUM SALPF
+PN SALPF
+
+# آستانه 8 سالگي
+PRV NUM SALPF
+PRV PN SALPF
 
 ### Complex or Ambiguous: datetime
 
@@ -559,43 +638,6 @@ NUM CJ PN SHABROOZ
 PN CJ NUM SHABROOZ
 PN CJ PN SHABROOZ
 
-# فتنه‌گران ۸۸
-EVE NUM
-EVE PN
-
-# روز‌های ۴ و ۵
-DUPF NUM VA NUM
-DUHSPACEPF NUM VA NUM
-
-# 11 . 24 . 2016
-N12 \. N31 \. NUM
-# 23 . 8 . 1395
-N31 \. N12 \. NUM
-
-# ۱۸ - ۲۰ آذر
-PN – PN MNTH
-N31 – N31 MNTH
-PN - PN MNTH
-N31 - N31 MNTH
-
-# تابستان ۱۳۹۷
-SSN NUM
-SSN PN
-
-# قرن پانزدهم میلادی
-GHARN DN CT
-
-# ماه مبارک رمضان
-MAH MOBARAK MNTH
-
-# فروردین لغایت خرداد
-MNTH CJ MNTH
-MNTH CJ DN MNTH
-MNTH MAH CJ MNTH
-MNTH MAH CJ DN MNTH
-MNTHHSPACEMAH CJ MNTH
-MNTHHSPACEMAH CJ DN MNTH
-
-# آستانه 8 سالگي
-PRV NUM SALPF
-PRV PN SALPF
+# لغایت دومین روز از
+CJ DN SHABROOZ
+CJ DN SHABROOZ AZ
