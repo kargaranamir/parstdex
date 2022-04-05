@@ -16,13 +16,13 @@ LEAGUE  لیگ
 
 # DateTime
 SHABROOZ شب|روز
+SALROOZ سالروز|سال‌روز
 
 # General
 HA ها
 VA	و
 AZ از
 BE به
-IEE ی|ای
 MEE می
 BAR بار
 TEY طی
