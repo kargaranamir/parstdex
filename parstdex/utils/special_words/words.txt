@@ -33,6 +33,7 @@ HAMIN   همین
 HSPACE  \\u200C
 YEKBAR یکبار
 JADID   جدید|نو
+YEKIDO  یکی دو
 
 # Adverserial
 BAZAR بازار

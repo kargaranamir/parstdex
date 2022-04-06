@@ -81,5 +81,7 @@ NUM CUR
 روز از نو
 روزی از نو
 روز نو
+ایران روز
+به نقل از 8 دی
 # remove event part of patterns
 EVE

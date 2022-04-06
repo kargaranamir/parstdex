@@ -277,6 +277,10 @@ NUM<>DU
 PN DU
 # سومین هفته
 DN DU
+# یکی دو سال
+YEKIDO DU
+# سه چار سال
+DN DN DU
 # هفته سوم
 DU DN
 # هفته آینده
@@ -493,6 +497,7 @@ EVE PN
 
 # روز‌های ۴ و ۵
 DU<>PF<>NUM<>VA<>NUM
+DU<>PF<>NUM<>CJ<>NUM
 
 # ۱۸ - ۲۰ آذر
 DN<>–<>DN MNTH

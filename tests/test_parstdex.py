@@ -32,4 +32,4 @@ test_scenarios = prepare_test_scenarios()
 def test_parstdex_extractor(sentence, expected):
     spans = model.extract_span(sentence)
     markers = model.extract_marker(sentence)
-    assert spans['datetime'] == expected, markers['datetime']
+    assert spans['datetime'] == expected, str(markers['datetime'])
