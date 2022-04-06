@@ -63,7 +63,11 @@ class Annotation:
     def create_number_annotation_dict():
         annotation_dict = {
             'NUM': r'\\d{1,4}',  # all 1 to 4 digit numbers
-            'PN': const.PN  # Persian alphabetic numbers
+            'PN': const.PN,  # Persian alphabetic numbers
+            'N60': r'(?:[0-5]?[0-9])',
+            'N31': r'(?:[0-2]?[0-9]|30|31)',
+            'N24': r'(?:[0-1]?[0-9]|2[0-4])',
+            'N12': r'(?:0?[0-9]|1[0-2])',
         }
 
         return annotation_dict
