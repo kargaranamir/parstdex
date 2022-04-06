@@ -20,8 +20,8 @@ PRV WD
 PRV PRV WD
 
 # صدسال
-# ?? PN<>DU
-# ?? PN<>DU<>NXT
+PN<>DU
+PN<>DU<>NXT
 
 # پاییز
 SSN
@@ -252,7 +252,7 @@ DU NXT NXT CT
 DN DU NXT<>NUM
 DN DU NXT PN
 PN DU NXT<>NUM
-PN DU NXT PN
+# PN DU NXT PN
 NUM<>DU NXT<>NUM
 NUM<>DU NXT PN
 # سه هفته نخست ماه
@@ -401,16 +401,16 @@ MNTH<>-<>MNTH
 SSN<>-<>SSN
 
 # قروردین و اردیبهشت
-# ?? MNTH VA MNTH
-# ?? MNTH CJ MNTH
+MNTH VA MNTH
+MNTH CJ MNTH
 
 # پاییز تا زمستان
-# ?? SSN VA SSN
-# ?? SSN CJ SSN
+SSN VA SSN
+SSN CJ SSN
 
 # حدفاصل ۹۰ تا ۹۳
-# ?? TOOL<>N99<>CJ<>N99
-# ?? TOOL<>NY4<>CJ<>NY4
+TOOL<>N99<>CJ<>N99
+TOOL<>NY4<>CJ<>NY4
 
 # سوم فروردین تا
 DN MNTH CJ
@@ -630,7 +630,7 @@ NUM SHABROOZ CJ<>NUM<>SHABROOZ
 NUM<>CJ<>NUM<>SHABROOZ
 NUM<>CJ PN SHABROOZ
 PN CJ<>NUM<>SHABROOZ
-PN CJ PN SHABROOZ
+DN CJ DN SHABROOZ
 
 # لغایت دومین روز از
 CJ DN SHABROOZ
