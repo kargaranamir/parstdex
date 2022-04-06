@@ -511,6 +511,36 @@ ONE_NINETY_NINE = {
     "نود و نه": 99
 }
 
+ONE_NINETY_NINETEEN = {
+    "یک": 1,
+    "دو": 2,
+    "سه": 3,
+    "چهار": 4,
+    "پنج": 5,
+    "شش": 6,
+    "شیش": 6,
+    "هفت": 7,
+    "هشت": 8,
+    "نه": 9,
+    "ده": 10,
+    "یازده": 11,
+    "دوازده": 12,
+    "سیزده": 13,
+    "سینزده": 13,
+    "چهارده": 14,
+    "چارده": 14,
+    "پانزده": 15,
+    "پونزده": 15,
+    "شانزده": 16,
+    "شونزده": 16,
+    "هفده": 17,
+    "هیفده": 17,
+    "هجده": 18,
+    "هیجده": 18,
+    "نونزده": 19,
+    "نوزده": 19
+}
+
 HOUR_PART = {
     "ربع": 15,
     "نیم": 30
@@ -532,8 +562,23 @@ FA_SYM = fr"[{FA_ALPHABET}{FA_PUNCT}{FA_NUM}]"
 # supports persian numbers from one to four digits written with persian alphabet
 # example:  هزار و سیصد و شصت و پنج
 
+TENS_NUMBER = {
+    "بیست": 20,
+    "سی": 30,
+    "چهل": 40,
+    "پنجاه": 50,
+    "شصت": 60,
+    "هفتاد": 70,
+    "هشتاد": 80,
+    "نود": 90
+}
+
 # اعداد یک تا نه
 ONE_TO_NINE_JOIN = "|".join(ONE_TO_NINE.keys())
+# بیست سی چهل ...
+TENS_NUMBER_JOIN = "|".join(TENS_NUMBER.keys())
+# اعداد یک تا نوزده
+ONE_TO_NINETEEN_JOIN = "|".join(list(ONE_NINETY_NINETEEN.keys())[::-1])
 # هزار میلیون بیلیون ...
 MAGNITUDE_JOIN = "|".join(MAGNITUDE.keys())
 
@@ -547,10 +592,15 @@ ONE_NINETY_NINE_JOIN = "|".join(list(ONE_NINETY_NINE.keys())[::-1])
 
 WHITE_SPACE = u'[\u200c\\\s]{0,5}'
 
-PN2 = rf"(?:{ONE_NINETY_NINE_JOIN})"
+PN1 = rf"(?:{ONE_TO_NINE_JOIN})"
+
+PN2MAG = rf"(?:{TENS_NUMBER_JOIN})"
+PN2UNDER20 = rf"(?:{ONE_TO_NINETEEN_JOIN})"
+PN2NUM = rf"(?:{PN2MAG}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}{PN1})"
+PN2 = PN2NUM + "|" + PN2MAG + "|" + PN2UNDER20 + "|" + PN1
 
 PN3MAG = rf"(?:{HUNDREDS_TEXT_JOIN})"
-PN3NUM = rf"(?:{PN3MAG}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}{PN2})"
+PN3NUM = rf"(?:{PN3MAG}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}" + "(?:" + PN2 + "))"
 PN3 = PN3NUM + "|" + PN3MAG
 
 PN1HEZAR = "(?:" + PN3 + "|" + PN2 + ")" + rf"{WHITE_SPACE}{HEZAR}"
