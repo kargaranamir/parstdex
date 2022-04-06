@@ -20,6 +20,8 @@ DN MNTH
 # یک فروردین ۱۳۷۵
 DN MNTH NUM
 DN MNTH PN
+# ۱۴مهر۹۴
+N31<>MNTH<>NUM
 # یک فروردین ۱۳۷۵ هجری شمسی
 DN MNTH NUM CT
 DN MNTH PN CT
