@@ -15,7 +15,7 @@ def prepare_test_scenarios():
     # Create test scenarios
     scenarios = []
     for test in test_inputs:
-        test_input = test['test_input']
+        test_input = str(test['test_input'])
         spans = ast.literal_eval(test['expected'])
         scenarios.append(
             (test_input, spans)

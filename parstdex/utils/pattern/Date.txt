@@ -19,6 +19,9 @@ WD NXT
 PRV WD
 PRV PRV WD
 
+# صدسال
+# ?? PN<>DU
+# ?? PN<>DU<>NXT
 
 # پاییز
 SSN
@@ -39,6 +42,7 @@ DU<>PF
 
 # طول ماه
 TOOL DU
+
 # طول هفت ماه
 TOOL DN DU
 # طول هفت ماهی
@@ -153,11 +157,23 @@ N31<>\\<>N12<>\\<>NUM
 N31<>-<>N12<>-<>NUM
 N31<>\.<>N12<>\.<>NUM
 
+# 9/12/1400
+N12<>/<>N31<>/<>NUM
+N12<>\\<>N31<>\\<>NUM
+N12<>-<>N31<>-<>NUM
+N12<>\.<>N31<>\.<>NUM
+
 # 1300/12/9 هجری شمسی
 NUM<>/<>N12<>/<>N31<>CT
 NUM<>\\<>N12<>\\<>N31<>CT
 NUM<>\.<>N12<>\.<>N31<>CT
 NUM<>-<>N12<>-<>N31<>CT
+
+# 10/24/2016 میلادی
+N12<>/<>N31<>/<>NUM<>CT
+N12<>\\<>N31<>\\<>NUM<>CT
+N12<>-<>N31<>-<>NUM<>CT
+N12<>\.<>N31<>\.<>NUM<>CT
 
 # 9/12/1400 هجری شمسی
 N31<>/<>N12<>/<>NUM<>CT
@@ -380,6 +396,22 @@ DN DU CJ DN DU
 DN DU CJ DN MNTH
 DN DU CJ DN SSN
 
+# فروردین - تیر
+MNTH<>-<>MNTH
+SSN<>-<>SSN
+
+# قروردین و اردیبهشت
+# ?? MNTH VA MNTH
+# ?? MNTH CJ MNTH
+
+# پاییز تا زمستان
+# ?? SSN VA SSN
+# ?? SSN CJ SSN
+
+# حدفاصل ۹۰ تا ۹۳
+# ?? TOOL<>N99<>CJ<>N99
+# ?? TOOL<>NY4<>CJ<>NY4
+
 # سوم فروردین تا
 DN MNTH CJ
 # ۳ تا ۵ فروردین
@@ -501,6 +533,7 @@ DU<>PF<>NUM<>CJ<>NUM
 
 # ۱۸ - ۲۰ آذر
 DN<>–<>DN MNTH
+N31<>-<>N31<>MNTH
 
 # تابستان ۱۳۹۷
 SSN<>NUM

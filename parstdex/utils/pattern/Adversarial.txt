@@ -83,5 +83,9 @@ NUM CUR
 روز نو
 ایران روز
 به نقل از 8 دی
+فصل لیگ
+فصل از لیگ
+فصل کتاب
+فصل از کتاب
 # remove event part of patterns
 EVE
