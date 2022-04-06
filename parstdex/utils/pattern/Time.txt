@@ -7,6 +7,12 @@ CJ TU
 # تا غروب
 CJ DP
 
+# طول دقیقه
+TOOL TU
+TOOL NUM TU
+TOOL PN TU
+TOOL MIN TU
+
 # پنج ثانیه
 NUM TU
 MIN TU
@@ -63,6 +69,10 @@ HR DP
 
 # 12:23
 N24:N60
+# 17 : 32
+N24 : N60
+# 5 : 32 : 00 PM
+N24 : N60 : N60 APM
 # 12:23 am
 N24:N60 APM
 # 12:23 دقیقه
@@ -188,3 +198,24 @@ TU PF NXT
 TU PF NXT NXT
 # دقیقه‌ای
 TUHSPACEPF
+
+# ۱۳، ۲۳ و ۲۴ دقیقه
+# 13 ، 23 و 24 دقيقه
+MINCOMMA MIN VA MIN DAGHIGHEH
+MIN COMMA MIN VA MIN DAGHIGHEH
+NUMCOMMA NUM VA NUM DU
+NUM COMMA NUM VA NUM DU
+
+# دقايق 5 ، 61 و 89
+TU MIN COMMA MIN VA MIN
+TU NUM COMMA NUM VA NUM
+
+# دقیقه ۲ و ۲۳
+TU MIN VA MIN
+TU PN VA PN
+TU NUM VA NUM
+
+# دقیقه ۲ تا ۲۳
+TU MIN CJ MIN
+TU PN CJ PN
+TU NUM CJ NUM

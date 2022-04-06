@@ -62,12 +62,13 @@ class Annotation:
     @staticmethod
     def create_number_annotation_dict():
         annotation_dict = {
-            'NUM': r'\\d{1,4}',  # all 1 to 4 digit numbers
-            'PN': const.PN,  # Persian alphabetic numbers
-            'N60': r'(?:[0-5]?[0-9])',
+            'NUM': r'\\d{1,4}|\\d{1}\.\\d{1}',  # all 1 to 4 digit numbers + decimal format 1 to 9
             'N31': r'(?:[0-2]?[0-9]|30|31)',
-            'N24': r'(?:[0-1]?[0-9]|2[0-4])',
             'N12': r'(?:0?[0-9]|1[0-2])',
+            'N24': r'(?:[0-1]?[0-9]|2[0-4])',
+            'N60': r'(?:[0-5]?[0-9])',
+            'NY4': r'[12]\\d{3}',  # all Gregorian years
+            'PN': const.PN  # Persian alphabetic numbers
         }
 
         return annotation_dict
