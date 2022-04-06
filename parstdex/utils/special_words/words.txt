@@ -8,32 +8,36 @@ YEK یک
 
 # Date
 SAL	سال
+FASL    فصل
 MAH	ماه
 HAFTE   هفته
-KABISE  کبیسه
 TARIKH  تاریخ
-LEAGUE  لیگ
 
 # DateTime
 SHABROOZ شب|روز
+SALROOZ سالروز|سال‌روز
 
 # General
 HA ها
 VA	و
 AZ از
 BE به
-IEE ی|ای
 MEE می
 BAR بار
 TEY طی
 HAR هر
 DAR در
-TOOL    طول
+TOOL    طول|بازه|فاصله|مدت
 CHAND   چند|چندین
-ZAMAN   زمان
 HAMIN   همین
 HSPACE  \\u200C
 YEKBAR یکبار
+JADID   جدید|نو
 
 # Adverserial
 BAZAR بازار
+LEAGUE  لیگ
+GHARN   قرن
+MOBARAK مبارک
+COMMA   ،
+CUR ریال|دلار|تومن|تومان|پول|روپیه|پوند|فرانک|قرون|قران|یورو
