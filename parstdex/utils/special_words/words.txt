@@ -27,7 +27,7 @@ BAR بار
 TEY طی
 HAR هر
 DAR در
-TOOL    طول|بازه|فاصله|مدت
+TOOL    طول|بازه|فاصله|مدت|طی
 CHAND   چند|چندین
 HAMIN   همین
 HSPACE  \\u200C

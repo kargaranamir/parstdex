@@ -594,6 +594,8 @@ WHITE_SPACE = u'[\u200c\\\s]{0,5}'
 
 PN1 = rf"(?:{ONE_TO_NINE_JOIN})"
 
+NIMPATTERN = rf"(?:{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{'|'.join(HOUR_PART.keys())}))?"
+
 PN2MAG = rf"(?:{TENS_NUMBER_JOIN})"
 PN2UNDER20 = rf"(?:{ONE_TO_NINETEEN_JOIN})"
 PN2NUM = rf"(?:{PN2MAG}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}{PN1})"
@@ -611,4 +613,4 @@ PN4 = PN3HEZAR + "|" + PN2HEZAR + "|" + PN1HEZAR + "|" + HEZAR
 # TODO: support larger numbers
 MAGNITUDES = MAGNITUDE_JOIN
 
-PN = "(?:" + PN4 + "|" + PN3 + "|" + PN2 + "|" + MAGNITUDE_JOIN + ")"
+PN = "(?:" + PN4 + "|" + PN3 + "|" + PN2 + "|" + MAGNITUDE_JOIN + ")" + NIMPATTERN

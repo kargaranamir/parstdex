@@ -137,28 +137,28 @@ NUM<>CT
 PN CT
 
 # 1300/12/9
-NUM/N12/N31
-NUM\\N12\\N31
-NUM-N12-N31
-NUM\.N12\.N31
+NUM<>/<>N12<>/<>N31
+NUM<>\\<>N12<>\\<>N31
+NUM<>-<>N12<>-<>N31
+NUM<>\.<>N12<>\.<>N31
 
 # 9/12/1400
-N31/N12/NUM
-N31\\N12\\NUM
-N31-N12-NUM
-N31\.N12\.NUM
+N31<>/<>N12<>/<>NUM
+N31<>\\<>N12<>\\<>NUM
+N31<>-<>N12<>-<>NUM
+N31<>\.<>N12<>\.<>NUM
 
 # 1300/12/9 هجری شمسی
-NUM/N12/N31 CT
-NUM\\N12\\N31 CT
-NUM\.N12\.N31 CT
-NUM-N12-N31 CT
+NUM<>/<>N12<>/<>N31<>CT
+NUM<>\\<>N12<>\\<>N31<>CT
+NUM<>\.<>N12<>\.<>N31<>CT
+NUM<>-<>N12<>-<>N31<>CT
 
 # 9/12/1400 هجری شمسی
-N31/N12/NUM CT
-N31\\N12\\NUM CT
-N31-N12-NUM CT
-N31\.N12\.NUM CT
+N31<>/<>N12<>/<>NUM<>CT
+N31<>\\<>N12<>\\<>NUM<>CT
+N31<>-<>N12<>-<>NUM<>CT
+N31<>\.<>N12<>\.<>NUM<>CT
 
 # فصل پاییز
 FASL SSN
@@ -208,15 +208,26 @@ PRV SSN
 DU NXT NXT
 # سه هفته نخست
 DN DU NXT
+PN DU NXT
+NUM<>DU NXT
 # سه ماه نخست آینده
 DN DU NXT NXT
+PN DU NXT NXT
+NUM<>DU NXT NXT
 # سه هفته نخست ۱۴۰۰
 DN DU NXT<>NUM
 DN DU NXT PN
+PN DU NXT<>NUM
+PN DU NXT PN
+NUM<>DU NXT<>NUM
+NUM<>DU NXT PN
 # سه هفته نخست ماه
 DN DU NXT DU
+PN DU NXT DU
+NUM<>DU NXT DU
 # سه هفته سوم
 PN DU DN
+NUM<>DU DN
 DN DU DN
 
 # نیمه نخست ماه
@@ -322,8 +333,17 @@ DN CJ PRV MNTH
 
 # سال سوم تا پنجم
 DU DN CJ DN
+DU<>NUM<>CJ<>NUM
+DU PN CJ PN
+
 MNTH DN CJ DN
+MNTH<>NUM<>CJ<>NUM
+MNTH PN CJ PN
+
 SSN DN CJ DN
+SSN<>NUM<>CJ<>NUM
+SSN PN CJ PN
+
 # سوم تا پنجم ماه
 DN CJ DN DU
 DN CJ DN MNTH
