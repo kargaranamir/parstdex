@@ -78,6 +78,8 @@ NUM CUR
 بهار ازادی
 بهار آزادی
 سکه تمام بهار
-
+روز از نو
+روزی از نو
+روز نو
 # remove event part of patterns
 EVE

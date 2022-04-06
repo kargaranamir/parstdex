@@ -197,7 +197,7 @@
   },
   {
     "test_input": "طول روز",
-    "expected": "[]"
+    "expected": "[[0, 7]]"
   },
   {
     "test_input": "تا پایان امسال",
@@ -577,63 +577,63 @@
   },
   {
     "test_input": "تا پایان سال جاری",
-    "expected": "[]"
+    "expected": "[[0, 17]]"
   },
   {
     "test_input": "اردیبهشت‌ماه",
-    "expected": "[]"
+    "expected": "[[0, 12]]"
   },
   {
     "test_input": "در ارديبهشت\u200Cماه صادر",
-    "expected": "[]"
+    "expected": "[[3, 15]]"
   },
   {
     "test_input": "براي اطمينان خاطر روز شنبه 95 . 9 . 6 موضوع تلفني",
-    "expected": "[]"
+    "expected": "[[18, 37]]"
   },
   {
     "test_input": "يکشنبه\u200Cشب 95 . 9 . 7 با مقاومت",
-    "expected": "[]"
+    "expected": "[[0, 20]]"
   },
   {
     "test_input": "شکايت اولياي دم دي سال 93",
-    "expected": "[]"
+    "expected": "[[16, 25]]"
   },
   {
     "test_input": "اواخر سال ۹۲",
-    "expected": "[]"
+    "expected": "[[0, 12]]"
   },
   {
     "test_input": "دهه\u200Cهاي 60 و 70",
-    "expected": "[]"
+    "expected": "[[0, 15]]"
   },
     {
     "test_input": "روز نو : شامگاه دهم مرداد سال 93 دو خودرو در جاده ملارد ",
-    "expected": "[]"
+    "expected": "[[9, 32]]"
   },
   {
     "test_input": "دیشب",
-    "expected": "[]"
+    "expected": "[[0, 4]]"
   },
   {
     "test_input": "کم\u200Cتر از دو هفته ديگر",
-    "expected": "[]"
+    "expected": "[[6, 21]]"
   },
     {
     "test_input": "پايان ماه جاري ميلادي",
-    "expected": "[]"
+    "expected": "[[0, 21]]"
   },
   {
     "test_input": "بزرگنمايي 12 : 57 - 1395 . 8 . 24 کد خبر : 177347",
-    "expected": "[]"
+    "expected": "[[10, 17], [20, 33]]"
   },
   {
     "test_input": "تا خرداد سال ۹۵",
-    "expected": "[]"
+    "expected": "[[0, 15]]"
   },
   {
-    "test_input": "دوساله",
-    "expected": "[]"
+    "test_input": "دو ساله",
+    "expected": "[[0, 7]]"
   },
   {
     "test_input": "سه و نیم سال گذشته",
@@ -1053,6 +1053,6 @@
   },
   {
     "test_input": "تا پایان سال امیر ما را اینجا نگه می\u200Cدارد.",
-    "expected": "[[3, 12]]"
+    "expected": "[[0, 12]]"
   }
 ]

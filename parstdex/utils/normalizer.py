@@ -19,7 +19,8 @@ class Normalizer:
         '۶': '6',
         '۷': '7',
         '۸': '8',
-        '۹': '9'
+        '۹': '9',
+        '–': '-'
     }
 
     def normalize_alphabet(self, text):

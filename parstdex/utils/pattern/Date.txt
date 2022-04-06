@@ -17,6 +17,8 @@ WD
 WD NXT
 # بجز پنجشنبه
 PRV WD
+PRV PRV WD
+
 
 # پاییز
 SSN
@@ -24,6 +26,7 @@ SSN
 RY
 # اوایل امسال
 PRV RY
+PRV PRV RY
 
 # سالروز
 SALROOZ
@@ -123,8 +126,10 @@ MNTH<>MAH SAL PN CT
 DU CT
 اوایل سال میلادی
 PRV DU CT
+PRV PRV DU CT
 # اوایل سال نو میلادی
 PRV DU JADID CT
+PRV PRV DU JADID CT
 
 # سال ۱۳۷۵
 SAL<>NUM
@@ -188,10 +193,13 @@ MAH MNTH NXT
 MNTH<>MAH NXT
 # آغاز فروردین
 PRV MNTH
+PRV PRV MNTH
 # آغاز فروردین ماه
 PRV MNTH<>MAH
+PRV PRV MNTH<>MAH
 # آغاز ماه فروردین
 PRV MAH MNTH
+PRV PRV MAH MNTH
 
 
 # RY + SSN + NXT + PRV
@@ -203,6 +211,11 @@ RY SSN
 SSN NXT
 # آغاز پاییز
 PRV SSN
+PRV PRV SSN
+# شروع پاییز ۱۳۷۵
+PRV SSN<>NUM
+PRV SSN PN
+
 
 # ماه نخست آعازین
 DU NXT NXT
@@ -214,6 +227,11 @@ NUM<>DU NXT
 DN DU NXT NXT
 PN DU NXT NXT
 NUM<>DU NXT NXT
+# سال آینده میلادی
+DU NXT CT
+# سال نخست آینده میلادی
+DU NXT NXT CT
+
 # سه هفته نخست ۱۴۰۰
 DN DU NXT<>NUM
 DN DU NXT PN
@@ -234,18 +252,22 @@ DN DU DN
 PRV NXT DU
 PRV NXT DU<>NUM
 PRV NXT DU PN
+# از نیمه نخست ماه
+PRV PRV NXT DU
+PRV PRV NXT DU<>NUM
+PRV PRV NXT DU PN
 # نیمه اول ماه
 PRV DN DU
 PRV DN DU<>NUM
 PRV DN DU PN
+# از نیمه اول ماه
+PRV PRV DN DU
+PRV PRV DN DU<>NUM
+PRV PRV DN DU PN
 # نیمه اول امسال
 PRV DN RY
+PRV PRV DN RY
 
-# شروع پاییز
-PRV SSN
-# شروع پاییز ۱۳۷۵
-PRV SSN<>NUM
-PRV SSN PN
 
 # هفته ۳
 DU<>NUM
@@ -261,6 +283,7 @@ DU DN
 DU NXT
 # آِغاز هفته
 PRV DU
+PRV PRV DU
 
 # تاریخ فروردین
 TARIKH MNTH
@@ -400,6 +423,9 @@ CJ DN SHABROOZ FASL SSN
 # از سومین روز از پاییز
 PRV DN SHABROOZ AZ SSN
 PRV DN SHABROOZ AZ FASL SSN
+PRV PRV DN SHABROOZ AZ SSN
+PRV PRV DN SHABROOZ AZ FASL SSN
+
 
 # پنج تا ۵ هفته
 NUM<>CJ<>NUM<>DU
@@ -452,6 +478,11 @@ PRV PF DU
 PRV PF DU<>NUM
 PRV PF DU PN
 
+PRV PRV PF DU
+PRV PRV PF DU<>NUM
+PRV PRV PF DU PN
+
+
 # سال ۱۳۴۳ تا ۱۳۵۴
 DU<>NY4<>CJ<>NY4
 
@@ -483,6 +514,8 @@ PN SAL<>PF
 # آستانه 8 سالگي
 PRV<>NUM<>SAL<>PF
 PRV PN SAL<>PF
+PRV PRV<>NUM<>SAL<>PF
+PRV PRV PN SAL<>PF
 
 ### Complex or Ambiguous: datetime
 
@@ -509,11 +542,23 @@ N31<>\\<>N12\\<>NUM N24<>:<>N60<>CT
 N31<>-<>N12<>-<>NUM N24<>:<>N60<>CT
 N31<>\.<>N12<>\.<>NUM N24<>:<>N60<>CT
 
+#  ۲۱/۱۲/۱۴۰۰ - ۱۳:۳۴ میلادی
+N31<>/<>N12<>/<>NUM<>-<>N24<>:<>N60<>CT
+N31<>\\<>N12\\<>NUM<>-<>N24<>:<>N60<>CT
+N31<>-<>N12<>-<>NUM<>-<>N24<>:<>N60<>CT
+N31<>\.<>N12<>\.<>NUM<>-<>N24<>:<>N60<>CT
+
 # ۱۳۹۳/۱۲/۲۳ ۱۳:۳۴ میلادی
 NUM<>/<>N12<>/<>N31 N24<>:<>N60<>CT
 NUM<>\\<>N12<>\\<>N31 N24<>:<>N60<>CT
 NUM<>-<>N12<>-<>N31 N24<>:<>N60<>CT
 NUM<>\.<>N12<>\.<>N31 N24<>:<>N60<>CT
+
+# ۱۳۹۳/۱۲/۲۳ - ۱۳:۳۴ میلادی
+NUM<>/<>N12<>/<>N31<>-<>N24<>:<>N60<>CT
+NUM<>\\<>N12<>\\<>N31<>-<>N24<>:<>N60<>CT
+NUM<>-<>N12<>-<>N31<>-<>N24<>:<>N60<>CT
+NUM<>\.<>N12<>\.<>N31<>-<>N24<>:<>N60<>CT
 
 
 # ۳ روز
@@ -533,6 +578,11 @@ PRV DN SHABROOZ
 PRV MIN SHABROOZ
 PRV<>NUM<>SHABROOZ
 PRV PN SHABROOZ
+
+PRV PRV DN SHABROOZ
+PRV PRV MIN SHABROOZ
+PRV PRV<>NUM<>SHABROOZ
+PRV PRV PN SHABROOZ
 
 # سه شب تا چهار شب
 PN SHABROOZ CJ PN SHABROOZ
