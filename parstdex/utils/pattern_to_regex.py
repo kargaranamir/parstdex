@@ -121,7 +121,7 @@ class Patterns:
         for key in matches:
             pattern = re.sub(f'{key}', fr"(?:{self.cumulative_annotations[key]})", pattern)
 
-        pattern = pattern.replace("<>", "\s*")
+        pattern = pattern.replace("<>", r'(?:[\s\u200c])*')
         return pattern
 
     def create_regexes_from_patterns(self, path):

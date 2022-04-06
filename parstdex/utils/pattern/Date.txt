@@ -8,6 +8,12 @@ WD
 SSN
 # امسال
 RY
+# اوایل امسال
+PRV RY
+
+# سالروز
+SALROOZ
+
 # فروردین
 MNTH
 
