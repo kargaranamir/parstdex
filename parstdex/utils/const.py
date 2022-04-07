@@ -511,7 +511,17 @@ ONE_NINETY_NINE = {
     "نود و نه": 99
 }
 
-TEN_NINETY_NINETEEN = {
+ONE_NINETY_NINETEEN = {
+    "یک": 1,
+    "دو": 2,
+    "سه": 3,
+    "چهار": 4,
+    "پنج": 5,
+    "شش": 6,
+    "شیش": 6,
+    "هفت": 7,
+    "هشت": 8,
+    "نه": 9,
     "ده": 10,
     "یازده": 11,
     "دوازده": 12,
@@ -568,7 +578,7 @@ ONE_TO_NINE_JOIN = "|".join(ONE_TO_NINE.keys())
 # بیست سی چهل ...
 TENS_NUMBER_JOIN = "|".join(TENS_NUMBER.keys())
 # اعداد یک تا نوزده
-TEN_TO_NINETEEN_JOIN = "|".join(list(TEN_NINETY_NINETEEN.keys())[::-1])
+ONE_TO_NINETEEN_JOIN = "|".join(list(ONE_NINETY_NINETEEN.keys())[::-1])
 # هزار میلیون بیلیون ...
 MAGNITUDE_JOIN = "|".join(MAGNITUDE.keys())
 
@@ -580,41 +590,27 @@ HUNDREDS_TEXT_JOIN = "|".join(HUNDREDS_TEXT.keys())
 # اعداد یک تا نود و نه
 ONE_NINETY_NINE_JOIN = "|".join(list(ONE_NINETY_NINE.keys())[::-1])
 
-WHITE_SPACE = u'[\u200c\\\s]{0,2}'
+WHITE_SPACE = u'[\u200c\\\s]{0,5}'
 
-# ربع و نیم
-FDIGIT = rf"(?:{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{'|'.join(HOUR_PART.keys())}))?"
+PN1 = rf"(?:{ONE_TO_NINE_JOIN})"
 
-# ONE DIGIT NUMBERS
-DIGIT1 = rf"(?:{ONE_TO_NINE_JOIN})"
+NIMPATTERN = rf"(?:{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{'|'.join(HOUR_PART.keys())}))?"
 
-DBTW10_19 = rf"(?:{TEN_TO_NINETEEN_JOIN})"
-DECIMAL = rf"(?:{TENS_NUMBER_JOIN})"
-DBTW21_99_EXC_DECIMAL = rf"(?:{DECIMAL}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}{DIGIT1})"
+PN2MAG = rf"(?:{TENS_NUMBER_JOIN})"
+PN2UNDER20 = rf"(?:{ONE_TO_NINETEEN_JOIN})"
+PN2NUM = rf"(?:{PN2MAG}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}{PN1})"
+PN2 = PN2NUM + "|" + PN2MAG + "|" + PN2UNDER20 + "|" + PN1
 
-# TWO DIGIT NUMBERS
-DIGIT2 = DBTW21_99_EXC_DECIMAL + "|" + DBTW10_19 + "|" + DECIMAL
+PN3MAG = rf"(?:{HUNDREDS_TEXT_JOIN})"
+PN3NUM = rf"(?:{PN3MAG}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}" + "(?:" + PN2 + "))"
+PN3 = PN3NUM + "|" + PN3MAG
 
-HUNDREDS = rf"(?:{HUNDREDS_TEXT_JOIN})"
-DBTW101_999_EXC_HUNDREDS = rf"(?:{HUNDREDS}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{DIGIT2}|{DIGIT1}))"
+PN1HEZAR = "(?:" + PN3 + "|" + PN2 + ")" + rf"{WHITE_SPACE}{HEZAR}"
+PN2HEZAR = rf"(?:{HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}" + "(?:" + PN3 + "|" + PN2 + ")"
+PN3HEZAR = rf"(?:{PN1HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}" + "(?:" + PN3 + "|" + PN2 + ")"
+PN4 = PN3HEZAR + "|" + PN2HEZAR + "|" + PN1HEZAR + "|" + HEZAR
 
-# THREE DIGIT NUMBERS
-DIGIT3 = DBTW101_999_EXC_HUNDREDS + "|" + HUNDREDS
+# TODO: support larger numbers
+MAGNITUDES = MAGNITUDE_JOIN
 
-S_HEZAR = rf"(?:{DIGIT1}){WHITE_SPACE}{HEZAR}"
-THOUSAND = rf"(?:{HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{DIGIT3}|{DIGIT2}|{DIGIT1})"
-DBTW1001_9999_EXC_THOUSANDS = rf"(?:{S_HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{DIGIT3}|{DIGIT2}|{DIGIT1})"
-
-# FOUR DIGIT NUMBERS
-DIGIT4 = DBTW1001_9999_EXC_THOUSANDS + "|" + THOUSAND + "|" + S_HEZAR
-
-# LARGE NUMBERS
-L_HEZAR = rf"(?:{DIGIT3}|{DIGIT2}|{DIGIT1}){WHITE_SPACE}{HEZAR}"
-L_HEZAR_DIGITS = rf"(?:{L_HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{DIGIT3}|{DIGIT2}|{DIGIT1})"
-DIGITPLUS = L_HEZAR_DIGITS + "|" + L_HEZAR
-
-# NUMBERS WITHING 0 TO 9999
-DSMALL = fr"(?:{DIGIT4}|{DIGIT3}|{DIGIT2}|{DIGIT1}|{MAGNITUDE_JOIN}){FDIGIT}"
-
-# ANY NUMBER (DO NOT USE IT UNLESS U MEAN IT)
-DLARGE = fr"(?:{DIGITPLUS}|{DIGIT4}|{DIGIT3}|{DIGIT2}|{DIGIT1}|{MAGNITUDE_JOIN}){FDIGIT}"
+PN = "(?:" + PN4 + "|" + PN3 + "|" + PN2 + "|" + MAGNITUDE_JOIN + ")" + NIMPATTERN
