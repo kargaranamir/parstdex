@@ -69,7 +69,12 @@ class Annotation:
             'N60': r'[0-5]?[0-9]',
             'N99': r'[0-9]{1,2}',
             'NY4': r'[12]\\d{3}',  # all Gregorian years
-            'PN': const.PN  # Persian alphabetic numbers
+            'D1': const.DIGIT1,  # Persian alphabetic 1 digit numbers
+            'D2': const.DIGIT2,  # Persian alphabetic 2 digit numbers
+            'D3': const.DIGIT3,  # Persian alphabetic 3 digit numbers
+            'D4': const.DIGIT4,  # Persian alphabetic 4 digit numbers
+            'DSMALL': const.DSMALL,  # Persian alphabetic 1 to 4 digit numbers
+            'DLARGE': const.DIGIT1,  # All Persian supported numbers
         }
 
         return annotation_dict
