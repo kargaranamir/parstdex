@@ -2,38 +2,45 @@
 SAAT	ساعت
 DAGHIGHEH	دقیقه
 SANIEH	ثانیه
-ROB ربع
-NIM نیم
-YEK یک
+ROBNIM  ربع|نیم
+YEK یک|سه|یه
 
 # Date
 SAL	سال
+FASL    فصل
 MAH	ماه
 HAFTE   هفته
-KABISE  کبیسه
 TARIKH  تاریخ
-LEAGUE  لیگ
 
 # DateTime
 SHABROOZ شب|روز
+SALROOZ سالروز|سال‌روز
 
 # General
 HA ها
 VA	و
 AZ از
 BE به
-IEE ی|ای
 MEE می
 BAR بار
 TEY طی
 HAR هر
 DAR در
-TOOL    طول
+TOOL    طول|بازه|فاصله|مدت|طی|حدفاصل|ظرف
+TAKNN   تاکنون|تا کنون|تا‌کنون|تا اکنون|تاالان|تا الان|تا‌الان|تاهنوز|تا‌هنوز|تا هنوز
 CHAND   چند|چندین
-ZAMAN   زمان
+DARSAD  درصد
+UNIT    تن|کیلو|گرم|کیلوگرم|ولت|آمپر|دستگاه|نفر|واحد|بشکه|ظرف|لیتر|سی‌سی|فضا
 HAMIN   همین
 HSPACE  \\u200C
 YEKBAR یکبار
+JADID   جدید|نو
+YEKIDO  یکی دو
 
 # Adverserial
 BAZAR بازار
+LEAGUE  لیگ
+GHARN   قرن
+MOBARAK مبارک
+COMMA   ،
+CUR ریال|دلار|تومن|تومان|پول|روپیه|پوند|فرانک|قرون|قران|یورو

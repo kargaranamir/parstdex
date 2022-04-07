@@ -3,7 +3,7 @@ WD BAZAR
 
 # لیگ شانزدهم
 LEAGUE NUM
-LEAGUE PN
+LEAGUE D99
 LEAGUE DN
 
 MEE PEVPOV
@@ -21,11 +21,11 @@ MEEHSPACEPAV
 # ورزشگاه ۱۷ تیر
 PLACE DN MNTH
 PLACE NUM MNTH
-PLACE PN MNTH
+PLACE D99 MNTH
 # میدان ۱۷ تیر
 ADD DN MNTH
 ADD NUM MNTH
-ADD PN MNTH
+ADD D99 MNTH
 
 # ورزشگاه خرداد
 PLACE MNTH
@@ -46,8 +46,18 @@ PRV MEE PAV
 PRV MEEHSPACEPEV
 PRV MEEHSPACEPAV
 
+# پنج هزار تومان
+DLARGE CUR
+NUM CUR
 
-# Adverserial Keywords
-به روز رسانی
-امام جمعه
-غروب خورشید
+NUM<>DARSAD
+NUM<>UNIT
+NUM<>UNIT<>PF
+DSMALL UNIT
+DSMALL UNIT<>PF
+
+
+ADUQ
+
+# remove event part of patterns
+EVE

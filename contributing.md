@@ -39,3 +39,9 @@ _NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 Thanks! :heart: 🌻 🌸
 
 _Parstdex Team_
+
+## Credits
+
+Big thank you to all the people who have already contributed to PARSTDEX!
+
+Amir Hossein Kargaran, Sajad Mirzababaei, Hamid Jahad

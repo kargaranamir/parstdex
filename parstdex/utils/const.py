@@ -173,6 +173,35 @@ HUNDREDS_TEXT = {
     "نهصد": 900,
 }
 
+TYPO_HUNDREDS_TEXT = {
+    "یکصد": 100,
+    "صد": 100,
+    "دویست": 200,
+    "سیصد": 300,
+    "سی صد": 300,
+    "سی‌صد": 300,
+    "چهارصد": 400,
+    "چهار‌صد": 400,
+    "چهار صد": 400,
+    "پانصد": 500,
+    "پونصد": 500,
+    "ششصد": 600,
+    "شیشصد": 600,
+    "شش صد": 600,
+    "شیش صد": 600,
+    "شش‌صد": 600,
+    "شیش‌صد": 600,
+    "هفتصد": 700,
+    "هفت صد": 700,
+    "هفت‌صد": 700,
+    "هشتصد": 800,
+    "هشت صد": 800,
+    "هشت‌صد": 800,
+    "نهصد": 900,
+    "نه صد": 900,
+    "نه‌صد": 900
+}
+
 MAGNITUDE = {
     "هزار": 1000,
     "میلیون": 1000000,
@@ -511,6 +540,26 @@ ONE_NINETY_NINE = {
     "نود و نه": 99
 }
 
+TEN_NINETY_NINETEEN = {
+    "ده": 10,
+    "یازده": 11,
+    "دوازده": 12,
+    "سیزده": 13,
+    "سینزده": 13,
+    "چهارده": 14,
+    "چارده": 14,
+    "پانزده": 15,
+    "پونزده": 15,
+    "شانزده": 16,
+    "شونزده": 16,
+    "هفده": 17,
+    "هیفده": 17,
+    "هجده": 18,
+    "هیجده": 18,
+    "نونزده": 19,
+    "نوزده": 19
+}
+
 HOUR_PART = {
     "ربع": 15,
     "نیم": 30
@@ -532,33 +581,68 @@ FA_SYM = fr"[{FA_ALPHABET}{FA_PUNCT}{FA_NUM}]"
 # supports persian numbers from one to four digits written with persian alphabet
 # example:  هزار و سیصد و شصت و پنج
 
+TENS_NUMBER = {
+    "بیست": 20,
+    "سی": 30,
+    "چهل": 40,
+    "پنجاه": 50,
+    "شصت": 60,
+    "هفتاد": 70,
+    "هشتاد": 80,
+    "نود": 90
+}
+
+WHITE_SPACE = u'[\u200c\\\s]{0,2}'
 # اعداد یک تا نه
 ONE_TO_NINE_JOIN = "|".join(ONE_TO_NINE.keys())
+# بیست سی چهل ...
+TENS_NUMBER_JOIN = "|".join(TENS_NUMBER.keys())
+# اعداد یک تا نوزده
+TEN_TO_NINETEEN_JOIN = "|".join(list(TEN_NINETY_NINETEEN.keys())[::-1])
 # هزار میلیون بیلیون ...
 MAGNITUDE_JOIN = "|".join(MAGNITUDE.keys())
 
 HEZAR = "هزار"
 
 # یکصد دویست ...
-HUNDREDS_TEXT_JOIN = "|".join(HUNDREDS_TEXT.keys())
+HUNDREDS_TEXT_JOIN = "|".join(TYPO_HUNDREDS_TEXT.keys())
 
 # اعداد یک تا نود و نه
 ONE_NINETY_NINE_JOIN = "|".join(list(ONE_NINETY_NINE.keys())[::-1])
 
-WHITE_SPACE = u'[\u200c\\\s]{0,5}'
+# ربع و نیم
+FDIGIT = f"(?:{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{'|'.join(HOUR_PART.keys())}))?"
 
-PN2 = rf"(?:{ONE_NINETY_NINE_JOIN})"
+# ONE DIGIT NUMBERS
+DIGIT1 = f"(?:{ONE_TO_NINE_JOIN})"
 
-PN3MAG = rf"(?:{HUNDREDS_TEXT_JOIN})"
-PN3NUM = rf"(?:{PN3MAG}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}{PN2})"
-PN3 = PN3NUM + "|" + PN3MAG
+DBTW10_19 = f"(?:{TEN_TO_NINETEEN_JOIN})"
+DECIMAL = f"(?:{TENS_NUMBER_JOIN})"
+DBTW21_99_EXC_DECIMAL = f"(?:{DECIMAL}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}{DIGIT1})"
 
-PN1HEZAR = "(?:" + PN3 + "|" + PN2 + ")" + rf"{WHITE_SPACE}{HEZAR}"
-PN2HEZAR = rf"(?:{HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}" + "(?:" + PN3 + "|" + PN2 + ")"
-PN3HEZAR = rf"(?:{PN1HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}" + "(?:" + PN3 + "|" + PN2 + ")"
-PN4 = PN3HEZAR + "|" + PN2HEZAR + "|" + PN1HEZAR + "|" + HEZAR
+# TWO DIGIT NUMBERS
+DIGIT2 = DBTW21_99_EXC_DECIMAL + "|" + DBTW10_19 + "|" + DECIMAL
 
-# TODO: support larger numbers
-MAGNITUDES = MAGNITUDE_JOIN
+HUNDREDS = f"(?:{HUNDREDS_TEXT_JOIN})"
+DBTW101_999_EXC_HUNDREDS = f"(?:{HUNDREDS}{WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{DIGIT2}|{DIGIT1}))"
 
-PN = "(?:" + PN4 + "|" + PN3 + "|" + PN2 + "|" + MAGNITUDE_JOIN + ")"
+# THREE DIGIT NUMBERS
+DIGIT3 = DBTW101_999_EXC_HUNDREDS + "|" + HUNDREDS
+
+S_HEZAR = f"(?:{DIGIT1}){WHITE_SPACE}{HEZAR}"
+THOUSAND = f"(?:{HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{DIGIT3}|{DIGIT2}|{DIGIT1})"
+DBTW1001_9999_EXC_THOUSANDS = f"(?:{S_HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{DIGIT3}|{DIGIT2}|{DIGIT1})"
+
+# FOUR DIGIT NUMBERS
+DIGIT4 = DBTW1001_9999_EXC_THOUSANDS + "|" + THOUSAND + "|" + S_HEZAR
+
+# LARGE NUMBERS
+L_HEZAR = f"(?:{DIGIT3}|{DIGIT2}|{DIGIT1}){WHITE_SPACE}{HEZAR}"
+L_HEZAR_DIGITS = f"(?:{L_HEZAR}){WHITE_SPACE}(?:{JOINER}){WHITE_SPACE}(?:{DIGIT3}|{DIGIT2}|{DIGIT1})"
+DIGITPLUS = L_HEZAR_DIGITS + "|" + L_HEZAR
+
+# NUMBERS WITHING 0 TO 9999
+DSMALL = f"(?:{DIGIT4}|{DIGIT3}|{DIGIT2}|{DIGIT1}|{MAGNITUDE_JOIN}){FDIGIT}"
+
+# ANY NUMBER (DO NOT USE IT UNLESS U MEAN IT)
+DLARGE = f"(?:{DIGITPLUS}|{DIGIT4}|{DIGIT3}|{DIGIT2}|{DIGIT1}|{MAGNITUDE_JOIN}){FDIGIT}"
