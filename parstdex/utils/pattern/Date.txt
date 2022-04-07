@@ -3,6 +3,9 @@
 # phrases with only one appearance in patterns like سال کبیسه
 UNQ
 
+# تا کنون
+TAKNN
+
 # 1323
 NY4
 
@@ -252,7 +255,7 @@ DU NXT NXT CT
 DN DU NXT<>NUM
 DN DU NXT DSMALL
 DSMALL DU NXT<>NUM
-# DSMALL DU NXT DSMALL
+DSMALL DU NXT DSMALL
 NUM<>DU NXT<>NUM
 NUM<>DU NXT DSMALL
 # سه هفته نخست ماه
@@ -377,7 +380,8 @@ DN CJ PRV MNTH
 # سال سوم تا پنجم
 DU DN CJ DN
 DU<>NUM<>CJ<>NUM
-# DU DSMALL CJ DSMALL
+DU<>NUM<>VA<>NUM
+DU DSMALL CJ DSMALL
 
 MNTH DN CJ DN
 MNTH<>NUM<>CJ<>NUM
@@ -385,7 +389,7 @@ MNTH DSMALL CJ DSMALL
 
 SSN DN CJ DN
 SSN<>NUM<>CJ<>NUM
-# SSN DSMALL CJ DSMALL
+SSN DSMALL CJ DSMALL
 
 # سوم تا پنجم ماه
 DN CJ DN DU
@@ -416,6 +420,7 @@ TOOL<>NY4<>CJ<>NY4
 DN MNTH CJ
 # ۳ تا ۵ فروردین
 DN CJ DN MNTH
+DN VA DN MNTH
 
 # امروز تا
 RD CJ
@@ -467,7 +472,7 @@ PRV PRV DN SHABROOZ AZ FASL SSN
 NUM<>CJ<>NUM<>DU
 NUM<>CJ DSMALL DU
 DSMALL CJ<>NUM<>DU
-# DSMALL CJ DSMALL DU
+DSMALL CJ DSMALL DU
 
 
 ### Indefinite Date
@@ -623,7 +628,7 @@ PRV PRV<>NUM<>SHABROOZ
 PRV PRV DSMALL SHABROOZ
 
 # سه شب تا چهار شب
-# D99 SHABROOZ CJ D99 SHABROOZ
+D99 SHABROOZ CJ D99 SHABROOZ
 N99 SHABROOZ CJ<>N99<>SHABROOZ
 
 # پنج تا شیش شب
@@ -635,3 +640,19 @@ DN CJ DN SHABROOZ
 # لغایت دومین روز از
 CJ DN SHABROOZ
 CJ DN SHABROOZ AZ
+
+# ۱۲، ۲۳ و ۲۴ روز
+NUM<>COMMA<>NUM<>VA<>NUM<>DU
+DU<>NUM<>COMMA<>NUM<>VA<>NUM
+
+# هفته به هفته
+DU BE DU
+
+# ربع قرن
+ROBNIM DU
+
+# سه سال و نیم گذشته
+DN DU VA ROBNIM NXT
+
+# از ۹۲ تا کنون
+PRV<>NUM<>TAKNN
