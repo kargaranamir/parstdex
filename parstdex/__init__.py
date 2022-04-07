@@ -2,4 +2,4 @@
 
 from .marker_extractor import MarkerExtractor as Parstdex
 
-__version__ = '1.0.10'
+__version__ = '1.1.0'
