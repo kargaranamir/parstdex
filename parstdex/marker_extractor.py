@@ -1,4 +1,3 @@
-import json
 import pprint
 
 from hazm import word_tokenize
@@ -16,7 +15,7 @@ class MarkerExtractor(object):
         # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = Normalizer()
         # Patterns: patterns to regex generator
-        self.patterns = Patterns()
+        self.regexes = Patterns.getInstance().regexes
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = ValueExtractor()
         self.DEBUG = debug_mode
@@ -34,7 +33,7 @@ class MarkerExtractor(object):
         normalized_sentence = self.normalizer.normalize_cumulative(input_sentence)
 
         # Create spans
-        output_raw, spans = create_spans(self.patterns, normalized_sentence)
+        output_raw, spans = create_spans(self.regexes, normalized_sentence)
 
         if self.DEBUG:
             # Print raw output

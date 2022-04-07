@@ -28,17 +28,17 @@ def merge_spans(spans: Dict, normalized_sentence: str):
     return result
 
 
-def create_spans(patterns, normalized_sentence):
+def create_spans(regexes, normalized_sentence):
     # add pattern keys to dictionaries and define a list structure for each key
     output_raw = {}
     spans = {}
-    for key in patterns.regexes.keys():
+    for key in regexes.keys():
         output_raw[key]: list = []
         spans[key]: list = []
 
     # apply regexes on normalized sentence and store extracted markers in output_raw
-    for key in patterns.regexes.keys():
-        for regex_value in patterns.regexes[key]:
+    for key in regexes.keys():
+        for regex_value in regexes[key]:
             # apply regex
             matches = list(
                 re.finditer(

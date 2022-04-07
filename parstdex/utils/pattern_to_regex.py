@@ -69,12 +69,10 @@ class Annotation:
             'N60': r'[0-5]?[0-9]',
             'N99': r'[0-9]{1,2}',
             'NY4': r'[12]\\d{3}',  # all Gregorian years
-            'D1': const.DIGIT1,  # Persian alphabetic 1 digit numbers
-            'D2': const.DIGIT2,  # Persian alphabetic 2 digit numbers
-            'D3': const.DIGIT3,  # Persian alphabetic 3 digit numbers
-            'D4': const.DIGIT4,  # Persian alphabetic 4 digit numbers
-            'DSMALL': const.DSMALL,  # Persian alphabetic 1 to 4 digit numbers
-            'DLARGE': const.DIGIT1,  # All Persian supported numbers
+            'D99': rf'{const.DIGIT2}|{const.DIGIT1}',  # Persian alphabetic 2 digit numbers
+            'DY4': const.DIGIT4,  # Persian alphabetic 4 digit numbers
+            'DSMALL': rf"{const.DSMALL}",  # Persian alphabetic 1 to 4 digit numbers
+            'DLARGE': const.DLARGE,  # All Persian supported numbers
         }
 
         return annotation_dict
@@ -98,22 +96,35 @@ class Patterns:
     """
     Patterns class is used to create regexes corresponding to patterns defined in utilities/pattern folder.
     """
+    __instance = None
+
     normalizer = Normalizer()
     regexes = {}
     cumulative_annotations = {}
     cumulative_annotations_keys = []
 
-    def __init__(self):
-        annotations = Annotation()
-        special_words = get_special_words()
-        self.patterns_path = os.path.join(os.path.dirname(__file__), 'pattern', "")
-        self.cumulative_annotations = {**annotations.annotations_dict, **special_words}
-        self.cumulative_annotations_keys = sorted(self.cumulative_annotations, key=len, reverse=True)
-        files = os.listdir(self.patterns_path)
-        for f in files:
-            self.regexes[f.replace('.txt', '').lower()] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
+    @staticmethod
+    def getInstance():
+        """ Static access method. """
+        if Patterns.__instance is None:
+            Patterns()
+        return Patterns.__instance
 
-        self.regexes['Space'] = [rf"\u200c+", rf"\s+"]
+    def __init__(self):
+        if Patterns.__instance is None:
+            annotations = Annotation()
+            special_words = get_special_words()
+            self.patterns_path = os.path.join(os.path.dirname(__file__), 'pattern', "")
+            self.cumulative_annotations = {**annotations.annotations_dict, **special_words}
+            self.cumulative_annotations_keys = sorted(self.cumulative_annotations, key=len, reverse=True)
+            files = os.listdir(self.patterns_path)
+            for f in files:
+                self.regexes[f.replace('.txt', '').lower()] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
+
+            self.regexes['Space'] = [rf"\u200c+", rf"\s+"]
+            Patterns.__instance = self
+        else:
+            Patterns.__instance = self
 
     def pattern_to_regex(self, pattern):
         """

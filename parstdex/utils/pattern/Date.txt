@@ -20,8 +20,8 @@ PRV WD
 PRV PRV WD
 
 # صدسال
-PN<>DU
-PN<>DU<>NXT
+DSMALL<>DU
+DSMALL<>DU<>NXT
 
 # پاییز
 SSN
@@ -48,7 +48,7 @@ TOOL DN DU
 # طول هفت ماهی
 TOOL DN DU<>PF
 # طول پنج سال
-TOOL PN DU
+TOOL DSMALL DU
 # طول ۵ سال
 TOOL<>NUM<>DU
 
@@ -65,64 +65,64 @@ MAH MNTH
 DN MNTH
 # یک فروردین ۱۳۷۵
 DN MNTH<>NUM
-DN MNTH PN
+DN MNTH DSMALL
 # ۱۴مهر۹۴
 N31<>MNTH<>NUM
 # یک فروردین ۱۳۷۵ هجری شمسی
 DN MNTH NUM CT
-DN MNTH PN CT
+DN MNTH DSMALL CT
 # یک فروردین سال ۱۳۷۵
 DN MNTH SAL NUM
-DN MNTH SAL PN
+DN MNTH SAL DSMALL
 # یک فروردین سال ۱۳۷۵ هجری شمسی
 DN MNTH SAL NUM CT
-DN MNTH SAL PN CT
+DN MNTH SAL DSMALL CT
 
 ### without DN
 # فروردین ۱۳۷۵
 MNTH NUM
-MNTH PN
+MNTH DSMALL
 # فروردین ۱۳۷۵ هجری شمسی
 MNTH NUM CT
-MNTH PN CT
+MNTH DSMALL CT
 # فروردین سال ۱۳۷۵
 MNTH SAL NUM
-MNTH SAL PN
+MNTH SAL DSMALL
 # فروردین سال ۱۳۷۵ هجری شمسی
 MNTH SAL NUM CT
-MNTH SAL PN CT
+MNTH SAL DSMALL CT
 
 ### with MAH and DN
 # یک فروردین ماه
 DN MNTH<>MAH
 # یک فروردین ماه ۱۳۷۵
 DN MNTH<>MAH<>NUM
-DN MNTH<>MAH PN
+DN MNTH<>MAH DSMALL
 # یک فروردین ماه ۱۳۷۵ هجری شمسی
 DN MNTH<>MAH<>NUM<>CT
-DN MNTH<>MAH PN CT
+DN MNTH<>MAH DSMALL CT
 # یک فروردین ماه سال ۱۳۷۵
 DN MNTH<>MAH SAL<>NUM
-DN MNTH<>MAH SAL PN
+DN MNTH<>MAH SAL DSMALL
 # یک فروردین ماه سال ۱۳۷۵ هجری شمسی
 DN MNTH<>MAH SAL<>NUM<>CT
-DN MNTH<>MAH SAL PN CT
+DN MNTH<>MAH SAL DSMALL CT
 
 ### with MAH without DN
 # فروردین ماه
 MNTH<>MAH
 # فروردین ماه ۱۳۷۵
 MNTH<>MAH<>NUM
-MNTH<>MAH PN
+MNTH<>MAH DSMALL
 # فروردین ماه ۱۳۷۵ هجری شمسی
 MNTH<>MAH<>NUM<>CT
-MNTH<>MAH PN CT
+MNTH<>MAH DSMALL CT
 # فروردین ماه سال ۱۳۷۵
 MNTH<>MAH SAL<>NUM
-MNTH<>MAH SAL PN
+MNTH<>MAH SAL DSMALL
 # فروردین ماه سال ۱۳۷۵ هجری شمسی
 MNTH<>MAH SAL NUM<>CT
-MNTH<>MAH SAL PN CT
+MNTH<>MAH SAL DSMALL CT
 
 
 ### with out MNTH
@@ -137,13 +137,13 @@ PRV PRV DU JADID CT
 
 # سال ۱۳۷۵
 SAL<>NUM
-SAL PN
+SAL DSMALL
 # سال ۱۳۷۵ هجری شمسی
 SAL<>NUM<>CT
-SAL PN CT
+SAL DSMALL CT
 # ۱۳۷۵ هجری شمسی
 NUM<>CT
-PN CT
+DSMALL CT
 
 # 1300/12/9
 NUM<>/<>N12<>/<>N31
@@ -202,7 +202,7 @@ RY MNTH<>MAH
 MNTH NXT
 # ژانویه آینده ۱۹۹۹
 MNTH NXT<>NUM
-MNTH NXT PN
+MNTH NXT DSMALL
 # ماه فروردین اخیر
 MAH MNTH NXT
 # فروردین ماه اخیر
@@ -230,18 +230,18 @@ PRV SSN
 PRV PRV SSN
 # شروع پاییز ۱۳۷۵
 PRV SSN<>NUM
-PRV SSN PN
+PRV SSN DSMALL
 
 
 # ماه نخست آعازین
 DU NXT NXT
 # سه هفته نخست
 DN DU NXT
-PN DU NXT
+DSMALL DU NXT
 NUM<>DU NXT
 # سه ماه نخست آینده
 DN DU NXT NXT
-PN DU NXT NXT
+DSMALL DU NXT NXT
 NUM<>DU NXT NXT
 # سال آینده میلادی
 DU NXT CT
@@ -250,36 +250,36 @@ DU NXT NXT CT
 
 # سه هفته نخست ۱۴۰۰
 DN DU NXT<>NUM
-DN DU NXT PN
-PN DU NXT<>NUM
-# PN DU NXT PN
+DN DU NXT DSMALL
+DSMALL DU NXT<>NUM
+# DSMALL DU NXT DSMALL
 NUM<>DU NXT<>NUM
-NUM<>DU NXT PN
+NUM<>DU NXT DSMALL
 # سه هفته نخست ماه
 DN DU NXT DU
-PN DU NXT DU
+DSMALL DU NXT DU
 NUM<>DU NXT DU
 # سه هفته سوم
-PN DU DN
+DSMALL DU DN
 NUM<>DU DN
 DN DU DN
 
 # نیمه نخست ماه
 PRV NXT DU
 PRV NXT DU<>NUM
-PRV NXT DU PN
+PRV NXT DU DSMALL
 # از نیمه نخست ماه
 PRV PRV NXT DU
 PRV PRV NXT DU<>NUM
-PRV PRV NXT DU PN
+PRV PRV NXT DU DSMALL
 # نیمه اول ماه
 PRV DN DU
 PRV DN DU<>NUM
-PRV DN DU PN
+PRV DN DU DSMALL
 # از نیمه اول ماه
 PRV PRV DN DU
 PRV PRV DN DU<>NUM
-PRV PRV DN DU PN
+PRV PRV DN DU DSMALL
 # نیمه اول امسال
 PRV DN RY
 PRV PRV DN RY
@@ -287,10 +287,10 @@ PRV PRV DN RY
 
 # هفته ۳
 DU<>NUM
-DU PN
+DU DSMALL
 # ۳ هفته
 NUM<>DU
-PN DU
+DSMALL DU
 # سومین هفته
 DN DU
 # یکی دو سال
@@ -339,32 +339,32 @@ HAR<>SAL SSN
 # سه /هفته/ماه در هفته/سال/ماه
 DN DU DAR<>DU
 NUM<>DU DAR<>DU
-PN DU DAR<>DU
+DSMALL DU DAR<>DU
 
 # سه بار در هفته
 DN BAR DAR<>DU
 NUM<>BAR DAR<>DU
-PN BAR DAR<>DU
+DSMALL BAR DAR<>DU
 
 # هر سه هفته یکبار
 HAR DN DU YEKBAR
 HAR<>NUM<>DU YEKBAR
-HAR PN DU YEKBAR
+HAR DSMALL DU YEKBAR
 
 # هر xبار در هفته
 HAR DN BAR DAR<>DU
 HAR<>NUM<>BAR DAR<>DU
-HAR PN BAR DAR<>DU
+HAR DSMALL BAR DAR<>DU
 
 # ۵ ساله
 NUM<>DU<>PF
 # صدساله
-PN DU<>PF
+DSMALL DU<>PF
 # هجده ساله
 DN DU<>PF
 
 # هفته‌ای ۱۲ بار
-DU<>PF PN BAR
+DU<>PF DSMALL BAR
 DU<>PF<>NUM BAR
 DU<>PF DN BAR
 
@@ -377,15 +377,15 @@ DN CJ PRV MNTH
 # سال سوم تا پنجم
 DU DN CJ DN
 DU<>NUM<>CJ<>NUM
-DU PN CJ PN
+# DU DSMALL CJ DSMALL
 
 MNTH DN CJ DN
 MNTH<>NUM<>CJ<>NUM
-MNTH PN CJ PN
+MNTH DSMALL CJ DSMALL
 
 SSN DN CJ DN
 SSN<>NUM<>CJ<>NUM
-SSN PN CJ PN
+# SSN DSMALL CJ DSMALL
 
 # سوم تا پنجم ماه
 DN CJ DN DU
@@ -465,9 +465,9 @@ PRV PRV DN SHABROOZ AZ FASL SSN
 
 # پنج تا ۵ هفته
 NUM<>CJ<>NUM<>DU
-NUM<>CJ PN DU
-PN CJ<>NUM<>DU
-PN CJ PN DU
+NUM<>CJ DSMALL DU
+DSMALL CJ<>NUM<>DU
+# DSMALL CJ DSMALL DU
 
 
 ### Indefinite Date
@@ -483,11 +483,11 @@ SSN<>PF
 
 # ژانویه‌ی ۱۹۹۹
 MNTH PF<>NUM
-MNTH PF PN
+MNTH PF DSMALL
 
 # ژانویه ی آینده ۱۹۹۹
 MNTH PF NXT<>NUM
-MNTH PF NXT PN
+MNTH PF NXT DSMALL
 
 # ماه های آعازین
 DU<>PF NXT
@@ -504,7 +504,7 @@ DN DU<>PF
 DN DU<>PF NXT
 # سه هفته ی ۱۴۰۰
 DN DU<>PF<>NUM
-DN DU<>PF PN
+DN DU<>PF DSMALL
 # سه هفته ی ماه
 DN DU<>PF DU
 
@@ -512,11 +512,11 @@ DN DU<>PF DU
 # نیمه ی ماه
 PRV PF DU
 PRV PF DU<>NUM
-PRV PF DU PN
+PRV PF DU DSMALL
 
 PRV PRV PF DU
 PRV PRV PF DU<>NUM
-PRV PRV PF DU PN
+PRV PRV PF DU DSMALL
 
 
 # سال ۱۳۴۳ تا ۱۳۵۴
@@ -525,7 +525,7 @@ DU<>NY4<>CJ<>NY4
 
 # فتنه‌گران ۸۸
 EVE<>NUM
-EVE PN
+EVE DSMALL
 
 # روز‌های ۴ و ۵
 DU<>PF<>NUM<>VA<>NUM
@@ -537,7 +537,7 @@ N31<>-<>N31<>MNTH
 
 # تابستان ۱۳۹۷
 SSN<>NUM
-SSN PN
+SSN DSMALL
 
 # قرن پانزدهم میلادی
 DU DN CT
@@ -547,13 +547,13 @@ MAH MOBARAK MNTH
 
 # ۲۶ سالگی
 NUM<>SAL<>PF
-PN SAL<>PF
+DSMALL SAL<>PF
 
 # آستانه 8 سالگي
 PRV<>NUM<>SAL<>PF
-PRV PN SAL<>PF
+PRV DSMALL SAL<>PF
 PRV PRV<>NUM<>SAL<>PF
-PRV PRV PN SAL<>PF
+PRV PRV DSMALL SAL<>PF
 
 ### Complex or Ambiguous: datetime
 
@@ -566,7 +566,7 @@ CJ SHABROOZ
 # پنج روز
 DN SHABROOZ
 NUM<>SHABROOZ
-PN SHABROOZ
+DSMALL SHABROOZ
 
 # روزی
 SHABROOZ<>PF
@@ -603,33 +603,33 @@ NUM<>\.<>N12<>\.<>N31<>-<>N24<>:<>N60<>CT
 DN SHABROOZ
 MIN SHABROOZ
 NUM<>SHABROOZ
-PN SHABROOZ
+DSMALL SHABROOZ
 
 # سه روز پیش
 DN SHABROOZ NXT
 MIN SHABROOZ NXT
 NUM<>SHABROOZ NXT
-PN SHABROOZ NXT
+DSMALL SHABROOZ NXT
 
 # از ۳ روز
 PRV DN SHABROOZ
 PRV MIN SHABROOZ
 PRV<>NUM<>SHABROOZ
-PRV PN SHABROOZ
+PRV DSMALL SHABROOZ
 
 PRV PRV DN SHABROOZ
 PRV PRV MIN SHABROOZ
 PRV PRV<>NUM<>SHABROOZ
-PRV PRV PN SHABROOZ
+PRV PRV DSMALL SHABROOZ
 
 # سه شب تا چهار شب
-PN SHABROOZ CJ PN SHABROOZ
-NUM SHABROOZ CJ<>NUM<>SHABROOZ
+# D99 SHABROOZ CJ D99 SHABROOZ
+N99 SHABROOZ CJ<>N99<>SHABROOZ
 
 # پنج تا شیش شب
 NUM<>CJ<>NUM<>SHABROOZ
-NUM<>CJ PN SHABROOZ
-PN CJ<>NUM<>SHABROOZ
+NUM<>CJ DSMALL SHABROOZ
+DSMALL CJ<>NUM<>SHABROOZ
 DN CJ DN SHABROOZ
 
 # لغایت دومین روز از
