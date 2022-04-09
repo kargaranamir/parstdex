@@ -1,6 +1,9 @@
 # parstdex (persian time date extractor) - پارس تی‌دِکس
 
-![](https://badgen.net/pypi/v/parstdex) ![](https://badgen.net/pypi/license/parstdex) ![](https://badgen.net/pypi/python/parstdex) [![Documentation Status](https://readthedocs.org/projects/parstdex/badge/?version=latest)](https://parstdex.readthedocs.io/en/latest/?badge=latest)
+[![Pypi Package](https://badgen.net/pypi/v/parstdex)](https://pypi.org/project/parstdex/)
+[![Documentation Status](https://readthedocs.org/projects/parstdex/badge/?version=latest)](https://parstdex.readthedocs.io)
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/kargaranamir/parstdex)
+
 
 ## How to Install parstdex
 
