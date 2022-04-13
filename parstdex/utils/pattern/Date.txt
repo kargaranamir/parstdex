@@ -650,6 +650,8 @@ DU BE DU
 
 # ربع قرن
 ROBNIM DU
+DN VA ROBNIM DU
+DN VA ROBNIM DU NXT
 
 # سه سال و نیم گذشته
 DN DU VA ROBNIM NXT

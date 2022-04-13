@@ -122,6 +122,13 @@ PRV HR APM
 # ساعت پنج و ربع
 SAAT HR VA ROBNIM
 
+# یک ساعت و نیم پیش
+MIN TU VA ROBNIM
+MIN TU VA ROBNIM NXT
+
+# نیم ساعت پیش
+ROBNIM TU NXT
+
 # ساعت یک ربع به
 SAAT YEK ROBNIM PRV
 SAAT YEK ROBNIM BE
