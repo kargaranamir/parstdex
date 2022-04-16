@@ -1,6 +1,6 @@
 import pprint
 
-from hazm import word_tokenize
+from parstdex.utils.tokenizer import tokenize_words
 import textspan
 
 from parstdex.utils.normalizer import Normalizer
@@ -88,15 +88,19 @@ class MarkerExtractor(object):
         values['time'] = {str(span): str(value) for span, value in zip(time_spans, time_values)}
         values['date'] = {str(span): str(value) for span, value in zip(date_spans, date_values)}
 
-
         return values
 
-    def extract_ner(self, input_sentence: str):
-
+    def extract_ner(self, input_sentence: str, tokenizer=None):
+        """
+        You can pass any custom tokenizer to tokenize sentences.
+        :param input_sentence:
+        :param tokenizer:
+        :return:
+        """
         spans_dict = self.extract_span(input_sentence)
         spans = spans_dict['datetime']
         ners = []
-        tokens = word_tokenize(input_sentence)
+        tokens = tokenize_words(input_sentence) if not tokenizer else tokenizer
         all_spans = textspan.get_original_spans(tokens, input_sentence)
         all_spans = [span[0] for span in all_spans if span != []]
         for span in all_spans:
