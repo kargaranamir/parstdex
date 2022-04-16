@@ -19,6 +19,7 @@ class MarkerExtractor(object):
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = ValueExtractor()
         self.DEBUG = debug_mode
+        self.extract_span("")
         super(MarkerExtractor, self).__init__()
 
     def extract_span(self, input_sentence: str):
