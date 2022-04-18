@@ -1,15 +1,16 @@
 from parstdex import Parstdex, settings
 import pprint
-
+from parstdex.utils.datatime_extractor import extract_duration
 
 tests = [
     "از امروز تا فردا",
+    "از سال بعد هر روز درس می‌خوانم",
     "از سه شنبه هفته قبل  لقایت ۳ فروردین ",
     "هر سه‌شنبه",
     "دو شنبه ها راس ساعت ۵ عصر",
     "دوشنبه شب تولد حاج آقا است",
     "تا دو روز دیگر",
-    "در محل همایش های بین المللی مورخ هفدهم فروردین  سال یک هزار و پانصد نود و سه",
+    "در محل همایش های بین المللی مورخ هفدهم فروردین  سال هزار و پانصد ونود و سه",
     "تمام پنج شنبه های سال",
     " در تاریخ ۱۳۹۸/۰۳/۱۴ ایران موفق به بازگشایی شدیم",
     "از چهار سال پیش تا به حال سمت آن نرفتم",
@@ -55,6 +56,8 @@ def run():
         result['markers'] = markers
 
         values = model.extract_value(sentence)
+        # a =  extract_duration(markers=markers, values=values)
+        # print(a)
         result['values'] = values
 
         # ners = model.extract_ner(sentence)
