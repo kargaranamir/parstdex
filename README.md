@@ -3,7 +3,7 @@
 [![Pypi Package](https://badgen.net/pypi/v/parstdex)](https://pypi.org/project/parstdex/)
 [![Documentation Status](https://readthedocs.org/projects/parstdex/badge/?version=latest)](https://parstdex.readthedocs.io)
 [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/kargaranamir/parstdex)
-
+[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kargaranamir/parstdex/blob/main/performance_test.ipynb)
 
 ## How to Install parstdex
 
@@ -137,9 +137,15 @@ Parstdex architecture is very flexible and scalable and therefore suggests an ea
 |   └── test_parstdex.py
 |      
 └── examples.py
+└── performance_test.ipynb
 └── requirement.txt
 └── setup.py
 ```
+
+## Performance Test 
+Executable codes and performance test results are accessible on [google colab](https://colab.research.google.com/github/kargaranamir/parstdex/blob/main/performance_test.ipynb).
+
+The average time required to obtain temporal expressions is `6 ms`. This test was conducted using 264 sentences with an average length of 50 characters that covered all of the patterns.
 
 ## How to contribute
 
