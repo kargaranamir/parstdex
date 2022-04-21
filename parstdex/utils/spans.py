@@ -16,7 +16,8 @@ def merge_spans(spans: Dict, normalized_sentence: str):
                                   spans['adversarial'],
                                   normalized_sentence)
 
-    encoded['date'], encoded['time'] = encode_rtl(encoded['date'], encoded['time'])
+    encoded['date'], encoded['time'] = encode_rtl_prv(encoded['date'], encoded['time'])
+    encoded['date'], encoded['time'] = encode_rtl_nxt(encoded['date'], encoded['time'])
 
     encoded['date'] = encode_space(encoded['date'], spans['Space'])
     encoded['time'] = encode_space(encoded['time'], spans['Space'])
@@ -99,7 +100,7 @@ def find_spans(encoded_sent):
     return spans
 
 
-def encode_rtl(encoded_date, encoded_time):
+def encode_rtl_prv(encoded_date, encoded_time):
     """
     right to left prioritize mat
     :param encoded_date:
@@ -110,8 +111,17 @@ def encode_rtl(encoded_date, encoded_time):
     while i < len(encoded_date):
         # if both time and date patterns exist
         if encoded_date[i] == 1 and encoded_time[i] == 1:
-            # check which pattern has started sooner
-            if encoded_time[i - 1] == 1 and encoded_date[i - 1] == 0:
+            # check which pattern has started sooner by margin of 3 spaces
+            j = i - 1
+            # no negative index for encoded strings
+            if j < 0:
+                i = i + 1
+                continue
+            while (encoded_time[j] == 0 and encoded_date[j] == 0) and j >= i - 3:
+                if j == 0:
+                    break
+                j = j - 1
+            if encoded_time[j] == 1 and encoded_date[j] == 0:
                 # and remove 1 encoding from the latter detected pattern
                 while encoded_time[i] == 1:
                     encoded_date[i] = 0
@@ -119,7 +129,7 @@ def encode_rtl(encoded_date, encoded_time):
                         i += 1
                     else:
                         break
-            elif encoded_time[i - 1] == 0 and encoded_date[i - 1] == 1:
+            elif encoded_time[j] == 0 and encoded_date[j] == 1:
                 # and remove 1 encoding from the latter detected pattern
                 while encoded_date[i] == 1:
                     encoded_time[i] = 0
@@ -131,6 +141,36 @@ def encode_rtl(encoded_date, encoded_time):
             else:
                 # debug may be required in future versions
                 i += 1
+        else:
+            i += 1
+    return encoded_date, encoded_time
+
+
+def encode_rtl_nxt(encoded_date, encoded_time):
+    """
+    remove bad categorized encoded span
+    :param encoded_date:
+    :param encoded_time:
+    :return:
+    """
+    i = 0
+    while i < len(encoded_date):
+        # if both time and date patterns exist
+        if encoded_date[i] == 1 and encoded_time[i] == 1:
+            start = i
+            while encoded_date[i] == 1 and encoded_time[i] == 1:
+                # check not to overflow from sentence len
+                i += 1
+                if i == len(encoded_date):
+                    break
+            end = i
+            if end == len(encoded_date):
+                encoded_time[start:end] = 0
+            else:
+                if encoded_time[end] != 1:
+                    encoded_time[start:end] = 0
+                else:
+                    encoded_date[start:end] = 0
         else:
             i += 1
     return encoded_date, encoded_time

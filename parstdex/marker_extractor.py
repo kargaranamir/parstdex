@@ -8,6 +8,7 @@ from parstdex.utils.pattern_to_regex import Patterns
 from parstdex.utils.spans import create_spans
 from parstdex.utils.spans import merge_spans
 from parstdex.utils.word_to_value import ValueExtractor
+from parstdex.utils.deprecation import deprecated
 
 
 class MarkerExtractor(object):
@@ -91,7 +92,11 @@ class MarkerExtractor(object):
 
         return values
 
+    @deprecated("extract_ner will be deprecated soon. Use extract_bio_dat or extract_bio_dattim instead.")
     def extract_ner(self, input_sentence: str, tokenizer=None):
+        return self.extract_bio_dat(input_sentence, tokenizer)
+
+    def extract_bio_dat(self, input_sentence: str, tokenizer=None):
         """
         You can pass any custom tokenizer to tokenize sentences.
         :param input_sentence:
@@ -112,6 +117,41 @@ class MarkerExtractor(object):
                         ners.append((input_sentence[span[0]:span[1]], 'B-DAT'))
                     else:
                         ners.append((input_sentence[span[0]:span[1]], 'I-DAT'))
+                    chosen = True
+                    break
+            if not chosen:
+                ners.append((input_sentence[span[0]:span[1]], 'O'))
+        return ners
+
+    def extract_bio_dattim(self, input_sentence: str, tokenizer=None):
+        """
+        You can pass any custom tokenizer to tokenize sentences.
+        :param input_sentence:
+        :param tokenizer:
+        :return:
+        """
+        spans_dict = self.extract_span(input_sentence)
+        time_spans = spans_dict['time']
+        date_spans = spans_dict['date']
+        spans = time_spans + date_spans
+        ners = []
+        tokens = tokenize_words(input_sentence) if not tokenizer else tokenizer
+        all_spans = textspan.get_original_spans(tokens, input_sentence)
+        all_spans = [span[0] for span in all_spans if span != []]
+        for span in all_spans:
+            chosen = False
+            for ner_span in spans:
+                if span[0] >= ner_span[0] and span[1] <= ner_span[1]:
+                    if span[0] == ner_span[0]:
+                        if ner_span in time_spans:
+                            ners.append((input_sentence[span[0]:span[1]], 'B-TIM'))
+                        elif ner_span in date_spans:
+                            ners.append((input_sentence[span[0]:span[1]], 'B-DAT'))
+                    else:
+                        if ner_span in time_spans:
+                            ners.append((input_sentence[span[0]:span[1]], 'I-TIM'))
+                        elif ner_span in date_spans:
+                            ners.append((input_sentence[span[0]:span[1]], 'I-DAT'))
                     chosen = True
                     break
             if not chosen:

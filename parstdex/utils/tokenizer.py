@@ -1,5 +1,6 @@
 import re
 
+
 # persian-english word tokenizer
 def tokenize_words(text):
     token_list = re.findall(r"[\w\u200c']+|[!\"#$%&\'()*+,-./:؛؟،;<=>?@[\\\]^_`{|}~]", text)
