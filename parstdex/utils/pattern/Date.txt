@@ -66,6 +66,7 @@ MAH MNTH
 ### with DN
 # یک فروردین
 DN MNTH
+N31<>MNTH
 # یک فروردین ۱۳۷۵
 DN MNTH<>NUM
 DN MNTH DSMALL
@@ -560,6 +561,29 @@ PRV DSMALL SAL<>PF
 PRV PRV<>NUM<>SAL<>PF
 PRV PRV DSMALL SAL<>PF
 
+
+# ۱۲، ۲۳ و ۲۴ روز
+NUM<>COMMA<>NUM<>VA<>NUM<>DU
+DU<>NUM<>COMMA<>NUM<>VA<>NUM
+
+# هفته به هفته
+DU BE DU
+
+# ربع قرن
+ROBNIM DU
+DN VA ROBNIM DU
+DN VA ROBNIM DU NXT
+
+# سه سال و نیم گذشته
+DN DU VA ROBNIM NXT
+
+# از ۹۲ تا کنون
+PRV<>NUM<>TAKNN
+
+# لغایت دومین روز از
+CJ DN SHABROOZ
+CJ DN SHABROOZ AZ
+
 ### Complex or Ambiguous: datetime
 
 # روز
@@ -578,31 +602,6 @@ SHABROOZ<>PF
 
 # روزی بعد
 SHABROOZ<>PF NXT
-
-#  ۲۱/۱۲/۱۴۰۰ ۱۳:۳۴ میلادی
-N31<>/<>N12<>/<>NUM N24<>:<>N60<>CT
-N31<>\\<>N12\\<>NUM N24<>:<>N60<>CT
-N31<>-<>N12<>-<>NUM N24<>:<>N60<>CT
-N31<>\.<>N12<>\.<>NUM N24<>:<>N60<>CT
-
-#  ۲۱/۱۲/۱۴۰۰ - ۱۳:۳۴ میلادی
-N31<>/<>N12<>/<>NUM<>-<>N24<>:<>N60<>CT
-N31<>\\<>N12\\<>NUM<>-<>N24<>:<>N60<>CT
-N31<>-<>N12<>-<>NUM<>-<>N24<>:<>N60<>CT
-N31<>\.<>N12<>\.<>NUM<>-<>N24<>:<>N60<>CT
-
-# ۱۳۹۳/۱۲/۲۳ ۱۳:۳۴ میلادی
-NUM<>/<>N12<>/<>N31 N24<>:<>N60<>CT
-NUM<>\\<>N12<>\\<>N31 N24<>:<>N60<>CT
-NUM<>-<>N12<>-<>N31 N24<>:<>N60<>CT
-NUM<>\.<>N12<>\.<>N31 N24<>:<>N60<>CT
-
-# ۱۳۹۳/۱۲/۲۳ - ۱۳:۳۴ میلادی
-NUM<>/<>N12<>/<>N31<>-<>N24<>:<>N60<>CT
-NUM<>\\<>N12<>\\<>N31<>-<>N24<>:<>N60<>CT
-NUM<>-<>N12<>-<>N31<>-<>N24<>:<>N60<>CT
-NUM<>\.<>N12<>\.<>N31<>-<>N24<>:<>N60<>CT
-
 
 # ۳ روز
 DN SHABROOZ
@@ -637,24 +636,26 @@ NUM<>CJ DSMALL SHABROOZ
 DSMALL CJ<>NUM<>SHABROOZ
 DN CJ DN SHABROOZ
 
-# لغایت دومین روز از
-CJ DN SHABROOZ
-CJ DN SHABROOZ AZ
+#  ۲۱/۱۲/۱۴۰۰ ۱۳:۳۴ میلادی
+N31<>/<>N12<>/<>NUM N24<>:<>N60<>CT
+N31<>\\<>N12\\<>NUM N24<>:<>N60<>CT
+N31<>-<>N12<>-<>NUM N24<>:<>N60<>CT
+N31<>\.<>N12<>\.<>NUM N24<>:<>N60<>CT
 
-# ۱۲، ۲۳ و ۲۴ روز
-NUM<>COMMA<>NUM<>VA<>NUM<>DU
-DU<>NUM<>COMMA<>NUM<>VA<>NUM
+#  ۲۱/۱۲/۱۴۰۰ - ۱۳:۳۴ میلادی
+N31<>/<>N12<>/<>NUM<>-<>N24<>:<>N60<>CT
+N31<>\\<>N12\\<>NUM<>-<>N24<>:<>N60<>CT
+N31<>-<>N12<>-<>NUM<>-<>N24<>:<>N60<>CT
+N31<>\.<>N12<>\.<>NUM<>-<>N24<>:<>N60<>CT
 
-# هفته به هفته
-DU BE DU
+# ۱۳۹۳/۱۲/۲۳ ۱۳:۳۴ میلادی
+NUM<>/<>N12<>/<>N31 N24<>:<>N60<>CT
+NUM<>\\<>N12<>\\<>N31 N24<>:<>N60<>CT
+NUM<>-<>N12<>-<>N31 N24<>:<>N60<>CT
+NUM<>\.<>N12<>\.<>N31 N24<>:<>N60<>CT
 
-# ربع قرن
-ROBNIM DU
-DN VA ROBNIM DU
-DN VA ROBNIM DU NXT
-
-# سه سال و نیم گذشته
-DN DU VA ROBNIM NXT
-
-# از ۹۲ تا کنون
-PRV<>NUM<>TAKNN
+# ۱۳۹۳/۱۲/۲۳ - ۱۳:۳۴ میلادی
+NUM<>/<>N12<>/<>N31<>-<>N24<>:<>N60<>CT
+NUM<>\\<>N12<>\\<>N31<>-<>N24<>:<>N60<>CT
+NUM<>-<>N12<>-<>N31<>-<>N24<>:<>N60<>CT
+NUM<>\.<>N12<>\.<>N31<>-<>N24<>:<>N60<>CT

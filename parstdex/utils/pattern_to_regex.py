@@ -132,14 +132,13 @@ class Patterns:
         :param pattern: str
         :return: str
         """
-        # TODO: WHY \s*
-        pattern = pattern.replace(" ", r'[\u200c\s]{1,3}')
         annotation_keys = "|".join(self.cumulative_annotations_keys)
         matches = re.findall(annotation_keys, pattern)
         for key in matches:
             pattern = re.sub(f'{key}', fr"(?:{self.cumulative_annotations[key]})", pattern)
 
-        pattern = pattern.replace("<>", r'(?:[\s\u200c]){0,3}')
+        pattern = pattern.replace(" ", r'(?:[\u200c\s]{1,3})')
+        pattern = pattern.replace("<>", r'(?:[\s\u200c]{0,3})')
         return pattern
 
     def create_regexes_from_patterns(self, path):
