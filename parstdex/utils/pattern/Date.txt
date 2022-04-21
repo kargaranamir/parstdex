@@ -13,7 +13,7 @@ NY4
 DU
 # امروز
 RD
-
+RD<>WD
 # یکشنبه
 WD
 # پنجشنبه گذشته
@@ -73,27 +73,27 @@ DN MNTH DSMALL
 # ۱۴مهر۹۴
 N31<>MNTH<>NUM
 # یک فروردین ۱۳۷۵ هجری شمسی
-DN MNTH NUM CT
+DN MNTH<>NUM<>CT
 DN MNTH DSMALL CT
 # یک فروردین سال ۱۳۷۵
-DN MNTH SAL NUM
+DN MNTH SAL<>NUM
 DN MNTH SAL DSMALL
 # یک فروردین سال ۱۳۷۵ هجری شمسی
-DN MNTH SAL NUM CT
+DN MNTH SAL<>NUM<>CT
 DN MNTH SAL DSMALL CT
 
 ### without DN
 # فروردین ۱۳۷۵
-MNTH NUM
+MNTH<>NUM
 MNTH DSMALL
 # فروردین ۱۳۷۵ هجری شمسی
-MNTH NUM CT
+MNTH<>NUM<>CT
 MNTH DSMALL CT
 # فروردین سال ۱۳۷۵
-MNTH SAL NUM
+MNTH SAL<>NUM
 MNTH SAL DSMALL
 # فروردین سال ۱۳۷۵ هجری شمسی
-MNTH SAL NUM CT
+MNTH SAL<>NUM<>CT
 MNTH SAL DSMALL CT
 
 ### with MAH and DN
@@ -125,7 +125,7 @@ MNTH<>MAH DSMALL CT
 MNTH<>MAH SAL<>NUM
 MNTH<>MAH SAL DSMALL
 # فروردین ماه سال ۱۳۷۵ هجری شمسی
-MNTH<>MAH SAL NUM<>CT
+MNTH<>MAH SAL<>NUM<>CT
 MNTH<>MAH SAL DSMALL CT
 
 
@@ -297,6 +297,10 @@ NUM<>DU
 DSMALL DU
 # سومین هفته
 DN DU
+# شصت و پنجمین سال
+DSMALLMEEN DU
+# شصت و سومین سال
+DSMALL VA SEVOMIN DU
 # یکی دو سال
 YEKIDO DU
 # سه چار سال
@@ -381,8 +385,13 @@ DN CJ PRV MNTH
 # سال سوم تا پنجم
 DU DN CJ DN
 DU<>NUM<>CJ<>NUM
-DU<>NUM<>VA<>NUM
+DU<>NUM<>VYA<>NUM
 DU DSMALL CJ DSMALL
+
+# ۱۸۲۳ ۱۹۳۴ میلادی
+NUM NUM<>CT
+NUM<>VYA<>NUM<>CT
+NUM<>-<>NUM<>CT
 
 MNTH DN CJ DN
 MNTH<>NUM<>CJ<>NUM
@@ -406,43 +415,43 @@ MNTH<>-<>MNTH
 SSN<>-<>SSN
 
 # قروردین و اردیبهشت
-MNTH VA MNTH
+MNTH VYA MNTH
 MNTH CJ MNTH
 
 # پاییز تا زمستان
-SSN VA SSN
+SSN VYA SSN
 SSN CJ SSN
 
 # حدفاصل ۹۰ تا ۹۳
-TOOL<>N99<>CJ<>N99
-TOOL<>NY4<>CJ<>NY4
+TOOL<>DU<>NUM<>CJ<>NUM
+TOOL<>NUM<>CJ<>NUM<>DU
 
 # سوم فروردین تا
 DN MNTH CJ
 # ۳ تا ۵ فروردین
 DN CJ DN MNTH
-DN VA DN MNTH
+DN VYA DN MNTH
 
 # امروز تا
 RD CJ
 # امروز و دیروز
-RD VA RD
+RD VYA RD
 # یکشنبه تا
 WD CJ
 # دوشنبه و پنج‌شنبه
-WD VA WD
+WD VYA WD
 # پاییز تا
 SSN CJ
 # پاییز و زمستان
-SSN VA SSN
+SSN VYA SSN
 # امسال تا
 RY CJ
 # امسال و پیلارسال
-RY VA RY
+RY VYA RY
 # فروردین تا
 MNTH CJ
 # فروردین و اردیبهشت
-MNTH VA MNTH
+MNTH VYA MNTH
 
 # تا سال
 CJ DU
@@ -526,7 +535,7 @@ PRV PRV PF DU DSMALL
 
 
 # سال ۱۳۴۳ تا ۱۳۵۴
-DU<>NY4<>CJ<>NY4
+DU<>NUM<>CJ<>NUM
 
 
 # فتنه‌گران ۸۸
@@ -534,12 +543,22 @@ EVE<>NUM
 EVE DSMALL
 
 # روز‌های ۴ و ۵
-DU<>PF<>NUM<>VA<>NUM
+DU<>PF<>NUM<>VYA<>NUM
 DU<>PF<>NUM<>CJ<>NUM
 
 # ۱۸ - ۲۰ آذر
-DN<>–<>DN MNTH
+DN<>-<>DN MNTH
 N31<>-<>N31<>MNTH
+N31<>VYA<>N31<>MNTH
+
+# بین ۱۲ اکتبر تا ۲۳ مارس
+TOOL<>N31<>MNTH CJ<>N31<>MNTH
+
+# ۹ سال قبل یک بار
+NUM<>DU NXT DN BAR
+NUM<>DU NXT YEKBAR
+DN DU NXT DN BAR
+DN DU NXT YEKBAR
 
 # تابستان ۱۳۹۷
 SSN<>NUM
@@ -563,19 +582,19 @@ PRV PRV DSMALL SAL<>PF
 
 
 # ۱۲، ۲۳ و ۲۴ روز
-NUM<>COMMA<>NUM<>VA<>NUM<>DU
-DU<>NUM<>COMMA<>NUM<>VA<>NUM
+NUM<>COMMA<>NUM<>VYA<>NUM<>DU
+DU<>NUM<>COMMA<>NUM<>VYA<>NUM
 
 # هفته به هفته
 DU BE DU
 
 # ربع قرن
 ROBNIM DU
-DN VA ROBNIM DU
-DN VA ROBNIM DU NXT
+DN VYA ROBNIM DU
+DN VYA ROBNIM DU NXT
 
 # سه سال و نیم گذشته
-DN DU VA ROBNIM NXT
+DN DU VYA ROBNIM NXT
 
 # از ۹۲ تا کنون
 PRV<>NUM<>TAKNN

@@ -68,7 +68,7 @@ class Annotation:
             'N24': r'[0-1]?[0-9]|2[0-4]',
             'N60': r'[0-5]?[0-9]',
             'N99': r'[0-9]{1,2}',
-            'NY4': r'[12]\\d{3}',  # all Gregorian years
+            'NY4': r'13[5-9][0-9]|140[0-9]|19[2-9][0-9]|20[0-2][0-9]',  # all Gregorian years
             'D99': rf'{const.DIGIT2}|{const.DIGIT1}',  # Persian alphabetic 2 digit numbers
             'DY4': const.DIGIT4,  # Persian alphabetic 4 digit numbers
             'DSMALL': rf"{const.DSMALL}",  # Persian alphabetic 1 to 4 digit numbers

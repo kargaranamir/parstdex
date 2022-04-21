@@ -22,6 +22,10 @@ TOOL<>NUM<>TU
 TOOL DSMALL TU
 TOOL MIN TU
 
+# حدفاصل ۹۰ تا ۹۳
+TOOL<>TU<>NUM<>CJ<>NUM
+TOOL<>NUM<>CJ<>NUM<>TU
+
 # پنج ثانیه
 NUM<>TU
 MIN TU
@@ -160,7 +164,7 @@ TU NXT
 TU NXT NXT
 
 # ۷ غروب و ۸ صبح
-HR DP VA HR DP
+HR DP VYA HR DP
 
 ### Indefinite Time
 # دقیقه ای
@@ -171,22 +175,30 @@ TU<>PF NXT
 TU<>PF NXT NXT
 
 # ۱۳، ۲۳ و ۲۴ دقیقه
-NUM<>COMMA<>NUM<>VA<>NUM<>TU
-MIN<>COMMA<>MIN VA<>MIN<>TU
+NUM<>COMMA<>NUM<>VYA<>NUM<>TU
+MIN<>COMMA<>MIN VYA<>MIN<>TU
 
 # دقايق 5 ، 61 و 89
-TU MIN<>COMMA<>MIN VA MIN
-TU<>NUM<>COMMA<>NUM<>VA<>NUM
+TU MIN<>COMMA<>MIN VYA MIN
+TU<>NUM<>COMMA<>NUM<>VYA<>NUM
 
 # دقیقه ۲ و ۲۳
-TU MIN VA MIN
-TU DSMALL VA DSMALL
-TU<>NUM<>VA<>NUM
+TU MIN VYA MIN
+TU DSMALL VYA DSMALL
+TU<>NUM<>VYA<>NUM
 
 # دقیقه ۲ تا ۲۳
 TU MIN CJ MIN
 TU DSMALL CJ DSMALL
 TU<>NUM<>CJ<>NUM
+
+# هفت الی هشت ساعت
+NUM<>CJ<>NUM TU
+MIN CJ MIN TU
+
+# هفت الی هشت ساعت
+DP NUM<>CJ<>NUM TU
+DP MIN CJ MIN TU
 
 # دقیقه به دقیقه
 TU BE TU
