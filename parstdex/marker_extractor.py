@@ -82,9 +82,11 @@ class MarkerExtractor(object):
 
         time_spans = spans['time']
         date_spans = spans['date']
+        # datetime_spans = spans['datetime']
 
         time_values = [self.value_extractor.compute_time_value(input_sentence[e[0]:e[1]]) for e in time_spans]
         date_values = [self.value_extractor.compute_date_value(input_sentence[e[0]:e[1]]) for e in date_spans]
+        # datetime_values = [self.value_extractor.compute_date_value(input_sentence[e[0]:e[1]]) for e in datetime_spans if is_datetime(input_sentence[e[0]:e[1]])]
 
         values['time'] = {str(span): str(value) for span, value in zip(time_spans, time_values)}
         values['date'] = {str(span): str(value) for span, value in zip(date_spans, date_values)}

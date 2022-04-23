@@ -37,6 +37,9 @@ tests = [
     "در عرض ۱ ثانیه ازین رو به آن رو شد",
     "بعد از تصادف دیگر هر یکشنبه به کلیسا میروم",
     "سال ها درس خواندم",
+    "دو ماه",
+    "از پنجشنبه تا جمعه هر روز درس خواندم",
+    "از پنجشنبه تا جمعه پاره شدم تا هر روز راحت باشم",
 ]
 
 
@@ -56,8 +59,7 @@ def run():
         result['markers'] = markers
 
         values = model.extract_value(sentence)
-        # a =  extract_duration(markers=markers, values=values)
-        # print(a)
+        print(extract_duration(markers=markers))
         result['values'] = values
 
         # ners = model.extract_ner(sentence)
