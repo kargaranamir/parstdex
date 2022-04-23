@@ -55,6 +55,13 @@ TOOL DSMALL DU
 # طول ۵ سال
 TOOL<>NUM<>DU
 
+# طی فروردین
+TOOL MNTH
+TOOL MNTHMAH
+
+# در طول دوشنبه
+TOOL WD
+
 # چند سال
 CHAND<>DU
 # طی چند سال
