@@ -149,8 +149,8 @@ def convert_ghamari_to_miladi(year, month, day) -> datetime:
         'convertyear': year,
         'convertmonth': month,
         'convertday': day,
-        'convertlcid': 1065,
-        '_': 0,
+        'convertlcid': 1025,
+        '_': datetime.now().timestamp(),
     }
     resp = requests.get(URL, params=PARAMS)    
     soup = BeautifulSoup(resp.content, 'html.parser')
@@ -167,7 +167,7 @@ def convert_shamsi_to_miladi(year, month, day) -> datetime:
         'convertyear': year,
         'convertmonth': month,
         'convertday': day,
-        'convertlcid': 1025,
+        'convertlcid': 1065,
         '_': 0,
     }
     resp = requests.get(URL, params=PARAMS)    
@@ -187,15 +187,15 @@ def get_ghamari_mnth_ts(text: str) -> int:
     else:
         return int(convert_ghamari_to_miladi(year + 1, month_number, 0).timestamp())
 
-def get_next_shamsi_month(text: str):
+def get_shamsi_mnth_ts(text: str):
     year, month, day = get_current_shamsi()
     month_number = const.SHAMSHI_MONTHS[text]
     if month_number == month:
-        return int(convert_ghamari_to_miladi(year, month, 0).timestamp())
+        return int(convert_shamsi_to_miladi(year, month, 0).timestamp())
     elif month_number > month:
-        return int(convert_ghamari_to_miladi(year, month_number, 0).timestamp())
+        return int(convert_shamsi_to_miladi(year, month_number, 0).timestamp())
     else:
-        return int(convert_ghamari_to_miladi(year + 1, month_number, 0).timestamp())
+        return int(convert_shamsi_to_miladi(year + 1, month_number, 0).timestamp())
 
 def remove_starting_keyword(text: str):
     for starting_keyword in duration_set_start:

@@ -1,6 +1,6 @@
 from parstdex import Parstdex, settings
 import pprint
-from parstdex.utils.datatime_extractor import extract_duration, get_current_shamsi
+from parstdex.utils.datatime_extractor import extract_duration
 
 tests = [
     "از امروز تا فردا",
