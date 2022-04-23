@@ -59,6 +59,8 @@ TOOL<>NUM<>DU
 CHAND<>DU
 # طی چند سال
 TOOL CHAND<>DU
+TOOL PRV CHAND<>DU
+TOOL PRV<>DU
 
 # ماه فروردین
 MAH MNTH
@@ -658,3 +660,9 @@ DN DU VA ROBNIM NXT
 
 # از ۹۲ تا کنون
 PRV<>NUM<>TAKNN
+
+# از اردیبهشت تا خرداد
+# AZ MNTHMAH CJ MNTHMAH
+# AZ MNTH CJ MNTH
+# AZ MNTH CJ MNTHMAH
+# AZ MNTHMAH CJ MNTH
