@@ -1,10 +1,10 @@
-from curses import keyname
 from typing import List
 from ..marker_extractor import ValueExtractor
 from . import const
 from datetime import datetime, date, timedelta
 import requests
 from bs4 import BeautifulSoup
+import re
 
 duration_set_middle = {
     'تا',
@@ -24,6 +24,7 @@ duration_set_start = {
     'در عرض',
     'بین',
     'از',
+    'در فاصله',
 }
 
 duration_set = duration_set_middle.union(duration_set_start)
@@ -177,25 +178,33 @@ def convert_shamsi_to_miladi(year, month, day) -> datetime:
     year, month, day = int(year), int(month), int(day)
     return datetime(year, month, day)
 
-def get_ghamari_mnth_ts(text: str) -> int:
+def get_ghamari_mnth_duration(text: str) -> int:
     year, month, day = get_current_ghamari()
-    month_number = const.GHAMARI_MONTHS[text]
-    if month_number == month:
-        return int(convert_ghamari_to_miladi(year, month, 0).timestamp())
-    elif month_number > month:
-        return int(convert_ghamari_to_miladi(year, month_number, 0).timestamp())
-    else:
-        return int(convert_ghamari_to_miladi(year + 1, month_number, 0).timestamp())
 
-def get_shamsi_mnth_ts(text: str):
+    month_number = const.GHAMARI_MONTHS[text]
+    year_number = year + 1 if month_number < month else year
+
+    next_month = 1 if month_number == 12 else (month_number + 1)
+    next_year = year_number + 1 if month_number == 12 else year_number
+
+    begin_ts = int(convert_ghamari_to_miladi(year_number, month_number, 1).timestamp())
+    end_ts = int(convert_ghamari_to_miladi(next_year, next_month, 1).timestamp())
+
+    return [begin_ts, end_ts]
+
+def get_shamsi_mnth_duration(text: str):
     year, month, day = get_current_shamsi()
+
     month_number = const.SHAMSHI_MONTHS[text]
-    if month_number == month:
-        return int(convert_shamsi_to_miladi(year, month, 0).timestamp())
-    elif month_number > month:
-        return int(convert_shamsi_to_miladi(year, month_number, 0).timestamp())
-    else:
-        return int(convert_shamsi_to_miladi(year + 1, month_number, 0).timestamp())
+    year_number = year + 1 if month_number < month else year
+
+    next_month = 1 if month_number == 12 else (month_number + 1)
+    next_year = year_number + 1 if month_number == 12 else year_number
+
+    begin_ts = int(convert_shamsi_to_miladi(year_number, month_number, 1).timestamp())
+    end_ts = int(convert_shamsi_to_miladi(next_year, next_month, 1).timestamp())
+
+    return [begin_ts, end_ts]
 
 def remove_starting_keyword(text: str):
     for starting_keyword in duration_set_start:
@@ -204,17 +213,58 @@ def remove_starting_keyword(text: str):
     return text
 
 
+time_length = {
+    'ثانیه': 1,
+    'دقیقه': 60,
+    'ساعت': 60 * 60,
+    'روز': 24 * 60 * 60,
+    'هفته': 7 * 24 * 60 * 60,
+    'ماه': 30 * 24 * 60 * 60,
+    'ماهه': 30 * 24 * 60 * 60,
+    'سال': 12 * 30 * 24 * 60 * 60,
+}
+
+
 def extract_duration_start(span, text: str):
     for keyword in duration_set_start:
         if text.startswith(keyword) and not has_va(text):
             stripped_text = remove_starting_keyword(text)
             stripped_text = stripped_text.strip()
+
             if stripped_text in fa_wd_to_num:
                 value = fa_wd_to_duration(stripped_text)
             elif stripped_text in const.MILADI_MONTHS:
                 value = miladi_mnth_to_duration(stripped_text)
+            elif stripped_text in const.GHAMARI_MONTHS:
+                value = get_ghamari_mnth_duration(stripped_text)
+            elif stripped_text in const.SHAMSHI_MONTHS:
+                value = get_shamsi_mnth_duration(stripped_text)
+            elif re.search(const.ONE_NINETY_NINE_JOIN, stripped_text) is not None:
+                number = re.search(const.ONE_NINETY_NINE_JOIN, stripped_text).group(0)
+                stripped_text = stripped_text.replace(number, '').strip()
+                number = const.ONE_NINETY_NINE[number]
+                current_ts = int(datetime.now().timestamp())
+                value = [current_ts, current_ts + number * time_length[stripped_text]]
+            elif re.search(r'\d+', vx.compute_value(stripped_text)) is not None:
+                computed_value = vx.compute_value(stripped_text)
+                number = re.search(r'\d+', computed_value).group(0)
+                computed_value = computed_value.replace(number, '').strip()
+                number = int(number)
+                current_ts = int(datetime.now().timestamp())
+                value = [current_ts, current_ts + number * time_length[computed_value]]
+
+            elif re.search(r'\d+(\\|\/)\d+(\\|\/)\d+', stripped_text) is not None:
+                match = re.search(r'(\d+)(\\|\/)(\d+)(\\|\/)(\d+)', stripped_text)
+                if 'ه.ش' in stripped_text or 'شمسی' in stripped_text or 'خورشیدی' in stripped_text:
+                    value = [int(convert_shamsi_to_miladi(match.group(1), match.group(3), match.group(5)).timestamp())]
+                elif 'ه.ق' in stripped_text or 'قمری' in stripped_text:
+                    value = [int(convert_ghamari_to_miladi(match.group(1), match.group(3), match.group(5)).timestamp())]
+                elif 'میلادی' in stripped_text or '.م' in stripped_text:
+                    value = [int(datetime(match.group(1), match.group(3), match.group(5), 0, 0, 0, 0).timestamp())]
+
             else:
                 value = [get_ts_from_phrase('حالا'), vx.compute_value(stripped_text)]
+
             return {
                 'type': 'duration',
                 'text': text,
