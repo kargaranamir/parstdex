@@ -53,6 +53,9 @@ convertor_fa_2_timestamp = {
 
 }
 
+prior = ['گذشته', 'قبل', 'قبلی', 'ماضی', 'پیش', 'پیشین']
+future = ['دیگر', 'بعد', 'آتی']
+
 vx = ValueExtractor()
 
 
@@ -224,6 +227,122 @@ time_length = {
     'سال': 12 * 30 * 24 * 60 * 60,
 }
 
+def is_year_month_day(text: str):
+    return re.search(r'\d+(\\|\/)\d+(\\|\/)\d+', text) is not None
+
+def extract_year_month_day(text: str):
+    """
+    12/123/12 ه.ق
+    ۱۲\۱۲\۱۲ میلادی
+    """
+    match = re.search(r'(\d+)(\\|\/)(\d+)(\\|\/)(\d+)', text)
+    if 'ه.ش' in text or 'شمسی' in text or 'خورشیدی' in text:
+        return int(convert_shamsi_to_miladi(match.group(1), match.group(3), match.group(5)).timestamp())
+    elif 'ه.ق' in text or 'قمری' in text:
+        return int(convert_ghamari_to_miladi(match.group(1), match.group(3), match.group(5)).timestamp())
+    elif 'میلادی' in text or '.م' in text:
+        return int(datetime(match.group(1), match.group(3), match.group(5), 0, 0, 0, 0).timestamp())
+
+
+def contains_text_number(text: str) -> bool:
+    """
+    دو روز 
+    دو سال 
+    دو ماه
+    """
+    for x in const.ONE_NINETY_NINE.keys():
+        if x in text.split():
+            return True
+
+    return False
+
+def extract_text_number_duration(text: str):
+    """
+    طی دو ماه
+    """
+    text = remove_redundants(text)
+    number = re.search(const.ONE_NINETY_NINE_JOIN, text).group(0)
+    text = text.replace(number, '').strip()
+    number = const.ONE_NINETY_NINE[number]
+    current_ts = int(datetime.now().timestamp())
+    sign = 1
+    for p in prior:
+        if p in text:
+            sign = -1
+            text = text.replace(p, '').strip()
+            break
+
+    if sign == 1:
+        return [current_ts, current_ts +  number * time_length[text]]
+    else:
+        return [ current_ts + -1 * number * time_length[text], current_ts]
+    
+
+def contains_number(text: str) -> bool:
+    """
+    در عرض ۱ ثانیه
+    """
+    return re.search(r'\d+', vx.compute_value(text)) is not None and any(tl in text for tl in time_length.keys())
+
+
+def extract_number_duration(text: str):
+    text = remove_redundants(text)
+    computed_value = vx.compute_value(text)
+    number = re.search(r'\d+', computed_value).group(0)
+    computed_value = computed_value.replace(number, '').strip()
+    number = int(number)
+    current_ts = int(datetime.now().timestamp())
+    sign = 1
+    for p in prior:
+        if p in computed_value:
+            sign = -1
+            computed_value = computed_value.replace(p, '').strip()
+            break
+    if sign == 1:
+        return [current_ts, current_ts + number * time_length[computed_value]]
+    else:
+        return [current_ts + -1 * number * time_length[computed_value], current_ts]
+
+
+def extract_wd(text: str):
+    weekday = None
+    for wd in fa_wd_to_num.keys():
+        if wd in text.split():
+            start, end = fa_wd_to_duration(wd)
+            weekday = wd
+            text = text.replace(wd, '')
+            break
+    else:
+        return False
+
+    number = 1
+    if contains_text_number(text):
+        number = const.ONE_NINETY_NINE[re.search(const.ONE_NINETY_NINE_JOIN, text).group(0)]
+    elif contains_number(text):
+        number = int(re.search(r'\d+', vx.compute_value(text)).group(0))
+    
+    period = 0
+    if 'هفته' in text:
+        period = time_length['هفته']
+
+    sign = 1
+    for p in prior:
+        if p in text:
+            sign = -1
+            period = time_length['هفته']
+            text = text.replace(p, '').strip()
+            break
+
+    return start + sign * number * period, end + sign * number * period
+
+
+def extract_duration_only(text: str):
+    """
+    روز بعد
+    هفته قبل
+    سال پیش
+    """
+    pass
 
 def extract_duration_start(span, text: str):
     for keyword in duration_set_start:
@@ -239,29 +358,12 @@ def extract_duration_start(span, text: str):
                 value = get_ghamari_mnth_duration(stripped_text)
             elif stripped_text in const.SHAMSHI_MONTHS:
                 value = get_shamsi_mnth_duration(stripped_text)
-            elif re.search(const.ONE_NINETY_NINE_JOIN, stripped_text) is not None:
-                number = re.search(const.ONE_NINETY_NINE_JOIN, stripped_text).group(0)
-                stripped_text = stripped_text.replace(number, '').strip()
-                number = const.ONE_NINETY_NINE[number]
-                current_ts = int(datetime.now().timestamp())
-                value = [current_ts, current_ts + number * time_length[stripped_text]]
-            elif re.search(r'\d+', vx.compute_value(stripped_text)) is not None:
-                computed_value = vx.compute_value(stripped_text)
-                number = re.search(r'\d+', computed_value).group(0)
-                computed_value = computed_value.replace(number, '').strip()
-                number = int(number)
-                current_ts = int(datetime.now().timestamp())
-                value = [current_ts, current_ts + number * time_length[computed_value]]
-
-            elif re.search(r'\d+(\\|\/)\d+(\\|\/)\d+', stripped_text) is not None:
-                match = re.search(r'(\d+)(\\|\/)(\d+)(\\|\/)(\d+)', stripped_text)
-                if 'ه.ش' in stripped_text or 'شمسی' in stripped_text or 'خورشیدی' in stripped_text:
-                    value = [int(convert_shamsi_to_miladi(match.group(1), match.group(3), match.group(5)).timestamp())]
-                elif 'ه.ق' in stripped_text or 'قمری' in stripped_text:
-                    value = [int(convert_ghamari_to_miladi(match.group(1), match.group(3), match.group(5)).timestamp())]
-                elif 'میلادی' in stripped_text or '.م' in stripped_text:
-                    value = [int(datetime(match.group(1), match.group(3), match.group(5), 0, 0, 0, 0).timestamp())]
-
+            elif contains_text_number(stripped_text):
+                value = extract_text_number_duration(stripped_text)
+            elif contains_number(stripped_text):
+                value = extract_number_duration(stripped_text)
+            elif is_year_month_day(stripped_text):
+                value = extract_year_month_day(stripped_text)
             else:
                 value = [get_ts_from_phrase('حالا'), vx.compute_value(stripped_text)]
 
@@ -269,9 +371,7 @@ def extract_duration_start(span, text: str):
                 'type': 'duration',
                 'text': text,
                 'span': span,
-                'value':{
-                    value[0], value[1]
-                }
+                'value': value,
             }
 
 
@@ -281,21 +381,45 @@ def extract_duration_middle(span, text: str):
             stripped_text = remove_starting_keyword(text)
             tmp = stripped_text.split(keyword)
 
-            if tmp[0].strip() == '':
+            if tmp[0] == '':
                 tmp[0] = 'حالا'
 
-            begin = get_ts_from_phrase(tmp[0])
-            end = get_ts_from_phrase(tmp[1])
+            value = [None, None]
+
+            for i in range(2):
+                text = tmp[i]
+                val = get_ts_from_phrase(text)
+                if val is None:
+                    if extract_wd(text):
+                        val = extract_wd(text)[i]
+                    elif text in const.MILADI_MONTHS:
+                        val = miladi_mnth_to_duration(text)[i]
+                    elif text in const.GHAMARI_MONTHS:
+                        val = get_ghamari_mnth_duration(text)[i]
+                    elif text in const.SHAMSHI_MONTHS:
+                        val = get_shamsi_mnth_duration(text)[i]
+                    elif contains_text_number(text):
+                        val = extract_text_number_duration(text)[i]
+                    elif contains_number(text):
+                        val = extract_number_duration(text)[i]
+                    elif is_year_month_day(text):
+                        val = extract_year_month_day(text)
+                    else:
+                        val = vx.compute_value(text)
+                value[i] = val
 
             return {
                 'type': 'duration',
                 'text': text,
                 'span': span,
-                'value':{
-                    begin, end
-                }
+                'value': value
             }
 
+
+def remove_redundants(text: str):
+    for p in future:
+        text = text.replace(p, '')
+    return text
 
 def extract_duration(markers: dict):
     res = []
