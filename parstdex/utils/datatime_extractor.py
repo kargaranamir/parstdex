@@ -496,7 +496,7 @@ def extract_exact_datetime(span, text: str):
     elif is_simple_duration(computed_value):
         value = extract_duration_only(computed_value)[0]
     else:
-        value = 'HICHI'
+        value = ''
 
     return {
         'type': 'exact',
