@@ -31,6 +31,15 @@ TU<>NUM
 TU MIN
 TU DSMALL
 
+#هر پنج ثانیه
+HAR NUM<>TU
+HAR MIN TU
+HAR DSMALL TU
+HAR # دقیقه پنج
+HAR TU<>NUM
+HAR TU MIN
+HAR TU DSMALL
+
 # دقیقه پنج A.M.
 TU<>NUM APM
 TU MIN APM
@@ -65,6 +74,18 @@ SAAT HR VA MIN DAGHIGHEH
 SAAT HR VA MIN SANIEH
 # ساعت پنج و چهال و دو دقیقه و سی و چهار ثانیه
 SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+
+
+# هر ساعت پنج
+HAR SAAT HR
+# هر ساعت پنج و بیست دقیقه
+HAR SAAT HR VA MIN DAGHIGHEH
+# هر ساعت پنج و چهل ثانیه
+HAR SAAT HR VA MIN SANIEH
+# هر ساعت پنج و چهال و دو دقیقه و سی و چهار ثانیه
+HAR SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+
+
 
 # بعد از ظهر اخیر
 DP NXT
