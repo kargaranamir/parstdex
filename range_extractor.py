@@ -1,6 +1,6 @@
 from parstdex import Parstdex, settings
 import pprint
-from parstdex.utils.datatime_extractor import extract_duration
+from parstdex.utils.datatime_extractor import extract_exact
 
 duration_tests_middle = [
     "از امروز تا فردا",
@@ -34,17 +34,10 @@ duration_tests_start = [
     # "بین اسفند و فروردین سال ۵۷ جنگ بود",
 ]
 
-
-
-tests = [
-    "از سال بعد هر روز درس می‌خوانم",
-    "هر سه‌شنبه",
-    "دو شنبه ها راس ساعت ۵ عصر",
+exact_tests = [
     "دوشنبه شب تولد حاج آقا است",
-    "در محل همایش های بین المللی مورخ هفدهم فروردین  سال هزار و پانصد ونود و سه",
-    "تمام پنج شنبه های سال",
+    "در محل همایش های بین المللی مورخ هفدهم فروردین  سال هزار و پانصد و نود و سه",
     " در تاریخ ۱۳۹۸/۰۳/۱۴ ایران موفق به بازگشایی شدیم",
-    "دیروز به حمام رفتم",
     "همین چهارشنبه",
     "سه‌شنبه سه هفته قبل",
     "این اتفاق سه روز بعد از اولین چهارشنبه‌ی سال رخ داد",
@@ -52,6 +45,15 @@ tests = [
     "ماه آینده",
     "۳۰ روز گذشته",
     "هزاره سوم",
+]
+
+
+tests = [
+    "از سال بعد هر روز درس می‌خوانم",
+    "هر سه‌شنبه",
+    "دو شنبه ها راس ساعت ۵ عصر",
+    "تمام پنج شنبه های سال",
+    "دیروز به حمام رفتم",
     "دو قرن سکوت ایرانیان",
     "بعد از تصادف دیگر هر یکشنبه به کلیسا میروم",
     "سال ها درس خواندم",
@@ -64,7 +66,7 @@ model = Parstdex(debug_mode=False)
 
 def run():
     result = {}
-    for sentence in duration_tests_middle:
+    for sentence in exact_tests:
         # spans = model.extract_span(sentence)
         # result['spans'] = spans
 
@@ -74,7 +76,7 @@ def run():
         result['markers'] = markers
 
         values = model.extract_value(sentence)
-        print(extract_duration(markers=markers))
+        print(extract_exact(markers=markers))
         result['values'] = values
 
         # ners = model.extract_ner(sentence)
