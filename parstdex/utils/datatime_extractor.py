@@ -33,6 +33,7 @@ duration_set = duration_set_middle.union(duration_set_start)
 cron_set = {
     'ها',
     'هر',
+    'های',
 }
 
 convertor_fa_2_timestamp = {
@@ -225,6 +226,7 @@ time_length = {
     'ماه': 30 * 24 * 60 * 60,
     'ماهه': 30 * 24 * 60 * 60,
     'سال': 12 * 30 * 24 * 60 * 60,
+    'هزاره': 1000 * 12 * 30 * 24 * 60 * 60,
 }
 
 def is_year_month_day(text: str):
@@ -237,11 +239,13 @@ def extract_year_month_day(text: str):
     """
     match = re.search(r'(\d+)(\\|\/)(\d+)(\\|\/)(\d+)', text)
     if 'ه.ش' in text or 'شمسی' in text or 'خورشیدی' in text:
-        return int(convert_shamsi_to_miladi(match.group(1), match.group(3), match.group(5)).timestamp())
+        return int(convert_shamsi_to_miladi(int(match.group(1)), int(match.group(3)), int(match.group(5))).timestamp())
     elif 'ه.ق' in text or 'قمری' in text:
-        return int(convert_ghamari_to_miladi(match.group(1), match.group(3), match.group(5)).timestamp())
+        return int(convert_ghamari_to_miladi(int(match.group(1)), int(match.group(3)), int(match.group(5))).timestamp())
     elif 'میلادی' in text or '.م' in text:
-        return int(datetime(match.group(1), match.group(3), match.group(5), 0, 0, 0, 0).timestamp())
+        return int(datetime(int(match.group(1)), int(match.group(3)), int(match.group(5)), 0, 0, 0, 0).timestamp())
+    else:
+        return int(convert_shamsi_to_miladi(int(match.group(1)), int(match.group(3)), int(match.group(5))).timestamp())
 
 
 def contains_text_number(text: str) -> bool:
@@ -455,4 +459,56 @@ def extract_duration(markers: dict):
                 res.append(extract_duration_middle(k, v))
             else:
                 res.append(extract_duration_start(k, v))
+    return res
+
+
+def is_crontime(text: str):
+    split_text = re.split(' |‌', text)
+    return any(cron_word in split_text for cron_word in cron_set)
+
+
+def extract_exact_datetime(span, text: str):
+    stripped_text = text.strip()
+    computed_value = vx.compute_value(stripped_text)
+
+    if extract_wd(stripped_text):
+        value = extract_wd(stripped_text)[0]
+    elif stripped_text in const.MILADI_MONTHS:
+        value = miladi_mnth_to_duration(stripped_text)[0]
+    elif stripped_text in const.GHAMARI_MONTHS:
+        value = get_ghamari_mnth_duration(stripped_text)[0]
+    elif stripped_text in const.SHAMSHI_MONTHS:
+        value = get_shamsi_mnth_duration(stripped_text)[0]
+    elif is_year_month_day(stripped_text):
+        value = extract_year_month_day(stripped_text)
+    elif is_simple_duration(stripped_text):
+        value = extract_duration_only(stripped_text)[0]
+    elif extract_wd(computed_value):
+        value = extract_wd(computed_value)[0]
+    elif computed_value in const.MILADI_MONTHS:
+        value = miladi_mnth_to_duration(computed_value)[0]
+    elif computed_value in const.GHAMARI_MONTHS:
+        value = get_ghamari_mnth_duration(computed_value)[0]
+    elif computed_value in const.SHAMSHI_MONTHS:
+        value = get_shamsi_mnth_duration(computed_value)[0]
+    elif is_year_month_day(computed_value):
+        value = extract_year_month_day(computed_value)
+    elif is_simple_duration(computed_value):
+        value = extract_duration_only(computed_value)[0]
+    else:
+        value = 'HICHI'
+
+    return {
+        'type': 'exact',
+        'text': text,
+        'span': span,
+        'value': value,
+    }
+
+
+def extract_exact(markers: dict):
+    res = []
+    for k, v in markers['datetime'].items():
+        if not is_duration(v) and not is_crontime(v):
+            res.append(extract_exact_datetime(k, v))
     return res
