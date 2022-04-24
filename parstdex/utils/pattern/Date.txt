@@ -334,6 +334,8 @@ HAR DU
 HAR DU DU
 # ماه سال
 DU DU
+#هر دقیقه
+HAR TU
 
 # فروردین هر سال
 MNTH HAR<>SAL

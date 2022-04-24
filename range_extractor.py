@@ -1,6 +1,7 @@
-from parstdex import Parstdex, settings
+from parstdex import Parstdex, marker_extractor, settings
 import pprint
-from parstdex.utils.datatime_extractor import extract_exact
+from parstdex.utils.datatime_extractor import extract_duration, extract_exact
+from extract_cron import StatementType, decide_type, extract_cron
 
 duration_tests_middle = [
     "از امروز تا فردا",
@@ -60,30 +61,74 @@ tests = [
 ]
 
 
+crons = [
+    # "هر دقیقه",                             # "* * * * *"
+    # "هر هفده دقیقه",                        # "*/17 * * * *"
+    # "هر ساعت",
+    # "هر نوزده ساعت", 
+    # # "هر عصر ۶:۱۷",                          # "17 6 * * * *"
+    # "هر دوشنبه",                            # "0 0 * * 1"
+    # "هر یکشنبه",                            # "0 0 * * 7"
+    # "هر دوشنبه تا سه‌شنبه",                  # "0 0 * * 1-2"
+    # "هر دو روز",                             # "0 0 * * */2"
+    # "هر روز",                               # "0 0 * * *"
+    # "هر روز ساعت 5 و 31 دقیقه",                               # "0 0 * * *"
+    # "هر ماه",
+    # "هر دو ماه",
+    "هر سپتامبر",
+    "هر اوکتبر تا دسامبر",
+    "هر ژانویه سه‌شنبه تا پنجشنبه ها ساعت سیزده",
+    "هر ژانویه سه‌شنبه تا پنجشنبه ها",
+    "دوشنبه‌ها",
+    "سه‌شنبه‌ها",
+
+
+
+
+    # "چهار‌شنبه‌های هر ماه",                   # "0 0 * * 3"
+    # "هر یکشنبه‌های فروردین ماه",             # "0 0 * "
+    # "هشتم تا پانزدهم هر ماه",               # "0 0 0 * * "
+    # "هر دوشنبه تا سه‌شنبه",                  # "0 0 * * 1-2"
+    # "هر روز هفته",                          # "0 0 * * *"
+    # "هر بیست و سوم ماه"                     # "0 0 23 * *"
+    # "پنجشنبه‌ها ساعت ده و سی‌ و یک دقیقه",    # "31 10 * * 4"
+    # "هشتم تا پانزدهم هر ماه",               # "0 0 0 * * "
+]
+
 
 model = Parstdex(debug_mode=False)
 
 
 def run():
     result = {}
-    for sentence in exact_tests:
+    tests = crons
+    for sentence in tests:
         # spans = model.extract_span(sentence)
         # result['spans'] = spans
 
-        print(sentence)
+        # print(sentence)
 
         markers = model.extract_marker(sentence)
         result['markers'] = markers
 
         values = model.extract_value(sentence)
-        print(extract_exact(markers=markers))
+
+        if decide_type(markers) == StatementType.CRON:
+            print(extract_cron(sentence))
+            pass
+        else:
+            # print(extract_duration(markers=markers))
+            pass
+
         result['values'] = values
 
         # ners = model.extract_ner(sentence)
         # result['ner'] = ners
 
-        pprint.pprint(result,)
-        print("==" * 50)
+        # pprint.pprint(result,)
+        # print("==" * 50)
+
+
 
 
 run()
