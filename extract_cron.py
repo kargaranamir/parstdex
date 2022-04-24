@@ -88,9 +88,11 @@ fa_wd_to_num = {
     'شنبه': 5,
     'یکشنبه': 6,
     'دوشنبه': 0,
+    'دو شنبه': 0,
     'سه‌شنبه': 1,
     'چهارشنبه': 2,
     'پنجشنبه': 3,
+    'پنج شنبه': 3,
     'جمعه': 4,
 }
 
@@ -181,7 +183,14 @@ def extract_cron(s):
     for pattern in patterns:
         m = re.search(pattern, s)
         if m:
-            return convert_match_to_cron(m)
+            cron = convert_match_to_cron(m)
+            m.span()
+            return {
+                'type': 'crontime',
+                'text': m.group(),
+                'span': m.span(),
+                'value': cron,
+            }
 
     return None
 
