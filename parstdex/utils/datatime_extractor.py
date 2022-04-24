@@ -480,32 +480,34 @@ def extract_exact_datetime(span, text: str):
     stripped_text = text.strip()
     computed_value = vx.compute_value(stripped_text)
 
-    if extract_wd(stripped_text):
-        value = extract_wd(stripped_text)[0]
-    elif stripped_text in const.MILADI_MONTHS:
-        value = miladi_mnth_to_duration(stripped_text)[0]
-    elif stripped_text in const.GHAMARI_MONTHS:
-        value = get_ghamari_mnth_duration(stripped_text)[0]
-    elif stripped_text in const.SHAMSHI_MONTHS:
-        value = get_shamsi_mnth_duration(stripped_text)[0]
-    elif is_year_month_day(stripped_text):
-        value = extract_year_month_day(stripped_text)
-    elif is_simple_duration(stripped_text):
-        value = extract_duration_only(stripped_text)[0]
-    elif extract_wd(computed_value):
-        value = extract_wd(computed_value)[0]
-    elif computed_value in const.MILADI_MONTHS:
-        value = miladi_mnth_to_duration(computed_value)[0]
-    elif computed_value in const.GHAMARI_MONTHS:
-        value = get_ghamari_mnth_duration(computed_value)[0]
-    elif computed_value in const.SHAMSHI_MONTHS:
-        value = get_shamsi_mnth_duration(computed_value)[0]
-    elif is_year_month_day(computed_value):
-        value = extract_year_month_day(computed_value)
-    elif is_simple_duration(computed_value):
-        value = extract_duration_only(computed_value)[0]
-    else:
-        value = ''
+    value = get_ts_from_phrase(computed_value)
+    if value is None:
+        if extract_wd(stripped_text):
+            value = extract_wd(stripped_text)[0]
+        elif stripped_text in const.MILADI_MONTHS:
+            value = miladi_mnth_to_duration(stripped_text)[0]
+        elif stripped_text in const.GHAMARI_MONTHS:
+            value = get_ghamari_mnth_duration(stripped_text)[0]
+        elif stripped_text in const.SHAMSHI_MONTHS:
+            value = get_shamsi_mnth_duration(stripped_text)[0]
+        elif is_year_month_day(stripped_text):
+            value = extract_year_month_day(stripped_text)
+        elif is_simple_duration(stripped_text):
+            value = extract_duration_only(stripped_text)[0]
+        elif extract_wd(computed_value):
+            value = extract_wd(computed_value)[0]
+        elif computed_value in const.MILADI_MONTHS:
+            value = miladi_mnth_to_duration(computed_value)[0]
+        elif computed_value in const.GHAMARI_MONTHS:
+            value = get_ghamari_mnth_duration(computed_value)[0]
+        elif computed_value in const.SHAMSHI_MONTHS:
+            value = get_shamsi_mnth_duration(computed_value)[0]
+        elif is_year_month_day(computed_value):
+            value = extract_year_month_day(computed_value)
+        elif is_simple_duration(computed_value):
+            value = extract_duration_only(computed_value)[0]
+        else:
+            value = ''
 
     return {
         'type': 'exact',
@@ -520,4 +522,17 @@ def extract_exact(markers: dict):
     for k, v in markers['datetime'].items():
         if not is_duration(v) and not is_crontime(v):
             res.append(extract_exact_datetime(k, v))
+    return res
+
+
+def extract_exact_or_duration(markers: dict):
+    res = []
+    for k, v in markers['datetime'].items():
+        if not is_duration(v) and not is_crontime(v):
+            res.append(extract_exact_datetime(k, v))
+        elif is_duration(v):
+            if has_middle_keyword(v):
+                res.append(extract_duration_middle(k, v))
+            else:
+                res.append(extract_duration_start(k, v))
     return res

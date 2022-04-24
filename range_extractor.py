@@ -1,7 +1,7 @@
 from parstdex import Parstdex, marker_extractor, settings
 import pprint
-from parstdex.utils.datatime_extractor import extract_duration, extract_exact
-from extract_cron import StatementType, decide_type, extract_cron
+from parstdex.utils.datatime_extractor import extract_exact_or_duration
+from extract_cron import extract_cron
 
 duration_tests_middle = [
     "از امروز تا فردا",
@@ -52,7 +52,7 @@ exact_tests = [
 tests = [
     "از سال بعد هر روز درس می‌خوانم",
     "هر سه‌شنبه",
-    "دو شنبه ها راس ساعت ۵ عصر",
+    "دو شنبه ها ساعت ۵ عصر",
     "تمام پنج شنبه های سال",
     "دیروز به حمام رفتم",
     "دو قرن سکوت ایرانیان",
@@ -101,7 +101,7 @@ model = Parstdex(debug_mode=False)
 
 def run():
     result = {}
-    tests = crons
+    # tests = crons
     for sentence in tests:
         # spans = model.extract_span(sentence)
         # result['spans'] = spans
@@ -113,12 +113,13 @@ def run():
 
         values = model.extract_value(sentence)
 
-        if decide_type(markers) == StatementType.CRON:
-            print(extract_cron(sentence))
-            pass
-        else:
-            # print(extract_duration(markers=markers))
-            pass
+        print(sentence)
+
+        values = extract_exact_or_duration(markers=markers)
+        cron = extract_cron(sentence)
+        if cron is not None:
+            values.append(cron)
+        print(values)
 
         result['values'] = values
 
