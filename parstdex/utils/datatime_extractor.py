@@ -5,6 +5,7 @@ from datetime import datetime, date, timedelta
 import requests
 from bs4 import BeautifulSoup
 import re
+import calendar
 
 duration_set_middle = {
     'تا',
@@ -93,8 +94,7 @@ def fa_wd_to_duration(wd: str):
     wd_num = fa_wd_to_num[wd]
     delta = (wd_num - today.weekday() + 7) % 7
     delta = 7 if delta == 0 else delta
-    target_day = today.day + delta
-    target_ts = int(today.replace(day=target_day).timestamp())
+    target_ts = int(today.timestamp()) + delta * 24 * 60 * 60
     return [target_ts, target_ts + 24 * 60 * 60]
 
 
@@ -336,13 +336,35 @@ def extract_wd(text: str):
     return start + sign * number * period, end + sign * number * period
 
 
+def is_simple_duration(text: str):
+    text = text.split()
+    if len(text) != 2:
+        return False
+    if text[0] in time_length and (text[1] in prior or text[1] in future):
+        return True
+    return False
+
+
 def extract_duration_only(text: str):
     """
     روز بعد
     هفته قبل
     سال پیش
     """
-    pass
+    for p in prior:
+        if p in text:
+            sign = -1
+            text = text.replace(p, '').strip()
+    for f in future:
+        if f in text:
+            sign = 1
+            text = text.replace(p, '').strip()
+    period = time_length[text]
+    now = int(datetime.now().timestamp())
+    if sign < 0:
+        return now - period, now
+    else:
+        return now, now + period
 
 def extract_duration_start(span, text: str):
     for keyword in duration_set_start:
@@ -364,6 +386,8 @@ def extract_duration_start(span, text: str):
                 value = extract_number_duration(stripped_text)
             elif is_year_month_day(stripped_text):
                 value = extract_year_month_day(stripped_text)
+            elif is_simple_duration(stripped_text):
+                value = extract_duration_only(stripped_text)
             else:
                 value = [get_ts_from_phrase('حالا'), vx.compute_value(stripped_text)]
 
@@ -404,6 +428,8 @@ def extract_duration_middle(span, text: str):
                         val = extract_number_duration(text)[i]
                     elif is_year_month_day(text):
                         val = extract_year_month_day(text)
+                    elif is_simple_duration(text):
+                        value = extract_duration_only(text)[i]
                     else:
                         val = vx.compute_value(text)
                 value[i] = val
