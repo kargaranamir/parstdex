@@ -90,7 +90,7 @@ def run():
         values = model.extract_value(sentence)
 
         if decide_type(markers) == StatementType.CRON:
-            # extract_cron(markers, values)
+            extract_cron(markers, values)
             pass
         else:
             # print(extract_duration(markers=markers))
