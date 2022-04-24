@@ -53,6 +53,8 @@ crons = [
     "هر عصر ۶:۱۷",                          # "17 6 * * * *"
     "هر دوشنبه",                            # "0 0 * * 1"
     "هر یکشنبه",                            # "0 0 * * 7"
+    "هر دوشنبه تا سه‌شنبه",                  # "0 0 * * 1-2"
+    "هشتم تا پانزدهم هر ماه",               # "0 0 0 * * "
 
 
 
@@ -90,7 +92,7 @@ def run():
         values = model.extract_value(sentence)
 
         if decide_type(markers) == StatementType.CRON:
-            extract_cron(markers, values)
+            print(extract_cron(markers, values))
             pass
         else:
             # print(extract_duration(markers=markers))

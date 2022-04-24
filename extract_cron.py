@@ -51,9 +51,10 @@ time_combined = "(" + ")|(".join(time) + ")"
 
 
 pattern1 = rf"{CRON_LITERAL}{space}(?:(?P<value>{const.DLARGE}){space})?{minute_and_hour_literals}"
-pattern2 = rf"{CRON_LITERAL}{space}({days})?{space}(?P<time>{time_combined})"                     # "هر یه تعدادی روز ساعت"
-patterns = [eval(f'pattern{i}') for i in range(1,3)]
+pattern2 = rf"{CRON_LITERAL}{space}({days})({space}(?P<time>{time_combined}))?"
+pattern3 = rf"{CRON_LITERAL}{space}(?P<time>{time_combined})"
 
+patterns = [eval(f'pattern{i}') for i in range(1,4)]
 
 def extract_cron(markers, values):
     assert decide_type(markers) == StatementType.CRON
@@ -62,13 +63,12 @@ def extract_cron(markers, values):
     print(markers)
     print(values)
 
-    s = markers['datetime']
-
-    for pattern in patterns:
-        print(pattern, s)
-        m = re.match(pattern, s)
-        if m:
-            return m
+    for k, v in markers['datetime'].items():
+        for pattern in patterns:
+            print(v)
+            m = re.match(pattern, v)
+            if m:
+                return m
 
     return None
 
@@ -171,11 +171,20 @@ def verify_pattern2():
     m = re.match(pattern2, s1)
     assert m is not None
 
+    s2 = "هر دوشنبه"
+    m = re.match(pattern2, s2)
+    assert m is not None
+
+def verify_pattern3():
+    s1 = "هر ساعت شش عصر"
+    m = re.match(pattern3, s1)
+    assert m is not None
 
 
 def verify_patterns():
     verify_pattern1()
     verify_pattern2()
+    verify_pattern3()
 
 
 if __name__ == "__main__":
