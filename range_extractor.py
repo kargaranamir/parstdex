@@ -62,27 +62,24 @@ tests = [
 
 
 crons = [
-    # "هر دقیقه",                             # "* * * * *"
-    # "هر هفده دقیقه",                        # "*/17 * * * *"
-    # "هر ساعت",
-    # "هر نوزده ساعت", 
-    # # "هر عصر ۶:۱۷",                          # "17 6 * * * *"
-    # "هر دوشنبه",                            # "0 0 * * 1"
-    # "هر یکشنبه",                            # "0 0 * * 7"
-    # "هر دوشنبه تا سه‌شنبه",                  # "0 0 * * 1-2"
-    # "هر دو روز",                             # "0 0 * * */2"
-    # "هر روز",                               # "0 0 * * *"
-    # "هر روز ساعت 5 و 31 دقیقه",                               # "0 0 * * *"
-    # "هر ماه",
-    # "هر دو ماه",
-    "هر سپتامبر",
-    "هر اوکتبر تا دسامبر",
-    "هر ژانویه سه‌شنبه تا پنجشنبه ها ساعت سیزده",
-    "هر ژانویه سه‌شنبه تا پنجشنبه ها",
-    "دوشنبه‌ها",
-    "سه‌شنبه‌ها",
-
-
+    ("هر دقیقه",                                                "* * * * *"),
+    ("هر هفده دقیقه",                                           "*/17 * * * *"),
+    ("هر ساعت",                                                 "0 * * * *"),
+    ("هر نوزده ساعت",                                           "0 */19 * * *"),
+    ("هر دوشنبه",                                               "0 0 * * 1"),
+    ("هر یکشنبه",                                               "0 0 * * 7"),
+    ("هر دوشنبه تا سه‌شنبه",                                     "0 0 * * 1-2"),
+    ("هر دو روز",                                               "0 0 */2 * *"),
+    ("هر روز",                                                  "0 0 * * *"),
+    ("هر روز ساعت 5",                                           "0 5 * * *"),
+    ("هر ماه",                                                  "0 0 1 * *"),
+    ("هر دو ماه",                                               "0 0 1 */2 *"),
+    ("هر سپتامبر",                                              "0 0 1 9 *"),
+    ("هر اوکتبر تا دسامبر",                                     "0 0 1 10-12 *"),
+    ("هر ژانویه سه‌شنبه تا پنجشنبه ها ساعت سیزده",               "0 13 1 1 2-4"),
+    ("هر ژانویه سه‌شنبه تا پنجشنبه ها",                          "0 0 1 1 2-4"),
+    ("دوشنبه‌ها",                                                "0 0 * * 1"),
+    ("سه‌شنبه‌ها",                                                "0 0 * * 2"),
 
 
     # "چهار‌شنبه‌های هر ماه",                   # "0 0 * * 3"
@@ -99,37 +96,30 @@ crons = [
 model = Parstdex(debug_mode=False)
 
 
+def extract_exact_or_duration_or_cron(sentence):
+    markers = model.extract_marker(sentence)
+    values = model.extract_value(sentence)
+    values = extract_exact_or_duration(markers=markers)
+    cron = extract_cron(sentence)
+    if cron is not None:
+        values.append(cron)
+    return values
+
 def run():
     result = {}
-    # tests = crons
     for sentence in tests:
-        # spans = model.extract_span(sentence)
-        # result['spans'] = spans
-
-        # print(sentence)
-
-        markers = model.extract_marker(sentence)
-        result['markers'] = markers
-
-        values = model.extract_value(sentence)
-
         print(sentence)
-
-        values = extract_exact_or_duration(markers=markers)
-        cron = extract_cron(sentence)
-        if cron is not None:
-            values.append(cron)
+        values = extract_exact_or_duration_or_cron(sentence)
         print(values)
 
-        result['values'] = values
 
-        # ners = model.extract_ner(sentence)
-        # result['ner'] = ners
+def test_crons():
+    for sentence, cron in crons:
+        print(sentence, "\n", cron)
+        extraced_cron = extract_cron(sentence)['value']
+        print(extraced_cron)
+        assert extraced_cron == cron
 
-        # pprint.pprint(result,)
-        # print("==" * 50)
-
-
-
+# test_crons()
 
 run()

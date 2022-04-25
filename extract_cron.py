@@ -8,23 +8,6 @@ from parstdex.utils.pattern_to_regex import Patterns
 import re
 
 
-class StatementType(enum.Enum):
-    EXACT_TIME = 1,
-    DURATION = 2,
-    CRON = 3,
-
-def is_cron(text: str) -> bool:
-    return text.startswith('هر') or 'ها ' in text
-
-def decide_type(markers: dict) -> StatementType:
-    cron = all(map(is_cron, markers['datetime'].values()))
-    return StatementType.CRON
-
-    if cron:
-        return StatementType.CRON
-    return StatementType.DURATION
-
-
 HAR_LITERAL = 'هر'
 HA_LITERAL = 'ها'
 
@@ -57,31 +40,15 @@ time_combined = fr"(?P<time>(" + ")|(".join(timee) + "))"
 value = rf"(?P<value>{const.DLARGE})"
 
 
-# month =  rf"(?P<month>{})"
-# month_range = ""
-# months = ""
-
-
-
 pattern1 = rf"{HAR_LITERAL}{space}(?:{value}{space})?{mh_literals}"
 pattern2 = rf"{HAR_LITERAL}{space}({days})({space}(?:{time_combined}))?"
 pattern3 = rf"{HAR_LITERAL}{space}{time_combined}"
 pattern4 = rf"{HAR_LITERAL}{space}(?:{value}{space})?(?:{day_literal})(?:{space}{time_combined})?"
 pattern5 = rf"{HAR_LITERAL}{space}(?:{value}{space})?(?:{month_literal})"
-# pattern6 = rf"{HAR_LITERAL}{space}{months}(?:{space}{time_combined})?"
 pattern6 = rf"{HAR_LITERAL}{space}{months}(?:{space}{days})?(?:{space}?{HA_LITERAL}?)?(?:{space}{time_combined})?"
 pattern7 = rf"{days}(?:{space}?{HA_LITERAL})(?:{space}{time_combined})?"
 
 patterns = [eval(f'pattern{i}') for i in range(1,8)]
-
-
-
-"""
-
-# https://crontab.guru/
-
-"""
-
 
 
 fa_wd_to_num = {
@@ -121,12 +88,15 @@ def convert_match_to_cron(m: re.Match):
         hour, minute = int(tv[0]), int(tv[1])
         cron['hour'] = hour
         cron['minute'] = minute
+    else:
+        cron['minute'] = cron['hour'] = '0'
 
     if d.get('mh_literals', None):
         value = d.get('value')
         value = convert_value_to_str(value)
         if d.get('minute_literal', None):
             cron['minute'] = value
+            cron['hour'] = '*'
 
         if d.get('hour_literal', None):
             cron['hour'] = value
@@ -156,11 +126,13 @@ def convert_match_to_cron(m: re.Match):
         value = d.get('value')
         value = convert_value_to_str(value)
         cron['month'] = value
+        cron['day'] = '1'
     
     if d.get('months', None):
         if single_month := d.get('month', None):
             single_month = const.MILADI_MONTHS[single_month]
             cron['month'] = single_month
+            cron['day'] = 1
 
         if d.get('month_range', None):
             from_month = d.get('from_month')
@@ -171,6 +143,7 @@ def convert_match_to_cron(m: re.Match):
             to_month = const.MILADI_MONTHS[to_month]
 
             cron['month'] = f'{from_month}-{to_month}'
+            cron['day'] = 1
             
         
 
