@@ -156,7 +156,7 @@ def get_current_ghamari() -> List[int]:
         month = month.replace(fa, en)
         day = day.replace(fa, en)
     return int(year), int(month), int(day)
-    
+
 def convert_ghamari_to_miladi(year, month, day) -> datetime:
     URL = 'https://www.time.ir/'
     PARAMS = {
@@ -166,7 +166,7 @@ def convert_ghamari_to_miladi(year, month, day) -> datetime:
         'convertlcid': 1025,
         '_': datetime.now().timestamp(),
     }
-    resp = requests.get(URL, params=PARAMS)    
+    resp = requests.get(URL, params=PARAMS)
     soup = BeautifulSoup(resp.content, 'html.parser')
     d = soup.find('span', id='ctl00_cphMiddle_Sampa_Web_View_TimeUI_DateConvert00cphMiddle_3733_lblThirdDateNumeral')
     year, month, day = d.text.split('-')
@@ -184,7 +184,7 @@ def convert_shamsi_to_miladi(year, month, day) -> datetime:
         'convertlcid': 1065,
         '_': 0,
     }
-    resp = requests.get(URL, params=PARAMS)    
+    resp = requests.get(URL, params=PARAMS)
     soup = BeautifulSoup(resp.content, 'html.parser')
     d = soup.find('span', id='ctl00_cphMiddle_Sampa_Web_View_TimeUI_DateConvert00cphMiddle_3733_lblSecondDateNumeral')
     year, month, day = d.text.split('-')
@@ -259,8 +259,8 @@ def extract_year_month_day(text: str):
 
 def contains_text_number(text: str) -> bool:
     """
-    دو روز 
-    دو سال 
+    دو روز
+    دو سال
     دو ماه
     """
     for x in const.ONE_NINETY_NINE.keys():
@@ -289,7 +289,7 @@ def extract_text_number_duration(text: str):
         return [current_ts, current_ts +  number * time_length[text]]
     else:
         return [ current_ts + -1 * number * time_length[text], current_ts]
-    
+
 
 def contains_number(text: str) -> bool:
     """
@@ -333,7 +333,7 @@ def extract_wd(text: str):
         number = const.ONE_NINETY_NINE[re.search(const.ONE_NINETY_NINE_JOIN, text).group(0)]
     elif contains_number(text):
         number = int(re.search(r'\d+', vx.compute_value(text)).group(0))
-    
+
     period = 0
     if 'هفته' in text:
         period = time_length['هفته']
@@ -413,6 +413,7 @@ def extract_duration_start(span, text: str):
 
 
 def extract_duration_middle(span, text: str):
+    original_text = text
     for keyword in duration_set_middle:
         if keyword in text:
             stripped_text = remove_starting_keyword(text)
@@ -449,7 +450,7 @@ def extract_duration_middle(span, text: str):
 
             return {
                 'type': 'duration',
-                'text': text,
+                'text': original_text,
                 'span': span,
                 'value': value
             }
