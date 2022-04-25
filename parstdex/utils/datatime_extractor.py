@@ -191,31 +191,46 @@ def convert_shamsi_to_miladi(year, month, day) -> datetime:
     year, month, day = int(year), int(month), int(day)
     return datetime(year, month, day)
 
-def get_ghamari_mnth_duration(text: str) -> int:
+def get_ghamari_mnth_duration(month_text: str, day : int = 1) -> int:
     year, month, day = get_current_ghamari()
 
-    month_number = const.GHAMARI_MONTHS[text]
+    month_number = const.GHAMARI_MONTHS[month_text]
     year_number = year + 1 if month_number < month else year
 
     next_month = 1 if month_number == 12 else (month_number + 1)
     next_year = year_number + 1 if month_number == 12 else year_number
 
-    begin_ts = int(convert_ghamari_to_miladi(year_number, month_number, 1).timestamp())
-    end_ts = int(convert_ghamari_to_miladi(next_year, next_month, 1).timestamp())
+    begin_ts = int(convert_ghamari_to_miladi(year_number, month_number, day).timestamp())
+    end_ts = int(convert_ghamari_to_miladi(next_year, next_month, day).timestamp())
 
     return [begin_ts, end_ts]
 
-def get_shamsi_mnth_duration(text: str):
-    year, month, day = get_current_shamsi()
+def get_miladi_mnth_duration(month_text: str, day : int = 1):
+    year, month, day = datetime.now().year, datetime.now().month, datetime.now().day
 
-    month_number = const.SHAMSHI_MONTHS[text]
+    month_number = const.MILADI_MONTHS[month_text]
     year_number = year + 1 if month_number < month else year
 
     next_month = 1 if month_number == 12 else (month_number + 1)
     next_year = year_number + 1 if month_number == 12 else year_number
 
-    begin_ts = int(convert_shamsi_to_miladi(year_number, month_number, 1).timestamp())
-    end_ts = int(convert_shamsi_to_miladi(next_year, next_month, 1).timestamp())
+    begin_ts = int(datetime(year_number, month_number, day).timestamp())
+    end_ts = int(datetime(next_year, next_month, day).timestamp())
+
+    return [begin_ts, end_ts]
+
+
+def get_shamsi_mnth_duration(month_text: str, day : int = 1):
+    year, month, day = get_current_shamsi()
+
+    month_number = const.SHAMSHI_MONTHS[month_text]
+    year_number = year + 1 if month_number < month else year
+
+    next_month = 1 if month_number == 12 else (month_number + 1)
+    next_year = year_number + 1 if month_number == 12 else year_number
+
+    begin_ts = int(convert_shamsi_to_miladi(year_number, month_number, day).timestamp())
+    end_ts = int(convert_shamsi_to_miladi(next_year, next_month, day).timestamp())
 
     return [begin_ts, end_ts]
 
@@ -412,6 +427,26 @@ def extract_duration_start(span, text: str):
             }
 
 
+def is_month_day(text):
+    if any(shamsi_month in text for shamsi_month in const.SHAMSHI_MONTHS.keys()) and \
+        bool(re.search(r'\d+', text)):
+        return True
+
+    return False
+
+def extract_month_day(text):
+    day = int(re.search('\d+', text).group())
+    for shamsi_month in const.SHAMSHI_MONTHS.keys():
+        if shamsi_month in text:
+            return get_shamsi_mnth_duration(month_text=shamsi_month, day=day)
+    for ghamari_month in const.GHAMARI_MONTHS.keys():
+        if ghamari_month in text:
+            return get_ghamari_mnth_duration(month_text=ghamari_month, day=day)
+    for miladi_month in const.MILADI_MONTHS.keys():
+        if miladi_month in text:
+            return get_miladi_mnth_duration(month_text=miladi_month, day=day)
+
+
 def extract_duration_middle(span, text: str):
     original_text = text
     for keyword in duration_set_middle:
@@ -444,6 +479,8 @@ def extract_duration_middle(span, text: str):
                         val = extract_year_month_day(text)
                     elif is_simple_duration(text):
                         value = extract_duration_only(text)[i]
+                    elif is_month_day(text):
+                        val = extract_month_day(text)[i]
                     else:
                         val = vx.compute_value(text)
                 value[i] = val
@@ -507,6 +544,8 @@ def extract_exact_datetime(span, text: str):
             value = extract_year_month_day(computed_value)
         elif is_simple_duration(computed_value):
             value = extract_duration_only(computed_value)[0]
+        elif is_month_day(computed_value):
+            value = extract_month_day(computed_value)[0]
         else:
             value = ''
 
