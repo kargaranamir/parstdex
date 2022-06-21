@@ -3,6 +3,7 @@ import pprint
 from parstdex.utils.tokenizer import tokenize_words
 import textspan
 import json
+import os
 from parstdex.utils.normalizer import Normalizer
 from parstdex.utils.pattern_to_regex import Patterns
 from parstdex.utils.spans import create_spans
