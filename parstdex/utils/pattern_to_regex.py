@@ -121,7 +121,7 @@ class Patterns:
             for f in files:
                 self.regexes[f.replace('.txt', '').lower()] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
 
-            self.regexes['Space'] = [rf"\u200c+", rf"\s+"]
+            self.regexes['space'] = [rf"\u200c+", rf"\s+"]
             Patterns.__instance = self
         else:
             Patterns.__instance = self
