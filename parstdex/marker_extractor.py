@@ -37,7 +37,7 @@ class MarkerExtractor(object):
         normalized_sentence = self.normalizer.normalize_cumulative(input_sentence)
 
         # Create spans
-        output_raw, spans = create_spans(self.regexes, normalized_sentence)
+        output_raw, spans, regex_indices = create_spans(self.regexes, normalized_sentence)
 
         if self.DEBUG:
             # Print raw output
@@ -58,17 +58,17 @@ class MarkerExtractor(object):
 
         spans = merge_spans(spans, normalized_sentence)
 
-        return spans
+        return spans, regex_indices
 
     def extract_marker(self, input_sentence: str):
         markers = {'datetime': {}, 'date': {}, 'time': {}}
 
-        spans = self.extract_span(input_sentence)
+        spans, regex_indices = self.extract_span(input_sentence)
         for key in spans.keys():
             spans_list = spans[key]
             markers[key] = {str(span): input_sentence[span[0]: span[1]] for span in spans_list}
 
-        return markers
+        return markers, regex_indices
 
     def extract_value(self, input_sentence: str):
         """
@@ -81,7 +81,7 @@ class MarkerExtractor(object):
         """
 
         values = {"time": {}, "date": {}}
-        spans = self.extract_span(input_sentence)
+        spans, regex_indices = self.extract_span(input_sentence)
 
         time_spans = spans['time']
         date_spans = spans['date']
@@ -92,7 +92,7 @@ class MarkerExtractor(object):
         values['time'] = {str(span): str(value) for span, value in zip(time_spans, time_values)}
         values['date'] = {str(span): str(value) for span, value in zip(date_spans, date_values)}
 
-        return values
+        return values, regex_indices
 
     @deprecated("extract_ner will be deprecated soon. Use extract_bio_dat or extract_bio_dattim instead.")
     def extract_ner(self, input_sentence: str, tokenizer=None):
@@ -105,7 +105,7 @@ class MarkerExtractor(object):
         :param tokenizer:
         :return:
         """
-        spans_dict = self.extract_span(input_sentence)
+        spans_dict, regex_indices = self.extract_span(input_sentence)
         spans = spans_dict['datetime']
         ners = []
         tokens = tokenize_words(input_sentence) if not tokenizer else tokenizer
@@ -123,7 +123,7 @@ class MarkerExtractor(object):
                     break
             if not chosen:
                 ners.append((input_sentence[span[0]:span[1]], 'O'))
-        return ners
+        return ners, regex_indices
 
     def extract_bio_dattim(self, input_sentence: str, tokenizer=None):
         """
@@ -132,7 +132,7 @@ class MarkerExtractor(object):
         :param tokenizer:
         :return:
         """
-        spans_dict = self.extract_span(input_sentence)
+        spans_dict, regex_indices = self.extract_span(input_sentence)
         time_spans = spans_dict['time']
         date_spans = spans_dict['date']
         spans = time_spans + date_spans
@@ -158,4 +158,4 @@ class MarkerExtractor(object):
                     break
             if not chosen:
                 ners.append((input_sentence[span[0]:span[1]], 'O'))
-        return ners
+        return ners, regex_indices

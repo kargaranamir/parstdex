@@ -33,13 +33,15 @@ def create_spans(regexes, normalized_sentence):
     # add pattern keys to dictionaries and define a list structure for each key
     output_raw = {}
     spans = {}
+    regex_indices = {}
     for key in regexes.keys():
         output_raw[key]: list = []
         spans[key]: list = []
+        regex_indices[key]: list = []
 
     # apply regexes on normalized sentence and store extracted markers in output_raw
     for key in regexes.keys():
-        for regex_value in regexes[key]:
+        for r_index, regex_value in enumerate(regexes[key]):
             # apply regex
             matches = list(
                 re.finditer(
@@ -54,8 +56,9 @@ def create_spans(regexes, normalized_sentence):
                     end = match.regs[0][1]
                     spans[key].append((start, end))
                     output_raw[key].append(match)
+                    regex_indices[key].append(index)
 
-    return output_raw, spans
+    return output_raw, spans, regex_indices
 
 
 def encode_span(normal_spans, adv_spans, normalized_sentence):
