@@ -19,8 +19,8 @@ def merge_spans(spans: Dict, normalized_sentence: str):
     encoded['date'], encoded['time'] = encode_rtl_prv(encoded['date'], encoded['time'])
     encoded['date'], encoded['time'] = encode_rtl_nxt(encoded['date'], encoded['time'])
 
-    encoded['date'] = encode_space(encoded['date'], spans['Space'])
-    encoded['time'] = encode_space(encoded['time'], spans['Space'])
+    encoded['date'] = encode_space(encoded['date'], spans['space'])
+    encoded['time'] = encode_space(encoded['time'], spans['space'])
 
     result['datetime'] = find_spans(merge_encodings(encoded['time'], encoded['date']))
     result['date'] = find_spans(encoded['date'])
