@@ -2,7 +2,7 @@ import pprint
 
 from parstdex.utils.tokenizer import tokenize_words
 import textspan
-
+import json
 from parstdex.utils.normalizer import Normalizer
 from parstdex.utils.pattern_to_regex import Patterns
 from parstdex.utils.spans import create_spans
@@ -15,8 +15,9 @@ class MarkerExtractor(object):
     def __init__(self, debug_mode=False):
         # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = Normalizer()
-        # Patterns: patterns to regex generator
-        self.regexes = Patterns.getInstance().regexes
+        # Patterns: patterns to regex generator from patterns.json
+        with open(os.path.join(os.path.dirname(__file__), 'patterns.json'), 'r') as read_pattern:
+            self.regexes = json.load(read_pattern)
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = ValueExtractor()
         self.DEBUG = debug_mode
