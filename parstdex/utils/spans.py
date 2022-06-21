@@ -56,7 +56,7 @@ def create_spans(regexes, normalized_sentence):
                     end = match.regs[0][1]
                     spans[key].append((start, end))
                     output_raw[key].append(match)
-                    regex_indices[key].append(index)
+                    regex_indices[key].append(r_index)
 
     return output_raw, spans, regex_indices
 
