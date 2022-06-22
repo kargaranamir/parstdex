@@ -24,6 +24,7 @@ PRV PRV WD
 
 # صدسال
 DSMALL<>DU
+NUM<>DSMALL<>DU
 DSMALL<>DU<>NXT
 
 # پاییز
@@ -54,6 +55,9 @@ TOOL DN DU<>PF
 TOOL DSMALL DU
 # طول ۵ سال
 TOOL<>NUM<>DU
+# طی شش قرن و نیم
+TOOL DSMALL DU VA ROBNIM
+TOOL<>NUM<>DU VA ROBNIM
 
 # چند سال
 CHAND<>DU
@@ -141,6 +145,8 @@ PRV PRV DU CT
 # اوایل سال نو میلادی
 PRV DU JADID CT
 PRV PRV DU JADID CT
+# همان ماه‌های اول
+PRV DU<>PF DN
 
 # سال ۱۳۷۵
 SAL<>NUM
@@ -149,6 +155,7 @@ SAL DSMALL
 SAL<>NUM<>CT
 SAL DSMALL CT
 # ۱۳۷۵ هجری شمسی
+PRV<>NUM<>CT
 NUM<>CT
 DSMALL CT
 
@@ -215,10 +222,10 @@ MAH MNTH NXT
 # فروردین ماه اخیر
 MNTH<>MAH NXT
 # آغاز فروردین
-PRV MNTH
+PRV<>MNTH
 PRV PRV MNTH
 # آغاز فروردین ماه
-PRV MNTH<>MAH
+PRV<>MNTH<>MAH
 PRV PRV MNTH<>MAH
 # آغاز ماه فروردین
 PRV MAH MNTH
@@ -387,6 +394,7 @@ DN CJ PRV MNTH
 
 # سال سوم تا پنجم
 DU DN CJ DN
+DU DN VYA DN
 DU<>NUM<>CJ<>NUM
 DU<>NUM<>VYA<>NUM
 DU DSMALL CJ DSMALL
@@ -595,6 +603,9 @@ DU BE DU
 ROBNIM DU
 DN VYA ROBNIM DU
 DN VYA ROBNIM DU NXT
+
+# ربع چهارم سال
+ROBNIM DN DU
 
 # سه سال و نیم گذشته
 DN DU VYA ROBNIM NXT

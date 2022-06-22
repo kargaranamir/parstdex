@@ -11,7 +11,7 @@ FASL    فصل
 MAH	ماه
 HAFTE   هفته
 TARIKH  تاریخ
-
+VAGHT   وقت
 # DateTime
 SHABROOZ شب|روز
 SALROOZ سال<>روز
