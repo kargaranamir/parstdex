@@ -8,3 +8,6 @@ docs/_build/*
 docs/_*/*
 build/*
 parstdex.egg-info/*
+.DS_Store
+.DS_Store?
+._*

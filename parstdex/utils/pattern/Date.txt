@@ -132,6 +132,9 @@ MNTH<>MAH SAL DSMALL CT
 ### with out MNTH
 # سال میلادی
 DU CT
+# (میلادی)
+PARL<>CT<>PARR
+
 اوایل سال میلادی
 PRV DU CT
 PRV PRV DU CT
