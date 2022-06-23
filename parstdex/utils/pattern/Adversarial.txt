@@ -59,3 +59,6 @@ ADUQ
 
 # remove event part of patterns
 EVE
+
+PARR
+PARL

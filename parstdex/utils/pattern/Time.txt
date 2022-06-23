@@ -211,3 +211,6 @@ DP MIN CJ MIN TU
 # دقیقه به دقیقه
 TU BE TU
 DP BE DP
+
+# چند دقیقه
+CHAND<>TU

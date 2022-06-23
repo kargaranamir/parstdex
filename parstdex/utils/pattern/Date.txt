@@ -298,6 +298,9 @@ PRV PRV DN DU DSMALL
 PRV DN RY
 PRV PRV DN RY
 
+# نیمه دوم قرن نوزدهم
+PRV<>PRV DN DU DN
+
 
 # هفته ۳
 DU<>NUM
@@ -577,6 +580,7 @@ SSN DSMALL
 
 # قرن پانزدهم میلادی
 DU DN CT
+DN CT
 
 # ماه مبارک رمضان
 MAH MOBARAK MNTH

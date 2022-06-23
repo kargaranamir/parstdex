@@ -1,5 +1,7 @@
 import pprint
+import re
 
+from parstdex.utils import const
 from parstdex.utils.tokenizer import tokenize_words
 import textspan
 
@@ -16,7 +18,13 @@ class MarkerExtractor(object):
         # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = Normalizer()
         # Patterns: patterns to regex generator
-        self.regexes = Patterns.getInstance().regexes
+        regex_patterns = Patterns.getInstance().regexes
+        self.regexes = {}
+        for key, regex_to_compile in regex_patterns.items():
+            self.regexes[key] = []
+            for regex in regex_to_compile:
+                self.regexes[key].append(re.compile(fr'(?:\b|(?!{const.FA_SYM}|\d+))(?:{regex})(?:\b|(?!{const.FA_SYM}|\d+))', 0))
+
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = ValueExtractor()
         self.DEBUG = debug_mode

@@ -1,7 +1,7 @@
-import re
 from typing import Dict
 import numpy as np
 
+from parstdex.utils import regex_tool
 from parstdex.utils import const
 
 
@@ -39,13 +39,9 @@ def create_spans(regexes, normalized_sentence):
 
     # apply regexes on normalized sentence and store extracted markers in output_raw
     for key in regexes.keys():
-        for regex_value in regexes[key]:
+        for compiled_regex_val in regexes[key]:
             # apply regex
-            matches = list(
-                re.finditer(
-                    fr'(?:\b|(?!{const.FA_SYM}|\d+))(?:{regex_value})(?:\b|(?!{const.FA_SYM}|\d+))',
-                    normalized_sentence)
-            )
+            matches = regex_tool.finditer(compiled_regex_val, normalized_sentence)
             # ignore empty markers
             if len(matches) > 0:
                 # store extracted markers in output_raw
