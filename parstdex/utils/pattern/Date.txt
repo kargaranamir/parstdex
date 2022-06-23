@@ -263,11 +263,11 @@ DU NXT CT
 DU NXT NXT CT
 
 # سه هفته نخست ۱۴۰۰
-DN DU NXT<>NUM
+DN DU NXT<>NY2
 DN DU NXT DSMALL
-DSMALL DU NXT<>NUM
+DSMALL DU NXT<>NY2
 DSMALL DU NXT DSMALL
-NUM<>DU NXT<>NUM
+NUM<>DU NXT<>NY2
 NUM<>DU NXT DSMALL
 # سه هفته نخست ماه
 DN DU NXT DU
@@ -323,7 +323,7 @@ DU DN
 # هفته آینده
 DU NXT
 # آِغاز هفته
-PRV DU
+PRV<>DU
 PRV PRV DU
 
 # تاریخ فروردین

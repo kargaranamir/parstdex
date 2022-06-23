@@ -2,7 +2,6 @@ from typing import Dict
 import numpy as np
 
 from parstdex.utils import regex_tool
-from parstdex.utils import const
 
 
 def merge_spans(spans: Dict, normalized_sentence: str):

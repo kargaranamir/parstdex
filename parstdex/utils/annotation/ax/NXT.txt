@@ -18,6 +18,7 @@
 گذشته
 جاری
 متوالی
+پیاپی
 
 
 ## Common: know as BNP (Bi Next and P)

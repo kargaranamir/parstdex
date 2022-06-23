@@ -12,6 +12,8 @@ from parstdex.utils.spans import merge_spans
 from parstdex.utils.word_to_value import ValueExtractor
 from parstdex.utils.deprecation import deprecated
 
+re._MAXCACHE = 512
+
 
 class MarkerExtractor(object):
     def __init__(self, debug_mode=False):
@@ -23,7 +25,8 @@ class MarkerExtractor(object):
         for key, regex_to_compile in regex_patterns.items():
             self.regexes[key] = []
             for regex in regex_to_compile:
-                self.regexes[key].append(re.compile(fr'(?:\b|(?!{const.FA_SYM}|\d+))(?:{regex})(?:\b|(?!{const.FA_SYM}|\d+))', 0))
+                self.regexes[key].append(
+                    re.compile(fr'(?:\b|(?!{const.FA_SYM}|\d+))(?:{regex})(?:\b|(?!{const.FA_SYM}|\d+))', 0))
 
         # ValueExtractor: value extractor from known time and date
         self.value_extractor = ValueExtractor()

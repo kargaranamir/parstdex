@@ -63,6 +63,7 @@ class Annotation:
     def create_number_annotation_dict():
         annotation_dict = {
             'NUM': r'\\d{1,4}|\\d{1}\.\\d{1}',  # all 1 to 4 digit numbers + decimal format 1 to 9
+            'NY2': r'\\d{2}|\\d{4}',
             'N31': r'[0-2]?[0-9]|30|31',
             'N12': r'0?[0-9]|1[0-2]',
             'N24': r'[0-1]?[0-9]|2[0-4]',
