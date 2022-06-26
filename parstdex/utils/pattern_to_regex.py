@@ -63,12 +63,13 @@ class Annotation:
     def create_number_annotation_dict():
         annotation_dict = {
             'NUM': r'\\d{1,4}|\\d{1}\.\\d{1}',  # all 1 to 4 digit numbers + decimal format 1 to 9
+            'NY2': r'\\d{2}|\\d{4}',
             'N31': r'[0-2]?[0-9]|30|31',
             'N12': r'0?[0-9]|1[0-2]',
             'N24': r'[0-1]?[0-9]|2[0-4]',
             'N60': r'[0-5]?[0-9]',
             'N99': r'[0-9]{1,2}',
-            'NY4': r'[12]\\d{3}',  # all Gregorian years
+            'NY4': r'13[5-9][0-9]|140[0-9]|19[2-9][0-9]|20[0-2][0-9]',  # all Gregorian years
             'D99': rf'{const.DIGIT2}|{const.DIGIT1}',  # Persian alphabetic 2 digit numbers
             'DY4': const.DIGIT4,  # Persian alphabetic 4 digit numbers
             'DSMALL': rf"{const.DSMALL}",  # Persian alphabetic 1 to 4 digit numbers
@@ -121,7 +122,7 @@ class Patterns:
             for f in files:
                 self.regexes[f.replace('.txt', '').lower()] = self.create_regexes_from_patterns(f"{self.patterns_path}/{f}")
 
-            self.regexes['Space'] = [rf"\u200c+", rf"\s+"]
+            self.regexes['space'] = [rf"\u200c+", rf"\s+"]
             Patterns.__instance = self
         else:
             Patterns.__instance = self
@@ -132,14 +133,13 @@ class Patterns:
         :param pattern: str
         :return: str
         """
-        # TODO: WHY \s*
-        pattern = pattern.replace(" ", r'[\u200c\s]{1,3}')
         annotation_keys = "|".join(self.cumulative_annotations_keys)
         matches = re.findall(annotation_keys, pattern)
         for key in matches:
             pattern = re.sub(f'{key}', fr"(?:{self.cumulative_annotations[key]})", pattern)
 
-        pattern = pattern.replace("<>", r'(?:[\s\u200c]){0,3}')
+        pattern = pattern.replace(" ", r'(?:[\u200c\s]{1,3})')
+        pattern = pattern.replace("<>", r'(?:[\s\u200c]{0,3})')
         return pattern
 
     def create_regexes_from_patterns(self, path):

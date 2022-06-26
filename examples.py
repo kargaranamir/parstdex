@@ -27,7 +27,7 @@ def examples():
         values = model.extract_value(input_sentence)
         result['values'] = values
 
-        ners = model.extract_ner(input_sentence)
+        ners = model.extract_bio_dattim(input_sentence)
         result['ner'] = ners
 
         pprint.pprint(result,)
