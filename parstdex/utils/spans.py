@@ -1,8 +1,7 @@
-import re
 from typing import Dict
 import numpy as np
 
-from parstdex.utils import const
+from parstdex.utils import regex_tool
 
 
 def merge_spans(spans: Dict, normalized_sentence: str):
@@ -41,13 +40,9 @@ def create_spans(regexes, normalized_sentence):
 
     # apply regexes on normalized sentence and store extracted markers in output_raw
     for key in regexes.keys():
-        for r_index, regex_value in enumerate(regexes[key]):
+        for r_index, compiled_regex_val in enumerate(regexes[key]):
             # apply regex
-            matches = list(
-                re.finditer(
-                    fr'\b(?:{regex_value})(?:\b|(?!{const.FA_SYM}|\d+))',
-                    normalized_sentence)
-            )
+            matches = regex_tool.finditer(compiled_regex_val, normalized_sentence)
             # ignore empty markers
             if len(matches) > 0:
                 # store extracted markers in output_raw
@@ -202,5 +197,11 @@ def sgn(num: int):
 
 
 def merge_encodings(encoded_time, encoded_date):
-    merged_encoding = [sgn(a+b) for a, b in zip(encoded_time, encoded_date)]
+    merged_encoding = [sgn(a + b) for a, b in zip(encoded_time, encoded_date)]
     return merged_encoding
+
+
+# a function to find the spans within an indices range
+def filter_span_in_range(start_index, end_index, span_list):
+    res = list(filter(lambda x: start_index <= x[0] and x[1] <= end_index, span_list))
+    return sorted(res, key=lambda x: x[0])

@@ -18,19 +18,19 @@ def examples():
         result['sentence'] = input_sentence
         # time_marker_extractor will return normalized sentence and time-date markers
 
-        spans = model.extract_span(input_sentence)
+        spans, regex_indices = model.extract_span(input_sentence)
         result['spans'] = spans
 
-        markers = model.extract_marker(input_sentence)
+        markers, regex_indices = model.extract_marker(input_sentence)
         result['markers'] = markers
 
-        values = model.extract_value(input_sentence)
-        result['values'] = values
-
-        ners = model.extract_bio_dattim(input_sentence)
+        ners, regex_indices = model.extract_bio_dattim(input_sentence)
         result['ner'] = ners
 
+        # time_ml, regex_indices = model.extract_time_ml(input_sentence)
+
         pprint.pprint(result,)
+        # print(f"time_ml: \u202b{time_ml}\u202c")
         print("==" * 50)
 
 

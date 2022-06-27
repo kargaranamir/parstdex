@@ -58,27 +58,33 @@ Extract markers
       }
    }
 
-Extract markers’ value
-~~~~~~~~~~~~~~~~~~~~~~
+Extract TimeML scheme
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
 
-   model.extract_value(sentence)
+   model.extract_time_ml(sentence)
 
 output :
 
-.. code:: json
+.. code:: html
 
-   {
-      "date":{
-         "[6, 10]":"شنبه",
-         "[68, 78]":"3 روز بعد",
-         "[82, 111]":"1378/06/18"
-      },
-      "time":{
-         "[11, 47]":"17:23:00"
-      }
-   }
+   ماریا
+   <TIMEX3 type='DATE'>
+   شنبه
+   </TIMEX3>
+   <TIMEX3 type='TIME'>
+   عصر راس ساعت ۱۷ و بیست و سه دقیقه به
+   </TIMEX3>
+    نادیا زنگ زد اما
+   <TIMEX3 type='DURATION'>
+   تا سه روز بعد
+   </TIMEX3>
+    در
+   <TIMEX3 type='DATE'>
+   تاریخ ۱۸ شهریور سال ۱۳۷۸ ه.ش.
+   </TIMEX3>
+   خبری از نادیا نشد
 
 Extract markers’ NER tags
 ~~~~~~~~~~~~~~~~~~~~~~~~~

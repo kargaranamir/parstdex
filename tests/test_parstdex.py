@@ -30,6 +30,6 @@ test_scenarios = prepare_test_scenarios()
 
 @pytest.mark.parametrize("sentence, expected", test_scenarios)
 def test_parstdex_extractor(sentence, expected):
-    spans = model.extract_span(sentence)
-    markers = model.extract_marker(sentence)
+    spans, regex_indices = model.extract_span(sentence)
+    markers, regex_indices = model.extract_marker(sentence)
     assert spans['datetime'] == expected, str(markers['datetime'])

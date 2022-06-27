@@ -1,5 +1,6 @@
 ﻿# صبح ظهر عصر شب ...
 DP
+VAGHT DP
 
 # تا ساعت
 CJ TU
@@ -30,10 +31,25 @@ TOOL<>NUM<>CJ<>NUM<>TU
 NUM<>TU
 MIN TU
 DSMALL TU
+NUM<>DSMALL TU
+
+# پنج ثانیه
+PRV<>NUM<>TU
+PRV MIN TU
+PRV DSMALL TU
+
 # دقیقه پنج
 TU<>NUM
 TU MIN
 TU DSMALL
+
+#هر دقیقه
+HAR TU
+
+#هر پنج ثانیه
+HAR NUM<>TU
+HAR MIN TU
+HAR DSMALL TU
 
 # دقیقه پنج A.M.
 TU<>NUM APM
@@ -203,3 +219,6 @@ DP MIN CJ MIN TU
 # دقیقه به دقیقه
 TU BE TU
 DP BE DP
+
+# چند دقیقه
+CHAND<>TU

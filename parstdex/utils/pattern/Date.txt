@@ -24,6 +24,7 @@ PRV PRV WD
 
 # صدسال
 DSMALL<>DU
+NUM<>DSMALL<>DU
 DSMALL<>DU<>NXT
 
 # پاییز
@@ -54,11 +55,30 @@ TOOL DN DU<>PF
 TOOL DSMALL DU
 # طول ۵ سال
 TOOL<>NUM<>DU
+# طی شش قرن و نیم
+TOOL DSMALL DU VA ROBNIM
+TOOL<>NUM<>DU VA ROBNIM
+
+# طی فروردین
+TOOL MNTH
+TOOL MNTHMAH
+
+# در طول دوشنبه
+TOOL WD
+
+# طی فروردین
+TOOL MNTH
+TOOL MNTHMAH
+
+# در طول دوشنبه
+TOOL WD
 
 # چند سال
 CHAND<>DU
 # طی چند سال
 TOOL CHAND<>DU
+TOOL PRV CHAND<>DU
+TOOL PRV<>DU
 
 # ماه فروردین
 MAH MNTH
@@ -132,12 +152,17 @@ MNTH<>MAH SAL DSMALL CT
 ### with out MNTH
 # سال میلادی
 DU CT
+# (میلادی)
+PARL<>CT<>PARR
+
 اوایل سال میلادی
 PRV DU CT
 PRV PRV DU CT
 # اوایل سال نو میلادی
 PRV DU JADID CT
 PRV PRV DU JADID CT
+# همان ماه‌های اول
+PRV DU<>PF DN
 
 # سال ۱۳۷۵
 SAL<>NUM
@@ -146,6 +171,7 @@ SAL DSMALL
 SAL<>NUM<>CT
 SAL DSMALL CT
 # ۱۳۷۵ هجری شمسی
+PRV<>NUM<>CT
 NUM<>CT
 DSMALL CT
 
@@ -212,10 +238,10 @@ MAH MNTH NXT
 # فروردین ماه اخیر
 MNTH<>MAH NXT
 # آغاز فروردین
-PRV MNTH
+PRV<>MNTH
 PRV PRV MNTH
 # آغاز فروردین ماه
-PRV MNTH<>MAH
+PRV<>MNTH<>MAH
 PRV PRV MNTH<>MAH
 # آغاز ماه فروردین
 PRV MAH MNTH
@@ -253,11 +279,11 @@ DU NXT CT
 DU NXT NXT CT
 
 # سه هفته نخست ۱۴۰۰
-DN DU NXT<>NUM
+DN DU NXT<>NY2
 DN DU NXT DSMALL
-DSMALL DU NXT<>NUM
+DSMALL DU NXT<>NY2
 DSMALL DU NXT DSMALL
-NUM<>DU NXT<>NUM
+NUM<>DU NXT<>NY2
 NUM<>DU NXT DSMALL
 # سه هفته نخست ماه
 DN DU NXT DU
@@ -288,6 +314,9 @@ PRV PRV DN DU DSMALL
 PRV DN RY
 PRV PRV DN RY
 
+# نیمه دوم قرن نوزدهم
+PRV<>PRV DN DU DN
+
 
 # هفته ۳
 DU<>NUM
@@ -310,7 +339,7 @@ DU DN
 # هفته آینده
 DU NXT
 # آِغاز هفته
-PRV DU
+PRV<>DU
 PRV PRV DU
 
 # تاریخ فروردین
@@ -326,6 +355,9 @@ HAR<>WD
 WD PF
 # هر هفته
 HAR DU
+# هر ۲ هفته
+HAR NUM DU
+HAR DSMAL DU
 # هر هفته سال
 HAR DU DU
 # ماه سال
@@ -384,6 +416,7 @@ DN CJ PRV MNTH
 
 # سال سوم تا پنجم
 DU DN CJ DN
+DU DN VYA DN
 DU<>NUM<>CJ<>NUM
 DU<>NUM<>VYA<>NUM
 DU DSMALL CJ DSMALL
@@ -566,6 +599,7 @@ SSN DSMALL
 
 # قرن پانزدهم میلادی
 DU DN CT
+DN CT
 
 # ماه مبارک رمضان
 MAH MOBARAK MNTH
@@ -592,6 +626,9 @@ DU BE DU
 ROBNIM DU
 DN VYA ROBNIM DU
 DN VYA ROBNIM DU NXT
+
+# ربع چهارم سال
+ROBNIM DN DU
 
 # سه سال و نیم گذشته
 DN DU VYA ROBNIM NXT
@@ -678,3 +715,7 @@ NUM<>/<>N12<>/<>N31<>-<>N24<>:<>N60<>CT
 NUM<>\\<>N12<>\\<>N31<>-<>N24<>:<>N60<>CT
 NUM<>-<>N12<>-<>N31<>-<>N24<>:<>N60<>CT
 NUM<>\.<>N12<>\.<>N31<>-<>N24<>:<>N60<>CT
+
+
+# از ۹۲ تا کنون
+PRV<>NUM<>TAKNN

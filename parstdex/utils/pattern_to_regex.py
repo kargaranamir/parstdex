@@ -63,6 +63,7 @@ class Annotation:
     def create_number_annotation_dict():
         annotation_dict = {
             'NUM': r'\\d{1,4}|\\d{1}\.\\d{1}',  # all 1 to 4 digit numbers + decimal format 1 to 9
+            'NY2': r'\\d{2}|\\d{4}',
             'N31': r'[0-2]?[0-9]|30|31',
             'N12': r'0?[0-9]|1[0-2]',
             'N24': r'[0-1]?[0-9]|2[0-4]',
@@ -116,6 +117,8 @@ class Patterns:
             special_words = get_special_words()
             self.patterns_path = os.path.join(os.path.dirname(__file__), 'pattern', "")
             self.cumulative_annotations = {**annotations.annotations_dict, **special_words}
+            for key, value in self.cumulative_annotations.items():
+                self.cumulative_annotations[key] = value.replace("<>", r'(?:[\\s\\u200c]{0,3})').replace(" ", r'(?:[\\u200c\\s]{1,3})')
             self.cumulative_annotations_keys = sorted(self.cumulative_annotations, key=len, reverse=True)
             files = os.listdir(self.patterns_path)
             for f in files:
