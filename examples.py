@@ -28,9 +28,9 @@ def examples():
         result['ner'] = ners
 
         time_ml = model.extract_time_ml(input_sentence)
-        result['time_ml'] = time_ml
 
         pprint.pprint(result,)
+        print(f"\u202b{time_ml}\u202c")
         print("==" * 50)
 
 

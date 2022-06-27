@@ -194,5 +194,11 @@ def sgn(num: int):
 
 
 def merge_encodings(encoded_time, encoded_date):
-    merged_encoding = [sgn(a+b) for a, b in zip(encoded_time, encoded_date)]
+    merged_encoding = [sgn(a + b) for a, b in zip(encoded_time, encoded_date)]
     return merged_encoding
+
+
+# a function to find the spans within an indices range
+def filter_span_in_range(start_index, end_index, span_list):
+    res = list(filter(lambda x: start_index <= x[0] and x[1] <= end_index, span_list))
+    return sorted(res, key=lambda x: x[0])

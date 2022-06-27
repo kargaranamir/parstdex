@@ -7,8 +7,7 @@ import textspan
 
 from parstdex.utils.normalizer import Normalizer
 from parstdex.utils.pattern_to_regex import Patterns
-from parstdex.utils.spans import create_spans
-from parstdex.utils.spans import merge_spans
+from parstdex.utils.spans import create_spans, merge_spans, filter_span_in_range
 from parstdex.utils.deprecation import deprecated
 
 re._MAXCACHE = 512
@@ -170,8 +169,17 @@ class MarkerExtractor(object):
                 output_time_ml = output_time_ml + f"<TIMEX3 type='DURATION'>{span_value}</TIMEX3>"
             elif span in spans["time"]:
                 output_time_ml = output_time_ml + f"<TIMEX3 type='TIME'>{span_value}</TIMEX3>"
-            else:
+            elif span in spans["date"]:
                 output_time_ml = output_time_ml + f"<TIMEX3 type='DATE'>{span_value}</TIMEX3>"
+            else:
+                start, end = span
+                constituent_spans = filter_span_in_range(start, end, spans["date"] + spans["time"])
+                for c_span in constituent_spans:
+                    c_span_value = input_sentence[c_span[0]:c_span[1]]
+                    if c_span in spans["time"]:
+                        output_time_ml = output_time_ml + f"<TIMEX3 type='TIME'>{c_span_value}</TIMEX3>"
+                    else:
+                        output_time_ml = output_time_ml + f"<TIMEX3 type='DATE'>{c_span_value}</TIMEX3>"
 
         output_time_ml = output_time_ml + f" {input_sentence[last_span_index:]}"
 
