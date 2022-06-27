@@ -87,6 +87,7 @@ fa_wd_to_num = {
     'دوشنبه': 0,
     'دو‌شنبه': 0,
     'سه‌شنبه': 1,
+    'سشنبه': 1,
     'سه‌ شنبه': 1,
     'چهارشنبه': 2,
     'چهار‌شنبه': 2,
@@ -94,7 +95,6 @@ fa_wd_to_num = {
     'پنجشنبه': 3,
     'پنج‌شنبه': 3,
     'پنج شنبه': 3,
-    'پنج‌شنبه': 3,
     'جمعه': 4,
 }
 
@@ -394,7 +394,7 @@ def extract_duration_only(text: str):
     else:
         return now, now + period
 
-def extract_duration_start(span, text: str):
+def extract_duration_start(text: str):
     for keyword in duration_set_start:
         if text.startswith(keyword) and not has_va(text):
             stripped_text = remove_starting_keyword(text)
@@ -419,12 +419,7 @@ def extract_duration_start(span, text: str):
             else:
                 value = [get_ts_from_phrase('حالا'), vx.compute_value(stripped_text)]
 
-            return {
-                'type': 'duration',
-                'text': text,
-                'span': span,
-                'value': value,
-            }
+            return value
 
 
 def is_month_day(text):
@@ -447,8 +442,7 @@ def extract_month_day(text):
             return get_miladi_mnth_duration(month_text=miladi_month, day=day)
 
 
-def extract_duration_middle(span, text: str):
-    original_text = text
+def extract_duration_middle(text: str):
     for keyword in duration_set_middle:
         if keyword in text:
             stripped_text = remove_starting_keyword(text)
@@ -485,12 +479,7 @@ def extract_duration_middle(span, text: str):
                         val = vx.compute_value(text)
                 value[i] = val
 
-            return {
-                'type': 'duration',
-                'text': original_text,
-                'span': span,
-                'value': value
-            }
+            return value
 
 
 def remove_redundants(text: str):
@@ -498,14 +487,11 @@ def remove_redundants(text: str):
         text = text.replace(p, '')
     return text
 
-def extract_duration(markers: dict):
-    res = []
-    for k, v in markers['datetime'].items():
-        if is_duration(v): # redundant
-            if has_middle_keyword(v):
-                res.append(extract_duration_middle(k, v))
-            else:
-                res.append(extract_duration_start(k, v))
+def extract_duration(s: str):
+    if has_middle_keyword(s):
+        res = extract_duration_middle(s)
+    else:
+        res = extract_duration_start(s)
     return res
 
 
@@ -514,7 +500,7 @@ def is_crontime(text: str):
     return any(cron_word in split_text for cron_word in cron_set)
 
 
-def extract_exact_datetime(span, text: str):
+def extract_exact_datetime(text: str):
     stripped_text = text.strip()
     computed_value = vx.compute_value(stripped_text)
 
@@ -549,20 +535,7 @@ def extract_exact_datetime(span, text: str):
         else:
             value = ''
 
-    return {
-        'type': 'exact',
-        'text': text,
-        'span': span,
-        'value': value,
-    }
-
-
-def extract_exact(markers: dict):
-    res = []
-    for k, v in markers['datetime'].items():
-        if not is_duration(v) and not is_crontime(v):
-            res.append(extract_exact_datetime(k, v))
-    return res
+    return value
 
 
 def extract_exact_or_duration(markers: dict):

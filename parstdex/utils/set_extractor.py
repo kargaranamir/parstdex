@@ -7,11 +7,10 @@ from parstdex.utils import const
 from parstdex.utils.pattern_to_regex import Patterns
 import re
 
-
 HAR_LITERAL = 'هر'
 HA_LITERAL = 'ها'
 
-space = f"(?:{'|'.join(Patterns.getInstance().regexes['Space'])})"
+space = f"(?:{'|'.join(Patterns.getInstance().regexes['space'])})"
 WD = Patterns.getInstance().cumulative_annotations['WD']
 MNTH = "|".join(const.MILADI_MONTHS.keys())
 CJ = Patterns.getInstance().cumulative_annotations['CJ']
@@ -39,7 +38,6 @@ time_combined = fr"(?P<time>(" + ")|(".join(timee) + "))"
 
 value = rf"(?P<value>{const.DLARGE})"
 
-
 pattern1 = rf"{HAR_LITERAL}{space}(?:{value}{space})?{mh_literals}"
 pattern2 = rf"{HAR_LITERAL}{space}({days})({space}(?:{time_combined}))?"
 pattern3 = rf"{HAR_LITERAL}{space}{time_combined}"
@@ -48,8 +46,7 @@ pattern5 = rf"{HAR_LITERAL}{space}(?:{value}{space})?(?:{month_literal})"
 pattern6 = rf"{HAR_LITERAL}{space}{months}(?:{space}{days})?(?:{space}?{HA_LITERAL}?)?(?:{space}{time_combined})?"
 pattern7 = rf"{days}(?:{space}?{HA_LITERAL})(?:{space}{time_combined})?"
 
-patterns = [eval(f'pattern{i}') for i in range(1,8)]
-
+patterns = [eval(f'pattern{i}') for i in range(1, 8)]
 
 fa_wd_to_num = {
     'شنبه': 5,
@@ -63,6 +60,7 @@ fa_wd_to_num = {
     'جمعه': 4,
 }
 
+
 def convert_value_to_str(value):
     if value:
         value = const.MINUTES[value]
@@ -70,6 +68,7 @@ def convert_value_to_str(value):
     else:
         value = '*'
     return value
+
 
 def convert_match_to_cron(m: re.Match):
     d = m.groupdict()
@@ -82,7 +81,8 @@ def convert_match_to_cron(m: re.Match):
         'weekday': '*',
     }
 
-    if time := d.get('time', None):
+    if d.get('time', None):
+        time = d['time']
         tv = vx.compute_time_value(time)
         tv = tv.split(':')
         hour, minute = int(tv[0]), int(tv[1])
@@ -100,15 +100,15 @@ def convert_match_to_cron(m: re.Match):
 
         if d.get('hour_literal', None):
             cron['hour'] = value
-    
+
     if d.get('day_literal', None):
         value = d.get('value')
         value = convert_value_to_str(value)
         cron['day'] = value
-    
+
     if d.get('days', None):
-        if weekday := d.get('day', None):
-            weekday = fa_wd_to_num[weekday] + 1
+        if d.get('day', None):
+            weekday = fa_wd_to_num[d['day']] + 1
             cron['weekday'] = weekday
         if d.get('day_range', None):
             from_day = d.get('from_day')
@@ -121,16 +121,16 @@ def convert_match_to_cron(m: re.Match):
                 to_day, from_day = from_day, to_day
             weekdays = f'{from_day}-{to_day}'
             cron['weekday'] = weekdays
-    
+
     if d.get('month_literal', None):
         value = d.get('value')
         value = convert_value_to_str(value)
         cron['month'] = value
         cron['day'] = '1'
-    
+
     if d.get('months', None):
-        if single_month := d.get('month', None):
-            single_month = const.MILADI_MONTHS[single_month]
+        if d.get('month', None):
+            single_month = const.MILADI_MONTHS[d['month']]
             cron['month'] = single_month
             cron['day'] = 1
 
@@ -144,12 +144,8 @@ def convert_match_to_cron(m: re.Match):
 
             cron['month'] = f'{from_month}-{to_month}'
             cron['day'] = 1
-            
-        
 
     return f"{cron['minute']} {cron['hour']} {cron['day']} {cron['month']} {cron['weekday']}"
-    
-
 
 
 def extract_cron(s):
@@ -185,6 +181,7 @@ def test_time():
         print(x)
         print(y)
 
+
 def test_date():
     ve = ValueExtractor()
     z = "دوشنبه تا چهارشنبه پنج فروردین"
@@ -197,7 +194,7 @@ def verify_day():
     s1 = "دو شنبه"
     m = re.match(day, s1)
     assert m is not None
-    s2 = "سه مبه" 
+    s2 = "سه مبه"
     m = re.match(day, s2)
     assert m is None
 
@@ -210,24 +207,25 @@ def verify_simple_day_range():
     assert d['from_day'] == 'شنبه'
     assert d['to_day'] == 'سه‌شنبه'
 
+
 def verify_day_range():
     s1 = "شنبه تا سه‌شنبه"
     m = re.match(day_range, s1)
     assert m is not None
     d = m.groupdict()
-    
+
     assert d['from_day'] == 'شنبه'
     assert d['to_day'] == 'سه‌شنبه'
     assert d['day_range'] == s1
-    
+
 
 def verify_days():
     s1 = "شنبه لغایت آدینه"
     m = re.match(days, s1)
     assert m is not None
-    
+
     d = m.groupdict()
-    
+
     assert d['days'] == s1
     assert d['day_range'] == s1
     assert d['from_day'] == 'شنبه'
@@ -296,7 +294,7 @@ def verify_pattern1():
 
 
 def verify_pattern2():
-    s1 =  'هر پنجشنبه تا جمعه ساعت ۱۷'""
+    s1 = 'هر پنجشنبه تا جمعه ساعت ۱۷'""
     m = re.match(pattern2, s1)
     assert m is not None
 
@@ -304,10 +302,12 @@ def verify_pattern2():
     m = re.match(pattern2, s2)
     assert m is not None
 
+
 def verify_pattern3():
     s1 = "هر ساعت شش عصر"
     m = re.match(pattern3, s1)
     assert m is not None
+
 
 def verify_pattern4():
     s1 = "هر روز"
@@ -322,7 +322,6 @@ def verify_pattern4():
     m = re.match(pattern4, s3)
     assert m is not None
     d = m.groupdict()
-
 
 
 def verify_patterns():
