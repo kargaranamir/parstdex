@@ -153,14 +153,7 @@ def extract_cron(s):
         m = re.search(pattern, s)
         if m:
             cron = convert_match_to_cron(m)
-            m.span()
-            return {
-                'type': 'crontime',
-                'text': m.group(),
-                'span': m.span(),
-                'value': cron,
-            }
-
+            return cron
     return None
 
 

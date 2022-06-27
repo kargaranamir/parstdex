@@ -195,18 +195,18 @@ class MarkerExtractor(object):
             output_time_ml = output_time_ml + f"{input_sentence[last_span_index:span[0]]}"
             span_value = input_sentence[span[0]:span[1]]
             last_span_index = span[1]
-            if re.search(f"(?:\b|(?!{const.FA_SYM}|\d+)){self.set_annotations}(?:\b|(?!{const.FA_SYM}|\d+))", span_value):
-                val = extract_cron(span_value)
-                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='SET' VAL={val}>{span_value}<TIMEX3>"
-            elif re.search(self.duration_annotations, span_value):
-                val = extract_duration(span_value)
-                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='DURATION' VAL={val}>{span_value}<TIMEX3>"
+            if re.search(fr"(?:\b|(?!{const.FA_SYM}|\d+))({self.set_annotations})(?:\b|(?!{const.FA_SYM}|\d+))", span_value):
+                # val = extract_cron(span_value)
+                output_time_ml = output_time_ml + f"<TIMEX3 type='SET'>{span_value}</TIMEX3>"
+            elif re.search(fr"(?:\b|(?!{const.FA_SYM}|\d+))({self.duration_annotations})(?:\b|(?!{const.FA_SYM}|\d+))", span_value):
+                # val = extract_duration(span_value)
+                output_time_ml = output_time_ml + f"<TIMEX3 type='DURATION'>{span_value}</TIMEX3>"
             elif span in spans["time"]:
-                val = extract_exact_datetime(span_value)
-                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='TIME' VAL={val}>{span_value}<TIMEX3>"
+                # val = extract_exact_datetime(span_value)
+                output_time_ml = output_time_ml + f"<TIMEX3 type='TIME'>{span_value}</TIMEX3>"
             else:
-                val = extract_exact_datetime(span_value)
-                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='DATE' VAL={val}>{span_value}<TIMEX3>"
+                # val = extract_exact_datetime(span_value)
+                output_time_ml = output_time_ml + f"<TIMEX3 type='DATE'>{span_value}</TIMEX3>"
 
         output_time_ml = output_time_ml + f" {input_sentence[last_span_index:]}"
 
