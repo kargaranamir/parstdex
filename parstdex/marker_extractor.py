@@ -11,6 +11,8 @@ from parstdex.utils.spans import create_spans
 from parstdex.utils.spans import merge_spans
 from parstdex.utils.word_to_value import ValueExtractor
 from parstdex.utils.deprecation import deprecated
+from parstdex.utils.datetime_extractor import extract_duration, extract_exact
+from parstdex.utils.set_extractor import extract_cron
 
 re._MAXCACHE = 512
 
@@ -193,13 +195,21 @@ class MarkerExtractor(object):
             span_value = input_sentence[span[0]:span[1]]
             last_span_index = span[1]
             if re.search(f"(?:^|\b){set_annotations}", span_value):
-                output_time_ml = output_time_ml + f"<TIMEX3 type='SET'>{span_value}<TIMEX3>"
+                markers = self.extract_marker(span_value)
+                val = extract_cron(markers)
+                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='SET'>{span_value}<TIMEX3>"
             elif re.search(duration_annotations, span_value):
-                output_time_ml = output_time_ml + f"<TIMEX3 type='DURATION'>{span_value}<TIMEX3>"
+                markers = self.extract_marker(span_value)
+                val = extract_duration(markers)
+                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='DURATION' VAL={val}>{span_value}<TIMEX3>"
             elif span in spans["time"]:
-                output_time_ml = output_time_ml + f"<TIMEX3 type='TIME'>{span_value}<TIMEX3>"
+                markers = self.extract_marker(span_value)
+                val = extract_exact(markers)
+                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='TIME' VAL={val}>{span_value}<TIMEX3>"
             else:
-                output_time_ml = output_time_ml + f"<TIMEX3 type='DATE'>{span_value}<TIMEX3>"
+                markers = self.extract_marker(span_value)
+                val = extract_exact(markers)
+                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='DATE' VAL={val}>{span_value}<TIMEX3>"
 
         output_time_ml = output_time_ml + f" {input_sentence[last_span_index:]}"
 

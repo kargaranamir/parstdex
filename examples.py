@@ -30,8 +30,8 @@ def examples():
         ners = model.extract_bio_dattim(input_sentence)
         result['ner'] = ners
 
-        timeml = model.extract_time_ml(input_sentence)
-        result['timeml'] = timeml
+        time_ml = model.extract_time_ml(input_sentence)
+        result['time_ml'] = time_ml
 
         pprint.pprint(result,)
         print("==" * 50)
