@@ -170,3 +170,38 @@ class MarkerExtractor(object):
             if not chosen:
                 ners.append((input_sentence[span[0]:span[1]], 'O'))
         return ners
+
+    def extract_time_ml(self, input_sentence: str):
+        annotations = Patterns.getInstance().cumulative_annotations
+        duration_annotations = annotations["CJ"] + "|" + annotations["TOOL"]
+        set_annotations = annotations["HAR"]
+        spans = self.extract_span(input_sentence)
+
+        if len(spans["datetime"]) == 0:
+            return input_sentence
+        elif len(spans["time"]) == 0:
+            working_spans = spans["date"]
+        elif len(spans["date"]) == 0:
+            working_spans = spans["time"]
+        else:
+            working_spans = spans["datetime"]
+
+        last_span_index = 0
+        output_time_ml = ""
+        for span in working_spans:
+            output_time_ml = output_time_ml + f"{input_sentence[last_span_index:span[0]]} "
+            span_value = input_sentence[span[0]:span[1]]
+            last_span_index = span[1]
+            if re.search(f"(?:^|\b){set_annotations}", span_value):
+                output_time_ml = output_time_ml + f"<TIMEX3 type='SET'>{span_value}<TIMEX3>"
+            elif re.search(duration_annotations, span_value):
+                output_time_ml = output_time_ml + f"<TIMEX3 type='DURATION'>{span_value}<TIMEX3>"
+            elif span in spans["time"]:
+                output_time_ml = output_time_ml + f"<TIMEX3 type='TIME'>{span_value}<TIMEX3>"
+            else:
+                output_time_ml = output_time_ml + f"<TIMEX3 type='DATE'>{span_value}<TIMEX3>"
+
+        output_time_ml = output_time_ml + f" {input_sentence[last_span_index:]}"
+
+        return output_time_ml
+
