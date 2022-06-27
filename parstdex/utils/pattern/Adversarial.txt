@@ -1,5 +1,6 @@
 # دوشنبه بازار
-WD BAZAR
+(TOOL|PRV)? WD BAZAR
+
 
 # لیگ شانزدهم
 LEAGUE NUM
@@ -11,20 +12,14 @@ TEAM MNTH
 TEAM SSN
 
 # می‌کشد
-MEE PEVPOV
-MEE PAVPOV
+(TOOL|PRV)? MEE PEVPOV
+(TOOL|PRV)? MEE PAVPOV
 NUM<>MEE PEVPOV
 NUM<>MEE PAVPOV
 
 # می‌توان
-MEE PEV
-MEE PAV
-
-# طول می‌کشد
-TOOL MEE PEVPOV
-TOOL MEE PAVPOV
-TOOL MEE PEV
-TOOL MEE PAV
+(TOOL|PRV)? MEE PEV
+(TOOL|PRV)? MEE PAV
 
 
 # ورزشگاه ۱۷ تیر
@@ -43,14 +38,6 @@ PLACE SSN
 ADD MNTH
 ADD SSN
 
-# شروع می‌شد
-PRV MEE PEVPOV
-PRV MEE PAVPOV
-
-#شروع می‌توان
-PRV MEE PEV
-PRV MEE PAV
-
 # پنج هزار تومان
 DLARGE CUR
 NUM CUR
@@ -62,11 +49,12 @@ NUM<>UNIT
 NUM<>UNIT<>PF
 DLARGE UNIT<>PF
 
-
+# adv unique
 ADUQ
 
 # remove event part of patterns
 EVE
 
+# paranthesis
 PARR
 PARL
