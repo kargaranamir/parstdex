@@ -18,15 +18,7 @@ class MarkerExtractor(object):
     def __init__(self, debug_mode=False):
         # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = Normalizer()
-
-        # Patterns: patterns to regex from pkl
-        # with open(os.path.join(os.path.dirname(__file__), 'patterns.pkl'), 'wb') as outp:
-        #     patterns = Patterns.getInstance()
-        #     pickle.dump(patterns, outp, pickle.HIGHEST_PROTOCOL)
-        Patterns.getInstance()
-        with open(os.path.join(os.path.dirname(__file__), 'patterns.pkl'), 'rb') as inp:
-            patterns = pickle.load(inp)
-
+        patterns = Patterns.getInstance()
         regex_patterns = patterns.regexes
         self.regexes = {}
         for key, regex_to_compile in regex_patterns.items():
