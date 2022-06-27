@@ -8,25 +8,28 @@ considered yet.
 ::
 
 
-   ├── parstdex                 
-   │   └── utils
-   |   |   └── annotation
-   |   |   |   └── ...
-   |   |   └── pattern
-   |   |   |   └── ...
-   |   |   └── special_words
-   |   |   |   └── words.txt
-   |   |   └── const.py
-   |   |   └── normalizer.py
-   |   |   └── pattern_to_regex.py
-   |   |   └── spans.py
-   |   |   └── word_to_value.py
-   |   └── marker_extractor.py
-   |   └── settings.py
-   └── Test           
-   │   └── data.json
-   |   └── test_parstdex.py
-   |      
-   └── examples.py
-   └── requirement.txt
-   └── setup.py
+    ├── parstdex
+    │   └── utils
+    |   |   └── annotation
+    |   |   |   └── ...
+    |   |   └── pattern
+    |   |   |   └── ...
+    |   |   └── special_words
+    |   |   |   └── words.txt
+    |   |   └── const.py
+    |   |   └── normalizer.py
+    |   |   └── pattern_to_regex.py
+    |   |   └── deprecation.py
+    |   |   └── regex_tool.py
+    |   |   └── spans.py
+    |   |   └── tokenizer.py
+    |   └── marker_extractor.py
+    |   └── settings.py
+    └── Test
+    │   └── data.json
+    |   └── test_parstdex.py
+    |
+    └── examples.py
+    └── performance_test.ipynb
+    └── requirement.txt
+    └── setup.py

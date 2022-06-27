@@ -58,7 +58,22 @@ model.extract_time_ml(sentence)
 ```
 output :
 ```html
-‫ماریا <TIMEX3 type='DATE'>شنبه عصر راس ساعت ۱۷ و بیست و سه دقیقه به</TIMEX3> نادیا زنگ زد اما <TIMEX3 type='DURATION'>تا سه روز بعد</TIMEX3> در <TIMEX3 type='DATE'>تاریخ ۱۸ شهریور سال ۱۳۷۸ ه.ش.</TIMEX3>  خبری از نادیا نشد‬
+ماریا 
+<TIMEX3 type='DATE'>
+شنبه
+</TIMEX3>
+<TIMEX3 type='TIME'>
+عصر راس ساعت ۱۷ و بیست و سه دقیقه به
+</TIMEX3>
+ نادیا زنگ زد اما 
+<TIMEX3 type='DURATION'>
+تا سه روز بعد
+</TIMEX3>
+ در 
+<TIMEX3 type='DATE'>
+تاریخ ۱۸ شهریور سال ۱۳۷۸ ه.ش.
+</TIMEX3>
+خبری از نادیا نشد
 ```
 
 
@@ -109,7 +124,6 @@ output :
 ## File Structure:
 Parstdex architecture is very flexible and scalable and therefore suggests an easy solution to adapt to new patterns which haven't been considered yet.
 ```
-
 ├── parstdex                 
 │   └── utils
 |   |   └── annotation
@@ -121,8 +135,10 @@ Parstdex architecture is very flexible and scalable and therefore suggests an ea
 |   |   └── const.py
 |   |   └── normalizer.py
 |   |   └── pattern_to_regex.py
+|   |   └── deprecation.py
+|   |   └── regex_tool.py
 |   |   └── spans.py
-|   |   └── word_to_value.py
+|   |   └── tokenizer.py
 |   └── marker_extractor.py
 |   └── settings.py
 └── Test           
