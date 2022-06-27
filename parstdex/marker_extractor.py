@@ -9,7 +9,6 @@ from parstdex.utils.normalizer import Normalizer
 from parstdex.utils.pattern_to_regex import Patterns
 from parstdex.utils.spans import create_spans
 from parstdex.utils.spans import merge_spans
-from parstdex.utils.word_to_value import ValueExtractor
 from parstdex.utils.deprecation import deprecated
 
 re._MAXCACHE = 512
@@ -20,7 +19,8 @@ class MarkerExtractor(object):
         # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = Normalizer()
         # Patterns: patterns to regex generator
-        regex_patterns = Patterns.getInstance().regexes
+        patterns = Patterns.getInstance()
+        regex_patterns = patterns.regexes
         self.regexes = {}
         for key, regex_to_compile in regex_patterns.items():
             self.regexes[key] = []
@@ -28,10 +28,11 @@ class MarkerExtractor(object):
                 self.regexes[key].append(
                     re.compile(fr'(?:\b|(?!{const.FA_SYM}|\d+))(?:{regex})(?:\b|(?!{const.FA_SYM}|\d+))', 0))
 
-        # ValueExtractor: value extractor from known time and date
-        self.value_extractor = ValueExtractor()
         self.DEBUG = debug_mode
         self.extract_span("")
+        annotations = patterns.cumulative_annotations
+        self.duration_annotations = annotations["CJ"] + "|" + annotations["TOOL"]
+        self.set_annotations = annotations["HAR"]
         super(MarkerExtractor, self).__init__()
 
     def extract_span(self, input_sentence: str):
@@ -78,30 +79,6 @@ class MarkerExtractor(object):
             markers[key] = {str(span): input_sentence[span[0]: span[1]] for span in spans_list}
 
         return markers
-
-    def extract_value(self, input_sentence: str):
-        """
-        function should output list of values, each item in list is a time marker value present in the input sentence.
-        :param input_sentence: input sentence
-        :return:
-        normalized_sentence: normalized sentence
-        result: all extracted spans
-        values: all extracted time-date values
-        """
-
-        values = {"time": {}, "date": {}}
-        spans = self.extract_span(input_sentence)
-
-        time_spans = spans['time']
-        date_spans = spans['date']
-
-        time_values = [self.value_extractor.compute_time_value(input_sentence[e[0]:e[1]]) for e in time_spans]
-        date_values = [self.value_extractor.compute_date_value(input_sentence[e[0]:e[1]]) for e in date_spans]
-
-        values['time'] = {str(span): str(value) for span, value in zip(time_spans, time_values)}
-        values['date'] = {str(span): str(value) for span, value in zip(date_spans, date_values)}
-
-        return values
 
     @deprecated("extract_ner will be deprecated soon. Use extract_bio_dat or extract_bio_dattim instead.")
     def extract_ner(self, input_sentence: str, tokenizer=None):
@@ -168,3 +145,34 @@ class MarkerExtractor(object):
             if not chosen:
                 ners.append((input_sentence[span[0]:span[1]], 'O'))
         return ners
+
+    def extract_time_ml(self, input_sentence: str):
+        spans = self.extract_span(input_sentence)
+
+        if len(spans["datetime"]) == 0:
+            return input_sentence
+        elif len(spans["time"]) == 0:
+            working_spans = spans["date"]
+        elif len(spans["date"]) == 0:
+            working_spans = spans["time"]
+        else:
+            working_spans = spans["datetime"]
+
+        last_span_index = 0
+        output_time_ml = ""
+        for span in working_spans:
+            output_time_ml = output_time_ml + f"{input_sentence[last_span_index:span[0]]}"
+            span_value = input_sentence[span[0]:span[1]]
+            last_span_index = span[1]
+            if re.search(fr"(?:\b|(?!{const.FA_SYM}|\d+))({self.set_annotations})(?:\b|(?!{const.FA_SYM}|\d+))", span_value):
+                output_time_ml = output_time_ml + f"<TIMEX3 type='SET'>{span_value}</TIMEX3>"
+            elif re.search(fr"(?:\b|(?!{const.FA_SYM}|\d+))({self.duration_annotations})(?:\b|(?!{const.FA_SYM}|\d+))", span_value):
+                output_time_ml = output_time_ml + f"<TIMEX3 type='DURATION'>{span_value}</TIMEX3>"
+            elif span in spans["time"]:
+                output_time_ml = output_time_ml + f"<TIMEX3 type='TIME'>{span_value}</TIMEX3>"
+            else:
+                output_time_ml = output_time_ml + f"<TIMEX3 type='DATE'>{span_value}</TIMEX3>"
+
+        output_time_ml = output_time_ml + f" {input_sentence[last_span_index:]}"
+
+        return output_time_ml

@@ -43,6 +43,14 @@ TU<>NUM
 TU MIN
 TU DSMALL
 
+#هر دقیقه
+HAR TU
+
+#هر پنج ثانیه
+HAR NUM<>TU
+HAR MIN TU
+HAR DSMALL TU
+
 # دقیقه پنج A.M.
 TU<>NUM APM
 TU MIN APM

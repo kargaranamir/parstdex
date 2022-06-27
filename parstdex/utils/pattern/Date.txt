@@ -59,10 +59,26 @@ TOOL<>NUM<>DU
 TOOL DSMALL DU VA ROBNIM
 TOOL<>NUM<>DU VA ROBNIM
 
+# طی فروردین
+TOOL MNTH
+TOOL MNTHMAH
+
+# در طول دوشنبه
+TOOL WD
+
+# طی فروردین
+TOOL MNTH
+TOOL MNTHMAH
+
+# در طول دوشنبه
+TOOL WD
+
 # چند سال
 CHAND<>DU
 # طی چند سال
 TOOL CHAND<>DU
+TOOL PRV CHAND<>DU
+TOOL PRV<>DU
 
 # ماه فروردین
 MAH MNTH
@@ -339,6 +355,9 @@ HAR<>WD
 WD PF
 # هر هفته
 HAR DU
+# هر ۲ هفته
+HAR NUM DU
+HAR DSMAL DU
 # هر هفته سال
 HAR DU DU
 # ماه سال
@@ -696,3 +715,7 @@ NUM<>/<>N12<>/<>N31<>-<>N24<>:<>N60<>CT
 NUM<>\\<>N12<>\\<>N31<>-<>N24<>:<>N60<>CT
 NUM<>-<>N12<>-<>N31<>-<>N24<>:<>N60<>CT
 NUM<>\.<>N12<>\.<>N31<>-<>N24<>:<>N60<>CT
+
+
+# از ۹۲ تا کنون
+PRV<>NUM<>TAKNN
