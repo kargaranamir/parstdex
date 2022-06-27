@@ -11,6 +11,8 @@ from parstdex.utils.spans import create_spans
 from parstdex.utils.spans import merge_spans
 from parstdex.utils.word_to_value import ValueExtractor
 from parstdex.utils.deprecation import deprecated
+from parstdex.utils.datetime_extractor import extract_duration, extract_exact_datetime
+from parstdex.utils.set_extractor import extract_cron
 
 re._MAXCACHE = 512
 
@@ -20,7 +22,8 @@ class MarkerExtractor(object):
         # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = Normalizer()
         # Patterns: patterns to regex generator
-        regex_patterns = Patterns.getInstance().regexes
+        patterns = Patterns.getInstance()
+        regex_patterns = patterns.regexes
         self.regexes = {}
         for key, regex_to_compile in regex_patterns.items():
             self.regexes[key] = []
@@ -32,6 +35,9 @@ class MarkerExtractor(object):
         self.value_extractor = ValueExtractor()
         self.DEBUG = debug_mode
         self.extract_span("")
+        annotations = patterns.cumulative_annotations
+        self.duration_annotations = annotations["CJ"] + "|" + annotations["TOOL"]
+        self.set_annotations = annotations["HAR"]
         super(MarkerExtractor, self).__init__()
 
     def extract_span(self, input_sentence: str):
@@ -170,3 +176,39 @@ class MarkerExtractor(object):
             if not chosen:
                 ners.append((input_sentence[span[0]:span[1]], 'O'))
         return ners
+
+    def extract_time_ml(self, input_sentence: str):
+        spans = self.extract_span(input_sentence)
+
+        if len(spans["datetime"]) == 0:
+            return input_sentence
+        elif len(spans["time"]) == 0:
+            working_spans = spans["date"]
+        elif len(spans["date"]) == 0:
+            working_spans = spans["time"]
+        else:
+            working_spans = spans["datetime"]
+
+        last_span_index = 0
+        output_time_ml = ""
+        for span in working_spans:
+            output_time_ml = output_time_ml + f"{input_sentence[last_span_index:span[0]]}"
+            span_value = input_sentence[span[0]:span[1]]
+            last_span_index = span[1]
+            if re.search(f"(?:\b|(?!{const.FA_SYM}|\d+)){self.set_annotations}(?:\b|(?!{const.FA_SYM}|\d+))", span_value):
+                val = extract_cron(span_value)
+                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='SET' VAL={val}>{span_value}<TIMEX3>"
+            elif re.search(self.duration_annotations, span_value):
+                val = extract_duration(span_value)
+                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='DURATION' VAL={val}>{span_value}<TIMEX3>"
+            elif span in spans["time"]:
+                val = extract_exact_datetime(span_value)
+                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='TIME' VAL={val}>{span_value}<TIMEX3>"
+            else:
+                val = extract_exact_datetime(span_value)
+                output_time_ml = output_time_ml + f"<TIMEX3 TYPE='DATE' VAL={val}>{span_value}<TIMEX3>"
+
+        output_time_ml = output_time_ml + f" {input_sentence[last_span_index:]}"
+
+        return output_time_ml
+

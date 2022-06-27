@@ -1,6 +1,5 @@
-from parstdex import Parstdex, marker_extractor, settings
-import pprint
-from parstdex.utils.datatime_extractor import extract_exact_or_duration
+from parstdex import Parstdex
+from parstdex.utils.datetime_extractor import extract_exact_or_duration
 from extract_cron import extract_cron
 
 duration_tests_middle = [
