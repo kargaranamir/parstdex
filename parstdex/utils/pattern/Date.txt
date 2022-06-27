@@ -355,12 +355,13 @@ HAR<>WD
 WD PF
 # هر هفته
 HAR DU
+# هر ۲ هفته
+HAR NUM DU
+HAR DSMAL DU
 # هر هفته سال
 HAR DU DU
 # ماه سال
 DU DU
-#هر دقیقه
-HAR TU
 
 # فروردین هر سال
 MNTH HAR<>SAL
