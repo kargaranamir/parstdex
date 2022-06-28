@@ -1,6 +1,11 @@
 # دوشنبه بازار
 (TOOL|PRV)?<>WD BAZAR
 
+# آدرس IP
+IP
+
+# :دی
+IMOJI
 
 # لیگ شانزدهم
 LEAGUE NUM
@@ -14,8 +19,8 @@ TEAM SSN
 # می‌کشد
 (TOOL|PRV)?<>MEE PEVPOV
 (TOOL|PRV)?<>MEE PAVPOV
-NUM<>MEE PEVPOV
-NUM<>MEE PAVPOV
+(NUM|DN)<>MEE PEVPOV
+(NUM|DN)<>MEE PAVPOV
 
 # می‌توان
 (TOOL|PRV)?<>MEE PEV
