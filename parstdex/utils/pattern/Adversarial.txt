@@ -1,5 +1,5 @@
 # دوشنبه بازار
-(TOOL|PRV)? WD BAZAR
+(TOOL|PRV)?<>WD BAZAR
 
 
 # لیگ شانزدهم
@@ -12,14 +12,14 @@ TEAM MNTH
 TEAM SSN
 
 # می‌کشد
-(TOOL|PRV)? MEE PEVPOV
-(TOOL|PRV)? MEE PAVPOV
+(TOOL|PRV)?<>MEE PEVPOV
+(TOOL|PRV)?<>MEE PAVPOV
 NUM<>MEE PEVPOV
 NUM<>MEE PAVPOV
 
 # می‌توان
-(TOOL|PRV)? MEE PEV
-(TOOL|PRV)? MEE PAV
+(TOOL|PRV)?<>MEE PEV
+(TOOL|PRV)?<>MEE PAV
 
 
 # ورزشگاه ۱۷ تیر
