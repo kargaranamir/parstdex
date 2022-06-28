@@ -27,10 +27,10 @@ def examples():
         ners, regex_indices = model.extract_bio_dattim(input_sentence)
         result['ner'] = ners
 
-        # time_ml, regex_indices = model.extract_time_ml(input_sentence)
+        time_ml, regex_indices = model.extract_time_ml(input_sentence)
 
         pprint.pprint(result,)
-        # print(f"time_ml: \u202b{time_ml}\u202c")
+        print(f"time_ml: \u202b{time_ml}\u202c")
         print("==" * 50)
 
 

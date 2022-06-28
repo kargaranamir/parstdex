@@ -1,6 +1,5 @@
 import pprint
 import re
-import pickle
 from parstdex.utils import const
 from parstdex.utils.tokenizer import tokenize_words
 import textspan
@@ -18,6 +17,7 @@ class MarkerExtractor(object):
     def __init__(self, debug_mode=False):
         # Normalizer: convert arabic YE and KAF to persian ones.
         self.normalizer = Normalizer()
+        # Patterns: patterns to regex generator
         patterns = Patterns.getInstance()
         regex_patterns = patterns.regexes
         self.regexes = {}
@@ -26,6 +26,7 @@ class MarkerExtractor(object):
             for regex in regex_to_compile:
                 self.regexes[key].append(
                     re.compile(fr'(?:\b|(?!{const.FA_SYM}|\d+))(?:{regex})(?:\b|(?!{const.FA_SYM}|\d+))', 0))
+
         self.DEBUG = debug_mode
         self.extract_span("")
         annotations = patterns.cumulative_annotations
