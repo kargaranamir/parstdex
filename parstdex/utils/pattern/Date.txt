@@ -39,7 +39,7 @@ PRV PRV RY
 SALROOZ
 
 # فروردین
-MNTH
+MNTHNOMEY
 
 # سالی
 DU<>PF
@@ -87,6 +87,9 @@ MAH MNTH
 # یک فروردین
 DN MNTH
 N31<>MNTH
+# قبل یک فروردین
+PRV DN MNTH
+PRV<>N31<>MNTH
 # یک فروردین ۱۳۷۵
 DN MNTH<>NUM
 DN MNTH DSMALL
@@ -181,11 +184,23 @@ NUM<>\\<>N12<>\\<>N31
 NUM<>-<>N12<>-<>N31
 NUM<>\.<>N12<>\.<>N31
 
-# 9/12/1400
+# تاریخ 1300/12/9
+TARIKH<>NUM<>/<>N12<>/<>N31
+TARIKH<>NUM<>\\<>N12<>\\<>N31
+TARIKH<>NUM<>-<>N12<>-<>N31
+TARIKH<>NUM<>\.<>N12<>\.<>N31
+
+# 21/12/1400
 N31<>/<>N12<>/<>NUM
 N31<>\\<>N12<>\\<>NUM
 N31<>-<>N12<>-<>NUM
 N31<>\.<>N12<>\.<>NUM
+
+# تاریخ 9/12/1400 هجری شمسی
+TARIKH<>N31<>/<>N12<>/<>NUM
+TARIKH<>N31<>\\<>N12<>\\<>NUM
+TARIKH<>N31<>-<>N12<>-<>NUM
+TARIKH<>N31<>\.<>N12<>\.<>NUM
 
 # 9/12/1400
 N12<>/<>N31<>/<>NUM
@@ -193,11 +208,23 @@ N12<>\\<>N31<>\\<>NUM
 N12<>-<>N31<>-<>NUM
 N12<>\.<>N31<>\.<>NUM
 
+# تاریخ 9/12/1400
+TARIKH<>N12<>/<>N31<>/<>NUM
+TARIKH<>N12<>\\<>N31<>\\<>NUM
+TARIKH<>N12<>-<>N31<>-<>NUM
+TARIKH<>N12<>\.<>N31<>\.<>NUM
+
 # 1300/12/9 هجری شمسی
 NUM<>/<>N12<>/<>N31<>CT
 NUM<>\\<>N12<>\\<>N31<>CT
 NUM<>\.<>N12<>\.<>N31<>CT
 NUM<>-<>N12<>-<>N31<>CT
+
+# تاریخ 1300/12/9 هجری شمسی
+TARIKH<>NUM<>/<>N12<>/<>N31<>CT
+TARIKH<>NUM<>\\<>N12<>\\<>N31<>CT
+TARIKH<>NUM<>\.<>N12<>\.<>N31<>CT
+TARIKH<>NUM<>-<>N12<>-<>N31<>CT
 
 # 10/24/2016 میلادی
 N12<>/<>N31<>/<>NUM<>CT
@@ -205,11 +232,23 @@ N12<>\\<>N31<>\\<>NUM<>CT
 N12<>-<>N31<>-<>NUM<>CT
 N12<>\.<>N31<>\.<>NUM<>CT
 
+# تاریخ 10/24/2016 میلادی
+TARIKH<>N12<>/<>N31<>/<>NUM<>CT
+TARIKH<>N12<>\\<>N31<>\\<>NUM<>CT
+TARIKH<>N12<>-<>N31<>-<>NUM<>CT
+TARIKH<>N12<>\.<>N31<>\.<>NUM<>CT
+
 # 9/12/1400 هجری شمسی
 N31<>/<>N12<>/<>NUM<>CT
 N31<>\\<>N12<>\\<>NUM<>CT
 N31<>-<>N12<>-<>NUM<>CT
 N31<>\.<>N12<>\.<>NUM<>CT
+
+# تاریخ 9/12/1400 هجری شمسی
+TARIKH<>N31<>/<>N12<>/<>NUM<>CT
+TARIKH<>N31<>\\<>N12<>\\<>NUM<>CT
+TARIKH<>N31<>-<>N12<>-<>NUM<>CT
+TARIKH<>N31<>\.<>N12<>\.<>NUM<>CT
 
 # فصل پاییز
 FASL SSN
@@ -461,9 +500,18 @@ TOOL<>NUM<>CJ<>NUM<>DU
 
 # سوم فروردین تا
 DN MNTH CJ
+DN MNTH<>MAH CJ
+# سوم مهر تا ۶ام
+DN MNTH CJ DN
+DN MNTH<>MAH CJ DN
 # ۳ تا ۵ فروردین
 DN CJ DN MNTH
 DN VYA DN MNTH
+N31<>CJ<>N31 MNTH
+N31<>VYA<>N31 MNTH
+# از ۳ تا ۵ فروردین
+AZ<>DN CJ DN MNTH
+AZ<>DN VYA DN MNTH
 
 # امروز تا
 RD CJ
@@ -719,3 +767,7 @@ NUM<>\.<>N12<>\.<>N31<>-<>N24<>:<>N60<>CT
 
 # از ۹۲ تا کنون
 PRV<>NUM<>TAKNN
+
+# سه روز و دو شب
+DSMALL DU VYA<>DSMALL DU
+NUM DU VYA<>NUM DU
