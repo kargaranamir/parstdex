@@ -24,8 +24,11 @@ def examples():
         markers, regex_indices = model.extract_marker(input_sentence)
         result['markers'] = markers
 
-        ners, regex_indices = model.extract_bio_dattim(input_sentence)
-        result['ner'] = ners
+        ners1 = model.extract_bio_dat(input_sentence)
+        result['ner1'] = ners1
+
+        ners2 = model.extract_bio_dattim(input_sentence)
+        result['ner2'] = ners2
 
         time_ml, regex_indices = model.extract_time_ml(input_sentence)
 

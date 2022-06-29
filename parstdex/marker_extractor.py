@@ -99,7 +99,7 @@ class MarkerExtractor(object):
         for span in all_spans:
             chosen = False
             for ner_span in spans:
-                if span[0] >= ner_span[0] and span[1] <= ner_span[1]:
+                if ner_span[0] <= span[0] <= ner_span[1]:
                     if span[0] == ner_span[0]:
                         ners.append((input_sentence[span[0]:span[1]], 'B-DAT'))
                     else:
@@ -128,7 +128,7 @@ class MarkerExtractor(object):
         for span in all_spans:
             chosen = False
             for ner_span in spans:
-                if span[0] >= ner_span[0] and span[1] <= ner_span[1]:
+                if ner_span[0] <= span[0] <= ner_span[1]:
                     if span[0] == ner_span[0]:
                         if ner_span in time_spans:
                             ners.append((input_sentence[span[0]:span[1]], 'B-TIM'))
