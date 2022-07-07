@@ -53,7 +53,7 @@ NUM<>UNIT<>PF
 DLARGE UNIT<>PF
 
 # adv unique
-(TOOL|PRV)?<>ADUQ
+(TOOL|PRV|DN)?<>ADUQ
 
 # remove event part of patterns
 EVE
