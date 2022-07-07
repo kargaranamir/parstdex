@@ -33,6 +33,7 @@
 آستانه
 منتهی به
 در
+هر
 ## Common: know as BNP (Bi Next and P)
 بعد
 آخر
