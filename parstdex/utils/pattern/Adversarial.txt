@@ -5,7 +5,7 @@
 IP
 
 # :دی
-IMOJI
+(TOOL|PRV)?<>IMOJI
 
 # لیگ شانزدهم
 LEAGUE<>NUM
@@ -53,7 +53,7 @@ NUM<>UNIT<>PF
 DLARGE UNIT<>PF
 
 # adv unique
-ADUQ
+(TOOL|PRV)?<>ADUQ
 
 # remove event part of patterns
 EVE
