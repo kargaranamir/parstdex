@@ -70,8 +70,9 @@ DSMALL CJ DSMALL DP
 
 # پنج و سی دقیقه
 HR VA MIN DAGHIGHEH
+N24<>VA<>N60<>DAGHIGHEH
 HR VA MIN DAGHIGHEH VA MIN SANIEH
-
+N24<>VA<>N60<>DAGHIGHEH
 # پنج ساعت و بیست دقیقه
 MIN TU VA MIN TU
 # پنج ساعت و چهل و سه دقیقه و سی و چهار ثانیه
@@ -79,12 +80,16 @@ MIN TU VA MIN TU VA MIN TU
 
 # ساعت پنج
 SAAT HR
+SAAT<>N24
 # ساعت پنج و بیست دقیقه
 SAAT HR VA MIN DAGHIGHEH
+SAAT<>N24 VA MIN DAGHIGHEH
 # ساعت پنج و چهل ثانیه
 SAAT HR VA MIN SANIEH
+SAAT<>N24 VA MIN SANIEH
 # ساعت پنج و چهال و دو دقیقه و سی و چهار ثانیه
 SAAT HR VA MIN DAGHIGHEH VA MIN SANIEH
+SAAT<>N24 VA MIN DAGHIGHEH VA MIN SANIEH
 
 # بعد از ظهر اخیر
 DP NXT
@@ -95,11 +100,11 @@ PRV DP
 # پنج عصر
 HR DP
 # ۵عصر
-N24<>DP
+SAAT?<>N24<>DP
 # پنج ونیم عصر
 HR VA<>ROBNIM DP
 # ۵ونیم عصر
-N24<>VA<>ROBNIM DP
+SAAT?<>N24<>VA<>ROBNIM DP
 
 
 # 12:23
