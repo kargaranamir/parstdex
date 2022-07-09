@@ -3,12 +3,12 @@ import setuptools
 with open('requirements.txt') as f:
     required = f.read().splitlines()
 
-with open("README.md") as fh:
+with open("README.md", encoding='utf-8-sig') as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name='parstdex',
-    version="1.2.1",
+    version="1.3",
     description="Persian time and date marker extractor",
     long_description=long_description,
     long_description_content_type="text/markdown",

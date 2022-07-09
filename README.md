@@ -78,48 +78,96 @@ output :
 
 
 ### Extract markers' NER tags
+#### DATTIM mode (Default):
 ```python
-model.extract_ner(sentence)
+model.extract_ner(sentence, mode="dattim")
 ```
 output :
 ```
-[('ماریا', 'O'),
- ('شنبه', 'B-DAT'),
- ('عصر', 'I-DAT'),
- ('راس', 'I-DAT'),
- ('ساعت', 'I-DAT'),
- ('۱۷', 'I-DAT'),
- ('و', 'I-DAT'),
- ('بیست', 'I-DAT'),
- ('و', 'I-DAT'),
- ('سه', 'I-DAT'),
- ('دقیقه', 'I-DAT'),
- ('به', 'I-DAT'),
- ('نادیا', 'O'),
- ('زنگ', 'O'),
- ('زد', 'O'),
- ('اما', 'O'),
- ('تا', 'O'),
- ('سه', 'B-DAT'),
- ('روز', 'I-DAT'),
- ('بعد', 'I-DAT'),
- ('در', 'O'),
- ('تاریخ', 'B-DAT'),
- ('۱۸', 'I-DAT'),
- ('شهریور', 'I-DAT'),
- ('سال', 'I-DAT'),
- ('۱۳۷۸', 'I-DAT'),
- ('ه', 'I-DAT'),
- ('.', 'I-DAT'),
- ('ش', 'I-DAT'),
- ('.', 'I-DAT'),
- ('خبری', 'O'),
- ('از', 'O'),
- ('نادیا', 'O'),
- ('نشد', 'O')]
+[
+    ("ماریا", "O"),
+    ("شنبه", "B-DAT"),
+    ("عصر", "B-TIM"),
+    ("راس", "I-TIM"),
+    ("ساعت", "I-TIM"),
+    ("۱۷", "I-TIM"),
+    ("و", "I-TIM"),
+    ("بیست", "I-TIM"),
+    ("و", "I-TIM"),
+    ("سه", "I-TIM"),
+    ("دقیقه", "I-TIM"),
+    ("به", "I-TIM"),
+    ("نادیا", "O"),
+    ("زنگ", "O"),
+    ("زد", "O"),
+    ("اما", "O"),
+    ("تا", "B-DAT"),
+    ("سه", "I-DAT"),
+    ("روز", "I-DAT"),
+    ("بعد", "I-DAT"),
+    ("در", "I-DAT"),
+    ("تاریخ", "I-DAT"),
+    ("۱۸", "I-DAT"),
+    ("شهریور", "I-DAT"),
+    ("سال", "I-DAT"),
+    ("۱۳۷۸", "I-DAT"),
+    ("ه", "I-DAT"),
+    (".", "I-DAT"),
+    ("ش", "I-DAT"),
+    (".", "I-DAT"),
+    ("خبری", "O"),
+    ("از", "O"),
+    ("نادیا", "O"),
+    ("نشد", "O"),
+]
 
 ```
 
+#### TMP mode:
+```python
+model.extract_ner(sentence, mode="tmp")
+```
+output :
+```
+[
+    ("ماریا", "O"),
+    ("شنبه", "B-TMP"),
+    ("عصر", "I-TMP"),
+    ("راس", "I-TMP"),
+    ("ساعت", "I-TMP"),
+    ("۱۷", "I-TMP"),
+    ("و", "I-TMP"),
+    ("بیست", "I-TMP"),
+    ("و", "I-TMP"),
+    ("سه", "I-TMP"),
+    ("دقیقه", "I-TMP"),
+    ("به", "I-TMP"),
+    ("نادیا", "O"),
+    ("زنگ", "O"),
+    ("زد", "O"),
+    ("اما", "O"),
+    ("تا", "B-TMP"),
+    ("سه", "I-TMP"),
+    ("روز", "I-TMP"),
+    ("بعد", "I-TMP"),
+    ("در", "I-TMP"),
+    ("تاریخ", "I-TMP"),
+    ("۱۸", "I-TMP"),
+    ("شهریور", "I-TMP"),
+    ("سال", "I-TMP"),
+    ("۱۳۷۸", "I-TMP"),
+    ("ه", "I-TMP"),
+    (".", "I-TMP"),
+    ("ش", "I-TMP"),
+    (".", "I-TMP"),
+    ("خبری", "O"),
+    ("از", "O"),
+    ("نادیا", "O"),
+    ("نشد", "O"),
+]
+
+
+```
 
 ## File Structure:
 Parstdex architecture is very flexible and scalable and therefore suggests an easy solution to adapt to new patterns which haven't been considered yet.
