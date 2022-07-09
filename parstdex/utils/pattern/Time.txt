@@ -23,7 +23,7 @@ TOOL<>NUM<>TU
 TOOL DSMALL TU
 TOOL MIN TU
 
-# حدفاصل ۹۰ تا ۹۳
+# حدفاصل ۳۹ تا ۵۰
 TOOL<>TU<>NUM<>CJ<>NUM
 TOOL<>NUM<>CJ<>NUM<>TU
 
@@ -94,6 +94,13 @@ PRV DP
 
 # پنج عصر
 HR DP
+# ۵عصر
+N24<>DP
+# پنج ونیم عصر
+HR VA<>ROBNIM DP
+# ۵ونیم عصر
+N24<>VA<>ROBNIM DP
+
 
 # 12:23
 N24<>:<>N60
