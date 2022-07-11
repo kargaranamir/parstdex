@@ -35,6 +35,10 @@ RY
 PRV RY
 PRV PRV RY
 
+# اوایل امسال
+PRV RD
+PRV PRV RD
+
 # سالروز
 SALROOZ
 
@@ -631,6 +635,10 @@ EVE DSMALL
 DU<>PF<>NUM<>VYA<>NUM
 DU<>PF<>NUM<>CJ<>NUM
 
+# سه روزه
+DN SHABROOZ<>PF
+NUM<>SHABROOZ<>PF
+
 # سه یا ۴ شبه
 DN VYA DN SHABROOZ<>PF
 NUM<>VYA<>NUM<>SHABROOZ<>PF
@@ -639,6 +647,11 @@ NUM<>VYA<>NUM<>SHABROOZ<>PF
 DN<>-<>DN MNTH
 N31<>-<>N31<>MNTH
 N31<>VYA<>N31<>MNTH
+
+# ۱۸ - ۲۰ آذر
+DN<>-<>DN MNTHMAH
+N31<>-<>N31<>MNTHMAH
+N31<>VYA<>N31<>MNTHMAH
 
 # بین ۱۲ اکتبر تا ۲۳ مارس
 TOOL<>N31<>MNTH CJ<>N31<>MNTH

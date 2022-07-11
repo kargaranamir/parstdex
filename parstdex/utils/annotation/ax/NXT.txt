@@ -21,7 +21,8 @@
 فعلی
 متوالی
 پیاپی
-
+زوج
+فرد
 
 ## Common: know as BNP (Bi Next and P)
 بعد
