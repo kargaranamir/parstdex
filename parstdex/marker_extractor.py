@@ -24,7 +24,7 @@ class MarkerExtractor(object):
             self.regexes[key] = []
             for regex in regex_to_compile:
                 self.regexes[key].append(
-                    re.compile(fr'(?:\b|(?!{const.FA_SYM}|\d+))(?:{regex})(?:\b|(?!{const.FA_SYM}|\d+))', 0))
+                    re.compile(fr'(?:\b|(?!{const.FA_SYM}))(?:{regex})(?:\b|(?!{const.FA_SYM}|\d+))', 0))
 
         self.DEBUG = debug_mode
         self.extract_span("")
@@ -84,7 +84,7 @@ class MarkerExtractor(object):
         elif mode == "tmp":
             return self.extract_bio_tmp(input_sentence, tokenizer)
         else:
-            raise ValueError('Invalid mode type. Should be "tmp" or "dattime" ')
+            raise ValueError('Invalid mode type. Should be "tmp" or "dattime"')
 
     def extract_bio_tmp(self, input_sentence: str, tokenizer=None):
         """
