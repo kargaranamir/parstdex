@@ -24,7 +24,7 @@ class MarkerExtractor(object):
             self.regexes[key] = []
             for regex in regex_to_compile:
                 self.regexes[key].append(
-                    re.compile(fr'(?:\b|(?!{const.FA_SYM}))(?:{regex})(?:\b|(?!{const.FA_SYM}|\d+))', 0))
+                    re.compile(fr'(?:\b|(?!{const.FA_SYM}))(?:{regex})(?:\b|(?!{const.FA_SYM}))', 0))
 
         self.DEBUG = debug_mode
         self.extract_span("")
