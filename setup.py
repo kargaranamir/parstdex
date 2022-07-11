@@ -8,7 +8,7 @@ with open("README.md", encoding='utf-8-sig') as fh:
 
 setuptools.setup(
     name='parstdex',
-    version="1.3",
+    version="1.3.1",
     description="Persian time and date marker extractor",
     long_description=long_description,
     long_description_content_type="text/markdown",

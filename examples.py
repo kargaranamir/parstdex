@@ -24,7 +24,7 @@ def examples():
         markers = model.extract_marker(input_sentence)
         result['markers'] = markers
 
-        ners1 = model.extract_bio_dat(input_sentence)
+        ners1 = model.extract_bio_tmp(input_sentence)
         result['ner1'] = ners1
 
         ners2 = model.extract_bio_dattim(input_sentence)
