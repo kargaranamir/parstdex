@@ -197,6 +197,9 @@ HR DP VYA HR DP
 ### Indefinite Time
 # دقیقه ای
 TU<>PF
+# ۲۴ ساعته
+HR SAATPF
+N24<>SAATPF
 # دقیقه ی آینده
 TU<>PF NXT
 # دقیقه ی نخست آینده
