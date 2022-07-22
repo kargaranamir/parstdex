@@ -26,7 +26,7 @@ class Annotation:
     in following steps.
     """
 
-    path_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'annotation')
+    path_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'pattern_units')
 
     time_annotation_path = os.path.join(path_dir, 'time', "")
     date_annotation_path = os.path.join(path_dir, 'date', "")
