@@ -15,11 +15,11 @@ setuptools.setup(
     url='https://github.com/kargaranamir/parstdex',
     packages=setuptools.find_packages(),
     package_data={
-        'parstdex.utils': ['pattern/*.txt',
-                           'annotation/ax/*.txt',
-                           'annotation/adv/*.txt',
-                           'annotation/date/*.txt',
-                           'annotation/time/*.txt',
+        'parstdex.utils': ['patterns/*.txt',
+                           'pattern_units/ax/*.txt',
+                           'pattern_units/adv/*.txt',
+                           'pattern_units/date/*.txt',
+                           'pattern_units/time/*.txt',
                            'special_words/*.txt'],
         'tests': ['data.json']
     },
