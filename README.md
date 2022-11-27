@@ -1,9 +1,12 @@
-# parstdex (persian time date extractor) - پارس تی‌دِکس
+# HengamTagger or Parstdex (persian time date extractor)
 
 [![Pypi Package](https://badgen.net/pypi/v/parstdex)](https://pypi.org/project/parstdex/)
 [![Documentation Status](https://readthedocs.org/projects/parstdex/badge/?version=latest)](https://parstdex.readthedocs.io)
 [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/kargaranamir/parstdex)
 [![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kargaranamir/parstdex/blob/main/performance_test.ipynb)
+
+## Description 
+**Parstdex** (knwon as **HengamTagger** in our paper at [aacl](https://aclanthology.org/2022.aacl-main.74/)) is a rule-based Persian temporal extractor built on top of regular expressions specifying pattern units and patterns that can match temporal expressions. 
 
 ## How to Install parstdex
 
@@ -210,14 +213,20 @@ Please feel free to provide us with any feedback or suggestions.  You can find m
 [contribution document](https://github.com/kargaranamir/parstdex/blob/main/contributing.md).
 
 ## Citation
-If you use any part of this library in your research, please cite it using the following BibTex entry.
-```
-@misc{parstdex,
-  author = {Kargaran, Amir Hossein and Mirzababaei, Sajad and Jahad, Hamid},
-  title = {Parstdex: Persian Time Date Extractor Python Library},
-  year = {2021},
-  publisher = {GitHub},
-  journal = {GitHub Repository},
-  howpublished = {\url{https://github.com/kargaranamir/parstdex}},
+
+If you use any part of this repository in your research, please cite it using the following BibTex entry.
+```python
+@inproceedings{mirzababaei-etal-2022-hengam,
+    title = "Hengam: An Adversarially Trained Transformer for {P}ersian Temporal Tagging",
+    author = {Mirzababaei, Sajad  and
+      Kargaran, Amir Hossein  and
+      Sch{\"u}tze, Hinrich  and
+      Asgari, Ehsaneddin},
+    booktitle = "Proceedings of the 2nd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics and the 12th International Joint Conference on Natural Language Processing",
+    year = "2022",
+    address = "Online only",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.aacl-main.74",
+    pages = "1013--1024",
 }
 ```
